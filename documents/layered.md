@@ -1,8 +1,10 @@
-## Layered n-tier
+## Layered (n-tier)
 
 Arhitekturni stil koji se primenjeje nad celom strukturom aplikacije je Layered (slojeviti) obrazac. Komponente aplikacije su organizovane u horizontalne slojeve gde svaki sloj ima konkretnu ulogu i odgovornost. Svaki od slojeva formira abstrakciju oko uloge koju treba da sprovodi što doprinosi modularnosti. Jedna od glavnih prednosti primene ovog obrasca u našoj aplikaciji je razdvajanje briga izmedju komponenti, gde na primer, Klijentski sloj pregleda ne uzima u obzir način predstavljanja podataka već samo konkretne podatke koje treba da predstavi; sami podaci su ovom sloju dopremljeni u njemu odgovarajućem obliku.
 
-(images/layered.png)
+![alt text][layered]
+
+[layered]: images/layered.png
 
 1. *Server*: pozadisnki sloj koji enkapsulira bazu podataka i pristup (Node.js)
 2. *Reactive model*: sloj koji omotava (*wrapper*) celokupnu logiku pribavljanja podataka i manipulaciju njima
