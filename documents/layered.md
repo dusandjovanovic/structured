@@ -6,10 +6,12 @@ Arhitekturni stil koji se primenjeje nad celom strukturom aplikacije je Layered 
 
 [layered]: images/layered.png
 
-1. *Server*: pozadisnki sloj koji enkapsulira bazu podataka i pristup (Node.js)
-2. *Reactive model*: sloj koji omotava (*wrapper*) celokupnu logiku pribavljanja podataka i manipulaciju njima
-3. *Client controller*: sloj koji prima naredbe od pogleda i zadaje konkretne direktive nižim slojevima na osnovu zahteva
-4. *Client view*: sloj pogleda, interakcija sa korisnikom 
+* *Server* - pozadisnki sloj koji enkapsulira bazu podataka i pristup (Node.js)
+* *Reactive model* - sloj koji omotava (*wrapper*) celokupnu logiku pribavljanja podataka i manipulaciju njima
+* *Client controller* - sloj koji prima naredbe od pogleda i zadaje konkretne direktive nižim slojevima
+* *Client view* - sloj pogleda, interakcija sa korisnikom 
+
+---
 
 Iz priloženog se može videti da postoji sličnost sa Model-View-Controller obrascem, medjutim struktuiranost je slojevita. Konkretna primena **MVC** obrasca je prisutna nad komponentama front-end strane, što je uslovljeno dizajnom same strukture Angular frameworka. Za sinhronizaciju više korisnika je primenjen **Observer** obrazac.
 
