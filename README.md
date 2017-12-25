@@ -1,6 +1,6 @@
 # Structured
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.2.
+Web application for real-time and collaborative visualization of dynamic Data Structures, such as Graphs and Binary trees. Includes both Practise and Competitive modes, with introductory learning mode. Generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.2.
 
 ## Development server
 
