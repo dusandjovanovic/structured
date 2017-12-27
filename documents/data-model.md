@@ -1,6 +1,6 @@
-#Model perzistencije i podataka
+# Model perzistencije i podataka
 
-##Model perzistencije
+## Model perzistencije
 
 Zbog kompatibilnosti unutar MEAN (MongoDB, Express, Angular, Node.js) stack-a kao i pogodnosti koje pruža zahvaljujući svojoj asinhronoj prirodi odabrali smo MongoDB. Ne-striktno struktuirana priroda podataka koje čuvamo zahtevala je implementaciju noSQL baze podataka, a MongoDB se pozicionirala kao standard na ovom polju.
 
@@ -29,7 +29,7 @@ var graphSchema = new schema({
 });
 ```
 
-##Model podataka
+## Model podataka
 
 Modeli podataka za rute:
 
