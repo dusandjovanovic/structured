@@ -42,7 +42,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.graphService.graphChanged.subscribe((graph: GraphModel) => {
       console.log('graph changed..');
-      this.graph = this.d3Service.getDirectedGraph(graph.nodes, graph.edges, this.options);
+      this.graph = this.d3Service.getDirectedGraph(graph.nodes.slice(), graph.edges.slice(), this.options);
       this.graph.initSimulation(this.options);
       this.graph.ticker.subscribe((d) => {
         this.ref.markForCheck();

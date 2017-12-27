@@ -4,6 +4,9 @@ import {EdgeModel} from './EdgeModel';
 
 export class GraphModel {
 
+  public _id: number;
+  public __v: number;
+
   public nodes: NodeModel[];
   public edges: EdgeModel[];
   public lastIndex;

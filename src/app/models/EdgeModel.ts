@@ -1,6 +1,6 @@
 import {NodeModel} from './NodeModel';
 
-export class EdgeModel implements d3.SimulationLinkDatum<NodeModel>{
+export class EdgeModel implements d3.SimulationLinkDatum<NodeModel> {
 
   public source: number;
   public target: number;
