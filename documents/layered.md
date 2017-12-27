@@ -108,6 +108,8 @@ Arhitekturni stil koji se primenjuje nad celom strukturom aplikacije je Layered 
 
 Iz priloženog se može videti da postoji sličnost sa Model-View-Controller obrascem, medjutim struktuiranost je slojevita. Konkretna primena **MVC** obrasca je prisutna nad komponentama front-end strane, što je uslovljeno dizajnom same strukture Angular frameworka. Za sinhronizaciju više korisnika je primenjen **Observer** obrazac.
 
+Dijagrami klasa i detaljnije osobine sledećih segmenata će biti dodate u kasnijim fazama implementacije.
+
 ### Server
 
 ...
