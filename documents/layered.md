@@ -135,6 +135,7 @@ Iz priloženog se može videti da postoji sličnost sa Model-View-Controller obr
 
 ### Model-View-Controller
 
+Model-View-Controller je arhitektura uslovljena Angular frameworkom, pa samim tim je prisutna na klijentskoj strani. Svaka frontend reprezentaciona komponenta aplikacije je realizovana kroz ovaj obrazac.
 
 ## Fizički pogled
 Fizički pogled, odnosno razmeštaj aplikacije, čine serverska i klijentska strana. Server ostvaruje direktnu konekciju sa bazom podataka uz dodatno izvršavanje logike na serverskoj strani. Na kiljentskoj strani je servirana komponenta koja se dinamički menja u zavisnosti od zahteva i direktiva klijenta, za čiju je funkcionalnost neophodna dvosmerna komunikacija sa serverskom stranom.
