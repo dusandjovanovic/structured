@@ -5,6 +5,7 @@ import {GraphService} from './graph.service';
 import {GraphModel} from '../models/GraphModel';
 import {Subject} from 'rxjs/Subject';
 import {NodeModel} from '../models/NodeModel';
+import {EdgeModel} from '../models/EdgeModel';
 
 @Injectable()
 export class ReactiveService {
@@ -35,11 +36,12 @@ export class ReactiveService {
           newModel.addNode();
         }
         for (const edge of response.edges){
-          let src: NodeModel;
-          let dst: NodeModel;
-          src = edge.source;
-          dst = edge.target;
-          newModel.addEdge(src.id, dst.id);
+          let src: number;
+          let dst: number;
+          src = edge.source.id;
+          dst = edge.target.id;
+
+          newModel.addEdge(src, dst);
         }
 
         newModel.lastIndex = response.lastIndex;

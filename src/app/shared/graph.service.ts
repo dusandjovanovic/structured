@@ -33,6 +33,8 @@ export class GraphService {
     this.Graph.addEdge(7, 3);
     this.Graph.addEdge(8, 4);
 
+    console.log(this.Graph);
+
     this.lastIndex = this.Graph.lastIndex;*/
   }
 
