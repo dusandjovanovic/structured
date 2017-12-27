@@ -1,6 +1,10 @@
+Structured je web aplikacija namenjena kolaborativnom učenju dinamičkih struktura podataka. Pruža tri osnovna moda: mod učenja (learning), mod vežbanja (practise) i kompetetivan mod (competitive). Ova aplikacija pruža vizualizaciju struktura podataka u realnom vremenu, kao i modifikaciju prikazane strukture. Korisnici imaju izbor izmedju Grafova i Binarnih stabala traženja.
+
+# Arhitekturni dizajn softverskog sistema
+
 ## Layered (n-tier)
 
-Arhitekturni stil koji se primenjeje nad celom strukturom aplikacije je Layered (slojeviti) obrazac. Komponente aplikacije su organizovane u horizontalne slojeve gde svaki sloj ima konkretnu ulogu i odgovornost. Svaki od slojeva formira abstrakciju oko uloge koju treba da sprovodi što doprinosi modularnosti. Jedna od glavnih prednosti primene ovog obrasca u našoj aplikaciji je razdvajanje briga izmedju komponenti, gde na primer, Klijentski sloj pregleda ne uzima u obzir način predstavljanja podataka već samo konkretne podatke koje treba da predstavi; sami podaci su ovom sloju dopremljeni u njemu odgovarajućem obliku.
+Arhitekturni stil koji se primenjuje nad celom strukturom aplikacije je Layered (slojeviti) obrazac. Komponente aplikacije su organizovane u horizontalne slojeve gde svaki sloj ima konkretnu ulogu i odgovornost. Svaki od slojeva formira abstrakciju oko uloge koju treba da sprovodi što doprinosi modularnosti. Jedna od glavnih prednosti primene ovog obrasca u našoj aplikaciji je razdvajanje briga izmedju komponenti, gde na primer, Klijentski sloj pregleda ne uzima u obzir način predstavljanja podataka već samo konkretne podatke koje treba da predstavi; sami podaci su ovom sloju dopremljeni u njemu odgovarajućem obliku.
 
 ![alt text][layered]
 
@@ -30,3 +34,18 @@ Iz priloženog se može videti da postoji sličnost sa Model-View-Controller obr
 ### Client view
 
 ...
+
+
+## Arhitekturni obrasci
+
+### Publish and subscribe
+...
+
+### Observer
+...
+
+### Model-View-Controller
+
+
+## Logički pogled
+
