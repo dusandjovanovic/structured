@@ -1,5 +1,9 @@
 ## Model komunikacije
-Za komunikaciju se koristi **WebSocket** komunikacioni protokol koji obezbedjuje dvosmerne komunikacione kanale izmedju dve strane pomoću jedne TCP konekcije. Za implementaciju modela koristi se **Socket.IO** JavaScript biblioteka. 
+Za komunikaciju se koristi **WebSocket** komunikacioni protokol koji obezbedjuje dvosmerne komunikacione kanale izmedju dve strane pomoću jedne TCP konekcije. Za implementaciju modela koristi se **Socket.IO** JavaScript biblioteka.
+
+![alt text][socketio]
+
+[socketio]: images/socketio.png
 
 Za ostvarivanje realtime komunikacije između klijenata iskorišćena je Socket.IO javascript biblioteka. Ova biblioteka omogućava krajnje jednostavnu implementaciju komunikacije koja se realizuje pomoću dve komponente, serverske (izvršava se u Node.js-u) i klijentske (izvršava se u browser-u). Socket.io forsira upotrebu WebSocket protokola, koji omogućava interakciju između browser-a i server-a sa manjim overhead-om, obezbeđivanjem standardizovanog načina da server šalje podatke klijentu bez prosleđivanja zahteva od strane klijenta, kao i omogućavanjem da se poruke šalju bidirekciono bez zatvaranja konekcije. Iako se može koristiti i kao wrapper za WebSocket protokol sa jednostavnim i intuitivnim API-jem, Socket.IO omogućava i veliki broj dodatnih funkcionalnosti koje olakšavaju implementaciju našeg projekta, među kojima se izdvajaju emitovanje podataka na više soketa kao i čuvanje podataka vezanih za svaki od klijenata.
 
@@ -29,9 +33,9 @@ Ruta koja se koristi za razmenu chat poruka. Sadrzaj poruke je JavaScript objeka
  
 Za realizaciju funkcionalnosti dodavanja cvorova i emitovanje promena ostalim klijentima koristi se ruta new-node. Sadrzaj poruke je JavaScript objekat koji sadrzi vrednost cvora koji se dodaje u graf, kao i broj veza. Prilikom dodavanja novog cvora izvrsava se promena lokalne strukture grafa kod klijenta koji vrsi izmene, nakon cega se asinhronim upisom obezbedjuje perzistencija podataka. Zatim, kontroler klijenta salje zahtev serveru, koji emituje novonastalu promenu svim povezanim klijentima.
 
-![alt text][communication]
+![alt text][node]
 
-[communication]: architecture/activity-user-adds-node.png
+[node]: architecture/activity-user-adds-node.png
 
 
 `new-edge`
