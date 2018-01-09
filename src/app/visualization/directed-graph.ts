@@ -8,7 +8,7 @@ import {GraphService} from '../shared/graph.service';
 const FORCES = {
   LINKS: 1 / 20,
   COLLISION: 0.1,
-  CHARGE: -6
+  CHARGE: -3
 }
 
 export class DirectedGraph {

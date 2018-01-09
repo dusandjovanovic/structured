@@ -2,7 +2,8 @@ import {GraphModel} from '../models/GraphModel';
 import {NodeModel} from '../models/NodeModel';
 import {EdgeModel} from '../models/EdgeModel';
 import {Subject} from 'rxjs/Subject';
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
+import {SocketioService} from './socketio.service';
 
 @Injectable()
 export class GraphService {
@@ -12,46 +13,38 @@ export class GraphService {
   private Graph: GraphModel;
   graphChanged = new Subject<GraphModel>();
 
-  constructor() {
+  constructor(private socketioService: SocketioService) {
     this.Graph = new GraphModel();
 
-
-    // for (let i = 0; i < 10; i++) {
-    //   this.Graph.addNode();
-    // }
-    //
-    //
-    // console.log('Initial');
-    // console.log(this.Graph);
-    //
-    // this.Graph.addEdge(0, 1);
-    // this.Graph.addEdge(0, 2);
-    // this.Graph.addEdge(0, 3);
-    // this.Graph.addEdge(0, 4);
-    // this.Graph.addEdge(1, 5);
-    // this.Graph.addEdge(1, 6);
-    // this.Graph.addEdge(1, 3);
-    // this.Graph.addEdge(2, 3);
-    // this.Graph.addEdge(2, 4);
-    // this.Graph.addEdge(2, 9);
-    // this.Graph.addEdge(3, 5);
-    // this.Graph.addEdge(7, 3);
-    // this.Graph.addEdge(8, 4);
-    //
-    // console.log('Initial');
-    // console.log(this.Graph);
-    //
-    // this.lastIndex = this.Graph.lastIndex;
 
   }
 
   public addNode() {
     this.Graph.addNode();
     this.lastIndex = this.Graph.lastIndex;
+    this.socketioService.addNode({
+      node: this.lastIndex - 1,
+      linkCount: 0
+    });
+  }
+
+  public addNodeSync() {
+    this.Graph.addNode();
+    this.lastIndex = this.Graph.lastIndex;
+    this.graphChanged.next(this.getModel());
   }
 
   public addEdge(source: number, target: number) {
     this.Graph.addEdge(source, target);
+    this.socketioService.addEdge({
+      source: source,
+      target: target
+    });
+  }
+
+  public addEdgeSync(source: number, target: number) {
+    this.Graph.addEdge(source, target);
+    this.graphChanged.next(this.getModel());
   }
 
   public getModel(): GraphModel {

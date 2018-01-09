@@ -2,10 +2,10 @@ import {NodeModel} from './NodeModel';
 
 export class EdgeModel implements d3.SimulationLinkDatum<NodeModel> {
 
-  public source: number;
-  public target: number;
+  public source: NodeModel;
+  public target: NodeModel;
 
-  constructor(source: number, target: number) {
+  constructor(source: NodeModel, target: NodeModel) {
     this.source = source;
     this.target = target;
   }

@@ -1,0 +1,38 @@
+<div id="live-chat">
+
+  <header class="clearfix">
+
+  </header>
+
+  <div class="chat">
+
+    <div class="chat-history">
+
+      <div *ngFor="let message of messages">
+      <div class="chat-message clearfix">
+        <div class="chat-message-content clearfix">
+          <span class="chat-time">{{message.time | date:'MM/dd/yyyy @ h:mma'}}</span>
+          <h5>User</h5>
+          <p>{{message.text}}</p>
+        </div> <!-- end chat-message-content -->
+      </div> <!-- end chat-message -->
+      <hr>
+      </div>
+
+    </div> <!-- end chat-history -->
+
+    <form action="#" method="post">
+
+      <fieldset>
+
+        <input type="text" name="holder" placeholder="Type your message…" autofocus [(ngModel)]="replyMessage">
+        <input type="button" class="btn" (click)="reply()" value="Send"/>
+        <input type="hidden">
+
+      </fieldset>
+
+    </form>
+
+  </div> <!-- end chat -->
+
+</div> <!-- end live-chat -->
