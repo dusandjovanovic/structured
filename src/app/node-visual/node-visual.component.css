@@ -1,0 +1,17 @@
+.node {
+  cursor: pointer;
+  transition: stroke-width 0.1s ease-out,
+  fill 0.1s ease-out,
+  stroke 0.1s ease-out;
+
+  stroke: darkgray;
+  stroke-width: 3;
+}
+
+.node-name {
+  font-family: 'Consolas';
+  text-anchor: middle;
+  alignment-baseline: bottom;
+  font-weight: lighter;
+  fill: white;
+}
