@@ -5,12 +5,13 @@ import { EdgeModel } from '../models/EdgeModel';
   selector: '[linkVisual]',
   template: `
     <svg:line
-        class="link"
-        [attr.x1]="edge.source.x"
-        [attr.y1]="edge.source.y"
-        [attr.x2]="edge.target.x"
-        [attr.y2]="edge.target.y"
-    ></svg:line>
+      class="link" xmlns:svg="http://www.w3.org/1999/html"
+      [attr.x1]="edge.source.x"
+      [attr.y1]="edge.source.y"
+      [attr.x2]="edge.target.x"
+      [attr.y2]="edge.target.y"
+      xmlns:svg="http://www.w3.org/1999/html">
+    </svg:line>
   `,
   styleUrls: ['./edge-visual.component.css']
 })

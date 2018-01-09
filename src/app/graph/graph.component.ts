@@ -3,6 +3,7 @@ import { VisualizeService } from '../visualization/visualize.service';
 import { DirectedGraph } from '../visualization/directed-graph';
 import {GraphService} from '../shared/graph.service';
 import {GraphModel} from '../models/GraphModel';
+import {SocketioService} from '../shared/socketio.service';
 
 @Component({
   selector: 'graph',
@@ -30,10 +31,29 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
     this.graph.initSimulation(this.options);
   }
 
+  @HostListener('click', ['$event'])
+  onClick(event) {
+    console.log(event);
+  }
 
-  constructor(private d3Service: VisualizeService, private ref: ChangeDetectorRef, private graphService: GraphService) {}
+  constructor(private d3Service: VisualizeService, private ref: ChangeDetectorRef, private graphService: GraphService, private socketioService: SocketioService) {}
 
   ngOnInit() {
+
+    this.socketioService
+      .receiveNode()
+      .subscribe((node) => {
+        console.log('addNode:: ', node);
+        this.graphService.addNodeSync();
+      });
+
+    this.socketioService
+      .receiveEdge()
+      .subscribe((edge) => {
+        console.log('addEdge:: ', edge);
+        this.graphService.addEdgeSync(edge.source, edge.target);
+      });
+
     this.graph = this.d3Service.getDirectedGraph(this.nodes, this.edges, this.options);
 
     this.graph.ticker.subscribe((d) => {
@@ -41,9 +61,8 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     this.graphService.graphChanged.subscribe((graph: GraphModel) => {
-      console.log('graph changed..');
+
       this.graph = this.d3Service.getDirectedGraph(graph.nodes.slice(), graph.edges.slice(), this.options);
-      this.graph.initSimulation(this.options);
       this.graph.ticker.subscribe((d) => {
         this.ref.markForCheck();
       });

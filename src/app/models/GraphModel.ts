@@ -23,11 +23,12 @@ export class GraphModel {
   }
 
   public addEdge(source: number, target: number) {
+    console.log(source, target);
     if (this.getNode(source) === null || this.getNode(target) === null) {
       return;
     }
     else {
-      this.edges.push(new EdgeModel(source, target));
+      this.edges.push(new EdgeModel(this.getNode(source), this.getNode(target)));
       this.getNode(source).addEdge();
       this.getNode(target).addEdge();
     }

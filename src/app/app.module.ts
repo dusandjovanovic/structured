@@ -12,6 +12,9 @@ import { GraphService } from './shared/graph.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveService} from './shared/reactive.service';
 import {HelperService} from './shared/helper.service';
+import { ChatboxComponent } from './chatbox/chatbox.component';
+import { FormsModule } from '@angular/forms';
+import {SocketioService} from './shared/socketio.service';
 
 @NgModule({
   declarations: [
@@ -22,12 +25,14 @@ import {HelperService} from './shared/helper.service';
     ZoomableDirective,
     DraggableDirective,
     HeaderComponent,
+    ChatboxComponent,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [VisualizeService, GraphService, ReactiveService, HelperService],
+  providers: [VisualizeService, GraphService, ReactiveService, HelperService, SocketioService],
   bootstrap: [AppComponent]
 })
 
