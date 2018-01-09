@@ -1,4 +1,5 @@
-## Model komunikacije
+# Model komunikacije
+## Socket.IO
 Za komunikaciju se koristi **WebSocket** komunikacioni protokol koji obezbedjuje dvosmerne komunikacione kanale izmedju dve strane pomoću jedne TCP konekcije. Za implementaciju modela koristi se **Socket.IO** JavaScript biblioteka.
 
 ![alt text][socketio]
