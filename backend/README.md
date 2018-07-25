@@ -1,3 +1,25 @@
+## JSON
+
+* **User**
+```javascript
+{
+  username: String,
+  password: String,
+  friends[]: String
+}
+```
+
+* **FriendRequest**
+```javascript
+{
+  sender: String,
+  receiver: String,
+  time: Date
+}
+```
+
+## API
+
 ### Auth
 * **URI**: /api/auth
 
