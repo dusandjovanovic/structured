@@ -6,8 +6,9 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-var book = require('./routes/book');
+var user = require('./routes/user');
 var auth = require('./routes/auth');
+var friendrequest = require('./routes/friend-request');
 var app = express();
 
 mongoose.connect('mongodb://localhost:27017/structured', {
@@ -28,11 +29,9 @@ app.use(function (req, res, next) {
 });
 app.use(bodyParser.urlencoded({'extended':'false'}));
 
-// connecting to React?
-app.use(express.static(path.join('../frontend/', 'build')));
-
-app.use('/api/book', book);
+app.use('/api/user', user);
 app.use('/api/auth', auth);
+app.use('/api/friend-request', friendrequest);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
