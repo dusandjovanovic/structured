@@ -1,10 +1,11 @@
-import * as actionTypes from '../actions/actionTypes'
+import * as actionTypes from '../actions/actions'
 
 const initialState = {
     token: null,
-    userId: null,
+    username: null,
     error: null,
-    waiting: null
+    waiting: null,
+    authRedirectPath: '/'
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,7 +20,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: action.token,
-                userId: action.userId,
+                username: action.userId,
                 error: null,
                 waiting: false
             };
@@ -33,7 +34,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: null,
-                userId: null
+                username: null
+            };
+        case actionTypes.AUTH_SET_REDIRECT:
+            return {
+                ...state,
+                authRedirectPath: action.path
             };
         default:
             return state;

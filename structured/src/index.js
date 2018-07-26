@@ -7,11 +7,13 @@ import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import thunk from 'redux-thunk';
-import authReducer from './redux/reducers/auth'
+import authReducer from './redux/reducers/auth';
+import userReducer from './redux/reducers/user';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    user: userReducer
 });
 const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk)
