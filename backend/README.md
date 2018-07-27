@@ -44,4 +44,4 @@
 | /add       | POST    | /                     | sender: String, receiver: String        | /                     |
 | /confirm   | POST    | /                     | id: String                              | /                     |
 | /delete    | DELETE  | /                     | id: String                              | /                     |
-| /check     | GET     | /                     | sender: String, receiver: String        | exists: Boolean       |
+| /check     | POST    | /                     | sender: String, receiver: String        | exists: Boolean       |
