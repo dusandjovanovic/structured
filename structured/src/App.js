@@ -43,7 +43,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        authenticated: state.auth.token !== null
+        authenticated: state.auth.token !== null,
+        requests: state.user.requests
     }
 };
 

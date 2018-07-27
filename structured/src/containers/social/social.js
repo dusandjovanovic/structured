@@ -2,22 +2,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../redux/actions/index';
 import ListElement from '../../components/list-element/listElement';
+import Request from './request/request';
 
 export class Social extends Component {
     componentDidMount() {
         this.props.onGetUserData(this.props.username);
-        this.props.onNotificationSystem(
-            'You have a new friend request from Xyz',
-            'info',
-            10,
-            {
-                label: 'Accept',
-                callback: function() {
-                    console.log('Notification button clicked!');
-                }
-            },
-            function (notification) { console.log(notification.title + 'was removed'); }
-        );
+        this.props.onGetFriendRequests(this.props.username);
     };
 
     render() {
@@ -34,13 +24,19 @@ export class Social extends Component {
                 )))
             );
         }
-        return (friends);
+        return (
+            <div>
+                <Request
+                    sender={this.props.username}
+                    onAddFriend={(sender, receiver) => this.props.onAddFriend(sender, receiver)}/>
+                {friends}
+            </div>);
     };
 }
 
 const mapStateToProps = state => {
     return {
-        username: state.user.username,
+        username: state.auth.username,
         friends: state.user.friends
     }
 };
@@ -50,7 +46,7 @@ const mapDispatchToProps = dispatch => {
         onGetUserData: (username) => dispatch(actions.userData(username)),
         onGetFriendRequests: (username) => dispatch(actions.friendRequests(username)),
         onAddFriend: (sender, receiver) => dispatch(actions.friendAdd(sender, receiver)),
-        onConfirmFriend: (requestId) => dispatch(actions.friendConfirm(requestId)),
+        onConfirmFriend: (requestId, username) => dispatch(actions.friendConfirm(requestId, username)),
         onDeleteFriend: (requestId) => dispatch(actions.friendDelete(requestId)),
         onNotificationSystem: (message, level, autoDismiss, action, onRemove) => dispatch(actions.notificationSystem(message, level, autoDismiss, action, onRemove))
     }

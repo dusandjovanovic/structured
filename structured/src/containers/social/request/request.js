@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
-import Input from '../../components/user-interface/input/input';
-import Button from '../../components/user-interface/button/button';
-import Spinner from '../../components/user-interface/spinner/spinner';
-import * as actions from '../../redux/actions/index';
-import classes from './auth.css';
+import Input from '../../../components/user-interface/input/input';
+import Button from '../../../components/user-interface/button/button';
+import Spinner from '../../../components/user-interface/spinner/spinner';
+import * as actions from '../../../redux/actions/index';
+import classes from './request.css';
 
-class Auth extends Component {
+class Request extends Component {
     state = {
         controls: {
             username: {
@@ -23,23 +22,8 @@ class Auth extends Component {
                 },
                 valid: false,
                 touched: false
-            },
-            password: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'password',
-                    placeholder: 'Password'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 7
-                },
-                valid: false,
-                touched: false
             }
-        },
-        isSignup: true
+        }
     };
 
     checkValidity (value, rules) {
@@ -71,13 +55,7 @@ class Auth extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        this.props.onAuth(this.state.controls.username.value, this.state.controls.password.value, this.state.isSignup);
-    };
-
-    switchAuthModeHandler = () => {
-        this.setState(prevState => ({
-            isSignup: !prevState.isSignup
-        }));
+        this.props.onAddFriend(this.props.sender, this.state.controls.username.value);
     };
 
     render() {
@@ -100,45 +78,21 @@ class Auth extends Component {
                    key={element.id}/>
 
         ));
-        if (this.props.waiting)
-            form = <Spinner/>;
         let errorMessage = null;
         if (this.props.error)
             errorMessage = (<p>{this.props.error}</p>);
 
-        let authRedirect = null;
-        if (this.props.authenticated)
-            authRedirect = <Redirect to={this.props.authRedirectPath}/>;
-
         return (
-            <div className={classes.Auth}>
-                {authRedirect}
+            <div className={classes.Requests}>
                 {errorMessage}
+                <p className>Send a new friend request:</p>
                 <form onSubmit={this.submitHandler}>
                     {form}
                     <Button btnType="Success">SUBMIT</Button>
                 </form>
-                <Button btnType="Danger" clicked={this.switchAuthModeHandler}>
-                    SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}
-                </Button>
             </div>
         );
     };
 }
 
-const mapStateToProps = state => {
-    return {
-        waiting: state.auth.waiting,
-        error: state.auth.error,
-        authenticated: state.auth.token !== null,
-        authRedirectPath: state.auth.authRedirectPath
-    }
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onAuth: (username, password, mode) => dispatch(actions.auth(username, password, mode))
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps) (Auth);
+export default Request;
