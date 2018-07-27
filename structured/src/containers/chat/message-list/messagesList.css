@@ -1,0 +1,8 @@
+.Messages {
+    margin: 20px auto;
+    width: 40%;
+    text-align: center;
+    border: 1px solid #61DAFB;
+    padding: 10px;
+    box-sizing: border-box;
+}
