@@ -16,6 +16,24 @@ export const userFetchDataFail = (error) => {
     }
 };
 
+export const userData = (username) => {
+    return dispatch => {
+        let url = '/api/user/:' + username;
+        axios.get(url)
+            .then(response => {
+                console.log('userData:', response);
+                let received = ["Friend 123", "Friend 122", "Friend 255", "Friend 111"];
+                for (let element in response.data)
+                    received.push(element);
+                dispatch(userFetchData(username, received));
+            })
+            .catch((error) => {
+                console.log('userError:', error);
+                dispatch(userFetchDataFail("Fetching social data failed."));
+            });
+    }
+};
+
 export const friendFail = (error) => {
     return {
         type: actionTypes.USER_FETCH_DATA_FAIL,
@@ -31,7 +49,7 @@ export const friendRequests = (username) => {
                 console.log('requestsData:', response);
             })
             .catch(error => {
-                console.log('Requests-message: ', error);
+                console.log('requestError:', error);
                 dispatch(friendFail("Fetching social data failed."));
             });
     }
@@ -46,10 +64,10 @@ export const friendAdd = (username, friendUsername) => {
         let url = '/api/friend-request/add';
         axios.post(url, data)
             .then(response => {
-                console.log(response);
+                console.log('addData:', response);
             })
             .catch(error => {
-                console.log('Add-message: ', error);
+                console.log('addError:', error);
                 dispatch(friendFail("Fetching social data failed."));
             });
     }
@@ -63,10 +81,10 @@ export const friendConfirm = (requestId) => {
         let url = '/api/friend-request/confirm';
         axios.post(url, data)
             .then(response => {
-                console.log(response);
+                console.log('confirmData', response);
             })
             .catch(error => {
-                console.log('Confirm-message: ', error);
+                console.log('confirmError:', error);
                 dispatch(friendFail("Fetching social data failed."));
             });
     }
@@ -80,27 +98,11 @@ export const friendDelete = (requestId) => {
         let url = '/api/friend-request/delete';
         axios.delete(url, data)
             .then(response => {
-                console.log(response);
+                console.log('deleteData:', response);
             })
             .catch(error => {
-                console.log('Delete-message: ', error);
+                console.log('deleteError:', error);
                 dispatch(friendFail("Fetching social data failed."));
             });
     }
 };
-
-export const user = (username) => {
-    return dispatch => {
-        let url = '/api/user/:' + username;
-        axios.get(url)
-            .then(response => {
-                console.log('userData:', response);
-                //dispatch(userFetchData());
-            })
-            .catch((error) => {
-                console.log('User-message: ', error);
-                dispatch(userFetchDataFail("Fetching social data failed."));
-            });
-    }
-};
-

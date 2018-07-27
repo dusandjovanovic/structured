@@ -60,7 +60,7 @@ export const auth = (username, password, modeSignup) => {
                 dispatch(authCheckTimeout(3600));
             })
             .catch(error => {
-                console.log('message: ', error);
+                console.log('authError:', error);
                 dispatch(authFail("Login failed. Username or password not match."));
             });
     }
