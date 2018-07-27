@@ -6,7 +6,7 @@ var FriendRequest = require('../models/FriendRequest.js');
 var passport = require('passport');
 require('../config/passport')(passport);
 
-/* ADD FRIEND REQUEST */
+/* GET FRIEND REQUESTS */
 router.get('/:username', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
   var token = getToken(req.headers);
   //if (token) {
@@ -27,6 +27,31 @@ router.get('/:username', /*passport.authenticate('jwt', {session: false}),*/ fun
   //}
 });
 
+/* CHECK FRIEND REQUEST */
+router.post('/check', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
+  var token = getToken(req.headers);
+  //if (token) {
+    var sender = req.body.sender;
+    var receiver = req.body.receiver;
+    if (!sender || !receiver) {
+      res.json({success: false, msg: 'Please pass username and friendname.'});
+    } else {
+      FriendRequest.findOne({
+        sender: sender,
+        receiver: receiver
+      }, function(err, request) {
+        if (request) {
+          res.json({exists: true});
+        } else {
+          res.json({exists: false});
+        }
+      });
+    }
+  //} else {
+  //  return res.status(403).send({success: false, msg: 'Unauthorized.'});
+  //}
+});
+
 /* ADD FRIEND REQUEST */
 router.post('/add', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
   var token = getToken(req.headers);
@@ -36,20 +61,29 @@ router.post('/add', /*passport.authenticate('jwt', {session: false}),*/ function
     if (!sender || !receiver) {
       res.json({success: false, msg: 'Please pass username and friendname.'});
     } else {
-      User.findOne({username: receiver}, function(err, user) {
-        if (err || !user) {
-          res.json({success: false, msg: 'User not found.'});
-        } else {
-          FriendRequest.create({
-            sender: sender,
-            receiver: receiver
-          }, function(err) {
-            if (err) {
-              res.json({success: false, msg: 'Friend was not added.'});
+      FriendRequest.findOne({
+        sender: sender,
+        receiver: receiver
+      }, function(err, request) {
+        if (!request) {
+          User.findOne({username: receiver}, function(err, user) {
+            if (err || !user) {
+              res.json({success: false, msg: 'User not found.'});
             } else {
-              res.json({success: true, msg: 'Successfully sent a friend request.'});
+              FriendRequest.create({
+                sender: sender,
+                receiver: receiver
+              }, function(err) {
+                if (err) {
+                  res.json({success: false, msg: 'Friend was not added.'});
+                } else {
+                  res.json({success: true, msg: 'Successfully sent a friend request.'});
+                }
+              });
             }
           });
+        } else {
+          res.json({success: false, msg: 'This request already exists.'});
         }
       });
     }
