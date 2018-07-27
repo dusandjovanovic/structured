@@ -28,6 +28,8 @@ export class Social extends Component {
             <div>
                 <Request
                     sender={this.props.username}
+                    placeholder="Username"
+                    info="Send a new friend request:"
                     onAddFriend={(sender, receiver) => this.props.onAddFriend(sender, receiver)}/>
                 {friends}
             </div>);

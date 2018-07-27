@@ -3,6 +3,7 @@ import Layout from './components-higher/layout/layout';
 import Auth from './containers/auth/auth';
 import Logout from './containers/auth/logout/logout';
 import Social from './containers/social/social';
+import Chat from './containers/chat/chat';
 import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from './redux/actions/index';
@@ -27,6 +28,7 @@ class App extends Component {
                     <Route path="/auth" component={Auth}/>
                     <Route path="/logout" component={Logout}/>
                     <Route path="/social" component={Social}/>
+                    <Route path="/chat" component={Chat}/>
                     <Route path="/" exact render={() => <h2 style={{textAlign: 'center'}}> ... </h2>}/>
                 </Switch>
             );

@@ -13,7 +13,7 @@ class Request extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'username',
-                    placeholder: 'Username'
+                    placeholder: this.props.placeholder
                 },
                 value: '',
                 validation: {
@@ -85,7 +85,7 @@ class Request extends Component {
         return (
             <div className={classes.Requests}>
                 {errorMessage}
-                <p className>Send a new friend request:</p>
+                <p className>{this.props.info}</p>
                 <form onSubmit={this.submitHandler}>
                     {form}
                     <Button btnType="Success">SUBMIT</Button>

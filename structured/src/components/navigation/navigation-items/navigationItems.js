@@ -12,6 +12,9 @@ const navigationItems = (props) => (
         {props.isAuthenticated
             ? <NavigationItem link="/social">User management</NavigationItem>
             : null}
+        {props.isAuthenticated
+            ? <NavigationItem link="/chat">Chat</NavigationItem>
+            : null}
     </ul>
 );
 
