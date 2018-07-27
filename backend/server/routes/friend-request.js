@@ -27,8 +27,8 @@ router.get('/:username', /*passport.authenticate('jwt', {session: false}),*/ fun
   //}
 });
 
-/* GET FRIEND REQUESTS */
-router.get('/check', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
+/* CHECK FRIEND REQUEST */
+router.post('/check', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
   var token = getToken(req.headers);
   //if (token) {
     var sender = req.body.sender;
