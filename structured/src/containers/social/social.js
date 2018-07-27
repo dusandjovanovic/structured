@@ -6,12 +6,18 @@ import ListElement from '../../components/list-element/listElement';
 export class Social extends Component {
     componentDidMount() {
         this.props.onGetUserData(this.props.username);
-        // napravi nalozi Debug i Sender
-        // uloguj se kao Debug prvo
-        // predji na User Management tab
-        this.props.onAddFriend("Sender", "Debug");
-        this.props.onGetFriendRequests("Debug");
-        // console: requestsData
+        this.props.onNotificationSystem(
+            'You have a new friend request from Xyz',
+            'info',
+            10,
+            {
+                label: 'Accept',
+                callback: function() {
+                    console.log('Notification button clicked!');
+                }
+            },
+            function (notification) { console.log(notification.title + 'was removed'); }
+        );
     };
 
     render() {
@@ -45,7 +51,8 @@ const mapDispatchToProps = dispatch => {
         onGetFriendRequests: (username) => dispatch(actions.friendRequests(username)),
         onAddFriend: (sender, receiver) => dispatch(actions.friendAdd(sender, receiver)),
         onConfirmFriend: (requestId) => dispatch(actions.friendConfirm(requestId)),
-        onDeleteFriend: (requestId) => dispatch(actions.friendDelete(requestId))
+        onDeleteFriend: (requestId) => dispatch(actions.friendDelete(requestId)),
+        onNotificationSystem: (message, level, autoDismiss, action, onRemove) => dispatch(actions.notificationSystem(message, level, autoDismiss, action, onRemove))
     }
 };
 

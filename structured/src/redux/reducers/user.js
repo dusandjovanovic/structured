@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/actions';
 const initialState = {
     username: null,
     friends: null,
+    requests: null,
     error: null
 };
 
@@ -19,6 +20,11 @@ const reducer = (state = initialState, action) => {
                 username: null,
                 friends: null,
                 error: action.error
+            };
+        case actionTypes.FRIENDS_FETCH_REQUESTS:
+            return {
+                ...state,
+                requests: [...action.requests]
             };
         default:
             return state;

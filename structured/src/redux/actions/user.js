@@ -18,11 +18,11 @@ export const userFetchDataFail = (error) => {
 
 export const userData = (username) => {
     return dispatch => {
-        let url = '/api/user/:' + username;
+        let url = '/api/user/' + username;
         axios.get(url)
             .then(response => {
                 console.log('userData:', response);
-                let received = ["Friend 123", "Friend 122", "Friend 255", "Friend 111"];
+                let received = [];
                 for (let element in response.data)
                     received.push(element);
                 dispatch(userFetchData(username, received));
@@ -41,12 +41,23 @@ export const friendFail = (error) => {
     }
 };
 
+export const friendRequestsFetch = (requests) => {
+    return {
+        type: actionTypes.FRIENDS_FETCH_REQUESTS,
+        requests: requests
+    }
+};
+
 export const friendRequests = (username) => {
     return dispatch => {
-        let url = '/api/friend-request/:' + username;
+        let url = '/api/friend-request/' + username;
         axios.get(url)
             .then(response => {
                 console.log('requestsData:', response);
+                let received = [];
+                for (let request in response.data)
+                    received.push({...response.data[request]});
+                dispatch(friendRequestsFetch(received));
             })
             .catch(error => {
                 console.log('requestError:', error);

@@ -9,11 +9,13 @@ import {BrowserRouter} from 'react-router-dom';
 import thunk from 'redux-thunk';
 import authReducer from './redux/reducers/auth';
 import userReducer from './redux/reducers/user';
+import notificationReducer from './redux/reducers/notification';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
     auth: authReducer,
-    user: userReducer
+    user: userReducer,
+    notification: notificationReducer
 });
 const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk)

@@ -6,6 +6,7 @@ import Social from './containers/social/social';
 import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from './redux/actions/index';
+import NotificationContainer from './containers/notifications/notifications';
 
 class App extends Component {
     componentDidMount() {
@@ -32,6 +33,7 @@ class App extends Component {
         return (
             <div>
                 <Layout>
+                    <NotificationContainer/>
                     {available}
                 </Layout>
             </div>
