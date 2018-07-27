@@ -1,37 +1,26 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
 var app = require('../server/server');
 var debug = require('debug')('mean-app:server');
 var http = require('http');
+const io = require('socket.io')();
 
-/**
- * Get port from environment and store in Express.
- */
+io.on('connection', (client) => {
+  client.on('chat message', (rcv) => {
+    io.emit(rcv.room, {sender: rcv.sender, msg: rcv.msg});
+  });
+});
+
+const ioport = 2998;
+io.listen(ioport);
+console.log('socket.io listening on port ', ioport);
 
 var port = normalizePort(process.env.PORT || '2999');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
 var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
@@ -48,10 +37,6 @@ function normalizePort(val) {
 
   return false;
 }
-
-/**
- * Event listener for HTTP server "error" event.
- */
 
 function onError(error) {
   if (error.syscall !== 'listen') {
@@ -76,10 +61,6 @@ function onError(error) {
       throw error;
   }
 }
-
-/**
- * Event listener for HTTP server "listening" event.
- */
 
 function onListening() {
   var addr = server.address();

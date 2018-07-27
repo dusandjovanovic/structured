@@ -5,42 +5,56 @@ import Request from '../social/request/request';
 import classes from "./chat.css"
 import MessageList from './message-list/messageList';
 
+import openSocket from 'socket.io-client';
+const socket = openSocket('http://localhost:2998');
+
 export class Chat extends Component {
+    constructor() {
+        super();
+
+        socket.on('chat1', rcv => this.messageReceived1(rcv));
+        socket.on('chat2', rcv => this.messageReceived2(rcv));
+    }
+
+    messageReceived1(rcv) {
+        this.state.messages1.push({
+            sender: rcv.sender,
+            content: rcv.msg
+        });
+        this.setState(this.state);
+    };
+
+    messageReceived2(rcv) {
+        this.state.messages2.push({
+            sender: rcv.sender,
+            content: rcv.msg
+        });
+        this.setState(this.state);
+    };
+
     componentDidMount() {
         this.props.onGetUserData(this.props.username);
     };
 
     state = {
-        messages1: [
-            {
-                sender: 'sender1',
-                content: 'xyz'
-            },
-            {
-                sender: 'sender2',
-                content: 'qweewqrweqr'
-            }
-        ],
-        messages2: [
-            {
-                sender: 'sender3',
-                content: '...'
-            },
-            {
-                sender: 'sender4',
-                content: '...'
-            }
-        ]
-
-
+        messages1: [],
+        messages2: []
     };
 
     sendMessage1 = (sender, receiver) => {
-        // backend
+        socket.emit('chat message', {
+            room: 'chat1',
+            sender: this.props.username,
+            msg: receiver
+        });
     };
 
     sendMessage2 = (sender, receiver) => {
-        // backend
+        socket.emit('chat message', {
+            room: 'chat2',
+            sender: this.props.username,
+            msg: receiver
+        });
     };
 
     render() {
