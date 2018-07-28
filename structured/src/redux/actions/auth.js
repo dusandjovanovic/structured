@@ -1,5 +1,6 @@
 import * as actionTypes from './actions';
 import axios from '../../util/axiosHandler';
+import * as actions from './index';
 
 export const authStart = () => {
     return {
@@ -57,6 +58,7 @@ export const auth = (username, password, modeSignup) => {
                 localStorage.setItem('userId', username);
                 localStorage.setItem('expirationDate', expirationDate);
                 dispatch(authSuccess(response.data.token, username));
+                dispatch(actions.friendRequests(username));
                 dispatch(authCheckTimeout(3600));
             })
             .catch(error => {
@@ -84,6 +86,7 @@ export const authCheckState = () => {
         else {
             const userId = localStorage.getItem('userId');
             dispatch(authSuccess(token, userId));
+            dispatch(actions.friendRequests(userId));
             dispatch(authCheckTimeout((expirationDate.getTime() - new Date().getTime())/1000));
         }
     }

@@ -58,7 +58,6 @@ export class Chat extends Component {
     };
 
     render() {
-        let friends = null;
         return (
             <span className={classes.Chat}>
                 <Request

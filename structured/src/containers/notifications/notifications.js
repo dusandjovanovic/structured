@@ -1,14 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../redux/actions/index';
 import NotificationSystem from 'react-notification-system';
 
 
 class NotificationContainer extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount(){
         this.notificationSystem = this.refs.notificationSystem;
     }
@@ -38,10 +33,4 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps) (NotificationContainer);
+export default connect(mapStateToProps) (NotificationContainer);

@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import Input from '../../../components/user-interface/input/input';
 import Button from '../../../components/user-interface/button/button';
-import Spinner from '../../../components/user-interface/spinner/spinner';
-import * as actions from '../../../redux/actions/index';
 import classes from './request.css';
 
 class Request extends Component {
@@ -85,10 +82,10 @@ class Request extends Component {
         return (
             <div className={classes.Requests}>
                 {errorMessage}
-                <p className>{this.props.info}</p>
+                <p>{this.props.info}</p>
                 <form onSubmit={this.submitHandler}>
                     {form}
-                    <Button btnType="Success">SUBMIT</Button>
+                    <Button btnType="Success">SEND A REQUEST</Button>
                 </form>
             </div>
         );

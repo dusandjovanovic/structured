@@ -24,7 +24,6 @@ export const userData = (username) => {
             .then(response => {
                 console.log('userData:', response);
                 let friends = [];
-                console.log(response.data.friends);
                 for (let element in response.data.friends)
                     friends.push(response.data.friends[element]);
                 dispatch(userFetchData(username, friends));
@@ -89,31 +88,55 @@ export const friendAdd = (username, friendUsername) => {
             sender: username,
             receiver: friendUsername
         };
-        let url = '/api/friend-request/add';
+
+        let url = '/api/friend-request/check';
         axios.post(url, data)
             .then(response => {
                 console.log('addData:', response);
-                if (response.data.success)
+                if (response.data.exists) {
                     dispatch(actions.notificationSystem(
-                        'Friend request sent to ' + friendUsername + '.',
-                        'success',
-                        10,
-                        null,
-                        null
-                    ));
-                else
-                    dispatch(actions.notificationSystem(
-                        'Username does not exist.',
+                        'You have already sent a friend request to that person. Please wait for a response.',
                         'error',
                         10,
                         null,
                         null
                     ));
+                }
+                else {
+                    url = '/api/friend-request/add';
+                    axios.post(url, data)
+                        .then(response => {
+                            console.log('addData:', response);
+                            if (response.data.success)
+                                dispatch(actions.notificationSystem(
+                                    'Friend request sent to ' + friendUsername + '.',
+                                    'success',
+                                    10,
+                                    null,
+                                    null
+                                ));
+                            else
+                                dispatch(actions.notificationSystem(
+                                    'Username does not exist. Please try again.',
+                                    'success',
+                                    10,
+                                    null,
+                                    null
+                                ));
+                        })
+                        .catch(error => {
+                            console.log('addError:', error);
+                            dispatch(friendFail("Fetching social data failed."));
+                        });
+                }
             })
             .catch(error => {
                 console.log('addError:', error);
                 dispatch(friendFail("Fetching social data failed."));
             });
+
+
+
     }
 };
 
@@ -126,16 +149,16 @@ export const friendConfirm = (requestId, username) => {
         axios.post(url, data)
             .then(response => {
                 console.log('confirmData:', response);
+                dispatch(userData(username));
             })
             .catch(error => {
                 console.log('confirmError:', error);
                 dispatch(friendFail("Fetching social data failed."));
-                dispatch(userData(username));
             });
     }
 };
 
-export const friendDelete = (requestId) => {
+export const friendDelete = (requestId, username) => {
     return dispatch => {
         const data = {
             id: requestId
@@ -144,6 +167,7 @@ export const friendDelete = (requestId) => {
         axios.delete(url, data)
             .then(response => {
                 console.log('deleteData:', response);
+                dispatch(userData(username));
             })
             .catch(error => {
                 console.log('deleteError:', error);

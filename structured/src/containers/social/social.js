@@ -7,7 +7,6 @@ import Request from './request/request';
 export class Social extends Component {
     componentDidMount() {
         this.props.onGetUserData(this.props.username);
-        this.props.onGetFriendRequests(this.props.username);
     };
 
     render() {
@@ -15,24 +14,24 @@ export class Social extends Component {
         if (this.props.friends) {
             friends = (
                 this.props.friends.map((friend => (
-                    <ListElement
-                        username={friend}
-                        key={friend}
-                        picture={null}
-                        bio={"Lorem ipsum dolor sit amet, eu mel congue dolores definiebas. Te cum enim iusto ponderum, eos et enim saepe quaeque."}
+                    <ListElement username={friend}
+                                 key={friend}
+                                 picture={null}
+                                 bio={"Lorem ipsum dolor sit amet, eu mel congue dolores definiebas. Te cum enim iusto ponderum, eos et enim saepe quaeque."}
                     />
                 )))
             );
         }
         return (
             <div>
-                <Request
-                    sender={this.props.username}
-                    placeholder="Username"
-                    info="Send a new friend request:"
-                    onAddFriend={(sender, receiver) => this.props.onAddFriend(sender, receiver)}/>
+                <Request sender={this.props.username}
+                         placeholder="Username"
+                         info="Send a new friend request:"
+                         onAddFriend={(sender, receiver) => this.props.onAddFriend(sender, receiver)}
+                />
                 {friends}
-            </div>);
+            </div>
+        );
     };
 }
 
@@ -46,11 +45,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onGetUserData: (username) => dispatch(actions.userData(username)),
-        onGetFriendRequests: (username) => dispatch(actions.friendRequests(username)),
-        onAddFriend: (sender, receiver) => dispatch(actions.friendAdd(sender, receiver)),
-        onConfirmFriend: (requestId, username) => dispatch(actions.friendConfirm(requestId, username)),
-        onDeleteFriend: (requestId) => dispatch(actions.friendDelete(requestId)),
-        onNotificationSystem: (message, level, autoDismiss, action, onRemove) => dispatch(actions.notificationSystem(message, level, autoDismiss, action, onRemove))
+        onAddFriend: (sender, receiver) => dispatch(actions.friendAdd(sender, receiver))
     }
 };
 
