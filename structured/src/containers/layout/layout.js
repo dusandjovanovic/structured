@@ -9,7 +9,7 @@ import * as actions from "../../redux/actions";
 class Layout extends Component {
     state = {
         showRequests: false,
-        elementsRequests: [{data: '_Friend123', clickedRight: null, clickedLeft: null}, {data: '_Friend222', clickedRight: null, clickedLeft: null}, {data: '_Friend255', clickedRight: null, clickedLeft: null}]
+        elementsRequests: []
     };
 
     componentWillReceiveProps(nextProps) {

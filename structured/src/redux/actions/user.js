@@ -156,6 +156,7 @@ export const friendConfirm = (requestId, username) => {
             .then(response => {
                 console.log('confirmData:', response);
                 dispatch(userData(username));
+                dispatch(friendRequests(username));
             })
             .catch(error => {
                 console.log('confirmError:', error);
@@ -166,14 +167,12 @@ export const friendConfirm = (requestId, username) => {
 
 export const friendDelete = (requestId, username) => {
     return dispatch => {
-        const data = {
-            id: requestId
-        };
-        let url = '/api/friend-request/delete';
-        axios.delete(url, data)
+        let url = '/api/friend-request/' + requestId;
+        axios.delete(url)
             .then(response => {
                 console.log('deleteData:', response);
                 dispatch(userData(username));
+                dispatch(friendRequests(username));
             })
             .catch(error => {
                 console.log('deleteError:', error);

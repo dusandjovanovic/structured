@@ -56,7 +56,6 @@ export default function neuralNet(c) {
         data = [],
         all = [],
         tick = 0,
-        totalProb = 0,
 
         animating = false,
 
@@ -149,8 +148,8 @@ export default function neuralNet(c) {
                         passedExisting = false;
 
                 if (passedExisting)
-                    for (var i = 0; i < links.length; ++i)
-                        if (squareDist(pos, links[i]) < squareAllowed)
+                    for (var j = 0; j < links.length; ++j)
+                        if (squareDist(pos, links[j]) < squareAllowed)
                             passedBuffered = false;
 
                 if (passedExisting && passedBuffered)
@@ -163,17 +162,17 @@ export default function neuralNet(c) {
         if (links.length === 0)
             this.isEnd = true;
         else {
-            for (var i = 0; i < links.length; ++i) {
+            for (var k = 0; k < links.length; ++k) {
 
-                var pos = links[i],
-                    connection = new Connection(pos.x, pos.y, pos.z, this.size * opts.sizeMultiplier);
+                var position = links[k],
+                    connection = new Connection(position.x, position.y, position.z, this.size * opts.sizeMultiplier);
 
-                this.links[i] = connection;
+                this.links[k] = connection;
                 all.push(connection);
                 connections.push(connection);
             }
-            for (var i = 0; i < this.links.length; ++i)
-                toDevelop.push(this.links[i]);
+            for (var p = 0; p < this.links.length; ++p)
+                toDevelop.push(this.links[p]);
         }
     }
     Connection.prototype.step = function () {
@@ -340,7 +339,7 @@ export default function neuralNet(c) {
         ctx.lineWidth = opts.wireframeWidth;
         ctx.strokeStyle = opts.wireframeColor;
         all.map(function (item) {
-            item.step();
+            return item.step();
         });
         ctx.stroke();
         ctx.globalCompositeOperation = 'source-over';
@@ -348,7 +347,7 @@ export default function neuralNet(c) {
             return b.screen.z - a.screen.z
         });
         all.map(function (item) {
-            item.draw();
+            return item.draw();
         });
 
         /*ctx.beginPath();

@@ -13,6 +13,11 @@ const style = {
 };
 
 const dropdown = (props) => {
+
+    let placeholder = true;
+    if (!props.elements || props.elements.length === 0)
+        placeholder = false;
+
     return (
         props.isAuthenticated
         ?
@@ -26,18 +31,17 @@ const dropdown = (props) => {
                      arrow="center"
                      align="center"
                      parent="#holder">
-                    { props.elements
-                        ? props.elements.map((element) => {
-                            return (
-                                    <div key={element.sender}>
-                                        <DropdownElement element={element.sender}
-                                                         clickedLeft={element.clickedLeft}
-                                                         clickedRight={element.clickedRight}
-                                                         />
-                                    </div>
-                            )
-                        })
-                        : <p>{props.default}</p>
+                    { placeholder
+                        ? props.elements.map((element) => (
+                                <div key={element.sender}>
+                                    <DropdownElement element={element.sender}
+                                                     clickedLeft={element.clickedLeft}
+                                                     clickedRight={element.clickedRight}
+                                    />
+                                </div>
+                                )
+                        )
+                        : <div style={{textAlign: 'center', margin: '10px 0px'}}>{props.default}</div>
                     }
             </ToolTip>
         </div>

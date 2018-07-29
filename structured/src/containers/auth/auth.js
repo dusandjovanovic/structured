@@ -13,7 +13,7 @@ class Auth extends Component {
             username: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'username',
+                    type: 'text',
                     placeholder: 'Username'
                 },
                 value: '',
@@ -118,6 +118,7 @@ class Auth extends Component {
                     {form}
                     <Button btnType="Success">SUBMIT</Button>
                 </form>
+                {this.state.isSignup ? <p>Already have an account? <strong>Sign in instead.</strong></p> : null}
                 <Button btnType="Danger" clicked={this.switchAuthModeHandler}>
                     SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}
                 </Button>
