@@ -19,3 +19,6 @@ strucured/.env.production.local
 strucured/npm-debug.log*
 strucured/yarn-debug.log*
 strucured/yarn-error.log*
+
+.vscode
+backend/.vscode

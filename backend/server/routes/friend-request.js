@@ -36,14 +36,22 @@ router.post('/check', /*passport.authenticate('jwt', {session: false}),*/ functi
     if (!sender || !receiver) {
       res.json({success: false, msg: 'Please pass username and friendname.'});
     } else {
-      FriendRequest.findOne({
-        sender: sender,
-        receiver: receiver
-      }, function(err, request) {
-        if (request) {
-          res.json({exists: true});
+      User.findOne({username: sender, friends: receiver}, function(err, user) {
+        if (err) {
+          res.json({success: false, msg: 'Something went wrong.'});
+        } else if (user) {
+          res.json({exists: true, friends: true});
         } else {
-          res.json({exists: false});
+          FriendRequest.findOne({
+            sender: sender,
+            receiver: receiver
+          }, function(err, request) {
+            if (request) {
+              res.json({exists: true, friends: false});
+            } else {
+              res.json({exists: false, friends: false});
+            }
+          });
         }
       });
     }
@@ -61,29 +69,37 @@ router.post('/add', /*passport.authenticate('jwt', {session: false}),*/ function
     if (!sender || !receiver) {
       res.json({success: false, msg: 'Please pass username and friendname.'});
     } else {
-      FriendRequest.findOne({
-        sender: sender,
-        receiver: receiver
-      }, function(err, request) {
-        if (!request) {
-          User.findOne({username: receiver}, function(err, user) {
-            if (err || !user) {
-              res.json({success: false, msg: 'User not found.'});
-            } else {
-              FriendRequest.create({
-                sender: sender,
-                receiver: receiver
-              }, function(err) {
-                if (err) {
-                  res.json({success: false, msg: 'Friend was not added.'});
+      User.findOne({username: sender, friends: receiver}, function(err, user) {
+        if (err) {
+          res.json({success: false, msg: 'User not found.'});
+        } else if (user) {
+          res.json({success: false, msg: 'Already friends.'});
+        } else {
+          FriendRequest.findOne({
+            sender: sender,
+            receiver: receiver
+          }, function(err, request) {
+            if (!request) {
+              User.findOne({username: receiver}, function(err, user) {
+                if (err || !user) {
+                  res.json({success: false, msg: 'User not found.'});
                 } else {
-                  res.json({success: true, msg: 'Successfully sent a friend request.'});
+                  FriendRequest.create({
+                    sender: sender,
+                    receiver: receiver
+                  }, function(err) {
+                    if (err) {
+                      res.json({success: false, msg: 'Friend was not added.'});
+                    } else {
+                      res.json({success: true, msg: 'Successfully sent a friend request.'});
+                    }
+                  });
                 }
               });
+            } else {
+              res.json({success: false, msg: 'This request already exists.'});
             }
           });
-        } else {
-          res.json({success: false, msg: 'This request already exists.'});
         }
       });
     }
@@ -135,10 +151,10 @@ router.post('/confirm', /*passport.authenticate('jwt', {session: false}),*/ func
 });
 
 /* DELETE FRIEND REQUEST */
-router.delete('/delete', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
+router.delete('/:id', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
   var token = getToken(req.headers);
   //if (token) {
-    var id = req.body.id;
+    var id = req.params.id;
     if (!id) {
       res.json({success: false, msg: 'Please pass id of the request.'});
     } else {
