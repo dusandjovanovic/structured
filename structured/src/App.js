@@ -29,7 +29,7 @@ class App extends Component {
                     <Route path="/logout" component={Logout}/>
                     <Route path="/social" component={Social}/>
                     <Route path="/chat" component={Chat}/>
-                    <Route path="/" exact render={() => <h2 style={{textAlign: 'center'}}> ... </h2>}/>
+                    <Route path="/" exact render={() => <h2 style={{textAlign: 'center'}}> structured </h2>}/>
                 </Switch>
             );
         return (

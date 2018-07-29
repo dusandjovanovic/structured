@@ -1,5 +1,20 @@
 .Dropdown {
+    margin: 0;
+    display: flex;
+    height: 100%;
+    width: auto;
+    align-items: center;
     color: white;
+}
+
+.Dropdown p {
+    color: white;
+}
+
+.Dropdown p:hover,
+.Dropdown p:active,
+.Dropdown p.active {
+    color: #61DAFB;
 }
 
 .DropdownElement {

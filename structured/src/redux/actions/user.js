@@ -143,9 +143,6 @@ export const friendAdd = (username, friendUsername) => {
                 console.log('addError:', error);
                 dispatch(friendFail("Fetching social data failed."));
             });
-
-
-
     }
 };
 
