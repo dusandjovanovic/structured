@@ -2,15 +2,13 @@ import React from "react";
 import ToolTip from "react-portal-tooltip";
 import DropdownElement from './dropdown-element/dropdown-element';
 import classes from './dropdown.css';
-import * as actions from "../../../redux/actions";
-import connect from "react-redux/es/connect/connect";
 
 const style = {
     style: {
-        width: '400px'
+        width: '400px',
+        margin: '15px 0px'
     },
     arrowStyle: {
-        borderColor: false
     }
 };
 
@@ -19,18 +17,20 @@ const dropdown = (props) => {
         props.isAuthenticated
         ?
         <div className={classes.Dropdown}>
-            <p id="text" onMouseEnter={props.showRequests} onMouseLeave={props.hideRequests}>{props.name}</p>
+            <p id="holder"
+               onMouseEnter={props.showRequests}
+               onMouseLeave={props.hideRequests}>{props.name}</p>
             <ToolTip active={props.active}
                      style={style}
                      position="bottom"
                      arrow="center"
                      align="center"
-                     parent="#text">
+                     parent="#holder">
                     { props.elements
                         ? props.elements.map((element) => {
                             return (
-                                    <div key={element.data}>
-                                        <DropdownElement element={element}
+                                    <div key={element.sender}>
+                                        <DropdownElement element={element.sender}
                                                          clickedLeft={element.clickedLeft}
                                                          clickedRight={element.clickedRight}
                                                          />

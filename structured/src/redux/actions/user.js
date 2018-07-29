@@ -1,5 +1,5 @@
 import * as actionTypes from './actions';
-import axios from '../../util/axiosHandler';
+import axios from '../../utils/axiosHandler';
 import * as actions from './index';
 
 export const userFetchData = (username, friends) => {
@@ -11,6 +11,20 @@ export const userFetchData = (username, friends) => {
 };
 
 export const userFetchDataFail = (error) => {
+    return {
+        type: actionTypes.USER_FETCH_DATA_FAIL,
+        error: error
+    }
+};
+
+export const friendRequestsFetch = (requests) => {
+    return {
+        type: actionTypes.FRIENDS_FETCH_REQUESTS,
+        requests: requests
+    }
+};
+
+export const friendFail = (error) => {
     return {
         type: actionTypes.USER_FETCH_DATA_FAIL,
         error: error
@@ -35,20 +49,6 @@ export const userData = (username) => {
     }
 };
 
-export const friendFail = (error) => {
-    return {
-        type: actionTypes.USER_FETCH_DATA_FAIL,
-        error: error
-    }
-};
-
-export const friendRequestsFetch = (requests) => {
-    return {
-        type: actionTypes.FRIENDS_FETCH_REQUESTS,
-        requests: requests
-    }
-};
-
 export const friendRequests = (username) => {
     return dispatch => {
         let url = '/api/friend-request/' + username;
@@ -57,9 +57,17 @@ export const friendRequests = (username) => {
                 console.log('requestsData:', response);
                 let received = [];
                 for (let request in response.data) {
-                    received.push({...response.data[request]});
-                    let sender = response.data[request].sender;
-                    let requestId = response.data[request]._id;
+                    const id = response.data[request]._id;
+                    const receiver = response.data[request].receiver;
+                    const sender = response.data[request].sender;
+                    const requestId = response.data[request]._id;
+                    const time = response.data[request].time;
+                    received.push({
+                        id: id,
+                        receiver: receiver,
+                        sender: sender,
+                        time: time
+                    });
                     dispatch(actions.notificationSystem(
                         'You have a new friend request from ' + sender + '. Click Accept to become friends or dismiss.',
                         'info',
@@ -74,6 +82,7 @@ export const friendRequests = (username) => {
                         null
                     ));
                 }
+                dispatch(friendRequestsFetch(received));
             })
             .catch(error => {
                 console.log('requestError:', error);

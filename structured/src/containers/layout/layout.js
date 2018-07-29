@@ -12,9 +12,21 @@ class Layout extends Component {
         elementsRequests: [{data: '_Friend123', clickedRight: null, clickedLeft: null}, {data: '_Friend222', clickedRight: null, clickedLeft: null}, {data: '_Friend255', clickedRight: null, clickedLeft: null}]
     };
 
+    componentWillReceiveProps(nextProps) {
+        let newState = {
+            elementsRequests: nextProps.requests
+        };
+        for (let state in newState.elementsRequests)
+            newState.elementsRequests[state] = {
+                ...newState.elementsRequests[state],
+                clickedLeft: () => this.props.onFriendConfirm(newState.elementsRequests[state].id, newState.elementsRequests[state].receiver),
+                clickedRight: () => this.props.onFriendDelete(newState.elementsRequests[state].id, newState.elementsRequests[state].receiver)
+            }
+        this.setState(newState);
+    };
+
     showRequestsHandler = (event) => {
         event.preventDefault();
-        console.log(this.props.request);
         this.setState({
             showRequests: !this.state.showRequests
         });
