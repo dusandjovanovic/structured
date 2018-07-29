@@ -8,24 +8,18 @@ import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from './redux/actions/index';
 import NotificationContainer from './containers/notifications/notifications';
-import neuralNet from './utils/neuralNet';
+import Homescreen from './components/homescreen/homescreen';
 
 class App extends Component {
     componentDidMount() {
         this.props.onTryAutoSignIn();
-        neuralNet(this.intro.current);
-    }
-
-    constructor(props) {
-        super(props);
-        this.intro = React.createRef();
     }
 
     render() {
         let available = (
             <Switch>
                 <Route path="/auth" component={Auth}/>
-                <Route path="/" exact render={() => <canvas style={{margin: '-72px 0px'}} ref={this.intro}></canvas>}/>
+                <Route path="/" exact component={Homescreen}/>
                 <Redirect to="/"/>
             </Switch>
         );

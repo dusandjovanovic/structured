@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './listElement.css';
-import Picture from '../logo/logo';
+import Picture from '../../../components/logo/logo';
 
 const listElement = (props) => {
     return (

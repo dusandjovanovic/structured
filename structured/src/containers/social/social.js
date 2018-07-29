@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../redux/actions/index';
-import ListElement from '../../components/list-element/listElement';
+import ListElement from './list-element/listElement';
 import Request from './request/request';
 
 export class Social extends Component {
