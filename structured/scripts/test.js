@@ -13,7 +13,7 @@ process.on('unhandledRejection', err => {
 });
 
 // Ensure environment variables are read.
-require('../config/env');
+require('dotenv').config({silent: true});
 
 const jest = require('jest');
 let argv = process.argv.slice(2);

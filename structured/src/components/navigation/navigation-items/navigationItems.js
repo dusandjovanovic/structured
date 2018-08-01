@@ -12,6 +12,9 @@ const navigationItems = (props) => (
             ? <NavigationItem link="/chat">Chat</NavigationItem>
             : null}
         {props.isAuthenticated
+            ? <NavigationItem link="/graph">Graph</NavigationItem>
+            : null}
+        {props.isAuthenticated
             ? <NavigationItem link="/logout">Logout</NavigationItem>
             : <NavigationItem link="/auth">Authenticate</NavigationItem>
         }
