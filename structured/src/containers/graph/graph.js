@@ -1,81 +1,107 @@
 import React, {Component} from 'react';
-import {InteractiveForceGraph, ForceGraph, ForceGraphNode, ForceGraphArrowLink, ForceGraphLink} from 'react-vis-force';
+import GraphD3 from '../../components/visualization/graph/graph';
+import * as _ from 'underscore';
+import classes from './graph.css';
 
-const twoChildren = [
-    <ForceGraphNode node={{ id: 'first-node' }} fill="#11939A" />,
-    <ForceGraphNode node={{ id: 'second-node' }} fill="#47d3d9" />,
-    <ForceGraphLink link={{ source: 'first-node', target: 'second-node' }} />,
-];
-
-const twoChildrenArrow = [
-    <ForceGraphNode node={{ id: 'first-node' }} fill="#11939A" />,
-    <ForceGraphNode node={{ id: 'second-node' }} fill="#47d3d9" />,
-    <ForceGraphArrowLink targetRadius={2} link={{ source: 'first-node', target: 'second-node' }} />,
-];
-
-const tenChildren = [
-    <ForceGraphNode node={{ id: 'first-node', radius: 20 }} fill="#11939A" />,
-    <ForceGraphNode node={{ id: 'second-node', radius: 20 }} fill="#47d3d9" />,
-    <ForceGraphNode node={{ id: 'third-node', radius: 20 }} fill="#11939A" />,
-    <ForceGraphNode node={{ id: 'fourth-node', radius: 20 }} fill="#47d3d9" />,
-    <ForceGraphNode node={{ id: 'fifth-node', radius: 20 }} fill="#11939A" />,
-    <ForceGraphNode node={{ id: 'sixth-node', radius: 20 }} fill="#47d3d9" />,
-    <ForceGraphNode node={{ id: 'seventh-node', radius: 20 }} fill="#11939A" />,
-    <ForceGraphNode node={{ id: 'eighth-node', radius: 20 }} fill="#47d3d9" />,
-    <ForceGraphNode node={{ id: 'ninth-node', radius: 20 }} fill="#11939A" />,
-    <ForceGraphNode node={{ id: 'tenth-node', radius: 20 }} fill="#47d3d9" />,
-    <ForceGraphLink link={{ source: 'first-node', target: 'second-node' }} />,
-    <ForceGraphLink link={{ source: 'third-node', target: 'second-node' }} />,
-    <ForceGraphLink link={{ source: 'third-node', target: 'fourth-node' }} />,
-    <ForceGraphLink link={{ source: 'fifth-node', target: 'fourth-node' }} />,
-    <ForceGraphLink link={{ source: 'fifth-node', target: 'fourth-node' }} />,
-    <ForceGraphLink link={{ source: 'sixth-node', target: 'fourth-node' }} />,
-    <ForceGraphLink link={{ source: 'seventh-node', target: 'fourth-node' }} />,
-    <ForceGraphLink link={{ source: 'eighth-node', target: 'fourth-node' }} />,
-    <ForceGraphLink link={{ source: 'ninth-node', target: 'tenth-node' }} />,
-    <ForceGraphLink link={{ source: 'tenth-node', target: 'fifth-node' }} />,
-];
-
-const tenChildrenArrows = [
-    <ForceGraphNode zoomable node={{ id: 'first-node'}} fill="#11939A" />,
-    <ForceGraphNode zoomable node={{ id: 'second-node'}} fill="#47d3d9" />,
-    <ForceGraphNode zoomable node={{ id: 'third-node'}} fill="#11939A" />,
-    <ForceGraphNode zoomable node={{ id: 'fourth-node'}} fill="#47d3d9" />,
-    <ForceGraphNode zoomable node={{ id: 'fifth-node'}} fill="#11939A" />,
-    <ForceGraphNode zoomable node={{ id: 'sixth-node'}} fill="#47d3d9" />,
-    <ForceGraphNode zoomable node={{ id: 'seventh-node'}} fill="#11939A" />,
-    <ForceGraphNode zoomable node={{ id: 'eighth-node'}} fill="#47d3d9" />,
-    <ForceGraphNode zoomable node={{ id: 'ninth-node'}} fill="#11939A" />,
-    <ForceGraphNode zoomable node={{ id: 'tenth-node'}} fill="#47d3d9" />,
-    <ForceGraphArrowLink zoomable link={{ source: 'first-node', target: 'second-node' }} />,
-    <ForceGraphArrowLink zoomable link={{ source: 'third-node', target: 'second-node' }} />,
-    <ForceGraphArrowLink zoomable link={{ source: 'third-node', target: 'fourth-node' }} />,
-    <ForceGraphArrowLink zoomable link={{ source: 'fifth-node', target: 'fourth-node' }} />,
-    <ForceGraphArrowLink zoomable link={{ source: 'fifth-node', target: 'fourth-node' }} />,
-    <ForceGraphArrowLink zoomable link={{ source: 'sixth-node', target: 'fourth-node' }} />,
-    <ForceGraphArrowLink zoomable link={{ source: 'seventh-node', target: 'fourth-node' }} />,
-    <ForceGraphArrowLink zoomable link={{ source: 'eighth-node', target: 'fourth-node' }} />,
-    <ForceGraphArrowLink zoomable link={{ source: 'ninth-node', target: 'tenth-node' }} />,
-    <ForceGraphArrowLink zoomable link={{ source: 'tenth-node', target: 'fifth-node' }} />,
-];
+var width = 960;
+var height = 500;
 
 class Graph extends Component {
+    state = {
+        nodes: [],
+        links: []
+    };
+
+    componentDidMount() {
+        this.updateData();
+    };
+
+    updateData = () => {
+        var newState = randomData(this.state.nodes, width, height);
+        this.setState(newState);
+    };
+
+    addData = () => {
+        let newState = {
+            ...this.state
+        };
+
+        newState.nodes.push({
+            key: 99,
+            size: 20
+        });
+
+        this.setState(newState);
+    };
+
     render() {
         return (
-            <InteractiveForceGraph showLabels
-                                   simulationOptions={{
-                                       strength: {
-                                           charge: -100
-                                       }
-                                   }}
-                                   highlightDependencies
-                                   zoomOptions={{ minScale: 0.1, maxScale: 5 }}
-                                   zoom
-            >
-                {tenChildrenArrows}
-            </InteractiveForceGraph>
+            <div>
+                <div className={classes.update} onClick={this.updateData}>New random graph</div>
+                <div className={classes.update} onClick={this.addData}>Add node</div>
+                <GraphD3 nodes={this.state.nodes} links={this.state.links} />
+            </div>
         );
     };
+}
+
+function randomData(previous, width, height) {
+    var oldNodes = previous;
+    // generate some data randomly
+    let nodes = _.chain(_.range(_.random(10, 30)))
+        .map(function() {
+            var node = {};
+            node.key = _.random(0, 30);
+            node.size = 20;
+
+            return node;
+        }).uniq(function(node) {
+            return node.key;
+        }).value();
+
+    if (oldNodes) {
+        var add = _.initial(oldNodes, _.random(0, oldNodes.length));
+        add = _.rest(add, _.random(0, add.length));
+
+        nodes = _.chain(nodes)
+            .union(add).uniq(function(node) {
+                return node.key;
+            }).value();
+    }
+
+    let links = _.chain(_.range(_.random(15, 35)))
+        .map(function() {
+            var link = {};
+            link.source = _.random(0, nodes.length - 1);
+            link.target = _.random(0, nodes.length - 1);
+            link.key = link.source + ',' + link.target;
+            link.size = _.random(1, 3);
+
+            return link;
+        }).uniq((link) => link.key)
+        .value();
+
+    maintainNodePositions(oldNodes, nodes, width, height);
+
+    return {nodes, links};
+}
+
+function maintainNodePositions(oldNodes, nodes, width, height) {
+    var kv = {};
+    _.each(oldNodes, function(d) {
+        kv[d.key] = d;
+    });
+    _.each(nodes, function(d) {
+        if (kv[d.key]) {
+            // if the node already exists, maintain current position
+            d.x = kv[d.key].x;
+            d.y = kv[d.key].y;
+        } else {
+            // else assign it a random position near the center
+            d.x = width / 2 + _.random(-150, 150);
+            d.y = height / 2 + _.random(-25, 25);
+        }
+    });
 }
 
 export default Graph;
