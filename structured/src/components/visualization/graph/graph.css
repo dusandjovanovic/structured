@@ -1,13 +1,13 @@
 .node circle {
     fill: #a5a5a5;
     stroke: #d1d1d1;
-    stroke-width: 2px;
+    stroke-width: 2.5px;
 }
 
 .node text {
     fill: #282C34;
     stroke: none;
-    font-size: .6em;
+    font-size: .7em;
 }
 
 .link {
