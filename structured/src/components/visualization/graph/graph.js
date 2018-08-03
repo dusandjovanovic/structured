@@ -4,6 +4,10 @@ import classes from './graph.css';
 
 class Graph extends Component {
     simulation = null;
+    state = {
+        nodeFocused: null,
+        nodeSelected: null
+    };
     componentWillMount() {
         this.simulation = d3.forceSimulation()
             .force("charge", d3.forceManyBody().strength(-500))
@@ -34,24 +38,63 @@ class Graph extends Component {
         this.simulation.stop();
     }
 
-    nodeClicked = (node) => {
+    assignClass = (node, edge) => {
+        let assign = "";
+        if (this.state.nodeSelected) {
+            if (node.key === this.state.nodeSelected.key)
+                assign = classes.Selected;
+            else
+                assign = classes.Unselected;
+        }
+        else if (this.state.nodeFocused) {
+            if (node.key === this.state.nodeFocused.key)
+                assign = classes.Focused;
+            else {
+                assign = classes.Unfocused;
+                if (!edge) {
+                    node.inEdges.map(source => {
+                        if (source === this.state.nodeFocused.key)
+                            assign = classes.Focused;
+                    });
+                }
+            }
+        }
+        return assign;
+    };
 
+    nodeClicked = (node) => {
+        if (!this.state.nodeSelected)
+            this.setState({
+                nodeSelected: node,
+                nodeFocused: null
+            });
+        else
+            this.setState({
+                nodeSelected: null,
+                nodeFocused: null
+            });
     };
 
     nodeFocused = (node) => {
-
+        if (!this.state.nodeSelected)
+            this.setState({
+                nodeFocused: node
+            });
     };
 
     nodeLostFocus = (node) => {
-
+        this.setState({
+            nodeFocused: null
+        });
     };
 
     render() {
         // use React for rendering, d3 calculates x and y
         let nodes = this.props.nodes.map((node) => {
+            let assignClass = this.assignClass(node, false);
             let transform = 'translate(' + node.x + ',' + node.y + ')';
             return (
-                <g className={classes.node} key={node.key} transform={transform}>
+                <g className={classes.Node + " " + assignClass} key={node.key} transform={transform}>
                     <circle onClick={() => this.nodeClicked(node)}
                             onMouseEnter={() => this.nodeFocused(node)}
                             onMouseLeave={() => this.nodeLostFocus(node)}
@@ -63,8 +106,9 @@ class Graph extends Component {
             );
         });
         let links = this.props.edges.map((link) => {
+            let assignClass = this.assignClass(link.source, true);
             return (
-                <line className={classes.link} markerEnd='url(#arrowhead)' key={link.key} strokeWidth={2}
+                <line className={classes.Edge + " " + assignClass} markerEnd='url(#arrowhead)' key={link.key} strokeWidth={2}
                       x1={link.source.x} x2={link.target.x} y1={link.source.y} y2={link.target.y} />
             );
         });

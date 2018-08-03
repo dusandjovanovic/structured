@@ -1,16 +1,52 @@
-.node circle {
+.Node circle {
     fill: #a5a5a5;
     stroke: #d1d1d1;
     stroke-width: 2.5px;
 }
 
-.node text {
+.Node text {
     fill: #282C34;
     stroke: none;
     font-size: .7em;
 }
 
-.link {
+.Selected {
+    fill: #61DAFB;
+    stroke: #61DAFB
+}
+
+.Unselected {
+    fill: red;
+    stroke: #61DAFB
+}
+
+.Focused circle {
+    fill: #4cbadb;
+    stroke: #bfeeff;
+}
+
+.Focused text {
+    fill: #005a94;
+    font-weight: bold;
+}
+
+.Unfocused circle {
+    opacity: 0.5;
+}
+
+.Unfocused text {
+    opacity: 0.5;
+}
+
+.Edge {
     stroke: #cccccc;
     stroke-opacity: .6;
+}
+
+.Unfocused {
+    stroke-opacity: .3;
+}
+
+.Focused {
+    stroke: #4cbadb;
 }

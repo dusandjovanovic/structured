@@ -4,7 +4,6 @@ import Actionbar from '../../components/user-interface/actionbar/actionbar';
 import randomData from '../../utils/graph-module/graph.random';
 import {graphFactory} from '../../utils/graph-module/graph.module';
 import Button from "../../components/user-interface/button/button";
-import classes from './room.css';
 
 class Room extends Component {
     graphWidth = 800;
@@ -16,10 +15,10 @@ class Room extends Component {
     };
 
     componentDidMount() {
-        this.updateData();
+        this.randomGraph();
     }
 
-    updateData = () => {
+    randomGraph = () => {
         let randomGraph = randomData(this.graph.nodes, this.graphWidth, this.graphHeight);
         this.graph = new graphFactory();
         randomGraph.nodes.map(node => {
@@ -34,8 +33,8 @@ class Room extends Component {
         });
     };
 
-    addData = () => {
-        this.graph.addVertex(99);
+    addNode = () => {
+        this.graph.addVertexRandom();
         this.setState({
             nodes: this.graph.nodes
         });
@@ -45,8 +44,9 @@ class Room extends Component {
         return (
             <div>
                 <Actionbar>
-                    <Button btnType="Flat" clicked={() => this.updateData()}>Random graph ↺</Button>
-                    <Button btnType="Flat" clicked={() => this.addData()}>Add node</Button>
+                    <Button btnType="Flat" clicked={() => this.randomGraph()}>Random graph ↺</Button>
+                    <Button btnType="Flat" clicked={() => this.addNode()}>Add node ↳</Button>
+                    <Button btnType="Flat" clicked={null}>Add edge ↯</Button>
                 </Actionbar>
                 <Graph width={this.graphWidth} height={this.graphHeight} nodes={this.state.nodes} edges={this.state.edges} />
             </div>

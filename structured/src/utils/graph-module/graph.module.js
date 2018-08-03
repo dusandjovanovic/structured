@@ -1,4 +1,5 @@
 import {bfs, dfs} from './graph.algorithms';
+import _ from 'underscore';
 
 export const graphFactory = () => {
     let graph = {};
@@ -17,10 +18,18 @@ export const graphFactory = () => {
             if (!graphProto.contains(node)) {
                 graph[node] = {edges: {}, visited: false};
                 nodes.push({
-                    key: node
+                    key: node,
+                    inEdges: [],
+                    outEdges: []
                 });
                 vertices += 1;
             }
+        },
+        addVertexRandom: () => {
+            let random = _.random(0, 99);
+            while (graphProto.contains(random))
+                random = _.random(0, 99);
+            graphProto.addVertex(random);
         },
         removeVertex: (node) => {
             if (graphProto.contains(node)) {
@@ -42,6 +51,12 @@ export const graphFactory = () => {
                     key: nodeOne + '->' + nodeTwo,
                     source: nodeOne,
                     target: nodeTwo
+                });
+                nodes.map(node => {
+                    if (node.key === nodeOne)
+                        node.outEdges.push(nodeTwo);
+                    else if (node.key === nodeTwo)
+                        node.inEdges.push(nodeOne);
                 });
             }
         },
