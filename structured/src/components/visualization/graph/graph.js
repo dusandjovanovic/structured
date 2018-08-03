@@ -3,16 +3,18 @@ import * as d3 from 'd3';
 import classes from './graph.css';
 
 class Graph extends Component {
-    force = null;
+    simulation = null;
     componentWillMount() {
-        this.force = d3.layout.force()
-            .charge(-400)
-            .linkDistance(250)
-            .size([this.props.width, this.props.height]);
-        this.force.on('tick', () => {
+        this.simulation = d3.forceSimulation()
+            .force("charge", d3.forceManyBody().strength(-500))
+            .force("link", d3.forceLink().distance(250))
+            .force("x", d3.forceX(this.props.width / 2))
+            .force("y", d3.forceY(this.props.height / 2))
+            .force('center', d3.forceCenter(this.props.width / 2, this.props.height / 2));
+        this.simulation.on('tick', () => {
             // after force calculation starts, call
             // forceUpdate on the React component on each tick
-            this.forceUpdate()
+            this.forceUpdate();
         });
     };
 
@@ -20,9 +22,15 @@ class Graph extends Component {
         // d3's force function has side-effects and
         // mutates the nodes and links array directly
         // this.props.nodes/links will contain x and y values
-        this.force.nodes(nextProps.nodes).links(nextProps.links);
-        this.force.start();
+        this.simulation.nodes(nextProps.nodes);
+        this.simulation.force("link").links(nextProps.links);
+        this.simulation.alpha(1);
+        this.simulation.restart();
     };
+
+    componentWillUnmount() {
+        this.simulation.stop();
+    }
 
     nodeClicked = (node) => {
         console.log(node);

@@ -22,12 +22,12 @@
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="5" />
-          <entry key="project.open.time.4" value="13" />
+          <entry key="project.open.time.4" value="14" />
           <entry key="project.open.time.5" value="13" />
           <entry key="project.open.time.6" value="7" />
           <entry key="project.open.time.7" value="3" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="46" />
+          <entry key="project.opened" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -37,7 +37,7 @@
           <entry key="eslint" value="1" />
           <entry key="eslintrc" value="5" />
           <entry key="html" value="2" />
-          <entry key="js" value="300" />
+          <entry key="js" value="301" />
           <entry key="json" value="2" />
           <entry key="svg" value="1" />
         </counts>
@@ -48,7 +48,7 @@
           <entry key="ESLint" value="5" />
           <entry key="HTML" value="2" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="300" />
+          <entry key="JavaScript" value="301" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="1" />
         </counts>
@@ -58,7 +58,7 @@
           <entry key="css" value="586" />
           <entry key="eslintrc" value="3" />
           <entry key="html" value="1" />
-          <entry key="js" value="22056" />
+          <entry key="js" value="22250" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -66,7 +66,7 @@
           <entry key="CSS" value="586" />
           <entry key="ESLint" value="3" />
           <entry key="HTML" value="1" />
-          <entry key="JavaScript" value="22056" />
+          <entry key="JavaScript" value="22250" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -77,7 +77,20 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/visualization/graph/graph.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="12" column="77" selection-start-line="12" selection-start-column="77" selection-end-line="12" selection-end-column="77" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -146,12 +159,12 @@
         <option value="$PROJECT_DIR$/src/components/visualization/graph/graph.css" />
         <option value="$PROJECT_DIR$/src/utils/graphRandom.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/queue.module.js" />
-        <option value="$PROJECT_DIR$/src/components/visualization/graph/graph.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/stack.module.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.module.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.random.js" />
         <option value="$PROJECT_DIR$/src/containers/room/room.js" />
+        <option value="$PROJECT_DIR$/src/components/visualization/graph/graph.js" />
       </list>
     </option>
   </component>
@@ -178,8 +191,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1373" />
-    <option name="height" value="723" />
+    <option name="width" value="1374" />
+    <option name="height" value="724" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -189,6 +202,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -212,7 +226,15 @@
               <item name="structured" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="user-interface" type="462c0819:PsiDirectoryNode" />
+              <item name="visualization" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
+              <item name="structured" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="visualization" type="462c0819:PsiDirectoryNode" />
+              <item name="graph" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="structured" type="b2602c69:ProjectViewProjectNode" />
@@ -242,7 +264,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -342,14 +363,16 @@
       <workItem from="1533162987345" duration="7389000" />
       <workItem from="1533212437481" duration="7710000" />
       <workItem from="1533223245653" duration="6078000" />
+      <workItem from="1533283397018" duration="2840000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111897000" />
+    <option name="totallyTimeSpent" value="114737000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27604166" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -397,13 +420,7 @@
     <entry file="file://$PROJECT_DIR$/__mocks__/d3-force.js" />
     <entry file="file://$PROJECT_DIR$/__mocks__/.eslintrc" />
     <entry file="file://$PROJECT_DIR$/__mocks__/global.js" />
-    <entry file="file://$USER_HOME$/Desktop/react-vis-force-master/src/utils/d3-force.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="916">
-          <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/react-vis-force-master/src/utils/d3-force.js" />
     <entry file="file://$PROJECT_DIR$/src/utils/__mocks__/raf.js" />
     <entry file="file://$PROJECT_DIR$/config/env.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -425,13 +442,7 @@
     <entry file="file://$PROJECT_DIR$/.storybook/webpack.config.js" />
     <entry file="file://$PROJECT_DIR$/.eslintrc" />
     <entry file="file://$PROJECT_DIR$/src/components/visualization/graph/index.js" />
-    <entry file="file://$USER_HOME$/Desktop/react-vis-force-master/stories/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="50" selection-start-line="50" selection-end-line="54" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/react-vis-force-master/stories/index.js" />
     <entry file="file://$PROJECT_DIR$/src/containers/layout/layout.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1326">
@@ -443,9 +454,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="32" column="57" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -453,9 +461,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -498,9 +503,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -515,16 +517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="7" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/visualization/graph/graph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -570,6 +562,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/visualization/graph/graph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="12" column="77" selection-start-line="12" selection-start-column="77" selection-end-line="12" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
