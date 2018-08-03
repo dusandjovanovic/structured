@@ -7,7 +7,8 @@ class Graph extends Component {
     componentWillMount() {
         this.simulation = d3.forceSimulation()
             .force("charge", d3.forceManyBody().strength(-500))
-            .force("link", d3.forceLink().distance(250))
+            .force("link", d3.forceLink().distance(250)
+                .id(function id(node) {return node.key;}))
             .force("x", d3.forceX(this.props.width / 2))
             .force("y", d3.forceY(this.props.height / 2))
             .force('center', d3.forceCenter(this.props.width / 2, this.props.height / 2));
@@ -19,11 +20,12 @@ class Graph extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
+        console.log('graph:', nextProps);
         // d3's force function has side-effects and
         // mutates the nodes and links array directly
         // this.props.nodes/links will contain x and y values
         this.simulation.nodes(nextProps.nodes);
-        this.simulation.force("link").links(nextProps.links);
+        this.simulation.force("link").links(nextProps.edges);
         this.simulation.alpha(1);
         this.simulation.restart();
     };
@@ -33,15 +35,15 @@ class Graph extends Component {
     }
 
     nodeClicked = (node) => {
-        console.log(node);
+
     };
 
     nodeFocused = (node) => {
-        console.log(node);
+
     };
 
     nodeLostFocus = (node) => {
-        console.log(node);
+
     };
 
     render() {
@@ -60,7 +62,7 @@ class Graph extends Component {
                 </g>
             );
         });
-        let links = this.props.links.map((link) => {
+        let links = this.props.edges.map((link) => {
             return (
                 <line className={classes.link} markerEnd='url(#arrowhead)' key={link.key} strokeWidth={2}
                       x1={link.source.x} x2={link.target.x} y1={link.source.y} y2={link.target.y} />

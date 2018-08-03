@@ -5,14 +5,8 @@
     outline: none;
     cursor: pointer;
     font: inherit;
-    padding: 10px;
     margin: 10px;
     font-weight: bold;
-}
-
-.Button:first-of-type {
-    margin-left: 0;
-    padding-left: 0;
 }
 
 .Button:disabled {
@@ -26,4 +20,22 @@
 
 .Danger {
     color: #944317;
+}
+
+.Flat {
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #A5A5A5;
+    margin: 10px 10px;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    color: #A5A5A5;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.Flat:hover{
+    color: #FFFFFF;
+    background-color: #cacaca;
 }

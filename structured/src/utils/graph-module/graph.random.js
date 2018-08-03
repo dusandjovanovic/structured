@@ -3,10 +3,10 @@ import * as _ from "underscore";
 function randomData(previous, width, height) {
     var oldNodes = previous;
     // generate some data randomly
-    let nodes = _.chain(_.range(10))
+    let nodes = _.chain(_.range(15))
         .map(function() {
             var node = {};
-            node.key = _.random(0, 30);
+            node.key = _.random(0, 20);
             return node;
         }).uniq(function(node) {
             return node.key;
@@ -22,19 +22,18 @@ function randomData(previous, width, height) {
             }).value();
     }
 
-    let links = _.chain(_.range(12))
+    let edges = _.chain(_.range(30))
         .map(function() {
             var link = {};
-            link.source = _.random(0, nodes.length - 1);
-            link.target = _.random(0, nodes.length - 1);
+            link.source = _.random(0, 20);
+            link.target = _.random(0, 20);
             link.key = link.source + ',' + link.target;
             return link;
         }).uniq((link) => link.key)
         .value();
 
     maintainNodePositions(oldNodes, nodes, width, height);
-
-    return {nodes, links};
+    return {nodes, edges};
 }
 
 function maintainNodePositions(oldNodes, nodes, width, height) {

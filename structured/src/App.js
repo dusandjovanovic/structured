@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 import Layout from './containers/layout/layout';
 import Auth from './containers/auth/auth';
 import Logout from './containers/auth/logout/logout';
 import Social from './containers/social/social';
 import Chat from './containers/chat/chat';
 import Room from './containers/room/room';
-import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-import * as actions from './redux/actions/index';
-import NotificationContainer from './containers/notifications/notifications';
 import Homescreen from './components/homescreen/homescreen';
+import NotificationContainer from './containers/notifications/notifications';
+import * as actions from './redux/actions/index';
 
 class App extends Component {
     componentDidMount() {
@@ -30,7 +30,7 @@ class App extends Component {
                     <Route path="/auth" component={Auth}/>
                     <Route path="/logout" component={Logout}/>
                     <Route path="/social" component={Social}/>
-                    <Route path="/graph" component={Room}/>
+                    <Route path="/room" component={Room}/>
                     <Route path="/chat" component={Chat}/>
                     <Route path="/" exact render={() => <h2 style={{textAlign: 'center'}}> structured </h2>}/>
                 </Switch>

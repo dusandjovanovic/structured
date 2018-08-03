@@ -1,0 +1,11 @@
+.Actionbar {
+    height: 56px;
+    width: 100%;
+    background-color: #ededed;
+    display: flex;
+
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 80;
+    margin: -16px 0;
+}
