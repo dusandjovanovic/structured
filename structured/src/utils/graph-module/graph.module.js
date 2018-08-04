@@ -54,9 +54,10 @@ export const graphFactory = () => {
                 });
                 nodes.map(node => {
                     if (node.key === nodeOne)
-                        node.outEdges.push(nodeTwo);
+                        return node.outEdges.push(nodeTwo);
                     else if (node.key === nodeTwo)
-                        node.inEdges.push(nodeOne);
+                        return node.inEdges.push(nodeOne);
+                    return null;
                 });
             }
         },

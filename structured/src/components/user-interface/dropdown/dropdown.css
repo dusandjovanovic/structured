@@ -1,9 +1,10 @@
 .Dropdown {
-    margin: 0;
     display: flex;
     height: 100%;
     width: auto;
     align-items: center;
+    text-align: center;
+    margin-bottom: 0;
     color: white;
 }
 

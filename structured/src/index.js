@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 import authReducer from './redux/reducers/auth';
 import userReducer from './redux/reducers/user';
 import notificationReducer from './redux/reducers/notification';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({

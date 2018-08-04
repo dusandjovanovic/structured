@@ -36,11 +36,17 @@ export const userData = (username) => {
         let url = '/api/user/' + username;
         axios.get(url)
             .then(response => {
-                console.log('userData:', response);
-                let friends = [];
-                for (let element in response.data.friends)
-                    friends.push(response.data.friends[element]);
-                dispatch(userFetchData(username, friends));
+                if (response.data.success) {
+                    console.log('userData:', response);
+                    let friends = [];
+                    for (let element in response.data.data.friends)
+                        friends.push(response.data.data.friends[element]);
+                    dispatch(userFetchData(username, friends));
+                }
+                else {
+                    console.log('userError:', response.data.error);
+                    dispatch(userFetchDataFail(response.data.error));
+                }
             })
             .catch((error) => {
                 console.log('userError:', error);
@@ -54,35 +60,41 @@ export const friendRequests = (username) => {
         let url = '/api/friend-request/' + username;
         axios.get(url)
             .then(response => {
-                console.log('requestsData:', response);
-                let received = [];
-                for (let request in response.data) {
-                    const id = response.data[request]._id;
-                    const receiver = response.data[request].receiver;
-                    const sender = response.data[request].sender;
-                    const requestId = response.data[request]._id;
-                    const time = response.data[request].time;
-                    received.push({
-                        id: id,
-                        receiver: receiver,
-                        sender: sender,
-                        time: time
-                    });
-                    dispatch(actions.notificationSystem(
-                        'You have a new friend request from ' + sender + '. Click Accept to become friends or dismiss.',
-                        'info',
-                        10,
-                        {
-                            label: 'Accept',
-                            callback: function() {
-                                dispatch(friendConfirm(requestId, username));
-                                dispatch(userData(username));
-                            }
-                        },
-                        null
-                    ));
+                if (response.data.success) {
+                    console.log('requestsData:', response);
+                    let received = [];
+                    for (let request in response.data.data) {
+                        const id = response.data.data[request]._id;
+                        const receiver = response.data.data[request].receiver;
+                        const sender = response.data.data[request].sender;
+                        const requestId = response.data.data[request]._id;
+                        const time = response.data.data[request].time;
+                        received.push({
+                            id: id,
+                            receiver: receiver,
+                            sender: sender,
+                            time: time
+                        });
+                        dispatch(actions.notificationSystem(
+                            'You have a new friend request from ' + sender + '. Click Accept to become friends or dismiss.',
+                            'info',
+                            10,
+                            {
+                                label: 'Accept',
+                                callback: function () {
+                                    dispatch(friendConfirm(requestId, username));
+                                    dispatch(userData(username));
+                                }
+                            },
+                            null
+                        ));
+                    }
+                    dispatch(friendRequestsFetch(received));
                 }
-                dispatch(friendRequestsFetch(received));
+                else {
+                    console.log('requestsError:', response.data.msg);
+                    dispatch(friendFail(response.data.msg));
+                }
             })
             .catch(error => {
                 console.log('requestError:', error);

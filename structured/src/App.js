@@ -36,12 +36,12 @@ class App extends Component {
                 </Switch>
             );
         return (
-            <div>
+            <React.Fragment>
                 <Layout>
                     <NotificationContainer/>
                     {available}
                 </Layout>
-            </div>
+            </React.Fragment>
         );
     }
 }

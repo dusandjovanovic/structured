@@ -53,13 +53,19 @@ export const auth = (username, password, modeSignup) => {
 
         axios.post(url, authData)
             .then(response => {
-                const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('userId', username);
-                localStorage.setItem('expirationDate', expirationDate);
-                dispatch(authSuccess(response.data.token, username));
-                dispatch(actions.friendRequests(username));
-                dispatch(authCheckTimeout(3600));
+                if (response.data.success) {
+                    const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('userId', username);
+                    localStorage.setItem('expirationDate', expirationDate);
+                    dispatch(authSuccess(response.data.token, username));
+                    dispatch(actions.friendRequests(username));
+                    dispatch(authCheckTimeout(3600));
+                }
+                else {
+                    console.log('authError:', response.data.msg);
+                    dispatch(authFail(response.data.msg));
+                }
             })
             .catch(error => {
                 console.log('authError:', error);

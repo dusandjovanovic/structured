@@ -6,7 +6,10 @@ class Graph extends Component {
     simulation = null;
     state = {
         nodeFocused: null,
-        nodeSelected: null
+        nodeSelected: null,
+        nodeCurrent: null,
+        nodeRoot: null,
+        nodesClicked: []
     };
     componentWillMount() {
         this.simulation = d3.forceSimulation()
@@ -24,7 +27,7 @@ class Graph extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
-        console.log('graph:', nextProps);
+        console.log('graphObject:', nextProps);
         // d3's force function has side-effects and
         // mutates the nodes and links array directly
         // this.props.nodes/links will contain x and y values
@@ -43,8 +46,16 @@ class Graph extends Component {
         if (this.state.nodeSelected) {
             if (node.key === this.state.nodeSelected.key)
                 assign = classes.Selected;
-            else
-                assign = classes.Unselected;
+            else if (this.state.nodeCurrent && node.key === this.state.nodeCurrent.key)
+                assign = classes.Current;
+            else if (!edge) {
+                node.inEdges.map(source => {
+                    if (source === this.state.nodeSelected.key)
+                        return assign = classes.Adjacent;
+                    else
+                        return assign;
+                });
+            }
         }
         else if (this.state.nodeFocused) {
             if (node.key === this.state.nodeFocused.key)
@@ -54,16 +65,28 @@ class Graph extends Component {
                 if (!edge) {
                     node.inEdges.map(source => {
                         if (source === this.state.nodeFocused.key)
-                            assign = classes.Focused;
+                            return assign = classes.Focused;
+                        else
+                            return assign;
                     });
                 }
             }
+        }
+        else if (this.state.nodesClicked.includes(node.key)) {
+                assign = classes.Selected;
         }
         return assign;
     };
 
     nodeClicked = (node) => {
-        if (!this.state.nodeSelected)
+        if (this.props.managed) {
+            let newNodesClicked = this.state.nodesClicked.slice();
+            newNodesClicked.push(node.key);
+            this.setState({
+                nodesClicked: newNodesClicked
+            });
+        }
+        else if (!this.state.nodeSelected)
             this.setState({
                 nodeSelected: node,
                 nodeFocused: null
@@ -76,16 +99,24 @@ class Graph extends Component {
     };
 
     nodeFocused = (node) => {
-        if (!this.state.nodeSelected)
+        if (!this.props.managed && !this.state.nodeSelected)
             this.setState({
                 nodeFocused: node
             });
     };
 
     nodeLostFocus = (node) => {
-        this.setState({
-            nodeFocused: null
-        });
+        if (!this.props.managed)
+            this.setState({
+                nodeFocused: null
+            });
+    };
+
+    surfaceClicked = () => {
+        if (!this.props.managed && this.state.nodeSelected)
+            this.setState({
+                nodeSelected: null
+            });
     };
 
     render() {
@@ -99,25 +130,34 @@ class Graph extends Component {
                             onMouseEnter={() => this.nodeFocused(node)}
                             onMouseLeave={() => this.nodeLostFocus(node)}
                             r={20} />
-                    <text x={25}
-                          dy='.35em'>{node.key}
-                          </text>
+                    <text x={25} dy='.35em'>{node.key}</text>
                 </g>
             );
         });
         let links = this.props.edges.map((link) => {
             let assignClass = this.assignClass(link.source, true);
+            let arrow = 'url(#arrowhead)';
+            if (assignClass.includes('Focused') || assignClass.includes('Selected'))
+                arrow = 'url(#focusedArrowhead)';
+            else if (assignClass.includes('Unfocused'))
+                arrow = 'url(#unfocusedArrowhead)';
             return (
-                <line className={classes.Edge + " " + assignClass} markerEnd='url(#arrowhead)' key={link.key} strokeWidth={2}
+                <line className={classes.Edge + " " + assignClass} markerEnd={arrow} key={link.key} strokeWidth={2}
                       x1={link.source.x} x2={link.target.x} y1={link.source.y} y2={link.target.y} />
             );
         });
 
         return (
-            <svg width={this.props.width} height={this.props.height}>
+            <svg className={classes.Container} width={this.props.width} height={this.props.height} onClick={() => this.surfaceClicked()}>
                 <defs>
                     <marker id="arrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
-                        <path d="M0,-5L10,0L0,5" fill="#999" style={{stroke: 'none'}} />
+                        <path d="M0,-5L10,0L0,5" fill="#e0e0e0" style={{stroke: 'none'}} />
+                    </marker>
+                    <marker id="focusedArrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
+                        <path d="M0,-5L10,0L0,5" fill="#94d6e9" style={{stroke: 'none'}} />
+                    </marker>
+                    <marker id="unfocusedArrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
+                        <path d="M0,-5L10,0L0,5" fill="#f0f0f0" style={{stroke: 'none'}} />
                     </marker>
                 </defs>
                 <g>

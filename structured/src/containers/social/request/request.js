@@ -82,7 +82,6 @@ class Request extends Component {
         return (
             <div className={classes.Requests}>
                 {errorMessage}
-                <p>{this.props.info}</p>
                 <form onSubmit={this.submitHandler}>
                     {form}
                     <Button btnType="Success">SEND A REQUEST</Button>

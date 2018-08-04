@@ -22,9 +22,9 @@ const dropdown = (props) => {
         props.isAuthenticated
         ?
         <div className={classes.Dropdown}>
-            <p id="holder"
+            <div id="holder"
                onMouseEnter={props.showRequests}
-               onMouseLeave={props.hideRequests}>{props.name}</p>
+               onMouseLeave={props.hideRequests}>{props.name}</div>
             <ToolTip active={props.active}
                      style={style}
                      position="bottom"
