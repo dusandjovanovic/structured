@@ -10,16 +10,21 @@ router.get('/:username', /*passport.authenticate('jwt', {session: false}),*/ fun
   var token = getToken(req.headers);
   //if (token) {
     var username = req.params.username;
-    User.findOne({username: req.params.username}, function(err, user) {
-      if (err) return next(err);
-      res.json(user);
+    User.findOne({username: username}, function(err, user) {
+      if (err) {
+        res.send({success: false, msg: "MongoDB error: " + err});
+      } else if (!user) {
+        res.send({success: false, msg: "User not found."});
+      } else {
+        res.send({success: true, data: user});
+      }
     });
   //} else {
   //  return res.status(403).send({success: false, msg: 'Unauthorized.'});
   //}
 });
 
-getToken = function (headers) {
+getToken = function(headers) {
   if (headers && headers.authorization) {
     var parted = headers.authorization.split(' ');
     if (parted.length === 2) {

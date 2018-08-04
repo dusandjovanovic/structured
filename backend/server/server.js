@@ -9,6 +9,7 @@ mongoose.Promise = require('bluebird');
 var user = require('./routes/user');
 var auth = require('./routes/auth');
 var friendrequest = require('./routes/friend-request');
+var room = require('./routes/room');
 var app = express();
 
 mongoose.connect('mongodb://localhost:27017/structured', {
@@ -32,6 +33,7 @@ app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use('/api/user', user);
 app.use('/api/auth', auth);
 app.use('/api/friend-request', friendrequest);
+app.use('/api/rooms', room);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

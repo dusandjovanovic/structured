@@ -12,13 +12,13 @@ router.get('/:username', /*passport.authenticate('jwt', {session: false}),*/ fun
   //if (token) {
     var username = req.params.username;
     if (!username) {
-      res.json({success: false, msg: 'Please pass username.'});
+      res.send({success: false, msg: 'Please pass username.'});
     } else {
       FriendRequest.find({receiver: username}, function(err, requests) {
-        if (err || !requests) {
-          res.json({});
+        if (err) {
+          res.send({success: false, msg: 'MongoDB error: ' + err});
         } else {
-          res.json(requests);
+          res.send({success: true, data: requests});
         }
       });
     }
@@ -34,22 +34,24 @@ router.post('/check', /*passport.authenticate('jwt', {session: false}),*/ functi
     var sender = req.body.sender;
     var receiver = req.body.receiver;
     if (!sender || !receiver) {
-      res.json({success: false, msg: 'Please pass username and friendname.'});
+      res.send({success: false, msg: 'Please pass username and friendname.'});
     } else {
       User.findOne({username: sender, friends: receiver}, function(err, user) {
         if (err) {
-          res.json({success: false, msg: 'Something went wrong.'});
+          res.send({success: false, msg: 'MongoDB error: ' + err});
         } else if (user) {
-          res.json({exists: true, friends: true});
+          res.send({success: true, data: {exists: true, friends: true}});
         } else {
           FriendRequest.findOne({
             sender: sender,
             receiver: receiver
           }, function(err, request) {
-            if (request) {
-              res.json({exists: true, friends: false});
+            if (err) {
+              res.send({success: false, msg: 'MongoDB error: ' + err});
+            } else if (request) {
+              res.send({success: true, data: {exists: true, friends: false}});
             } else {
-              res.json({exists: false, friends: false});
+              res.send({success: true, data: {exists: false, friends: false}});
             }
           });
         }
@@ -67,37 +69,41 @@ router.post('/add', /*passport.authenticate('jwt', {session: false}),*/ function
     var sender = req.body.sender;
     var receiver = req.body.receiver;
     if (!sender || !receiver) {
-      res.json({success: false, msg: 'Please pass username and friendname.'});
+      res.send({success: false, msg: 'Please pass username and friendname.'});
     } else {
       User.findOne({username: sender, friends: receiver}, function(err, user) {
         if (err) {
-          res.json({success: false, msg: 'User not found.'});
+          res.send({success: false, msg: 'MongoDB error: ' + err});
         } else if (user) {
-          res.json({success: false, msg: 'Already friends.'});
+          res.send({success: false, msg: 'Already friends.'});
         } else {
           FriendRequest.findOne({
             sender: sender,
             receiver: receiver
           }, function(err, request) {
-            if (!request) {
+            if (err) {
+              res.send({success: false, msg: 'MongoDB error: ' + err});
+            } else if (!request) {
               User.findOne({username: receiver}, function(err, user) {
-                if (err || !user) {
-                  res.json({success: false, msg: 'User not found.'});
+                if (err) {
+                  res.send({success: false, msg: 'MongoDB error: ' + err});
+                } else if (!user) {
+                  res.send({success: false, msg: 'User not found.'});
                 } else {
                   FriendRequest.create({
                     sender: sender,
                     receiver: receiver
                   }, function(err) {
                     if (err) {
-                      res.json({success: false, msg: 'Friend was not added.'});
+                      res.send({success: false, msg: 'MongoDB error: ' + err});
                     } else {
-                      res.json({success: true, msg: 'Successfully sent a friend request.'});
+                      res.send({success: true, msg: 'Successfully sent a friend request.'});
                     }
                   });
                 }
               });
             } else {
-              res.json({success: false, msg: 'This request already exists.'});
+              res.send({success: false, msg: 'This request already exists.'});
             }
           });
         }
@@ -114,30 +120,32 @@ router.post('/confirm', /*passport.authenticate('jwt', {session: false}),*/ func
   //if (token) {
     var id = req.body.id;
     if (!id) {
-      res.json({success: false, msg: 'Please pass id of the request.'});
+      res.send({success: false, msg: 'Please pass id of the request.'});
     } else {
       FriendRequest.findById(id, function(err, request) {
-        if (err || !request) {
-          res.json({success: false, msg: 'Request not found.'});
+        if (err) {
+          res.send({success: false, msg: 'MongoDB error: ' + err});
+        } else if (!request) {
+          res.send({success: false, msg: 'Request not found.'});
         } else {
           User.update({username: request.sender},
             {$push: {friends: request.receiver}},
             function(err) {
               if (err) {
-                res.json({success: false, msg: 'User ' + request.sender + ' does not exist.'});
+                res.send({success: false, msg: 'MongoDB error: ' + err});
               }
           });
           User.update({username: request.receiver},
             {$push: {friends: request.sender}},
             function(err) {
               if (err) {
-                res.json({success: false, msg: 'Something went wrong.'});
+                res.send({success: false, msg: 'MongoDB error: ' + err});
               } else {
-                res.json({success: true, msg: 'Successfully added ' + request.sender + ' as a friend.'});
+                res.send({success: true, msg: 'Successfully added ' + request.sender + ' as a friend.'});
                 // delete the request
                 FriendRequest.deleteOne({_id: id}, function(err) {
                   if (err) {
-                    res.json({success: false, msg: 'Something went wrong.'});
+                    res.send({success: false, msg: 'MongoDB error: ' + err});
                   }
                 });
               }
@@ -156,13 +164,13 @@ router.delete('/:id', /*passport.authenticate('jwt', {session: false}),*/ functi
   //if (token) {
     var id = req.params.id;
     if (!id) {
-      res.json({success: false, msg: 'Please pass id of the request.'});
+      res.send({success: false, msg: 'Please pass id of the request.'});
     } else {
       FriendRequest.deleteOne({_id: id}, function(err) {
         if (err) {
-          res.json({success: false, msg: 'Something went wrong.'});
+          res.send({success: false, msg: 'MongoDB error: ' + err});
         } else {
-          res.json({success: true, msg: 'Successfully deleted the request.'});
+          res.send({success: true, msg: 'Successfully deleted the request.'});
         }
       });
     }
