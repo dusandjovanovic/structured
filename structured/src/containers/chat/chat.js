@@ -6,7 +6,7 @@ import classes from "./chat.css"
 import MessageList from './message-list/messageList';
 
 import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:2998');
+const socket = openSocket('http://localhost:2998/chat');
 
 export class Chat extends Component {
     constructor() {

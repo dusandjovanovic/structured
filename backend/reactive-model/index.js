@@ -3,11 +3,8 @@ var debug = require('debug')('mean-app:server');
 var http = require('http');
 const io = require('socket.io')();
 
-io.on('connection', (client) => {
-  client.on('chat message', (rcv) => {
-    io.emit(rcv.room, {sender: rcv.sender, msg: rcv.msg});
-  });
-});
+require('./chat')(io);
+//require('./graph')(io);
 
 const ioport = 2998;
 io.listen(ioport);
