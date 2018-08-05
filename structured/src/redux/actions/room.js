@@ -67,7 +67,8 @@ export const roomCreateNew = (name, maxUsers) => {
         axios.post(url, data)
             .then(response => {
                 console.log('roomCreateData:', response);
-
+                dispatch(roomCreate(name));
+                dispatch(roomGetAll('all'));
             })
             .catch(error => {
                 console.log('roomCreateError:', error);

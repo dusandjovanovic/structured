@@ -1,23 +1,39 @@
-import React, {Component} from 'react';
-import classes from './Modal.css';
-import Wrapper from '../../../components-higher/wrapper/wrapper'
-import Backdrop from '../backdrop/backdrop'
+import React from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-class Modal extends Component {
+class ExModal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            modal: false
+        };
+
+        this.toggle = this.toggle.bind(this);
+    }
+
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
 
     render() {
+        const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={this.toggle}>&times;</button>;
         return (
-            <Wrapper>
-                <Backdrop show={props.show} clicked={this.props.modalClosed} />
-                <div className={classes.Modal} style={{
-                    transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
-                    opacity: this.props.show ? '1' : '0'
-                }}>
-                    {this.props.children}
-                </div>
-            </Wrapper>
+            <div className="ml-2 mr-2">
+                <Button color="danger" disabled={!this.props.buttonCondition} onClick={this.toggle}>{this.props.buttonLabel}</Button>
+                <Modal isOpen={this.state.modal} toggle={this.toggle} external={externalCloseBtn}>
+                    <ModalHeader>{this.props.title}</ModalHeader>
+                    <ModalBody>
+                        {this.props.children}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.toggle}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
+            </div>
         );
     }
 }
 
-export default Modal;
+export default ExModal;
