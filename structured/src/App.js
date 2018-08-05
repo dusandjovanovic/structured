@@ -8,6 +8,7 @@ import Social from './containers/social/social';
 import Chat from './containers/chat/chat';
 import Room from './containers/room/room';
 import Homescreen from './components/homescreen/homescreen';
+import Home from './containers/home/home';
 import NotificationContainer from './containers/notifications/notifications';
 import * as actions from './redux/actions/index';
 
@@ -32,7 +33,7 @@ class App extends Component {
                     <Route path="/social" component={Social}/>
                     <Route path="/room" component={Room}/>
                     <Route path="/chat" component={Chat}/>
-                    <Route path="/" exact render={() => <h2 style={{textAlign: 'center'}}> structured </h2>}/>
+                    <Route path="/" exact component={Home}/>
                 </Switch>
             );
         return (

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../redux/actions/index';
 import Request from './request/request';
-import { ListGroup, Badge, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+import { ListGroup, ListGroupItem} from 'reactstrap';
 import classes from './social.css';
 
 export class Social extends Component {
@@ -21,16 +21,14 @@ export class Social extends Component {
                 <ListGroup flush className={classes.Listview}>
                     {
                         this.props.friends.map((friend => (
-                            <ListGroupItem className="justify-content-between" key={friend} action>
-                                <ListGroupItemHeading>{friend}</ListGroupItemHeading>
-                                <ListGroupItemText>
-                                    <div className="d-flex w-100 justify-content-between">
-                                        <p className="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed
-                                            diam eget risus varius blandit.</p>
-                                        <small>3 days ago</small>
-                                    </div>
-                                    <small>Donec id elit non mi porta.</small>
-                                </ListGroupItemText>
+                            <ListGroupItem className="list-group-item-action flex-column align-items-start" key={friend}    >
+                                <div className="d-flex w-100 justify-content-between">
+                                    <h5 className="mb-1">{friend}</h5>
+                                    <small>3 days ago</small>
+                                </div>
+                                <p className="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam
+                                    eget risus varius blandit.</p>
+                                <small className={classes.Highlighted}>Click here for more user info.</small>
                             </ListGroupItem>
                         )))
                     }
