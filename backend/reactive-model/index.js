@@ -11,7 +11,7 @@ io.on('connection', (client) => {
 
 const ioport = 2998;
 io.listen(ioport);
-console.log('socket.io listening on port ', ioport);
+console.log('socket.io port', ioport);
 
 var port = normalizePort(process.env.PORT || '2999');
 app.set('port', port);
@@ -68,5 +68,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
-  console.log(bind);
+  console.log('http ' + bind);
 }

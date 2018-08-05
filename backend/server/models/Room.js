@@ -7,6 +7,7 @@ var RoomSchema = new mongoose.Schema({
   }],
   currentUsers: Number,
   maxUsers: Number,
+  createdBy: String,
   time: {
     type: Date,
     default: Date.now

@@ -5,6 +5,7 @@ var Room = require('../models/Room.js');
 var passport = require('passport');
 require('../config/passport')(passport);
 
+/* GET ALL ROOMS */
 router.get('/:mode', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
   var token = getToken(req.headers);
   //if (token) {
@@ -23,23 +24,139 @@ router.get('/:mode', /*passport.authenticate('jwt', {session: false}),*/ functio
   //}
 });
 
+/* GET ROOM */
+router.get('/get/:name', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
+  var token = getToken(req.headers);
+  //if (token) {
+    var name = req.params.name;
+    if (!name) {
+      res.send({success: false, msg: 'Please pass name of the room.'});
+    } else {
+      Room.findOne({name: name}, function(err, room) {
+        if (err) {
+          res.send({success: false, msg: 'MongoDB error: ' + err});
+        } else {
+          res.send({success: true, data: room});
+        }
+      });
+    }
+  //} else {
+  //  return res.status(403).send({success: false, msg: 'Unauthorized.'});
+  //}
+});
+
+/* CREATE ROOM */
 router.post('/', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
   var token = getToken(req.headers);
   //if (token) {
     var name = req.body.name;
     var maxUsers = req.body.maxUsers;
-    if (!name || !maxUsers) {
-      res.send({success: false, msg: 'Please pass username and friendname.'});
+    var createdBy = req.body.createdBy;
+    if (!name || !maxUsers || !createdBy) {
+      res.send({success: false, msg: 'Please pass all the arguments.'});
     } else {
       Room.create({
         name: name,
         currentUsers: 0,
-        maxUsers: maxUsers
+        maxUsers: maxUsers,
+        createdBy: createdBy,
+        users: [createdBy]
       }, function(err) {
         if (err) {
           res.send({success: false, msg: 'MongoDB error: ' + err});
         } else {
           res.send({success: true, msg: 'Successfully created a room.'});
+        }
+      });
+    }
+  //} else {
+  //  return res.status(403).send({success: false, msg: 'Unauthorized.'});
+  //}
+});
+
+/* JOIN ROOM */
+router.post('/join', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
+  var token = getToken(req.headers);
+  //if (token) {
+    var roomName = req.body.roomName;
+    var username = req.body.username;
+    if (!roomName || !username) {
+      res.send({success: false, msg: 'Please pass roomName and username.'});
+    } else {
+      Room.findOne({name: roomName}, function(err, room) {
+        if (err) {
+          res.send({success: false, msg: 'MongoDB error: ' + err});
+        } else if (!room) {
+          res.send({success: false, msg: 'Room not found.'});
+        } else {
+          if (room.currentUsers === room.maxUsers) {
+            res.send({success: false, msg: 'Room is full.'});
+          } else {
+            Room.update({name: roomName},
+              {$push: {users: username}},
+              function(err) {
+                if (err) {
+                  res.send({success: false, msg: 'MongoDB error: ' + err});
+                } else {
+                  res.send({success: true, msg: 'Joined room.'});
+                }
+              });
+          }
+        }
+      });
+    }
+  //} else {
+  //  return res.status(403).send({success: false, msg: 'Unauthorized.'});
+  //}
+});
+
+/* LEAVE ROOM */
+router.post('/leave', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
+  var token = getToken(req.headers);
+  //if (token) {
+    var roomName = req.body.roomName;
+    var username = req.body.username;
+    if (!roomName || !username) {
+      res.send({success: false, msg: 'Please pass roomName and username.'});
+    } else {
+      Room.findOne({name: roomName}, function(err, room) {
+        if (err) {
+          res.send({success: false, msg: 'MongoDB error: ' + err});
+        } else if (!room) {
+          res.send({success: false, msg: 'Room not found.'});
+        } else {
+          var index = room.users.indexOf(username);
+          room.users.splice(index, 1);
+          Room.update({name: roomName},
+            {users: room.users},
+            function(err) {
+              if (err) {
+                res.send({success: false, msg: 'MongoDB error: ' + err});
+              } else {
+                res.send({success: true, msg: 'Room left.'});
+              }
+            });
+        }
+      });
+    }
+  //} else {
+  //  return res.status(403).send({success: false, msg: 'Unauthorized.'});
+  //}
+});
+
+/* DELETE ROOM */
+router.delete('/:id', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
+  var token = getToken(req.headers);
+  //if (token) {
+    var id = req.params.id;
+    if (!id) {
+      res.send({success: false, msg: 'Please pass id of the room.'});
+    } else {
+      Room.deleteOne({_id: id}, function(err) {
+        if (err) {
+          res.send({success: false, msg: 'MongoDB error: ' + err});
+        } else {
+          res.send({success: true, msg: 'Successfully deleted room.'});
         }
       });
     }

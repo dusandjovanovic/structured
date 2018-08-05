@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost:27017/structured', {
   promiseLibrary: require('bluebird'),
   useNewUrlParser: true
 })
-.then(() =>  console.log('connection succesful'))
+.then(() =>  console.log('mongo connection succesful'))
 .catch((err) => console.error(err));
 
 app.use(logger('dev'));
