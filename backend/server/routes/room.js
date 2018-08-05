@@ -57,7 +57,7 @@ router.post('/', /*passport.authenticate('jwt', {session: false}),*/ function(re
     } else {
       Room.create({
         name: name,
-        currentUsers: 0,
+        currentUsers: 1,
         maxUsers: maxUsers,
         createdBy: createdBy,
         users: [createdBy]
@@ -92,8 +92,12 @@ router.post('/join', /*passport.authenticate('jwt', {session: false}),*/ functio
           if (room.currentUsers === room.maxUsers) {
             res.send({success: false, msg: 'Room is full.'});
           } else {
+            var cu = room.currentUsers + 1;
             Room.update({name: roomName},
-              {$push: {users: username}},
+              {
+                currentUsers: cu,
+                $push: {users: username}
+              },
               function(err) {
                 if (err) {
                   res.send({success: false, msg: 'MongoDB error: ' + err});
@@ -125,17 +129,25 @@ router.post('/leave', /*passport.authenticate('jwt', {session: false}),*/ functi
         } else if (!room) {
           res.send({success: false, msg: 'Room not found.'});
         } else {
-          var index = room.users.indexOf(username);
-          room.users.splice(index, 1);
-          Room.update({name: roomName},
-            {users: room.users},
-            function(err) {
-              if (err) {
-                res.send({success: false, msg: 'MongoDB error: ' + err});
-              } else {
-                res.send({success: true, msg: 'Room left.'});
-              }
-            });
+          if (room.users.includes(username)) {
+            var index = room.users.indexOf(username);
+            room.users.splice(index, 1);
+            var cu = room.currentUsers - 1;
+            Room.update({name: roomName},
+              {
+                currentUsers: cu,
+                users: room.users
+              },
+              function(err) {
+                if (err) {
+                  res.send({success: false, msg: 'MongoDB error: ' + err});
+                } else {
+                  res.send({success: true, msg: 'Room left.'});
+                }
+              });
+          } else {
+            res.send({success: true, msg: 'User not in the room.'});
+          }
         }
       });
     }
