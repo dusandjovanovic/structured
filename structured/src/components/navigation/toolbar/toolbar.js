@@ -1,13 +1,13 @@
 import React from 'react';
-import classes from './toolbar.css';
 import NavigationItems from '../navigation-items/navigationItems';
 import Logo from '../../logo/logo';
+import './toolbar.css';
 
 const toolbar = (props) => (
-    <header className={classes.Toolbar}>
+    <header className="Toolbar">
         <Logo />
         {props.children}
-        <nav className={classes.DesktopOnly}>
+        <nav className="DesktopOnly">
             <NavigationItems isAuthenticated={props.isAuthenticated} />
         </nav>
     </header>

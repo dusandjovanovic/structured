@@ -1,11 +1,11 @@
 import React from 'react';
-import classes from './input.css'
+import './input.css'
 
 const input = (props) => {
     let inputElement;
-    const inputClasses = [classes.InputElement];
+    const inputClasses = ['InputElement'];
     if (props.invalid && props.shouldValidate && props.touched)
-        inputClasses.push(classes.Invalid);
+        inputClasses.push('Invalid');
 
     switch (props.elementType) {
         case ('input'):
@@ -46,8 +46,8 @@ const input = (props) => {
                 value={props.value}/>
     }
     return(
-        <div className={classes.Input}>
-            <label className={classes.Label}>{props.label}</label>
+        <div className="Input">
+            <label className="Label">{props.label}</label>
             {inputElement}
         </div>
     );

@@ -1,8 +1,8 @@
 import React from 'react';
-import classes from './actionbar.css';
+import './actionbar.css';
 
 const actionbar = (props) => (
-    <div className={classes.Actionbar}>
+    <div className="Actionbar">
         {props.children}
     </div>
 );

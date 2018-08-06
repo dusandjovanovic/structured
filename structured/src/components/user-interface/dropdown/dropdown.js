@@ -1,7 +1,7 @@
 import React from "react";
 import ToolTip from "react-portal-tooltip";
 import DropdownElement from './dropdown-element/dropdown-element';
-import classes from './dropdown.css';
+import './dropdown.css';
 
 const style = {
     style: {
@@ -21,7 +21,7 @@ const dropdown = (props) => {
     return (
         props.isAuthenticated
         ?
-        <div className={classes.Dropdown}>
+        <div className="Dropdown">
             <div id="holder"
                onMouseEnter={props.showRequests}
                onMouseLeave={props.hideRequests}>{props.name}</div>

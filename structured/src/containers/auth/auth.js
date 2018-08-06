@@ -5,7 +5,7 @@ import Input from '../../components/user-interface/input/input';
 import Button from '../../components/user-interface/button/button';
 import Spinner from '../../components/user-interface/spinner/spinner';
 import * as actions from '../../redux/actions/index';
-import classes from './auth.css';
+import './auth.css';
 
 class Auth extends Component {
     state = {
@@ -111,7 +111,7 @@ class Auth extends Component {
             authRedirect = <Redirect to={this.props.authRedirectPath}/>;
 
         return (
-            <div className={classes.Auth}>
+            <div className="AuthContent">
                 {authRedirect}
                 {errorMessage}
                 <form onSubmit={this.submitHandler}>

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../redux/actions/index';
 import Request from './request/request';
 import { ListGroup, ListGroupItem} from 'reactstrap';
-import classes from './social.css';
+import './social.css';
 
 export class Social extends Component {
     componentDidMount() {
@@ -18,7 +18,7 @@ export class Social extends Component {
         let friends = null;
         if (this.props.friends) {
             friends = (
-                <ListGroup flush className={classes.Listview}>
+                <ListGroup flush className="Listview">
                     {
                         this.props.friends.map((friend => (
                             <ListGroupItem className="list-group-item-action flex-column align-items-start" key={friend}    >
@@ -28,7 +28,7 @@ export class Social extends Component {
                                 </div>
                                 <p className="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam
                                     eget risus varius blandit.</p>
-                                <small className={classes.Highlighted}>Click here for more user info.</small>
+                                <small className="Highlighted">Click here for more user info.</small>
                             </ListGroupItem>
                         )))
                     }

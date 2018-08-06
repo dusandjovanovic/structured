@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import * as d3 from 'd3';
-import classes from './graph.css';
+import './graph.css';
 
 class Graph extends Component {
     simulation = null;
@@ -45,13 +45,13 @@ class Graph extends Component {
         let assign = "";
         if (this.state.nodeSelected) {
             if (node.key === this.state.nodeSelected.key)
-                assign = classes.Selected;
+                assign = "Selected";
             else if (this.state.nodeCurrent && node.key === this.state.nodeCurrent.key)
-                assign = classes.Current;
+                assign = "Current";
             else if (!edge) {
                 node.inEdges.map(source => {
                     if (source === this.state.nodeSelected.key)
-                        return assign = classes.Adjacent;
+                        return assign = "Adjacent";
                     else
                         return assign;
                 });
@@ -59,13 +59,13 @@ class Graph extends Component {
         }
         else if (this.state.nodeFocused) {
             if (node.key === this.state.nodeFocused.key)
-                assign = classes.Focused;
+                assign = "Focused";
             else {
-                assign = classes.Unfocused;
+                assign = "Unfocused";
                 if (!edge) {
                     node.inEdges.map(source => {
                         if (source === this.state.nodeFocused.key)
-                            return assign = classes.Focused;
+                            return assign = "Focused";
                         else
                             return assign;
                     });
@@ -73,7 +73,7 @@ class Graph extends Component {
             }
         }
         else if (this.state.nodesClicked.includes(node.key)) {
-                assign = classes.Selected;
+                assign = "Selected";
         }
         return assign;
     };
@@ -125,7 +125,7 @@ class Graph extends Component {
             let assignClass = this.assignClass(node, false);
             let transform = 'translate(' + node.x + ',' + node.y + ')';
             return (
-                <g className={classes.Node + " " + assignClass} key={node.key} transform={transform}>
+                <g className={"Node" + " " + assignClass} key={node.key} transform={transform}>
                     <circle onClick={() => this.nodeClicked(node)}
                             onMouseEnter={() => this.nodeFocused(node)}
                             onMouseLeave={() => this.nodeLostFocus(node)}
@@ -142,13 +142,13 @@ class Graph extends Component {
             else if (assignClass.includes('Unfocused'))
                 arrow = 'url(#unfocusedArrowhead)';
             return (
-                <line className={classes.Edge + " " + assignClass} markerEnd={arrow} key={link.key} strokeWidth={2}
+                <line className={"Edge" + " " + assignClass} markerEnd={arrow} key={link.key} strokeWidth={2}
                       x1={link.source.x} x2={link.target.x} y1={link.source.y} y2={link.target.y} />
             );
         });
 
         return (
-            <svg className={classes.Container} width={this.props.width} height={this.props.height} onClick={() => this.surfaceClicked()}>
+            <svg className="Container" width={this.props.width} height={this.props.height} onClick={() => this.surfaceClicked()}>
                 <defs>
                     <marker id="arrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
                         <path d="M0,-5L10,0L0,5" fill="#e0e0e0" style={{stroke: 'none'}} />

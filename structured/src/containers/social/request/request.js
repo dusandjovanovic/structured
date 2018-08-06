@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Input from '../../../components/user-interface/input/input';
 import Button from '../../../components/user-interface/button/button';
-import classes from './request.css';
+import './request.css';
 
 class Request extends Component {
     state = {
@@ -80,7 +80,7 @@ class Request extends Component {
             errorMessage = (<p>{this.props.error}</p>);
 
         return (
-            <div className={classes.Requests}>
+            <div className="Requests">
                 {errorMessage}
                 <form onSubmit={this.submitHandler}>
                     {form}

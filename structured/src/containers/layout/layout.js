@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import Wrapper from '../../components-higher/wrapper/wrapper';
 import Toolbar from '../../components/navigation/toolbar/toolbar';
 import Dropdown from '../../components/user-interface/dropdown/dropdown';
-import classes from './layout.css';
 import * as actions from "../../redux/actions";
+import './layout.css';
 
 class Layout extends Component {
     state = {
@@ -45,7 +45,7 @@ class Layout extends Component {
                               default="You don't have any requests."
                     />
                 </Toolbar>
-                <main className={classes.Content}>
+                <main className="Content">
                     {this.props.children}
                 </main>
             </Wrapper>
