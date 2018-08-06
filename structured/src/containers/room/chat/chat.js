@@ -13,15 +13,17 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.socket = this.props.socketio('http://localhost:2998/chat');
-    }
+    };
 
-    componentDidMount() {
-        this.socket.on('someRoomName', message => this.messageReceived(message));
-    }
+    componentWillReceiveProps(newProps) {
+        console.log(newProps);
+        if (newProps.room !== this.props.room)
+            this.socket.on(newProps.room, message => this.messageReceived(message));
+    };
 
     componentWillUnmount() {
         this.socket.close();
-    }
+    };
 
     messageReceived = (message) => {
         console.log('socketio::receive ', message);
@@ -45,14 +47,13 @@ class Chat extends Component {
     messageSend = (message) => {
         console.log('socketio::send ', message);
         this.socket.emit('chat message', {
-            room: 'someRoomName',
+            room: this.props.room,
             sender: this.props.username,
             msg: message
         });
     };
 
     render() {
-
         return (
             <div>
                 <Input

@@ -1,6 +1,5 @@
 import * as actionTypes from './actions';
 import axios from '../../utils/axios-handler';
-import {friendFail, friendRequests, userData} from "./user";
 
 export const roomCreate = (name) => {
     return {
@@ -9,7 +8,7 @@ export const roomCreate = (name) => {
     }
 };
 
-export const roomDelete = (name) => {
+export const roomDelete = () => {
     return {
         type: actionTypes.ROOM_DELETE
     }
@@ -25,6 +24,14 @@ export const roomJoin = (name) => {
 export const roomLeave = () => {
     return {
         type: actionTypes.ROOM_LEAVE
+    }
+};
+
+export const roomData = (data, master) => {
+    return {
+        type: actionTypes.ROOM_DATA,
+        master: master,
+        data: data
     }
 };
 
@@ -63,6 +70,26 @@ export const roomGetAll = (mode) => {
     }
 };
 
+export const roomGetData = (name, username) => {
+    return dispatch => {
+        let url = '/api/rooms/get/' + name;
+        axios.get(url)
+            .then(response => {
+                if (response.data.success) {
+                    dispatch(roomData(response.data.data, (username === response.data.data.createdBy)));
+                }
+                else {
+                    console.log('roomError:', response.data.error);
+                    dispatch(roomError(response.data.msg));
+                }
+            })
+            .catch((error) => {
+                console.log('roomError:', error);
+                dispatch(roomError(error));
+            });
+    }
+};
+
 export const roomCreateNew = (name, maxUsers, username) => {
     return dispatch => {
         const data = {
@@ -75,6 +102,7 @@ export const roomCreateNew = (name, maxUsers, username) => {
             .then(response => {
                 console.log('roomCreateData:', response);
                 dispatch(roomCreate(name));
+                dispatch(roomGetData(name, username));
                 dispatch(roomGetAll('all'));
             })
             .catch(error => {
@@ -87,7 +115,7 @@ export const roomCreateNew = (name, maxUsers, username) => {
 export const roomJoinExisting = (name, username) => {
     return dispatch => {
         const data = {
-            name: name,
+            roomName: name,
             username: username
         };
         let url = '/api/rooms/join';
@@ -95,6 +123,7 @@ export const roomJoinExisting = (name, username) => {
             .then(response => {
                 console.log('roomJoinData:', response);
                 dispatch(roomJoin(name));
+                dispatch(roomGetData(name, username));
             })
             .catch(error => {
                 console.log('roomJoinError:', error);
@@ -106,7 +135,7 @@ export const roomJoinExisting = (name, username) => {
 export const roomLeaveExisting = (name, username) => {
     return dispatch => {
         const data = {
-            name: name,
+            roomName: name,
             username: username
         };
         let url = '/api/rooms/leave';
@@ -122,14 +151,13 @@ export const roomLeaveExisting = (name, username) => {
     }
 };
 
-export const roomDeleteCurrent = (roomId) => {
+export const roomDeleteExisting = (roomId) => {
     return dispatch => {
         let url = '/api/rooms/' + roomId;
         axios.delete(url)
             .then(response => {
                 console.log('deleteRoom:', response);
-                dispatch(userData(username));
-                dispatch(friendRequests(username));
+                dispatch(roomDelete());
             })
             .catch(error => {
                 console.log('deleteError:', error);

@@ -2,8 +2,13 @@ import * as actionTypes from '../actions/actions';
 
 const initialState = {
     rooms: [],
-    room: null,
-    data: null,
+    room: {
+        name: null,
+        master: false
+    },
+    data: {
+        _id: null
+    },
     error: null
 };
 
@@ -12,7 +17,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.ROOM_ALL:
             return {
                 ...state,
-                rooms: [...action.rooms]
+                rooms: [...action.rooms],
+                error: null
             };
         case actionTypes.ROOM_CREATE:
             return {
@@ -21,22 +27,50 @@ const reducer = (state = initialState, action) => {
                     name: action.name,
                     master: true
                 },
-                data: action.data
+                error: null
+            };
+        case actionTypes.ROOM_DATA:
+            return {
+                ...state,
+                data: action.data,
+                room: {
+                    ...state.room,
+                    master: action.master
+                },
+                error: null
             };
         case actionTypes.ROOM_JOIN:
             return {
                 ...state,
                 room: {
                     name: action.name,
-                    master: false
+                    master: action.master
                 },
-                data: action.data
+                error: null
             };
-        case actionTypes.ROOM_EXIT:
+        case actionTypes.ROOM_LEAVE:
             return {
                 ...state,
-                room: null,
-                data: null
+                room: {
+                    name: null,
+                    master: false
+                },
+                data: {
+                    _id: null
+                },
+                error: null
+            };
+        case actionTypes.ROOM_DELETE:
+            return {
+                ...state,
+                room: {
+                    name: null,
+                    master: false
+                },
+                data: {
+                    _id: null
+                },
+                error: null
             };
         case actionTypes.ROOM_ERROR:
             return {

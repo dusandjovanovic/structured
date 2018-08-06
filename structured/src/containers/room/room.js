@@ -4,8 +4,10 @@ import Graph from '../../components/visualization/graph/graph';
 import Chat from './chat/chat';
 import randomData from '../../utils/graph-module/graph.random';
 import {graphFactory} from '../../utils/graph-module/graph.module';
+import {withRouter} from "react-router-dom";
 import { Nav, NavItem, NavLink, Navbar, Button } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
+import * as actions from "../../redux/actions";
 import './room.css';
 
 class Room extends Component {
@@ -43,6 +45,16 @@ class Room extends Component {
         });
     };
 
+    deleteRoom = (event) => {
+        this.props.roomDeleteExisting(this.props.roomId);
+        this.props.history.push("/");
+    };
+
+    leaveRoom = (event) => {
+        this.props.roomLeaveExisting(this.props.room.name, this.props.username);
+        this.props.history.push("/");
+    };
+
     render() {
         return (
             <div>
@@ -52,8 +64,20 @@ class Room extends Component {
                     </NavItem>
 
                     <Navbar className="px-3">
+                        {this.props.room.master
+                            ? (
+                                <NavItem className="text-nowrap">
+                                    <NavLink className="nav-link text-danger"
+                                             onClick={() => this.deleteRoom()}
+                                             href="#">Delete room</NavLink>
+                                </NavItem>
+                            )
+                            : null
+                        }
                         <NavItem className="text-nowrap">
-                            <NavLink className="nav-link" disabled href="#">Leave room</NavLink>
+                            <NavLink className="nav-link text-secondary"
+                                     onClick={() => this.leaveRoom()}
+                                     href="#">Leave room</NavLink>
                         </NavItem>
                     </Navbar>
                 </Nav>
@@ -61,7 +85,7 @@ class Room extends Component {
                     <Row>
                         <Col md="3" className="sidebar d-none d-md-block bg-light">
                             <div className="sidebar-sticky">
-                                <Chat username={this.props.username} />
+                                <Chat room={this.props.room.name} username={this.props.username} />
                             </div>
                         </Col>
 
@@ -94,8 +118,17 @@ class Room extends Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.auth.username
+        username: state.auth.username,
+        room: state.room.room,
+        roomId: state.room.data._id
     }
 };
 
-export default connect(mapStateToProps, null) (Room);
+const mapDispatchToProps = dispatch => {
+    return {
+        roomLeaveExisting: (name, username) => dispatch(actions.roomLeaveExisting(name, username)),
+        roomDeleteExisting: (roomId) => dispatch(actions.roomDeleteExisting(roomId))
+    }
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (Room));

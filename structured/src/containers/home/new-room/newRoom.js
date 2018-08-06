@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Card, ButtonDropdown, DropdownMenu, ButtonGroup, CardHeader, CardText, CardBody, CardSubtitle, Button, DropdownItem, DropdownToggle} from 'reactstrap';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import Modal from '../../../components/user-interface/modal/modal';
-import * as actions from "../../../redux/actions";
-import connect from "react-redux/es/connect/connect";
 
 class newRoom extends Component {
     roomName = '';
@@ -23,7 +21,7 @@ class newRoom extends Component {
 
     newRoomHandler = (event) => {
         event.preventDefault();
-        this.props.onRoomCreateNew(this.roomName.value, this.roomUsers.value, this.props.username);
+        this.props.createAndEnterRoom(this.roomName.value, this.roomUsers.value);
     };
 
     practiseHandler = () => {
@@ -101,19 +99,5 @@ class newRoom extends Component {
     };
 }
 
-const mapStateToProps = state => {
-    return {
-        username: state.auth.username,
-        room: state.room.room,
-        rooms: state.room.rooms,
-        error: state.room.error
-    };
-};
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onRoomCreateNew: (name, maxUsers, username) => dispatch(actions.roomCreateNew(name, maxUsers, username))
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps) (newRoom);
+export default newRoom;

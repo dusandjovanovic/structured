@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'reactstrap';
+import {withRouter} from "react-router-dom";
 import SomethingWentWrong from '../../components/user-interface/something-went-wrong/somethingWentWrong';
 import { Card, CardHeader, CardText, CardBody, CardTitle, Button} from 'reactstrap';
 import NewRoom from './new-room/newRoom';
@@ -8,8 +9,18 @@ import * as actions from "../../redux/actions";
 
 class Home extends React.Component {
     componentDidMount() {
-        this.props.onRoomGetAll("all");
+        this.props.roomGetAll("all");
     }
+
+    enterRoom = (name) => {
+        this.props.roomJoinExisting(name, this.props.username);
+        this.props.history.push("/room");
+    };
+
+    createAndEnterRoom = (name, maxUsers, username) => {
+        this.props.onRoomCreateNew(name, maxUsers, this.props.username);
+        this.props.history.push("/room");
+    };
 
     render() {
         return (
@@ -31,7 +42,7 @@ class Home extends React.Component {
                                             </CardHeader>
                                             <CardBody className="m-3">
                                                 <CardText>Currently {room.currentUsers} users in the room, out of {room.maxUsers}.</CardText>
-                                                <Button>Join room</Button>
+                                                <Button onClick={() => this.enterRoom(room.name)}>Join room</Button>
                                             </CardBody>
                                             <CardText>
                                                 <small className="text-muted">last updated sometime ago</small>
@@ -45,7 +56,7 @@ class Home extends React.Component {
                         : <SomethingWentWrong text="Such empty, your friends didn't create any rooms." alternative="...or something went wrong :("/>}
                     <hr />
                     <Row>
-                        <NewRoom />
+                        <NewRoom createAndEnterRoom={(name, maxUsers) => this.createAndEnterRoom(name, maxUsers)}/>
                     </Row>
                 </Container>
             </div>
@@ -55,6 +66,7 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        username: state.auth.username,
         room: state.room.room,
         rooms: state.room.rooms,
         error: state.room.error
@@ -63,8 +75,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRoomGetAll: (mode) => dispatch(actions.roomGetAll(mode))
+        roomGetAll: (mode) => dispatch(actions.roomGetAll(mode)),
+        roomJoinExisting : (name, username) => dispatch(actions.roomJoinExisting(name, username)),
+        onRoomCreateNew: (name, maxUsers, username) => dispatch(actions.roomCreateNew(name, maxUsers, username))
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (Home);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (Home));
