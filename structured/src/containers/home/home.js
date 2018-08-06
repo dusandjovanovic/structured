@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 import SomethingWentWrong from '../../components/user-interface/something-went-wrong/somethingWentWrong';
 import { Card, CardHeader, CardText, CardBody, CardTitle, Button} from 'reactstrap';
 import NewRoom from './new-room/newRoom';
@@ -42,7 +42,7 @@ class Home extends React.Component {
                                 }
                                 </Row>
                             </div>
-                        : <SomethingWentWrong text="Such empty, your friends didn't create any rooms." alternative="...or something went wrong ☹"/>}
+                        : <SomethingWentWrong text="Such empty, your friends didn't create any rooms." alternative="...or something went wrong :("/>}
                     <hr />
                     <Row>
                         <NewRoom />

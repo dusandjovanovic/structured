@@ -125,7 +125,7 @@ class Graph extends Component {
             let assignClass = this.assignClass(node, false);
             let transform = 'translate(' + node.x + ',' + node.y + ')';
             return (
-                <g className={"Node" + " " + assignClass} key={node.key} transform={transform}>
+                <g className={"Node " + assignClass} key={node.key} transform={transform}>
                     <circle onClick={() => this.nodeClicked(node)}
                             onMouseEnter={() => this.nodeFocused(node)}
                             onMouseLeave={() => this.nodeLostFocus(node)}
@@ -142,7 +142,7 @@ class Graph extends Component {
             else if (assignClass.includes('Unfocused'))
                 arrow = 'url(#unfocusedArrowhead)';
             return (
-                <line className={"Edge" + " " + assignClass} markerEnd={arrow} key={link.key} strokeWidth={2}
+                <line className={"Edge " + assignClass} markerEnd={arrow} key={link.key} strokeWidth={2}
                       x1={link.source.x} x2={link.target.x} y1={link.source.y} y2={link.target.y} />
             );
         });

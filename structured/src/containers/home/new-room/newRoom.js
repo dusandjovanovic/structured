@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Card, ButtonDropdown, DropdownMenu, ButtonGroup, CardHeader, CardText, CardBody, CardSubtitle, Button, DropdownItem, DropdownToggle} from 'reactstrap';
-import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 import Modal from '../../../components/user-interface/modal/modal';
 import * as actions from "../../../redux/actions";
 import connect from "react-redux/es/connect/connect";
 
 class newRoom extends Component {
+    roomName = '';
+    roomUsers = 1;
+
     state = {
         dropdownOpen: false,
         newAvailable: false,
-        roomType: 'practise',
-        roomName: '',
-        maxUsers: 1
+        roomType: 'practise'
     };
 
     toggle = () => {
@@ -22,8 +23,7 @@ class newRoom extends Component {
 
     newRoomHandler = (event) => {
         event.preventDefault();
-        console.log(this.state);
-        this.props.onRoomCreateNew(this.state.roomName.value, this.state.maxUsers.value);
+        this.props.onRoomCreateNew(this.roomName.value, this.roomUsers.value, this.props.username);
     };
 
     practiseHandler = () => {
@@ -73,17 +73,16 @@ class newRoom extends Component {
                             </DropdownMenu>
                         </ButtonDropdown>
                         <Modal title="Create a new room"
-                               do={() => this.props.onRoomCreateNew('someRoomName', 6)}
                                buttonCondition={this.state.newAvailable}
                                buttonLabel="New!">
                             <Form onSubmit={this.newRoomHandler}>
                                 <FormGroup>
                                     <Label for="room">Room name:</Label>
-                                    <Input type="input" innerRef={(node) => this.state.roomName = node} name="roomIdentifier" id="room" placeholder="room identifier"/>
+                                    <Input type="input" innerRef={(node) => this.roomName = node} name="roomIdentifier" id="room" placeholder="room identifier"/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="exampleSelect">Number of users:</Label>
-                                    <Input type="select" name="select" id="exampleSelect" innerRef={(node) => this.state.maxUsers = node}>
+                                    <Input type="select" name="select" id="exampleSelect" innerRef={(node) => this.roomUsers = node}>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -104,6 +103,7 @@ class newRoom extends Component {
 
 const mapStateToProps = state => {
     return {
+        username: state.auth.username,
         room: state.room.room,
         rooms: state.room.rooms,
         error: state.room.error
@@ -112,7 +112,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRoomCreateNew: (name, maxUsers) => dispatch(actions.roomCreateNew(name, maxUsers))
+        onRoomCreateNew: (name, maxUsers, username) => dispatch(actions.roomCreateNew(name, maxUsers, username))
     }
 };
 

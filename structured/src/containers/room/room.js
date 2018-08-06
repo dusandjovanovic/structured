@@ -8,9 +8,6 @@ import { Nav, NavItem, NavLink, Navbar, Button } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import './room.css';
 
-import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:2998/chat');
-
 class Room extends Component {
     graphWidth = 800;
     graphHeight = 600;
@@ -18,11 +15,6 @@ class Room extends Component {
     state = {
         nodes: [],
         edges: []
-    };
-
-    constructor() {
-        super();
-
     };
 
     componentDidMount() {

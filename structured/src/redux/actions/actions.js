@@ -18,5 +18,6 @@ export const NOTIFICATION_ADD = 'NOTIFICATION_ADD';
 export const ROOM_ALL = 'ROOM_ALL';
 export const ROOM_CREATE = 'ROOM_CREATE';
 export const ROOM_JOIN = 'ROOM_JOIN';
-export const ROOM_EXIT = 'ROOM_EXIT';
+export const ROOM_LEAVE = 'ROOM_LEAVE';
 export const ROOM_ERROR = 'ROOM_ERROR';
+export const ROOM_DELETE = 'ROOM_DELETE';
