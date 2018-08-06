@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import Graph from '../../components/visualization/graph/graph';
 import Chat from './chat/chat';
 import randomData from '../../utils/graph-module/graph.random';
@@ -68,7 +69,7 @@ class Room extends Component {
                     <Row>
                         <Col md="3" className="sidebar d-none d-md-block bg-light">
                             <div className="sidebar-sticky">
-                                <Chat />
+                                <Chat username={this.props.username} />
                             </div>
                         </Col>
 
@@ -98,4 +99,11 @@ class Room extends Component {
         );
     };
 }
-export default Room;
+
+const mapStateToProps = state => {
+    return {
+        username: state.auth.username
+    }
+};
+
+export default connect(mapStateToProps, null) (Room);

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import neuralNet from '../../utils/neuralNet';
+import neuralNet from './splashcreen';
 
 class Homescreen extends Component {
     componentDidMount() {

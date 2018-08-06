@@ -1,5 +1,5 @@
 import * as actionTypes from './actions';
-import axios from '../../utils/axiosHandler';
+import axios from '../../utils/axios-handler';
 import {friendFail, friendRequests, userData} from "./user";
 
 export const roomCreate = (name) => {

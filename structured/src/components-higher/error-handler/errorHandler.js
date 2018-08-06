@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Wrapper from '../wrapper/wrapper';
 import Modal from '../../components/user-interface/modal/modal'
 
 const errorHandler = (WrappedContent, axios) => {
@@ -47,4 +46,4 @@ const errorHandler = (WrappedContent, axios) => {
     }
 };
 
-export default errorHandler
+export default errorHandler;

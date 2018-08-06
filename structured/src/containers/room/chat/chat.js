@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import 'react-chat-elements/dist/main.css';
 import {Input, MessageList} from "react-chat-elements";
 import { Button } from "reactstrap";
-
-import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:2998/chat');
+import socketIo from "../../../components-higher/socketio/socketio";
 
 class Chat extends Component {
+    socket = null;
     state = {
         messages: []
     };
 
-    constructor() {
-        super();
-        socket.on('someRoomName', message => this.messageReceived(message));
-    };
+    constructor(props) {
+        super(props);
+        this.socket = this.props.socketio('http://localhost:2998/chat');
+    }
+
+    componentDidMount() {
+        this.socket.on('someRoomName', message => this.messageReceived(message));
+    }
+
+    componentWillUnmount() {
+        this.socket.close();
+    }
 
     messageReceived = (message) => {
         console.log('socketio::receive ', message);
@@ -38,7 +44,7 @@ class Chat extends Component {
 
     messageSend = (message) => {
         console.log('socketio::send ', message);
-        socket.emit('chat message', {
+        this.socket.emit('chat message', {
             room: 'someRoomName',
             sender: this.props.username,
             msg: message
@@ -68,10 +74,4 @@ class Chat extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        username: state.auth.username
-    }
-};
-
-export default connect(mapStateToProps, null) (Chat);
+export default socketIo(Chat);

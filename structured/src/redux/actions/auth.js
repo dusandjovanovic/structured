@@ -1,5 +1,5 @@
 import * as actionTypes from './actions';
-import axios from '../../utils/axiosHandler';
+import axios from '../../utils/axios-handler';
 import * as actions from './index';
 
 export const authStart = () => {

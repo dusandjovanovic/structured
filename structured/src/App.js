@@ -11,13 +11,17 @@ import Home from './containers/home/home';
 import NotificationContainer from './containers/notifications/notifications';
 import * as actions from './redux/actions/index';
 
+import SocketContext from './components-higher/socketio/socketio-context';
+import openSocket from 'socket.io-client';
+const socketio = openSocket;
+
 class App extends Component {
     componentDidMount() {
         this.props.onTryAutoSignIn();
     }
 
     render() {
-        let available = (
+        let routing = (
             <Switch>
                 <Route path="/auth" component={Auth}/>
                 <Route path="/" exact component={Homescreen}/>
@@ -25,7 +29,7 @@ class App extends Component {
             </Switch>
         );
         if (this.props.authenticated)
-            available = (
+            routing = (
                 <Switch>
                     <Route path="/auth" component={Auth}/>
                     <Route path="/logout" component={Logout}/>
@@ -36,10 +40,12 @@ class App extends Component {
             );
         return (
             <React.Fragment>
-                <Layout>
-                    <NotificationContainer/>
-                    {available}
-                </Layout>
+                <SocketContext.Provider value={socketio}>
+                    <Layout>
+                        <NotificationContainer/>
+                        {routing}
+                    </Layout>
+                </SocketContext.Provider>
             </React.Fragment>
         );
     }
