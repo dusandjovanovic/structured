@@ -9,14 +9,11 @@ const navigationItems = (props) => (
             ? <NavigationItem link="/social">Friends</NavigationItem>
             : null}
         {props.isAuthenticated
-            ? <NavigationItem link="/chat">Chat</NavigationItem>
-            : null}
-        {props.isAuthenticated
             ? <NavigationItem link="/room">Room</NavigationItem>
             : null}
         {props.isAuthenticated
             ? <NavigationItem link="/logout">Logout</NavigationItem>
-            : <NavigationItem link="/auth">Authenticate</NavigationItem>
+            : <NavigationItem link="/auth">Get started</NavigationItem>
         }
     </ul>
 );

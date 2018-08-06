@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import Graph from '../../components/visualization/graph/graph';
+import Chat from './chat/chat';
 import randomData from '../../utils/graph-module/graph.random';
 import {graphFactory} from '../../utils/graph-module/graph.module';
 import { Nav, NavItem, NavLink, Navbar, Button } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
-import 'react-chat-elements/dist/main.css';
-import { MessageList } from 'react-chat-elements';
 import './room.css';
 
 import openSocket from 'socket.io-client';
@@ -17,33 +16,16 @@ class Room extends Component {
     graph = new graphFactory();
     state = {
         nodes: [],
-        edges: [],
-        messages: []
+        edges: []
     };
 
     constructor() {
         super();
-        socket.on('someRoomName', message => this.messageReceived(message));
+
     };
 
     componentDidMount() {
         this.randomGraph();
-    };
-
-    messageReceived = (message) => {
-        this.state.messages.push({
-            sender: message.sender,
-            content: message.msg
-        });
-        this.setState(this.state);
-    };
-
-    messageSend = (sender, message) => {
-        socket.emit('chat message', {
-            room: 'someRoomName',
-            sender: this.props.username,
-            msg: message
-        });
     };
 
     randomGraph = () => {
@@ -86,18 +68,7 @@ class Room extends Component {
                     <Row>
                         <Col md="3" className="sidebar d-none d-md-block bg-light">
                             <div className="sidebar-sticky">
-                                <MessageList
-                                    className='message-list'
-                                    lockable={true}
-                                    toBottomHeight={'100%'}
-                                    dataSource={[
-                                        {
-                                            position: 'right',
-                                            type: 'text',
-                                            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
-                                            date: new Date(),
-                                        }
-                                        ]} />
+                                <Chat />
                             </div>
                         </Col>
 
