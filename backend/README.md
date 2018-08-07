@@ -1,3 +1,45 @@
+## socket.io
+
+URL: http://localhost:2998/graph
+
+Pseudokod client strane:
+```javascript
+onJoinRoom() {
+  if (user.name != room.createdBy) // ukoliko nije 'master' korisnik
+    emit('get graph', {username: user.name, masterName: room.createdBy})
+  
+  on(user.name, (graph) => {
+    setCurrentGraph(graph)
+  }
+}
+```
+```javascript
+// u konstruktoru, npr.
+if (user.name === room.createdBy) // definisemo samo za 'mastera'
+  on(room.createdBy, (rcv) => {
+    emit('graph', {username: rcv.username, graph: getCurrentGraph()})
+  }
+```
+```javascript
+onAddNode(newNode) {
+  emit('add node', {room: room.name, sender: user.name, node: newNode})
+}
+
+onAddEdge(newEdge) {
+  emit('add edge', {room: room.name, sender: user.name, edge: newEdge})
+}
+```
+```javascript
+// u konstruktoru, npr. ili bilo gde gde vam odgovara
+on.(room.name + ' add node', (rcv) => {
+  addNode(rcv.node) // takodje postoji i rcv.sender za onog koji je napravio izmenu
+}
+
+on.(room.name + ' add edge', (rcv) => {
+  addEdge(rcv.edge) // takodje postoji i rcv.sender za onog koji je napravio izmenu
+}
+```
+
 ## JSON
 
 * **User**
@@ -74,6 +116,7 @@ Ukoliko je zahtev ispunjen, success je true, ukoliko nije, success je false i dr
 | Call        | Type    | Params                | Body                                    | Data                                      |
 |-------------|---------|-----------------------|-----------------------------------------|-------------------------------------------|
 | /:mode      | GET     | mode: String          | /                                       | data: Room[]                              |
+| /get/:name  | GET     | name: String          | /                                       | data: Room                                |
 | /           | POST    | /                     | name: String, maxUsers: Number, createdBy: String   | msg: String                   |
 | /join       | POST    | /                     | roomName: String, username: Number      | msg: String                               |
 | /leave      | POST    | /                     | roomName: String, username: Number      | msg: String                               |
