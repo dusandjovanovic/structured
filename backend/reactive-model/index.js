@@ -4,7 +4,7 @@ var http = require('http');
 const io = require('socket.io')();
 
 require('./chat')(io);
-//require('./graph')(io);
+require('./graph')(io);
 
 const ioport = 2998;
 io.listen(ioport);
