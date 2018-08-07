@@ -10,6 +10,9 @@ import { Container, Row, Col } from 'reactstrap';
 import * as actions from "../../redux/actions";
 import './room.css';
 
+import openSocket from 'socket.io-client';
+const socket = openSocket('http://localhost:2998/graph');
+
 class Room extends Component {
     graphWidth = 800;
     graphHeight = 600;
@@ -19,17 +22,46 @@ class Room extends Component {
         edges: []
     };
 
-    componentDidMount() {
-        this.randomGraph();
+    componentWillReceiveProps(newProps) {
+        if (newProps.room.name !== this.props.room.name) {
+
+            if (this.props.username !== newProps.room.createdBy) {
+                socket.on(this.props.username, graph => {
+                    console.log('receivedGraph', graph);
+                    this.initiateGraph(graph)
+                });
+                socket.on(newProps.room.name + ' add node', message => {
+                    console.log('received', message);
+                    this.addNewNode(message.node)
+                });
+
+                socket.emit('get graph', {
+                    username: this.props.username,
+                    masterName: newProps.room.createdBy
+                });
+            }
+            else if (this.props.username === newProps.room.createdBy)
+                socket.on(newProps.room.createdBy, (received) => {
+                    console.log('emit!', received);
+                    socket.emit('graph', {
+                        username: received.username,
+                        graph: this.state
+                    })
+                });
+        }
+
     };
 
-    randomGraph = () => {
-        let randomGraph = randomData(this.graph.nodes, this.graphWidth, this.graphHeight);
+    componentDidMount() {
+
+    };
+
+    initiateGraph = (graph) => {
         this.graph = new graphFactory();
-        randomGraph.nodes.map(node => {
+        graph.nodes.map(node => {
             return this.graph.addVertex(node.key);
         });
-        randomGraph.edges.map(edge => {
+        graph.edges.map(edge => {
             return this.graph.addEdge(edge.source, edge.target);
         });
         this.setState({
@@ -38,10 +70,27 @@ class Room extends Component {
         });
     };
 
-    addNode = () => {
-        this.graph.addVertexRandom();
+    randomGraph = () => {
+        let randomGraph = randomData(this.graph.nodes, this.graphWidth, this.graphHeight);
+        this.initiateGraph(randomGraph);
+    };
+
+    addNewNode = (node) => {
+        this.graph.addVertex(node);
         this.setState({
             nodes: this.graph.nodes
+        });
+    };
+
+    addNode = () => {
+        let added = this.graph.addVertexRandom();
+        this.setState({
+            nodes: this.graph.nodes
+        });
+        socket.emit('add node', {
+            room: this.props.room.name,
+            sender: this.props.username,
+            node: added
         });
     };
 

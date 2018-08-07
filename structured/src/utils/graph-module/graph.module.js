@@ -30,6 +30,7 @@ export const graphFactory = () => {
             while (graphProto.contains(random))
                 random = _.random(0, 99);
             graphProto.addVertex(random);
+            return random;
         },
         removeVertex: (node) => {
             if (graphProto.contains(node)) {
