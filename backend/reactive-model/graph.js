@@ -1,15 +1,22 @@
 module.exports = function(io) {
-  var graph = io.of('/chat');
-  graph.on('connection', (client) => {
-    var gotGraph = false;
-    graph.emit('get graph');
+  var graph = io.of('/graph');
 
-    client.on('get graph', (graph) => {
-      client.emit('set graph', graph);
+  graph.on('connection', (client) => {
+
+    client.on('get graph', (rcv) => {
+      graph.emit(rcv.masterName, {username: rcv.username});
     });
 
-    client.on('graph change', (rcv) => {
-      //graph.emit(rcv.room, {sender: rcv.sender, msg: rcv.msg});
+    client.on('graph', (rcv) => {
+      graph.emit(rcv.username, {graph: rcv.graph});
+    });
+
+    client.on('add node', (rcv) => {
+      graph.emit(rcv.room + ' add node', {sender: rcv.sender, node: rcv.node});
+    });
+
+    client.on('add edge', (rcv) => {
+      graph.emit(rcv.room + ' add edge', {sender: rcv.sender, edge: rcv.edge});
     });
   });
 };
