@@ -122,8 +122,8 @@ export const roomJoinExisting = (name, username) => {
         axios.post(url, data)
             .then(response => {
                 console.log('roomJoinData:', response);
-                dispatch(roomJoin(name));
                 dispatch(roomGetData(name, username));
+                dispatch(roomJoin(name));
             })
             .catch(error => {
                 console.log('roomJoinError:', error);

@@ -23,12 +23,14 @@ class Room extends Component {
     };
 
     componentWillReceiveProps(newProps) {
-        if (newProps.room.name !== this.props.room.name) {
+        if (newProps.room.name !== null && newProps.data._id !== null) {
+            console.log('Apply:', newProps);
 
-            if (this.props.username !== newProps.room.createdBy) {
+            if (newProps.username !== newProps.data.createdBy) {
+                console.log(newProps.username, newProps.data.createdBy, 'opening listener');
                 socket.on(this.props.username, graph => {
                     console.log('receivedGraph', graph);
-                    this.initiateGraph(graph)
+                    this.initiateGraph(graph.graph)
                 });
                 socket.on(newProps.room.name + ' add node', message => {
                     console.log('received', message);
@@ -37,15 +39,33 @@ class Room extends Component {
 
                 socket.emit('get graph', {
                     username: this.props.username,
-                    masterName: newProps.room.createdBy
+                    masterName: newProps.data.createdBy
                 });
             }
-            else if (this.props.username === newProps.room.createdBy)
-                socket.on(newProps.room.createdBy, (received) => {
+            else if (this.props.username === newProps.data.createdBy)
+                socket.on(newProps.data.createdBy, (received) => {
                     console.log('emit!', received);
+                    let nodes = [];
+                    this.state.nodes.map(element => {
+                        nodes.push({
+                            key: element.key
+                        });
+                    });
+
+                    let edges = [];
+                    this.state.edges.map(element => {
+                        edges.push({
+                            source: element.source.key,
+                            target: element.target.key
+                        });
+                    });
+
                     socket.emit('graph', {
                         username: received.username,
-                        graph: this.state
+                        graph: {
+                            nodes: nodes,
+                            edges: edges
+                        }
                     })
                 });
         }
@@ -168,6 +188,7 @@ class Room extends Component {
 const mapStateToProps = state => {
     return {
         username: state.auth.username,
+        data: state.room.data,
         room: state.room.room,
         roomId: state.room.data._id
     }
