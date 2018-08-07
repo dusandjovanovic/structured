@@ -9,11 +9,23 @@ const initialState = {
     data: {
         _id: null
     },
+    waiting: null,
     error: null
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.ROOM_START:
+            return {
+                ...state,
+                waiting: true,
+                error: null
+            };
+        case actionTypes.ROOM_END:
+            return {
+                ...state,
+                waiting: false
+            };
         case actionTypes.ROOM_ALL:
             return {
                 ...state,
@@ -75,6 +87,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.ROOM_ERROR:
             return {
                 ...state,
+                waiting: false,
                 error: action.error
             };
         default:

@@ -3,7 +3,7 @@ import { Card, ButtonDropdown, DropdownMenu, ButtonGroup, CardHeader, CardText, 
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import Modal from '../../../components/user-interface/modal/modal';
 
-class newRoom extends Component {
+class roomNew extends Component {
     roomName = '';
     roomUsers = 1;
 
@@ -24,23 +24,9 @@ class newRoom extends Component {
         this.props.createAndEnterRoom(this.roomName.value, this.roomUsers.value);
     };
 
-    practiseHandler = () => {
+    modeHandler = (mode) => {
         this.setState({
-            roomType: 'practise',
-            newAvailable: true
-        });
-    };
-
-    competeHandler = () => {
-        this.setState({
-            roomType: 'compete',
-            newAvailable: true
-        });
-    };
-
-    learnHandler = () => {
-        this.setState({
-            roomType: 'learn',
+            roomType: mode,
             newAvailable: true
         });
     };
@@ -59,14 +45,14 @@ class newRoom extends Component {
                     <CardText>By creating a new room you are a room Master, others who join are spectators and can see
                         everything you do.</CardText>
                     <ButtonGroup>
-                        <Button onClick={this.practiseHandler}>Practise</Button>
-                        <Button onClick={this.competeHandler}>Compete</Button>
+                        <Button onClick={() => this.modeHandler("practise")}>Practise</Button>
+                        <Button onClick={() => this.modeHandler("compete")}>Compete</Button>
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret>
                                 More
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem onClick={this.learnHandler}>Learn</DropdownItem>
+                                <DropdownItem onClick={() => this.modeHandler("learn")}>Learn</DropdownItem>
                                 <DropdownItem>Binary trees?</DropdownItem>
                             </DropdownMenu>
                         </ButtonDropdown>
@@ -88,7 +74,7 @@ class newRoom extends Component {
                                         <option>5</option>
                                     </Input>
                                 </FormGroup>
-                                <Button className="btn btn-danger btn-large" type="submit">Create</Button>
+                                <Button className="btn btn-danger m-auto btn-large" type="submit">Create</Button>
                             </Form>
                         </Modal>
                     </ButtonGroup>
@@ -100,4 +86,4 @@ class newRoom extends Component {
 }
 
 
-export default newRoom;
+export default roomNew;

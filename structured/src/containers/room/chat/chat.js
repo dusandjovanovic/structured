@@ -13,12 +13,7 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.socket = this.props.socketio('http://localhost:2998/chat');
-    };
-
-    componentWillReceiveProps(newProps) {
-        console.log(newProps);
-        if (newProps.room !== this.props.room)
-            this.socket.on(newProps.room, message => this.messageReceived(message));
+        this.socket.on(this.props.room, message => this.messageReceived(message));
     };
 
     componentWillUnmount() {
@@ -26,7 +21,6 @@ class Chat extends Component {
     };
 
     messageReceived = (message) => {
-        console.log('socketio::receive ', message);
         let position = "right";
         if (message.sender !== this.props.username)
             position = "left";
@@ -45,7 +39,6 @@ class Chat extends Component {
     };
 
     messageSend = (message) => {
-        console.log('socketio::send ', message);
         this.socket.emit('chat message', {
             room: this.props.room,
             sender: this.props.username,

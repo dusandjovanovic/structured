@@ -2,79 +2,72 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Graph from '../../components/visualization/graph/graph';
 import Chat from './chat/chat';
+import Navbar from './navbar/navbar';
 import randomData from '../../utils/graph-module/graph.random';
+import Overlay from '../../components/user-interface/spinner-overlay/spinnerOverlay';
 import {graphFactory} from '../../utils/graph-module/graph.module';
-import {withRouter} from "react-router-dom";
-import { Nav, NavItem, NavLink, Navbar, Button } from 'reactstrap';
+import {Redirect, withRouter} from "react-router-dom";
+import { Button } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import * as actions from "../../redux/actions";
 import './room.css';
 
-import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:2998/graph');
+import socketIo from '../../components-higher/socketio/socketio';
 
 class Room extends Component {
-    graphWidth = 800;
-    graphHeight = 600;
+    socket = null;
     graph = new graphFactory();
     state = {
+        redirect: false,
         nodes: [],
         edges: []
     };
 
-    componentWillReceiveProps(newProps) {
-        if (newProps.room.name !== null && newProps.data._id !== null) {
-            console.log('Apply:', newProps);
+    constructor(props) {
+        super(props);
+        this.socket = this.props.socketio('http://localhost:2998/graph');
 
-            if (newProps.username !== newProps.data.createdBy) {
-                console.log(newProps.username, newProps.data.createdBy, 'opening listener');
-                socket.on(this.props.username, graph => {
-                    console.log('receivedGraph', graph);
-                    this.initiateGraph(graph.graph)
-                });
-                socket.on(newProps.room.name + ' add node', message => {
-                    console.log('received', message);
-                    this.addNewNode(message.node)
-                });
+        if (this.props.username !== this.props.data.createdBy) {
+            this.socket.on(this.props.username, graph => {
+                console.log(graph);
+                this.initiateGraph(graph.graph)
+            });
 
-                socket.emit('get graph', {
-                    username: this.props.username,
-                    masterName: newProps.data.createdBy
-                });
-            }
-            else if (this.props.username === newProps.data.createdBy)
-                socket.on(newProps.data.createdBy, (received) => {
-                    console.log('emit!', received);
-                    let nodes = [];
-                    this.state.nodes.map(element => {
-                        nodes.push({
-                            key: element.key
-                        });
-                    });
+            this.socket.on(this.props.room.name + ' add node', message => {
+                this.addNewNode(message.node)
+            });
 
-                    let edges = [];
-                    this.state.edges.map(element => {
-                        edges.push({
-                            source: element.source.key,
-                            target: element.target.key
-                        });
-                    });
-
-                    socket.emit('graph', {
-                        username: received.username,
-                        graph: {
-                            nodes: nodes,
-                            edges: edges
-                        }
-                    })
-                });
+            this.socket.emit('get graph', {
+                username: this.props.username,
+                masterName: this.props.data.createdBy
+            });
         }
+        else if (this.props.username === this.props.data.createdBy)
+            this.socket.on(this.props.data.createdBy, (received) => {
+                let nodes = [];
+                this.state.nodes.map(element => {
+                    return nodes.push({
+                        key: element.key
+                    });
+                });
 
-    };
+                let edges = [];
+                this.state.edges.map(element => {
+                    return edges.push({
+                        source: element.source.key,
+                        target: element.target.key
+                    });
+                });
 
-    componentDidMount() {
-
-    };
+                this.socket.emit('graph', {
+                    username: received.username,
+                    graph: {
+                        nodes: nodes,
+                        edges: edges
+                    }
+                })
+            });
+    }
 
     initiateGraph = (graph) => {
         this.graph = new graphFactory();
@@ -107,80 +100,73 @@ class Room extends Component {
         this.setState({
             nodes: this.graph.nodes
         });
-        socket.emit('add node', {
+        this.socket.emit('add node', {
             room: this.props.room.name,
             sender: this.props.username,
             node: added
         });
     };
 
-    deleteRoom = (event) => {
-        this.props.roomDeleteExisting(this.props.roomId);
-        this.props.history.push("/");
+    deleteRoom = () => {
+        this.props.roomDeleteExisting(this.props.data._id);
+        this.setState({
+            redirect: true
+        });
     };
 
-    leaveRoom = (event) => {
+    leaveRoom = () => {
         this.props.roomLeaveExisting(this.props.room.name, this.props.username);
-        this.props.history.push("/");
+        this.setState({
+            redirect: true
+        });
     };
 
     render() {
+        let waiting = null;
+        if (this.props.waiting)
+            waiting = <Overlay />;
+        else if (this.state.redirect)
+            waiting = <Redirect to="/" />;
+
         return (
-            <div>
-                <Nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-                    <NavItem>
-                        <NavLink className="navbar-brand" href="#">Graph room</NavLink>
-                    </NavItem>
+                <div className="room">
+                    {waiting}
+                    <Navbar deleteRoom={() => this.deleteRoom()}
+                            leaveRoom={() => this.leaveRoom()}
+                            room={this.props.room}
+                    />
 
-                    <Navbar className="px-3">
-                        {this.props.room.master
-                            ? (
-                                <NavItem className="text-nowrap">
-                                    <NavLink className="nav-link text-danger"
-                                             onClick={() => this.deleteRoom()}
-                                             href="#">Delete room</NavLink>
-                                </NavItem>
-                            )
-                            : null
-                        }
-                        <NavItem className="text-nowrap">
-                            <NavLink className="nav-link text-secondary"
-                                     onClick={() => this.leaveRoom()}
-                                     href="#">Leave room</NavLink>
-                        </NavItem>
-                    </Navbar>
-                </Nav>
-                <Container fluid>
-                    <Row>
-                        <Col md="3" className="sidebar d-none d-md-block bg-light">
-                            <div className="sidebar-sticky">
-                                <Chat room={this.props.room.name} username={this.props.username} />
-                            </div>
-                        </Col>
-
-                        <Col md="9" className="ml-sm-auto pt-3 px-4">
-                            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                                <h3>Playground</h3>
-                                <div className="btn-toolbar mb-2 mb-md-0">
-                                    <div className="btn-group mr-2">
-                                        <Button className="btn btn-outline-secondary" onClick={() => this.randomGraph()}>Random graph ↺</Button>
-                                        <Button className="btn btn-outline-secondary" onClick={() => this.addNode()}>Add node ↳</Button>
-                                        <Button className="btn btn-outline-secondary" onClick={null}>Add edge ↯</Button>
-                                    </div>
-                                    <button className="btn btn-outline-secondary dropdown-toggle">
-                                        Algorithms
-                                    </button>
+                    <Container fluid>
+                        <Row>
+                            <Col md="3" className="sidebar d-none d-md-block bg-light">
+                                <div className="sidebar-sticky">
+                                    <Chat room={this.props.room.name} username={this.props.username} />
                                 </div>
-                            </div>
-                            <Graph width={this.graphWidth}
-                                   height={this.graphHeight}
-                                   managed={false}
-                                   nodes={this.state.nodes}
-                                   edges={this.state.edges} />
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
+                            </Col>
+
+                            <Col md="9" className="ml-sm-auto pt-3 px-4">
+                                <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                                    <h3>Playground</h3>
+                                    <div className="btn-toolbar mb-2 mb-md-0">
+                                        <div className="btn-group mr-2">
+                                            <Button className="btn btn-outline-secondary" onClick={() => this.randomGraph()}>Random graph ↺</Button>
+                                            <Button className="btn btn-outline-secondary" onClick={() => this.addNode()}>Add node ↳</Button>
+                                            <Button className="btn btn-outline-secondary" onClick={null}>Add edge ↯</Button>
+                                        </div>
+                                        <button className="btn btn-outline-secondary dropdown-toggle">
+                                            Algorithms
+                                        </button>
+                                    </div>
+                                </div>
+                                <Graph width={700}
+                                       height={500}
+                                       managed={false}
+                                       nodes={this.state.nodes}
+                                       edges={this.state.edges} />
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
         );
     };
 }
@@ -189,8 +175,7 @@ const mapStateToProps = state => {
     return {
         username: state.auth.username,
         data: state.room.data,
-        room: state.room.room,
-        roomId: state.room.data._id
+        room: state.room.room
     }
 };
 
@@ -201,4 +186,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps) (Room));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (socketIo(Room)));

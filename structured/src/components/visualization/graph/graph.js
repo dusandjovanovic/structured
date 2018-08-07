@@ -27,7 +27,6 @@ class Graph extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
-        console.log('graphObject:', nextProps);
         // d3's force function has side-effects and
         // mutates the nodes and links array directly
         // this.props.nodes/links will contain x and y values

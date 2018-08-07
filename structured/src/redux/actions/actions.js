@@ -22,3 +22,5 @@ export const ROOM_LEAVE = 'ROOM_LEAVE';
 export const ROOM_ERROR = 'ROOM_ERROR';
 export const ROOM_DELETE = 'ROOM_DELETE';
 export const ROOM_DATA = 'ROOM_DATA';
+export const ROOM_START = 'ROOM_START';
+export const ROOM_END = 'ROOM_END';

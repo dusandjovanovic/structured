@@ -35,16 +35,19 @@ class Layout extends Component {
     render() {
         return (
             <Wrapper>
-                <Toolbar isAuthenticated={this.props.isAuthenticated}>
-                    <Dropdown showRequests={(event) => this.showRequestsHandler(event)}
-                              hideRequests={(event) => this.showRequestsHandler(event)}
-                              name="Friend requests"
-                              active={this.state.showRequests}
-                              elements={this.state.elementsRequests}
-                              isAuthenticated={this.props.isAuthenticated}
-                              default="You don't have any requests."
-                    />
-                </Toolbar>
+                {this.props.collapse
+                    ? <Toolbar isAuthenticated={this.props.isAuthenticated}>
+                        <Dropdown showRequests={(event) => this.showRequestsHandler(event)}
+                                  hideRequests={(event) => this.showRequestsHandler(event)}
+                                  name="Friend requests"
+                                  active={this.state.showRequests}
+                                  elements={this.state.elementsRequests}
+                                  isAuthenticated={this.props.isAuthenticated}
+                                  default="You don't have any requests."
+                        />
+                    </Toolbar>
+                    : null
+                }
                 <main className="Content">
                     {this.props.children}
                 </main>
@@ -56,7 +59,8 @@ class Layout extends Component {
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token !== null,
-        requests: state.user.requests
+        requests: state.user.requests,
+        collapse: !state.room.data._id
     };
 };
 
