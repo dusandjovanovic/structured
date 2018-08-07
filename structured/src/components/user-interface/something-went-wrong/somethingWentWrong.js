@@ -1,5 +1,5 @@
 import React from 'react';
-import whops from "../../../assets/images/something-went-wrong.PNG";
+import whops from "../../../assets/images/something-went-wrong.png";
 
 const somethingWentWrong = (props) => {
     return (

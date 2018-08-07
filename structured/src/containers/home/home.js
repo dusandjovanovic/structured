@@ -9,7 +9,8 @@ import Overlay from "../../components/user-interface/spinner-overlay/spinnerOver
 
 class Home extends React.Component {
     state = {
-        redirect: false
+        redirect: false,
+        stable: false
     };
 
     componentDidMount() {
@@ -19,14 +20,16 @@ class Home extends React.Component {
     enterRoom = (name) => {
         this.props.roomJoinExisting(name, this.props.username);
         this.setState({
-            redirect: true
+            redirect: true,
+            stable: true
         });
     };
 
-    createAndEnterRoom = (name, maxUsers, username) => {
+    createAndEnterRoom = (name, maxUsers) => {
         this.props.onRoomCreateNew(name, maxUsers, this.props.username);
         this.setState({
-            redirect: true
+            redirect: true,
+            flicker: false
         });
     };
 
@@ -34,21 +37,24 @@ class Home extends React.Component {
         let waiting = null;
         if (this.props.waiting)
             waiting = <Overlay />;
-        else if (this.state.redirect)
+        else if (this.state.redirect && !this.props.error)
             waiting = <Redirect to="/room" />;
 
         return (
             <div className="bg-light p-4">
                 {waiting}
-                <Container className="container-fluid">
-                    <RoomView enterRoom={(name) => this.enterRoom(name)}
-                              rooms={this.props.rooms}
-                              waiting={this.props.waiting}
-                    />
-                    <hr />
+                <Container>
                     <Row>
                         <RoomNew createAndEnterRoom={(name, maxUsers) => this.createAndEnterRoom(name, maxUsers)}/>
                     </Row>
+                    <hr />
+                    {this.props.rooms
+                        ? <RoomView enterRoom={(name) => this.enterRoom(name)}
+                                    rooms={this.props.rooms}
+                                    waiting={!this.state.stable && this.props.waiting}
+                          />
+                        : null
+                    }
                 </Container>
             </div>
         );

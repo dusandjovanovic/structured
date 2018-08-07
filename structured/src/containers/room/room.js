@@ -25,6 +25,11 @@ class Room extends Component {
 
     constructor(props) {
         super(props);
+
+        window.addEventListener("beforeunload", (ev) => {
+            this.leaveRoom();
+        });
+
         this.socket = this.props.socketio('http://localhost:2998/graph');
 
         if (this.props.username !== this.props.data.createdBy) {
@@ -125,7 +130,7 @@ class Room extends Component {
         let waiting = null;
         if (this.props.waiting)
             waiting = <Overlay />;
-        else if (this.state.redirect)
+        else if (this.state.redirect && !this.props.error)
             waiting = <Redirect to="/" />;
 
         return (
@@ -175,7 +180,8 @@ const mapStateToProps = state => {
     return {
         username: state.auth.username,
         data: state.room.data,
-        room: state.room.room
+        room: state.room.room,
+        error: state.room.error
     }
 };
 

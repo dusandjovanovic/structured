@@ -49,6 +49,7 @@ export const userData = (username) => {
             })
             .catch((error) => {
                 console.log('userError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(userFetchDataFail("Fetching social data failed."));
             });
     }
@@ -96,6 +97,7 @@ export const friendRequests = (username) => {
             })
             .catch(error => {
                 console.log('requestError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(friendFail("Fetching social data failed."));
             });
     }
@@ -111,7 +113,7 @@ export const friendAdd = (username, friendUsername) => {
         let url = '/api/friend-request/check';
         axios.post(url, data)
             .then(response => {
-                if (response.data.exists) {
+                if (response.data.data.exists) {
                     dispatch(actions.notificationSystem(
                         'You have already sent a friend request to that person. Please wait for a response.',
                         'error',
@@ -149,6 +151,7 @@ export const friendAdd = (username, friendUsername) => {
             })
             .catch(error => {
                 console.log('addError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(friendFail("Fetching social data failed."));
             });
     }
@@ -167,6 +170,7 @@ export const friendConfirm = (requestId, username) => {
             })
             .catch(error => {
                 console.log('confirmError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(friendFail("Fetching social data failed."));
             });
     }
@@ -182,6 +186,7 @@ export const friendDelete = (requestId, username) => {
             })
             .catch(error => {
                 console.log('deleteError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(friendFail("Fetching social data failed."));
             });
     }

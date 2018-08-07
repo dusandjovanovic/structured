@@ -10,10 +10,6 @@ export class Social extends Component {
         this.props.onGetUserData(this.props.username);
     };
 
-    state = {
-
-    };
-
     render() {
         let friends = null;
         if (this.props.friends) {

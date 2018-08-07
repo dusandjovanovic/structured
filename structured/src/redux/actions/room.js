@@ -1,5 +1,6 @@
 import * as actionTypes from './actions';
 import axios from '../../utils/axios-handler';
+import * as actions from './index';
 
 export const roomCreate = (name) => {
     return {
@@ -73,12 +74,14 @@ export const roomGetAll = (mode) => {
                 }
                 else {
                     console.log('roomError:', response.data.msg);
+                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
                     dispatch(roomError(response.data.msg));
                     dispatch(roomEnd());
                 }
             })
             .catch((error) => {
                 console.log('roomError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(roomError(error));
             });
     }
@@ -95,11 +98,13 @@ export const roomGetData = (name, username) => {
                 }
                 else {
                     console.log('roomError:', response.data.msg);
+                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
                     dispatch(roomError(response.data.msg));
                 }
             })
             .catch((error) => {
                 console.log('roomError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(roomError(error));
             });
     }
@@ -123,11 +128,13 @@ export const roomCreateNew = (name, maxUsers, username) => {
                 }
                 else {
                     console.log('roomCreateError:', response.data.msg);
+                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
                     dispatch(roomError(response.data.msg));
                 }
             })
             .catch(error => {
                 console.log('roomCreateError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(roomError(error));
             });
     }
@@ -150,11 +157,13 @@ export const roomJoinExisting = (name, username) => {
                 }
                 else {
                     console.log('roomJoinError:', response.data.msg);
+                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
                     dispatch(roomError(response.data.msg));
                 }
             })
             .catch(error => {
                 console.log('roomJoinError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(roomError(error));
             });
     }
@@ -176,11 +185,13 @@ export const roomLeaveExisting = (name, username) => {
                 }
                 else {
                     console.log('roomLeaveError:', response.data.msg);
+                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
                     dispatch(roomError(response.data.msg));
                 }
             })
             .catch(error => {
                 console.log('roomLeaveError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(roomError(error));
             });
     }
@@ -198,11 +209,13 @@ export const roomDeleteExisting = (roomId) => {
                 }
                 else {
                     console.log('roomDeleteError:', response.data.msg);
+                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
                     dispatch(roomError(response.data.msg));
                 }
             })
             .catch(error => {
                 console.log('deleteError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(roomError(error));
             });
     }

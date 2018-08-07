@@ -60,7 +60,7 @@ const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token !== null,
         requests: state.user.requests,
-        collapse: !state.room.data._id
+        collapse: !state.room.data._id || !state.room.waiting
     };
 };
 
