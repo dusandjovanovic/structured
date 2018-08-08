@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav, NavItem, NavLink, Navbar } from 'reactstrap';
 
 const navbar = (props) => (
-    <Nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <Nav className="navbar navbar-animation navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
         <NavItem>
             <NavLink className="navbar-brand" href="#">Graph room</NavLink>
         </NavItem>

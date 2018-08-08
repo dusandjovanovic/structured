@@ -23,15 +23,10 @@ class Room extends Component {
         edges: []
     };
 
-    constructor(props) {
-        super(props);
-
-        window.addEventListener("beforeunload", (ev) => {
-            this.leaveRoom();
-        });
+    componentDidMount() {
+        window.addEventListener("beforeunload", this.leaveRoom);
 
         this.socket = this.props.socketio('http://localhost:2998/graph');
-
         if (this.props.username !== this.props.data.createdBy) {
             this.socket.on(this.props.username, graph => {
                 console.log(graph);
@@ -72,7 +67,11 @@ class Room extends Component {
                     }
                 })
             });
-    }
+    };
+
+    componentWillUnmount() {
+        window.removeEventListener("beforeunload", this.leaveRoom);
+    };
 
     initiateGraph = (graph) => {
         this.graph = new graphFactory();
@@ -124,6 +123,7 @@ class Room extends Component {
         this.setState({
             redirect: true
         });
+        return "unloading";
     };
 
     render() {
@@ -131,7 +131,7 @@ class Room extends Component {
         if (this.props.waiting)
             waiting = <Overlay />;
         else if (this.state.redirect && !this.props.error)
-            waiting = <Redirect to="/" />;
+            waiting = <Redirect to="/"/>;
 
         return (
                 <div className="room">

@@ -59,7 +59,7 @@ export const auth = (username, password, modeSignup) => {
                     localStorage.setItem('userId', username);
                     localStorage.setItem('expirationDate', expirationDate);
                     dispatch(authSuccess(response.data.token, username));
-                    dispatch(actions.friendRequests(username));
+                    dispatch(actions.friendRequests(username, true));
                     dispatch(authCheckTimeout(3600));
                 }
                 else {
@@ -92,7 +92,7 @@ export const authCheckState = () => {
         else {
             const userId = localStorage.getItem('userId');
             dispatch(authSuccess(token, userId));
-            dispatch(actions.friendRequests(userId));
+            dispatch(actions.friendRequests(userId, true));
             dispatch(authCheckTimeout((expirationDate.getTime() - new Date().getTime())/1000));
         }
     }

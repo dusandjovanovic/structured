@@ -9,8 +9,7 @@ import Overlay from "../../components/user-interface/spinner-overlay/spinnerOver
 
 class Home extends React.Component {
     state = {
-        redirect: false,
-        stable: false
+        redirect: false
     };
 
     componentDidMount() {
@@ -20,22 +19,20 @@ class Home extends React.Component {
     enterRoom = (name) => {
         this.props.roomJoinExisting(name, this.props.username);
         this.setState({
-            redirect: true,
-            stable: true
+            redirect: true
         });
     };
 
     createAndEnterRoom = (name, maxUsers) => {
-        this.props.onRoomCreateNew(name, maxUsers, this.props.username);
+        this.props.roomCreateNew(name, maxUsers, this.props.username);
         this.setState({
-            redirect: true,
-            flicker: false
+            redirect: true
         });
     };
 
     render() {
         let waiting = null;
-        if (this.props.waiting)
+        if (this.props.waiting && this.props.rooms.length === 0)
             waiting = <Overlay />;
         else if (this.state.redirect && !this.props.error)
             waiting = <Redirect to="/room" />;
@@ -51,7 +48,8 @@ class Home extends React.Component {
                     {this.props.rooms
                         ? <RoomView enterRoom={(name) => this.enterRoom(name)}
                                     rooms={this.props.rooms}
-                                    waiting={!this.state.stable && this.props.waiting}
+                                    waiting={this.props.waiting}
+                                    stick={this.props.waiting && this.props.rooms.length > 0}
                           />
                         : null
                     }
@@ -75,7 +73,7 @@ const mapDispatchToProps = dispatch => {
     return {
         roomGetAll: (mode) => dispatch(actions.roomGetAll(mode)),
         roomJoinExisting : (name, username) => dispatch(actions.roomJoinExisting(name, username)),
-        onRoomCreateNew: (name, maxUsers, username) => dispatch(actions.roomCreateNew(name, maxUsers, username))
+        roomCreateNew: (name, maxUsers, username) => dispatch(actions.roomCreateNew(name, maxUsers, username))
     }
 };
 

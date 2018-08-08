@@ -35,18 +35,16 @@ class Layout extends Component {
     render() {
         return (
             <Wrapper>
-                {this.props.collapse
-                    ? <Toolbar isAuthenticated={this.props.isAuthenticated}>
-                        <Dropdown showRequests={(event) => this.showRequestsHandler(event)}
-                                  hideRequests={(event) => this.showRequestsHandler(event)}
-                                  name="Friend requests"
-                                  active={this.state.showRequests}
-                                  elements={this.state.elementsRequests}
-                                  isAuthenticated={this.props.isAuthenticated}
-                                  default="You don't have any requests."
-                        />
-                    </Toolbar>
-                    : null
+                <Toolbar isAuthenticated={this.props.isAuthenticated}>
+                    <Dropdown showRequests={(event) => this.showRequestsHandler(event)}
+                              hideRequests={(event) => this.showRequestsHandler(event)}
+                              name="Friend requests"
+                              active={this.state.showRequests}
+                              elements={this.state.elementsRequests}
+                              isAuthenticated={this.props.isAuthenticated}
+                              default="You don't have any requests."
+                    />
+                </Toolbar>
                 }
                 <main className="Content">
                     {this.props.children}

@@ -55,7 +55,7 @@ export const userData = (username) => {
     }
 };
 
-export const friendRequests = (username) => {
+export const friendRequests = (username, push) => {
     return dispatch => {
         let url = '/api/friend-request/' + username;
         axios.get(url)
@@ -74,19 +74,20 @@ export const friendRequests = (username) => {
                             sender: sender,
                             time: time
                         });
-                        dispatch(actions.notificationSystem(
-                            'You have a new friend request from ' + sender + '. Click Accept to become friends or dismiss.',
-                            'info',
-                            10,
-                            {
-                                label: 'Accept',
-                                callback: function () {
-                                    dispatch(friendConfirm(requestId, username));
-                                    dispatch(userData(username));
-                                }
-                            },
-                            null
-                        ));
+                        if (push)
+                            dispatch(actions.notificationSystem(
+                                'You have a new friend request from ' + sender + '. Click Accept to become friends or dismiss.',
+                                'info',
+                                10,
+                                {
+                                    label: 'Accept',
+                                    callback: function () {
+                                        dispatch(friendConfirm(requestId, username));
+                                        dispatch(userData(username));
+                                    }
+                                },
+                                null
+                            ));
                     }
                     dispatch(friendRequestsFetch(received));
                 }
@@ -166,7 +167,7 @@ export const friendConfirm = (requestId, username) => {
         axios.post(url, data)
             .then(response => {
                 dispatch(userData(username));
-                dispatch(friendRequests(username));
+                dispatch(friendRequests(username, false));
             })
             .catch(error => {
                 console.log('confirmError:', error);
@@ -182,7 +183,7 @@ export const friendDelete = (requestId, username) => {
         axios.delete(url)
             .then(response => {
                 dispatch(userData(username));
-                dispatch(friendRequests(username));
+                dispatch(friendRequests(username, false));
             })
             .catch(error => {
                 console.log('deleteError:', error);
