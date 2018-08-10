@@ -6,10 +6,11 @@ import Chat from './chat/chat';
 import Navbar from './navbar/navbar';
 import Overlay from '../../components/user-interface/spinner-overlay/spinnerOverlay';
 import Master from "./actions-master/master";
+import './room.css';
+
 import withRedux from '../../components-higher/with-redux/withRedux';
 import withGraph from "../../components-higher/with-graph/withGraph";
 import withIO from "../../components-higher/with-io/withIO";
-import './room.css';
 
 class Room extends Component {
     graphWidth = 700;
@@ -21,6 +22,7 @@ class Room extends Component {
 
     componentDidMount() {
         window.addEventListener("beforeunload", this.leaveRoom);
+        console.log(this.props);
         if (this.props.username !== this.props.data.createdBy) {
             this.props.getGraphIO();
 
@@ -28,12 +30,14 @@ class Room extends Component {
                 this.props.initiateGraph(received.graph);
             });
         }
-        else if (this.props.username === this.props.data.createdBy)
+        else if (this.props.username === this.props.data.createdBy) {
             this.props.socket.on(this.props.data.createdBy, (received) => {
                 this.props.addGraphIO(received.username, this.props.visualization);
             });
+        }
 
         this.props.socket.on(this.props.data.name + ' add node', received => {
+            console.log('websocket::node ', received.node);
             this.props.addNodeValue(received.node);
         });
     };

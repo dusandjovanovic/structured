@@ -6,11 +6,21 @@ function withIO (WrappedComponent) {
 
         componentWillMount() {
             this.socket = this.props.io('http://localhost:2998/graph');
+            this.socket.on('connect', () => {
+                console.log(this.props.username, 'websocket::opened');
+            });
+            this.socket.on('disconnect', () => {
+                console.log(this.props.username, 'websocket::closed');
+            })
+        }
+
+        componentWillUnmount() {
+            this.socket.close();
         }
 
         addNodeIO = (node) => {
             this.socket.emit('add node', {
-                room: this.props.room.name,
+                room: this.props.data.name,
                 sender: this.props.username,
                 node: node
             });
@@ -18,7 +28,7 @@ function withIO (WrappedComponent) {
 
         addEdgeIO = (source, target) => {
             this.socket.emit('add edge', {
-                room: this.props.room.name,
+                room: this.props.data.name,
                 sender: this.props.username,
                 source: source,
                 target: target
@@ -27,7 +37,7 @@ function withIO (WrappedComponent) {
 
         removeNodeIO = (node) => {
             this.socket.emit('remove node', {
-                room: this.props.room.name,
+                room: this.props.data.name,
                 sender: this.props.username,
                 node: node
             });
@@ -35,7 +45,7 @@ function withIO (WrappedComponent) {
 
         removeEdgeIO = (source, target) => {
             this.socket.emit('remove edge', {
-                room: this.props.room.name,
+                room: this.props.data.name,
                 sender: this.props.username,
                 source: source,
                 target: target
@@ -43,10 +53,12 @@ function withIO (WrappedComponent) {
         };
 
         addGraphIO = (receiver, graph) => {
-            this.socket.emit('graph', {
-                username: receiver,
-                graph: graph
-            })
+            if (graph) {
+                this.socket.emit('graph', {
+                    username: receiver,
+                    graph: graph
+                })
+            }
         };
 
         getGraphIO = () => {

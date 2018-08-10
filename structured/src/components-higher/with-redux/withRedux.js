@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import openSocket from 'socket.io-client';
+import socketio from 'socket.io-client';
 import * as actions from "../../redux/actions";
-const io = openSocket;
+const io = socketio;
 
 function withRedux (WrappedComponent) {
     return class extends React.Component {

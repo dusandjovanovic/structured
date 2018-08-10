@@ -42,21 +42,22 @@ function withGraph(WrappedComponent) {
         };
 
         initiateGraph = (graph) => {
-            console.log(graph);
-            this.graph = new graphFactory();
-            graph.nodes.map(node => {
-                return this.graph.addVertex(node.key);
-            });
-            graph.edges.map(edge => {
-                return this.graph.addEdge(edge.source.key, edge.target.key);
-            });
-            this.setState({
-                graph: this.graph.getGraph(),
-                graphManaged: false,
-                graphManagedAddEdge: false,
-                graphManagedRemoveNode: false,
-                graphManagedRemoveEdge: false
-            });
+            if (graph) {
+                this.graph = new graphFactory();
+                graph.nodes.map(node => {
+                    return this.graph.addVertex(node.key);
+                });
+                graph.edges.map(edge => {
+                    return this.graph.addEdge(edge.source.key, edge.target.key);
+                });
+                this.setState({
+                    graph: this.graph.getGraph(),
+                    graphManaged: false,
+                    graphManagedAddEdge: false,
+                    graphManagedRemoveNode: false,
+                    graphManagedRemoveEdge: false
+                });
+            }
         };
 
         randomGraph = () => {
@@ -139,7 +140,7 @@ function withGraph(WrappedComponent) {
                 addEdge: this.addEdge,
                 removeEdge: this.removeEdge
             };
-            return <WrappedComponent {...this.props} {...proxy} />
+            return <WrappedComponent {...proxy} {...this.props} />
         }
     }
 }
