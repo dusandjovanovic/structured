@@ -52,8 +52,7 @@ class roomNew extends Component {
                                 More
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem onClick={() => this.modeHandler("learn")}>Learn</DropdownItem>
-                                <DropdownItem>Binary trees?</DropdownItem>
+                                <DropdownItem onClick={() => this.modeHandler("practise")}>Learn</DropdownItem>
                             </DropdownMenu>
                         </ButtonDropdown>
                         <Modal title="Create a new room"

@@ -1,11 +1,14 @@
 import {bfs, dfs} from './graph.algorithms';
+import * as adapter from './graph.adapter';
 import _ from 'underscore';
 
 export const graphFactory = () => {
     let graph = {};
     let vertices = 0;
-    let nodes = [];
-    let edges = [];
+    let visualization = {
+        nodes: [],
+        edges: []
+    };
 
     const graphProto = {
         contains: (node) => !!graph[node],
@@ -16,12 +19,8 @@ export const graphFactory = () => {
         },
         addVertex: (node) => {
             if (!graphProto.contains(node)) {
-                graph[node] = {edges: {}, visited: false};
-                nodes.push({
-                    key: node,
-                    inEdges: [],
-                    outEdges: []
-                });
+                graph[node] = {edges: {}, input: {}, visited: false};
+                adapter.graphAdapterNode(node, visualization);
                 vertices += 1;
             }
         },
@@ -33,47 +32,36 @@ export const graphFactory = () => {
             return random;
         },
         removeVertex: (node) => {
+            console.log(node);
             if (graphProto.contains(node)) {
                 for (let item in graph[node].edges) {
                     if (graph[node].edges.hasOwnProperty(item)) {
-                        graph.removeEdge(node, item);
+                        graphProto.removeEdge(node, item);
                     }
                 }
+                adapter.graphAdapterNodeRemove(node, visualization);
                 vertices -= 1;
                 delete graph[node];
-                nodes = nodes.filter((element) =>
-                    (element.key === node));
             }
         },
         addEdge: (nodeOne, nodeTwo) => {
             if (graphProto.contains(nodeOne) && graphProto.contains(nodeTwo)) {
                 graph[nodeOne].edges[nodeTwo] = true;
-                edges.push({
-                    key: nodeOne + '->' + nodeTwo,
-                    source: nodeOne,
-                    target: nodeTwo
-                });
-                nodes.map(node => {
-                    if (node.key === nodeOne)
-                        return node.outEdges.push(nodeTwo);
-                    else if (node.key === nodeTwo)
-                        return node.inEdges.push(nodeOne);
-                    return null;
-                });
+                graph[nodeTwo].input[nodeOne] = true;
+                adapter.graphAdapterEdge(nodeOne, nodeTwo, visualization);
             }
         },
         removeEdge: (nodeOne, nodeTwo) => {
             if (graphProto.contains(nodeOne) && graphProto.contains(nodeTwo)) {
                 delete graph[nodeOne].edges[nodeTwo];
-                edges = edges.filter((element) =>
-                    (element.source.key === nodeOne && element.target.key === nodeTwo));
+                delete graph[nodeTwo].input[nodeOne];
+                adapter.graphAdapterEdgeRemove(nodeOne, nodeTwo, visualization);
             }
         },
         getGraph: () => graph,
         getVertex: (node) => (graphProto.contains(node)) ? graph.nodes[node] : false,
         getNumVertices: () => vertices,
-        nodes: nodes,
-        edges: edges
+        visualization: visualization
     };
 
     Object.assign(graphProto, {bfs: bfs.bind(graphProto), dfs: dfs.bind(graphProto)});

@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { storiesOf } from '@storybook/react';
 import Overlay from '../src/components/user-interface/spinner-overlay/spinnerOverlay';
 
-storiesOf('Structured', module)
-    .add('meta-data', () => <div> testing components here.. </div>);
-
 storiesOf('User-interface', module)
-  .add('overlay', () => <Overlay />);
+    .add('overlay', () => <Overlay />);
+
+storiesOf('Architecture', module)
+    .add('module', () => <div />);

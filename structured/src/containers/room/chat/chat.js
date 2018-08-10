@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import 'react-chat-elements/dist/main.css';
-import {Input, MessageList} from "react-chat-elements";
+import { Input, MessageList } from "react-chat-elements";
 import { Button } from "reactstrap";
-import socketIo from "../../../components-higher/socketio/socketio";
 
 class Chat extends Component {
     socket = null;
@@ -12,7 +11,7 @@ class Chat extends Component {
 
     constructor(props) {
         super(props);
-        this.socket = this.props.socketio('http://localhost:2998/chat');
+        this.socket = this.props.io('http://localhost:2998/chat');
         this.socket.on(this.props.room, message => this.messageReceived(message));
     };
 
@@ -68,4 +67,4 @@ class Chat extends Component {
     }
 }
 
-export default socketIo(Chat);
+export default Chat;

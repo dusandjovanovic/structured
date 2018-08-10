@@ -32,9 +32,9 @@ class Home extends React.Component {
 
     render() {
         let waiting = null;
-        if (this.props.waiting && this.props.rooms.length === 0)
+        if (this.props.waiting)
             waiting = <Overlay />;
-        else if (this.state.redirect && !this.props.error)
+        else if (this.state.redirect && !this.props.waiting && !this.props.error)
             waiting = <Redirect to="/room" />;
 
         return (

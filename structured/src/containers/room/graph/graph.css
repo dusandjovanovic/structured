@@ -1,5 +1,10 @@
 .Container {
     border: 1px solid #d1d1d1;
+    float:left;
+}
+
+.Crosshair {
+    cursor: crosshair;
 }
 
 .Node circle {
@@ -15,12 +20,12 @@
 }
 
 .Adjacent circle {
-    fill: #00d1be;
-    stroke: #25f9d3;
+    fill: #d6db59;
+    stroke: #faffc5;
 }
 
 .Adjacent text {
-    fill: #006355;
+    fill: #5a5e27;
 }
 
 .Current circle {
@@ -50,6 +55,15 @@
     fill: #005a94;
 }
 
+.Clicked circle {
+    fill: #bf00ff;
+    stroke: #e6b8ff;
+}
+
+.Clicked text {
+    fill: #ea00ff;
+}
+
 .Unfocused circle {
     opacity: 0.40;
 }
@@ -73,4 +87,8 @@
 
 .Selected {
     stroke: #4cbadb;
+}
+
+.Clicked {
+    stroke: #e6b8ff;
 }

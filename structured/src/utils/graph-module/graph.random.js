@@ -1,8 +1,6 @@
 import * as _ from "underscore";
 
-function randomData(previous, width, height) {
-    var oldNodes = previous;
-    // generate some data randomly
+function randomData() {
     let nodes = _.chain(_.range(15))
         .map(function() {
             var node = {};
@@ -12,46 +10,21 @@ function randomData(previous, width, height) {
             return node.key;
         }).value();
 
-    if (oldNodes) {
-        var add = _.initial(oldNodes, _.random(0, oldNodes.length));
-        add = _.rest(add, _.random(0, add.length));
-
-        nodes = _.chain(nodes)
-            .union(add).uniq(function(node) {
-                return node.key;
-            }).value();
-    }
-
     let edges = _.chain(_.range(30))
         .map(function() {
-            var link = {};
-            link.source = _.random(0, 20);
-            link.target = _.random(0, 20);
-            link.key = link.source + ',' + link.target;
+            let link = {
+                source: { key: null },
+                target: { key: null },
+                key: null
+            };
+            link.source.key = _.random(0, 20);
+            link.target.key = _.random(0, 20);
+            link.key = link.source.key + '->' + link.target.key;
             return link;
         }).uniq((link) => link.key)
         .value();
 
-    maintainNodePositions(oldNodes, nodes, width, height);
     return {nodes, edges};
-}
-
-function maintainNodePositions(oldNodes, nodes, width, height) {
-    var kv = {};
-    _.each(oldNodes, function(d) {
-        kv[d.key] = d;
-    });
-    _.each(nodes, function(d) {
-        if (kv[d.key]) {
-            // if the node already exists, maintain current position
-            d.x = kv[d.key].x;
-            d.y = kv[d.key].y;
-        } else {
-            // else assign it a random position near the center
-            d.x = width / 2 + _.random(-150, 150);
-            d.y = height / 2 + _.random(-25, 25);
-        }
-    });
 }
 
 export default randomData;

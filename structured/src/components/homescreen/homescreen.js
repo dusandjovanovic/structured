@@ -13,7 +13,7 @@ class Homescreen extends Component {
 
     render () {
         return (
-            <canvas style={{margin: '-56px 0px'}} ref={this.intro}> </canvas>
+            <canvas style={{margin: '-60px 0px'}} ref={this.intro}> </canvas>
         );
     }
 };

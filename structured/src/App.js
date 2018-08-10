@@ -11,10 +11,6 @@ import Home from './containers/home/home';
 import NotificationContainer from './containers/notifications/notifications';
 import * as actions from './redux/actions/index';
 
-import SocketContext from './components-higher/socketio/socketio-context';
-import openSocket from 'socket.io-client';
-const socketio = openSocket;
-
 class App extends Component {
     componentDidMount() {
         this.props.onTryAutoSignIn();
@@ -40,12 +36,10 @@ class App extends Component {
             );
         return (
             <React.Fragment>
-                <SocketContext.Provider value={socketio}>
-                    <Layout>
-                        <NotificationContainer/>
-                        {routing}
-                    </Layout>
-                </SocketContext.Provider>
+                <Layout>
+                    <NotificationContainer/>
+                    {routing}
+                </Layout>
             </React.Fragment>
         );
     }
