@@ -31,7 +31,7 @@ Razlika izmedju kontrolera u MVC obrascu je u tome što su kontroleri na samom v
 
 ![alt text][flux]
 
-[flux]: images/flux-architecture.png
+[flux]: images/flux-diagram.png
 
 Komponente u Flux arhitekturi interaguju po principu magistrale dogadjaja. View propagira akcije kroz centralni Dispatcher, ove akcije mogu biti dalje propagirane u više skladišta. Svako skladište sadrži logiku i podatke koje opisuju trenutno stanje. Nakon promena stanja u skladištu dolazi do promena svih View-a koji oslikavaju to stanje. Ovaj tok dogadjaja je prilagodjen React-ovom okvirnom stilu gde skladište šalje promene do kojih je došlo bez navodjenja načina tranzicija izmedju prethodnog i novog stanja. Ovakav pristup omogućava jednosmeran tok podataka u arhitekturi, gde su akcija, Dispatcher, skladište i View odvojeni čvorovi sa konkretnim ulazima i izazima. Podaci teku kroz Dispatcher - središte arhitekture, koji se može smatrati centralnim registrom callback-ova na koji skladište odgovara. Promene skladišta su emitovane i prepoznate od strane Controller View komponenti.
 
@@ -45,6 +45,59 @@ MVC obrazac se sastoji iz Modela koji vodi računa o predstavljanju podataka, Vi
 ![alt text][redux]
 
 [redux]: images/redux-architecture.png
+
+Osnovni elementi priloženog dijagrama pripadaju odvojenim celinama - React-u i Redux-u. Redux čine servisi, akcije, kreatori akcija (*action creators*), svoditelji (*reducers*) i selektori. Šabloni (*templates*) i komponente predstavljaju React. Container je deo koji dozvoljava labavo spajanje ovih razdvojenih delova, dozvoljavajući individualne promene. Stanje aplikacije se nalazi u jednom centralnom skladištu - store, za raziku od više skladišta koja mogu da budu deo Flux arhitekture. Kada se stanje u skladištu promeni, ove promene preslikane su preko Container-a do samog View-a što znači ponovno renderovanje kritičnih elemenata DOM-a.
+
+Postoji nekoliko temeljnih razlika izmedju Redux-a i Flux arhitekture. Pre svega, Redux je JavaScript biblioteka i koristi se kao middleware u React/Redux obrascu. Akcije kao koncept postoje na obe strane, medjutim akcije u Redux-u mogu pored JavaScript objekata da budu funkcije i obećanja. Konvencija Flux-a dozvoljava više skladišta od kojih je svako Singleton objekat, sa druge strane, Redux preporučuje samo jedno skladište koje je interno izdeljeno po domenima podataka. Redux ne poseduje Dispatcher, mehanizam otpremljivanja akcija je integrisan u skladište u vidu prostog API-a oko skladišta. U Flux arhitekturi sama logika promene stanja aplikacije u odnosu na nastalu akciju nalazi se uokviru skladišta, Redux se u ovom segmentu oslanja na svoditelje (reducers). Kada je akcija otpremljena kroz API skladišta, namenjeni reducer se poziva i menja stanje, odnosno skladište. Skladište Redux-a je nepromenljivo (immutable), ovo je omogućeno korišćenjem funkcija bez bočnih efekata kao svoditelje, svoditelji menjaju kopiju prethodnog stanja koje primaju kao argumenat, i vraćaju promenjenu kopiju kao rezultat.
+
+Komponente u React-u su renderovane i odredjene skupom atributa *props*, ovi atributi su prosledjeni od strane komponenti višeg nivoa hijerarhije. U ovom slučaju komponenta najvišeg nivoa označena je kao Template, jedina svrha ove komponente je da preko mehanizma prosledjivanja atributa dostavi neophodne atribute za interakciju sa Redux-om svim nižim komponentama aplikacije. Container komponenta služi za spajanje neke od komponenti nižeg nivoa sa Redux modulom. Uzima tri argumenta: objekat koji mapira **stanje** u props, objekat koji mapira **akcije koje mogu da se otpreme (dispatch)** u props i poslednji objekat koji omogućava sklapanje novih atributa i preslikavanje istih na konkretnu React komponentu.
+
+Akcija je objekat koji sadrži tip akcije i stanje koje je promenjeno zbog akcije. Kretori akcija su kod koji se poziva da bi se otpremila (dispatch) konkretna akcija, koja na kraju rezultuje pozivom svoditelja (reducer) koji menja stanje skladišta. Akcija se može tumačiti kao dogadja koji se javlja, pritom se uz dogadjaj vezuje njegov tip i svi podaci koji su relevantni za dalje odvijanje.
+Korišćenjem connect mogućnosti Redux modula **akcije i segmenti stanja mapiraju se na props atribute React komponenti.**
+
+Prilikom svake akcije koja je otpremljena (dispatched) konkretan svoditelj (reducer) je pozvan i dodeljena mu je ta akcija. Parametri reducera su akcija koja je pozvana i prethodno stanje, reazultat svoditelja je novo stanje. U zavinosti od spektra akcija koje su dostupne nad skaldištem treba da postoje svoditelji koji su namenjeni svakoj od njih. Bitan aspekt Redux-a je da se postojeće stanje ne modifikuje, već se novo stanje formira i zamenjuje prethodno iz skladišta.
+
+### Povezivanje React aplikacije sa Redux-om
+Napravljeno skladište treba dostaviti komponentama. Ovde se koristi komponenta `Provider` iz `react-redux` biblioteke koja dostavlja skladište svim komponentama nižeg nivoa.
+
+```javascript
+const store = createStore(structured, {})
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app-node')
+)
+```
+
+Kada je skladište dostavljeno aplikaciji preostaje samo **povezivanje komponenti sa skladištem**. Redux ne dozvoljava direktan pristup i manipulaciju skladišta po dizajnu. Mogu se pribavljati podaci *preuzimanjem trenutnog stanja* ili *otpremiti akcije* koje zahvaljujući svoditeljima menjaju stanje.
+Za ovu svrhu koristi se `connect` funckija `react-redux` biblioteke.
+
+```javascript
+const mapStateToProps = state => {
+  return {
+    segment: state.something
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    someAction: () =>
+      dispatch({
+        type: 'SOME_ACTION_TYPE'
+      })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (WrappedComponent)
+```
+
+`mapStateToProps` i `mapDispatchToProps` su čiste funckije bez bočnih efekata kojima se preslikavaju stanje skladišta i moguće akcije. Ključevi objekata koje ove funkcije vraćaju su preslikani na props komponente koja je njom obuhvaćena - `WrappedComponent`.
+
+## Decorator - Higher Order Components
+
+## Dependency injection
 
 ---
 
