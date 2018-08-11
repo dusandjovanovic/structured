@@ -95,6 +95,55 @@ export default connect(mapStateToProps, mapDispatchToProps) (WrappedComponent)
 
 `mapStateToProps` i `mapDispatchToProps` su čiste funckije bez bočnih efekata kojima se preslikavaju stanje skladišta i moguće akcije. Ključevi objekata koje ove funkcije vraćaju su preslikani na props komponente koja je njom obuhvaćena - `WrappedComponent`.
 
+### Model redux-store
+
+```json
+--state
+----auth
+------token
+------username
+------error
+------waiting
+------authRedirectPath
+
+----user
+------username
+------friends
+--------array[]
+------requests
+--------array[]
+------error
+
+----notification
+------message
+------level
+------autoDismiss
+------action
+------onRemove
+
+----room
+------rooms
+--------array[]
+------room
+--------name
+--------master
+--------data
+----------users
+------------array[]
+----------_id
+----------name
+----------currentUsers
+------------array[]
+----------maxUsers
+----------createdBy
+----------time
+----------__v
+```
+
+![alt text][redux-state]
+
+[redux-state]: images/redux-state.PNG
+
 ## Decorator - Higher Order Components
 
 ## Dependency injection
