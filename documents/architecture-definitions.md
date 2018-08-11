@@ -69,7 +69,7 @@ MERN skup softvera se sastoji od MongoDB-a, Express.js-a, React-a i Node.js-a. Z
 
 #### Express.js
 
-**Express.js** je middleware u okviru Node.js servera, dizajniran za izradu jednostraničnih, višestraničnih i hibridnih web aplikacija. Exspress.js je pozadinski deo MEAN steka, zajedno sa Mongo DB bazom podataka.
+**Express.js** je middleware u okviru Node.js servera, dizajniran za izradu jednostraničnih, višestraničnih i hibridnih web aplikacija. Exspress.js je pozadinski deo MERN steka, zajedno sa Mongo DB bazom podataka.
 
 ### Jezici
 
