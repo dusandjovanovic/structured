@@ -17,29 +17,35 @@
     <session id="1016856043">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="102" />
+          <entry key="project.closed" value="104" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.2" value="4" />
           <entry key="project.open.time.3" value="13" />
-          <entry key="project.open.time.4" value="33" />
+          <entry key="project.open.time.4" value="35" />
           <entry key="project.open.time.5" value="31" />
           <entry key="project.open.time.6" value="11" />
           <entry key="project.open.time.7" value="5" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="102" />
+          <entry key="project.opened" value="104" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher" value="1" />
+          <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers" value="1" />
+          <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout" value="1" />
+          <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room" value="1" />
+          <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux" value="1" />
+          <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions" value="1" />
           <entry key="babelrc" value="1" />
           <entry key="css" value="159" />
           <entry key="eslint" value="1" />
           <entry key="eslintrc" value="5" />
           <entry key="html" value="13" />
           <entry key="ico" value="1" />
-          <entry key="js" value="772" />
+          <entry key="js" value="782" />
           <entry key="json" value="2" />
           <entry key="md" value="1" />
           <entry key="svg" value="1" />
@@ -52,10 +58,11 @@
           <entry key="HTML" value="13" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="772" />
+          <entry key="JavaScript" value="775" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="1" />
+          <entry key="UML" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -84,10 +91,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/containers/home/home.js">
+        <entry file="file://$PROJECT_DIR$/src/containers/room/room.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="791">
-              <caret line="66" column="30" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
+            <state relative-caret-position="306">
+              <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -212,6 +219,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -219,29 +227,10 @@
               <item name="structured" type="b2602c69:ProjectViewProjectNode" />
               <item name="structured" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -256,7 +245,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="com.chrisrm.idea.config" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -397,18 +386,19 @@
       <workItem from="1533944006835" duration="893000" />
       <workItem from="1533984026419" duration="1520000" />
       <workItem from="1533985589068" duration="2326000" />
+      <workItem from="1533988413424" duration="17000" />
+      <workItem from="1533998963385" duration="2743000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="302648000" />
+    <option name="totallyTimeSpent" value="305408000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24023438" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49871466" visible="true" weight="0.24023438" />
+      <window_info id="Structure" order="1" sideWeight="0.5012854" side_tool="true" weight="0.24023438" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -433,65 +423,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/user-interface/modal/modal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/actions/notification.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/notifications/notifications.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/auth/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4060">
-          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/social/social.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/social/request/request.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2686">
-          <caret line="82" column="37" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/home/room-view/roomView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="2" column="108" selection-start-line="2" selection-start-column="108" selection-end-line="2" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="37" column="71" selection-start-line="37" selection-start-column="71" selection-end-line="37" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/bootstrap-4.0.0/docs/4.0/examples/dashboard/dashboard.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2142">
@@ -716,9 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="20" column="58" lean-forward="true" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -743,16 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/room.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/reducers/room.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -769,8 +687,356 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/home/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="791">
-          <caret line="66" column="30" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
+        <state relative-caret-position="986">
+          <caret line="47" column="37" lean-forward="true" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/containers/layout/layout.js</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/layout/layout.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="272.5" y="232.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/containers/home/home.js</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/src/containers/home/home.js#Container#36;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#Overlay#308;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#Redirect#80;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#RoomNew#134;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#RoomView#176;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#Row#47;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#actions#260;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#connect#223;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#withRouter#90;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-router-dom/es/index.js#Redirect#491;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/react-router-dom/es/index.js#withRouter#995;</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/reactstrap/src/index.js#Container#7;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Row#44;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/home/room-new/roomNew.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/home/room-view/roomView.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/spinner-overlay/spinnerOverlay.js</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="389.5" y="318.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/containers</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-notification-system/dist/NotificationSystem.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/auth/auth.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/auth/auth.js#Button#192;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/auth.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/auth.js#Input#127;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/auth.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/auth.js#Redirect#85;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/auth.js#Spinner#260;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/auth.js#actions#331;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/auth.js#auth.css#378;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/auth.js#connect#48;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/button/button.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/chat/chat.js#Button#153;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/chat/chat.js#Component#16;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/chat/chat.js#Input#95;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/chat/chat.js#MessageList#102;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/chat/chat.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/chat/chat.js#main.css#42;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/graph/graph.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/graph/graph.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph.js#GraphLogger#47;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph.js#Row#103;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph.js#d3#135;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph.js#graph.css#154;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph-logger/graphLogger.js#graphLogger.css#27;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/home/home.js#Container#36;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#Overlay#308;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#Redirect#80;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#RoomNew#134;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#RoomView#176;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#Row#47;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#actions#260;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#connect#223;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/home.js#withRouter#90;</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-router-dom/es/index.js#Redirect#491;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/react-router-dom/es/index.js#withRouter#995;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/reactstrap/src/index.js#Button#429;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#ButtonDropdown#460;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#ButtonGroup#507;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Card#817;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#CardBody#957;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#CardHeader#1103;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#CardSubtitle#1512;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#CardText#1555;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#CardTitle#1590;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Col#69;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Container#7;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Dropdown#593;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#DropdownItem#628;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#DropdownMenu#671;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#DropdownToggle#714;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Form#2259;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#FormGroup#2329;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Input#2401;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Label#2683;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#ListGroup#2222;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#ListGroupItem#3047;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Nav#211;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#NavItem#236;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#NavLink#310;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Navbar#94;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Row#44;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/d3/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/input/input.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/layout/layout.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/auth/logout/logout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/logout/logout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/logout/logout.js#Redirect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/logout/logout.js#actions#127;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/auth/logout/logout.js#connect#91;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-chat-elements/dist/main.css</node>
+            <node x="" y="">Input;MessageList;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/master/master.js#Button#51;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#Component#16;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#Dropdown#59;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#DropdownItem#99;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#DropdownMenu#85;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#DropdownToggle#69;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#React#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/modal/modal.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/navbar/navbar.js#Nav#36;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/navbar/navbar.js#NavItem#41;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/navbar/navbar.js#NavLink#50;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/navbar/navbar.js#Navbar#59;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/navbar/navbar.js#React#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/notifications/notifications.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/notifications/notifications.js#NotificationSystem#86;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/notifications/notifications.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/notifications/notifications.js#connect#49;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/social/request/request.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/social/request/request.js#Button#115;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/social/request/request.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/social/request/request.js#Input#47;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/social/request/request.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/social/request/request.js#request.css#179;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/room.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/room.js#Chat#189;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Col#122;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Container#106;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Graph#154;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Navbar#221;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Overlay#259;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Redirect#49;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Row#117;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#room.css#614;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withGraph#489;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withIO#559;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withMaster#346;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withRedux#419;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withRouter#59;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/home/room-new/roomNew.js#Button#146;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#ButtonDropdown#57;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#ButtonGroup#87;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#Card#51;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#CardBody#122;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#CardHeader#100;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#CardSubtitle#132;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#CardText#112;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#Component#16;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#DropdownItem#154;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#DropdownMenu#73;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#DropdownToggle#168;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#Form#212;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#FormGroup#218;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#Input#236;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#Label#229;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#Modal#270;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-new/roomNew.js#React#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/home/room-view/roomView.js#Button#103;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-view/roomView.js#Card#54;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-view/roomView.js#CardBody#82;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-view/roomView.js#CardHeader#60;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-view/roomView.js#CardText#72;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-view/roomView.js#CardTitle#92;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-view/roomView.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-view/roomView.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-view/roomView.js#Row#49;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/home/room-view/roomView.js#SomethingWentWrong#137;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/social/social.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/social/social.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/social/social.js#ListGroup#181;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/social/social.js#ListGroupItem#192;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/social/social.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/social/social.js#Request#138;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/social/social.js#actions#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/social/social.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/social/social.js#social.css#226;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/something-went-wrong/somethingWentWrong.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/spectator/spectator.js#Button#36;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/spectator/spectator.js#React#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/spinner/spinner.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/spinner-overlay/spinnerOverlay.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-graph/withGraph.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-io/withIO.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-master/withMaster.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-redux/withRedux.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.3468292682926829" x="1095.0" y="1015.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/redux/actions</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/actions.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/auth.js#actionTypes#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/auth.js#actions#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/auth.js#axios#49;</node>
+            <node x="" y="">$PROJECT_DIR$/src/utils/axios-handler.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/notification.js#actionTypes#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/room.js#actionTypes#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/room.js#actions#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/room.js#axios#49;</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/user.js#actionTypes#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/user.js#actions#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/user.js#axios#49;</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="335.0" y="221.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/containers/room</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/chat/chat.js#Button#153;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/chat/chat.js#Component#16;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/chat/chat.js#Input#95;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/chat/chat.js#MessageList#102;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/chat/chat.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/chat/chat.js#main.css#42;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/graph/graph.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/graph/graph.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph.js#GraphLogger#47;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph.js#Row#103;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph.js#d3#135;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph.js#graph.css#154;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/graph/graph-logger/graphLogger.js#graphLogger.css#27;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/reactstrap/src/index.js#Button#429;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Col#69;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Container#7;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Dropdown#593;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#DropdownItem#628;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#DropdownMenu#671;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#DropdownToggle#714;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Nav#211;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#NavItem#236;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#NavLink#310;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Navbar#94;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Row#44;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-router-dom/es/index.js#Redirect#491;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/react-router-dom/es/index.js#withRouter#995;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/d3/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-chat-elements/dist/main.css</node>
+            <node x="" y="">Input;MessageList;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/master/master.js#Button#51;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#Component#16;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#Dropdown#59;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#DropdownItem#99;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#DropdownMenu#85;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#DropdownToggle#69;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/master/master.js#React#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/navbar/navbar.js#Nav#36;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/navbar/navbar.js#NavItem#41;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/navbar/navbar.js#NavLink#50;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/navbar/navbar.js#Navbar#59;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/navbar/navbar.js#React#7;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/room.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/room.js#Chat#189;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Col#122;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Container#106;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Graph#154;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Navbar#221;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Overlay#259;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Redirect#49;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Row#117;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#room.css#614;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withGraph#489;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withIO#559;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withMaster#346;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withRedux#419;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withRouter#59;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/spectator/spectator.js#Button#36;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/spectator/spectator.js#React#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/spinner-overlay/spinnerOverlay.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-graph/withGraph.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-io/withIO.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-master/withMaster.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-redux/withRedux.js</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.6010570824524313" x="828.5000000000001" y="345.1246040126716" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/components-higher</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/error-handler/errorHandler.js#Modal#34;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/error-handler/errorHandler.js#React#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.module.js#graphFactory#131;</node>
+            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.random.js</node>
+            <node x="" y="">compose;</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/socket.io-client/lib/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/master/master.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/modal/modal.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/spectator/spectator.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-async-loading/withAsyncLoading.js#React#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-graph/withGraph.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-graph/withGraph.js#graphFactory#35;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-graph/withGraph.js#randomData#102;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-io/withIO.js#React#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-master/withMaster.js#Master#34;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-master/withMaster.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-master/withMaster.js#Spectator#92;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-master/withMaster.js#Wrapper#158;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-redux/withRedux.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-redux/withRedux.js#actions#148;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-redux/withRedux.js#compose#75;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-redux/withRedux.js#connect#36;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-redux/withRedux.js#socketio#107;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="463.0" y="341.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/containers/layout</OriginalElement>
+          <nodes>
+            <node x="189.0" y="0.0">$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js</node>
+            <node x="387.0" y="27.0">$PROJECT_DIR$/src/redux/actions/index.js</node>
+            <node x="0.0" y="37.0">$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;</node>
+            <node x="28.0" y="194.0">$PROJECT_DIR$/node_modules/react/index.js</node>
+            <node x="425.0" y="215.0">$PROJECT_DIR$/src/containers/layout/layout.css</node>
+            <node x="207.0" y="97.0">$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;</node>
+            <node x="3.0" y="343.0">$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;</node>
+            <node x="350.0" y="374.0">$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js</node>
+            <node x="174.0" y="435.0">$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/node_modules/react/index.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/src/containers/layout/layout.css">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/src/redux/actions/index.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="272.5" y="232.0" />
+          <SelectedNodes>
+            <node>$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/redux</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/actions.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/reducers/auth.js#actionTypes#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/auth.js#actionTypes#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/auth.js#actions#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/auth.js#axios#49;</node>
+            <node x="" y="">$PROJECT_DIR$/src/utils/axios-handler.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/reducers/notification.js#actionTypes#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/notification.js#actionTypes#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/room.js#actionTypes#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/room.js#actions#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/room.js#axios#49;</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/reducers/room.js#actionTypes#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/user.js#actionTypes#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/user.js#actions#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/user.js#axios#49;</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/reducers/user.js#actionTypes#7;</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.7961926091825308" x="447.5" y="436.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/containers/room/room.js</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/chat/chat.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/graph/graph.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/reactstrap/src/index.js#Col#69;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Container#7;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Row#44;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-router-dom/es/index.js#Redirect#491;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/react-router-dom/es/index.js#withRouter#995;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/navbar/navbar.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/room.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/room/room.js#Chat#189;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Col#122;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Container#106;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Graph#154;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Navbar#221;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Overlay#259;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Redirect#49;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Row#117;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#room.css#614;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withGraph#489;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withIO#559;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withMaster#346;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withRedux#419;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withRouter#59;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/spinner-overlay/spinnerOverlay.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-graph/withGraph.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-io/withIO.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-master/withMaster.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-redux/withRedux.js</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="411.0" y="326.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/room.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
         </state>
       </provider>
     </entry>
