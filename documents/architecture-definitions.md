@@ -78,7 +78,40 @@ MERN skup softvera se sastoji od MongoDB-a, Express.js-a, React-a i Node.js-a. Z
 **JavaScript** je dinamičan, slabo tipiziran i interpretiran programski jezik visokog nivoa. Standardizovan je po ECMAScript specifikaciji jezika. Pored HTML-a i CSS-a, JavaScript je jedna od tri vodeće tehnologije za definisanje sadržaja na Vebu; većina veb-sajtova koristi Javaskript a svi moderni veb-čitači ga podržavaju bez potrebe za instaliranjem dodataka. Kombinovan sa HTML jezikom i CSS-om Javaskript čini DHTML (Dynamic HTML). JavaScript je jezik zasnovan na prototipovima sa funkcijama prvog reda, što ga čini jezikom višestruke paradigme koji podržava objektno-orijentisani, imperativni i funkcionalni način programiranja. Sadrži API za rad sa tekstom, nizovima, datumima i regularnim izrazima, ali ne i ulazno/izlazne funkcionalnosti, kao što su povezivanje, skladištenje podataka ili grafičke funkcionalnosti, za šta se oslanja na okruženje u kome se izvršava. 
 
 
-### Korišćene biblioteke
+### Korišćene biblioteke i moduli
 
-#### D3JS
+`d3` `d3-force`
+
 D3.js je JavaScript biblioteka koja pruža manipulaciju dokumenata na osnovu podataka. Dozvoljava povezivanje DOM-a i podakata, a zatim i primenjivanje podacima vodjenih transformacija nad dokumentom. Ova biblioteka predstavlja idealno rešenje za vizualizaciju kompleksnih i dinamičkih struktura podataka poput grafova i stabala, a pritom ostavlja dovoljno prostora za samu logiku koja se primenjuje nad predstavljenom strukturom.
+
+`react-redux` `redux-thunk`
+
+Biblioteka koja se koristi za upravljanje stanjem aplikacije (state-managment). Inspirisana je Flux arhitekturnim obrascem. Ovo je mala biblioetka od svega 2kB sa ograničenim API-jem dizajnirana da bude predvidiv container za stanje aplikacije. Radi po principu svodjenja (reducing) i oslanja se na metode funckionalnog programiranja. `redux-thunk` se koristi kao middleware u sprezi sa `react-redux` komponentama i koristi se za uvodjenje asingronih operacija.
+
+`react-router` `react-router-dom`
+
+Omogućava deklerativno rutiranje u React aplikacijama. Ova biblioetka nije razvijana od strane React tima ali se smatra de-facto standardom za rutiranje u izradi klijentskih aplikacija u ovom ekosistemu. Uokviru biblioeteke se nalaze navigacione komponente koje se koriste za navigaciju i rutiranje generalno.
+
+`reactstrap`
+
+Bootstrap je frontend okvir koji se koristi za izradu i dizajn web-aplikacija oslanjajući se na različite šablone. `reactstrap` je biblioetka koja sve mogućnosti Bootstrap okvira donosi u vidu React komponenti.
+
+`socket.io-client`
+
+Biblioteka koja se koristi za razvoj real-time web-aplikacija sa komunikacijom u realnom vremenu. Omogućava bidirekcione veze izmedju web klijenata i servera oslanjajući se na dogadjajem vodjene akcije. Primarno koristi WebSocket protokol.
+
+`prop-types`
+
+Jedna od popularnijih biblioetka koja se koristi u fazi razvoja softvera. Koristi se za dokumentovanje tipova argumenata (props) koji se prosledjuju komponentama React aplikacije. Prilikom renderovanja komponenti koje su obogaćene ovom bibliotekom uvodi se aktivna provera svih prosledjenih argumenata, poredjenje njihovih tipova sa zamišljenim i obaveštavanje programera ukoliko postoje neslaganja.
+
+`react-notification-system`
+
+Manje poznata biblioteka koja se koristi za generisanje asinhronih notifikacija koje najčešće obaveštavaju korisnika o neregularnim dogadjajima poput neuspele konekcije, problema ili nemogućnosti izvršenja nekih zahteva i slično.
+
+Ostale manje relevantne biblioteke: `axios`, `lodash`, `unserscore`, ..
+
+Sve zavisnosti sa modulima i bibilotekama mogu se pogledati u datoteci `package.json`.
+
+
+
+
