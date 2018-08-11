@@ -34,7 +34,7 @@ class Home extends React.Component {
         let waiting = null;
         if (this.props.waiting)
             waiting = <Overlay />;
-        else if (this.state.redirect && !this.props.waiting && !this.props.error)
+        else if (this.state.redirect && !this.props.waiting && !this.props.error && this.props.data._id)
             waiting = <Redirect to="/room" />;
 
         return (
@@ -64,6 +64,7 @@ const mapStateToProps = state => {
         username: state.auth.username,
         room: state.room.room,
         rooms: state.room.rooms,
+        data: state.room.data,
         waiting: state.room.waiting,
         error: state.room.error
     };

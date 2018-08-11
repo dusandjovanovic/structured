@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Modal from '../../components/user-interface/modal/modal'
 
 const errorHandler = (WrappedContent, axios) => {
-    return class extends Component {
+    return class extends React.Component {
         state = {
             error: null
         };

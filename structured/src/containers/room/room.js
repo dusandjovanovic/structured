@@ -5,12 +5,13 @@ import Graph from './graph/graph';
 import Chat from './chat/chat';
 import Navbar from './navbar/navbar';
 import Overlay from '../../components/user-interface/spinner-overlay/spinnerOverlay';
-import Master from "./actions-master/master";
-import './room.css';
 
+import withMaster from "../../components-higher/with-master/withMaster";
 import withRedux from '../../components-higher/with-redux/withRedux';
 import withGraph from "../../components-higher/with-graph/withGraph";
 import withIO from "../../components-higher/with-io/withIO";
+
+import './room.css';
 
 class Room extends Component {
     graphWidth = 700;
@@ -22,7 +23,6 @@ class Room extends Component {
 
     componentDidMount() {
         window.addEventListener("beforeunload", this.leaveRoom);
-        console.log(this.props);
         if (this.props.username !== this.props.data.createdBy) {
             this.props.getGraphIO();
 
@@ -65,12 +65,7 @@ class Room extends Component {
                                 </div>
                             </Col>
                             <Col md="9" className="ml-sm-auto pt-3 px-4">
-                                <Master randomGraph={() => this.props.randomGraph()}
-                                        addNode={() => this.props.addNode()}
-                                        removeNode={() => this.props.managedRemoveNodeHandler()}
-                                        addEdge={() => this.props.managedAddEdgeHandler()}
-                                        removeEdge={() => this.props.managedRemoveEdgeHandler()}
-                                />
+                                { this.props.children }
                                 <Graph visualization={this.props.visualization}
                                        width={this.graphWidth}
                                        height={this.graphHeight}
@@ -105,4 +100,4 @@ class Room extends Component {
     };
 }
 
-export default withRouter((withRedux (withIO (withGraph (Room)))));
+export default withRouter((withRedux (withIO (withGraph (withMaster (Room))))));

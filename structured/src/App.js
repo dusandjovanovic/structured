@@ -4,12 +4,16 @@ import {connect} from 'react-redux';
 import Layout from './containers/layout/layout';
 import Auth from './containers/auth/auth';
 import Logout from './containers/auth/logout/logout';
-import Social from './containers/social/social';
 import Room from './containers/room/room';
 import Homescreen from './components/homescreen/homescreen';
 import Home from './containers/home/home';
 import NotificationContainer from './containers/notifications/notifications';
+import withAsyncLoading from './components-higher/with-async-loading/withAsyncLoading';
 import * as actions from './redux/actions/index';
+
+const withAsyncSocial = withAsyncLoading(() => {
+    return import('./containers/social/social');
+});
 
 class App extends Component {
     componentDidMount() {
@@ -29,7 +33,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/auth" component={Auth}/>
                     <Route path="/logout" component={Logout}/>
-                    <Route path="/social" component={Social}/>
+                    <Route path="/social" component={withAsyncSocial}/>
                     <Route path="/room" component={Room}/>
                     <Route path="/" exact component={Home}/>
                 </Switch>

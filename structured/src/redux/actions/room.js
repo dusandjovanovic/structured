@@ -76,7 +76,6 @@ export const roomGetAll = (mode) => {
                     console.log('roomError:', response.data.msg);
                     dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
                     dispatch(roomError(response.data.msg));
-                    dispatch(roomEnd());
                 }
             })
             .catch((error) => {
