@@ -59,30 +59,26 @@
 
 ### Okviri
 
-#### MEAN Stack
+#### MERN Stack
 
-MEAN skup softvera se sastoji od MongoDB-a, Express.js-a, Angular-a i Node.js-a. Zahvaljujući svim komponentama MEAN skupa softvera i podržanosti JavaScript-a, MEAN aplikacije mogu biti napisane na jednom jeziku koji se izvršava i na serverskoj i na klijentskoj strani.
+MERN skup softvera se sastoji od MongoDB-a, Express.js-a, React-a i Node.js-a. Zahvaljujući svim komponentama MERN skupa softvera i podržanosti JavaScript-a, MERN aplikacije mogu biti napisane na jednom jeziku koji se izvršava i na serverskoj i na klijentskoj strani.
 
-#### Angular (ver. 5.0.0)
+#### React
 
-**Angular** je front-end framework (okvir) otvorenog koda baziran na TypeScript jeziku. Framework prilagođava i proširuje tradiocinlani HTML kako bi predstavio dinamički sadržaj kroz dvosmerno vezivanje podataka koje omogućava automatsku sinhronizaciju modela i view-a u MVC arhitekturi. Angular implementira MVC arhitekturu radi razdvajanja komponenti za prezentaciju, podatke i logičkih komponenti. Koristeći zavisnost paketa, Angular donosi tradicionalne serverske servise, kao što su kontroleri koji zavise od prezentacionog sloja, na web aplikacije na klijentskoj strani.
+**React** je JavaScript biblioteka otvorenog koda koja obezbeđuje pregled podataka zapisanih preko HTMLa. React pregledi su obično obezbeđeni korišćenjem komponenti koje sadrže dodatne komponente definisane kao prilagođene HTML oznake. React obezbeđuje programeru model u kojem podkomponente ne mogu direktno da utiču na spoljašnje komponente, efikasno ažuriranje HTML dokumenta pri promeni podataka i jasno razdvajanje komponenti na današnjim jednostraničnim aplikacijama. On je podržan od strane Facebook, Instagram i zajednice pojedinačnih programera i korporacija.
 
 #### Express.js
 
-**Express.js** je middleware u okviru Node.js servera, dizajniran za izradu jednostraničnih, višestraničnih i hibridnih web aplikacija. Exspress.js je pozadinski deo MEAN steka, zajedno sa Mongo DB bazom podataka.
+**Express.js** je middleware u okviru Node.js servera, dizajniran za izradu jednostraničnih, višestraničnih i hibridnih web aplikacija. Exspress.js je pozadinski deo MERN steka, zajedno sa Mongo DB bazom podataka.
 
 ### Jezici
 
-#### TypeScript
+#### JavaScript
 
-**TypeScript** je programski jezik otvorenog koda koji predstavlja osnovu Angular frameworka. Strog je nadskup Javaskripta, i dodaje jeziku opcionu statičku tipizaciju i objektnu orijentisanost. Typescript se može koristiti za razvoj Javaskript aplikacija za izvršavanje na klijentu ili serveru (Node.js). TypeScript, za razliku od JavaScript-a, pruža objektnu-orijentisanost i lakšu primenu svih paradigmi i šablona koji su teško primenljivi u čistom (*vanilla*) JavaScript-u.
+**JavaScript** je dinamičan, slabo tipiziran i interpretiran programski jezik visokog nivoa. Standardizovan je po ECMAScript specifikaciji jezika. Pored HTML-a i CSS-a, JavaScript je jedna od tri vodeće tehnologije za definisanje sadržaja na Vebu; većina veb-sajtova koristi Javaskript a svi moderni veb-čitači ga podržavaju bez potrebe za instaliranjem dodataka. Kombinovan sa HTML jezikom i CSS-om Javaskript čini DHTML (Dynamic HTML). JavaScript je jezik zasnovan na prototipovima sa funkcijama prvog reda, što ga čini jezikom višestruke paradigme koji podržava objektno-orijentisani, imperativni i funkcionalni način programiranja. Sadrži API za rad sa tekstom, nizovima, datumima i regularnim izrazima, ali ne i ulazno/izlazne funkcionalnosti, kao što su povezivanje, skladištenje podataka ili grafičke funkcionalnosti, za šta se oslanja na okruženje u kome se izvršava. 
 
 
 ### Korišćene biblioteke
 
 #### D3JS
 D3.js je JavaScript biblioteka koja pruža manipulaciju dokumenata na osnovu podataka. Dozvoljava povezivanje DOM-a i podakata, a zatim i primenjivanje podacima vodjenih transformacija nad dokumentom. Ova biblioteka predstavlja idealno rešenje za vizualizaciju kompleksnih i dinamičkih struktura podataka poput grafova i stabala, a pritom ostavlja dovoljno prostora za samu logiku koja se primenjuje nad predstavljenom strukturom.
-
-#### RxJS
-
-ReactiveX library for JavaScript je skup biblioteka namenjenih reaktivnom programiranju. Omogućava izgradnju asinhonih i dogadjajima vodjenih programa. Znatno olakšava pisanje asinhorog i call-back koda. Većina funkcionalnosti koje pruža ovaj skup biblioteka je bazairano na Observer i Iterator obrasima.
