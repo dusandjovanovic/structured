@@ -10,43 +10,32 @@ Arhitekturni stil koji se primenjuje nad celom strukturom aplikacije je Layered 
 
 * *Server* - pozadisnki sloj koji enkapsulira bazu podataka i pristup (Node.js)
 * *Reactive model* - sloj koji omotava (*wrapper*) celokupnu logiku pribavljanja podataka i manipulaciju njima
-* *Client controller* - sloj koji prima naredbe od pogleda i zadaje konkretne direktive nižim slojevima
-* *Client view* - sloj pogleda, interakcija sa korisnikom 
+* *View* - sloj pogleda, interakcija sa korisnikom 
 
 ---
 
-Iz priloženog se može videti da postoji sličnost sa Model-View-Controller obrascem, medjutim struktuiranost je slojevita. Konkretna primena **MVC** obrasca je prisutna nad komponentama front-end strane, što je uslovljeno dizajnom same strukture Angular frameworka. Za sinhronizaciju više korisnika je primenjen **Observer** obrazac.
 
-Dijagrami klasa i detaljnije osobine sledećih segmenata će biti dodate u kasnijim fazama implementacije.
+### Flux arhitektura React aplikacija
+**React** je JavaScript biblioteka za gradjenje korisničkih interfejsa i predstavlja okvir (*engl. framework*). React čini samo View sloj, donosno V iz MVC Model-View-Controller arhitekture jer je osnovna funkcija ove biblioteke označavanje i renderovanje HTML elemenata. React nudi šablonski jezik označavanja elemenata, pritom se bazira na komponentama što znači da se aplikacije grade kroz kompoziciju. Osnovni principi React-a su fleksibilnost, efikasnost i deklerativni kod.
 
-### Server
+## Flux
+Obzirom da se React brine o V delu MVC-a, šta je pritom sa Modelom, odnosno M delom? **Flux** je arhitekturni obrazac koji vodi računa o Modelu. Ovo je arhitektura koja omogućava kreiranje nivoa podataka u JavaScript aplikacijama i koristi se u izradi klijentskih web-aplikacija. Flux upotpunjuje kompozitne View komponente React-a svojim **jednosmernim tokom podataka**. Flux ima četiri osnovne komponente:
+* Dispatcher
+* Stores
+* Views
+* Action
 
-...
+Ovo nije generalizovani MVC koji se sreće u ostalim okvirima, medjutim postoje kontroleri ali su većinom Controller-View komponente. Pregledi (Views) su na vrhu hijerarhije, vuču podatke i funkcionalnosti i propuštaju ih svojoj deci. Flux strogo prati koncept jednosmernog toka podataka u kome podaci prate striktne putanje.
+React se oslanja na Virtualni DOM za renderovanje promena, dok Flux prati korisnikove interakcije koje prouzrokuju akcije koje rezultuju promenama podataka. View sloj je zatim obavešten o nastalim promenama.
 
-### Reactive model
+MVC obrazac se sastoji iz Modela koji vodi računa o predstavljanju podataka, View-a koji predstavlja Model i Kontrolora koji sluša korisnikove promene, menja Model i osvežava View. Glavni nedostatak MVC-a je skalabilnost jer porastom složenosti aplikacije Kontroleri postaju usko grlo i prevelikog su obima i složenosti. Kontroler ima zadatak da održava stanje aplikacije i podatke istovremeno. Takodje, kaskadne promene dovode do teškog uočavanja i otklanjanja grešaka - pa je prema ovome ponašanje aplikacija u odredjenim slučajevima nepredvidivo.
 
-...
+**Jednosmerni tok podataka - flow** je striktno definisan Flux arhitekturom. Dispatcher zadaje pravila i izuzetke, dok u MVC obrascu postoji dvosmerna razmena podataka, ovde svi podaci idu kroz Dispatcher. Skladište ne može da se promeni samo od sebe, da bi došlo do promena moraju da se jave u vidu Akcija koje će proći kroz Dispathcer. **Skladište** (*engl. Store*) nudi centralizovan način čuvanja svih podataka koji su relevantni za aplikaciju. Kada je tok podataka jednosmeran, promene u View sloju okidaju akcije u sloju podataka - View sloj takodje prati i reflektuje ove promene, a da pritom ne pristupa sloju podataka direktno. 
 
-### Client controller
-
-...
-
-### Client view
-
-...
+Komponente u Flux arhitekturi interaguju po principu magistrale dogadjaja.
 
 
-## Arhitekturni obrasci
 
-### Publish and subscribe
-...
-
-### Observer
-...
-
-### Model-View-Controller
-
-Model-View-Controller je arhitektura uslovljena Angular frameworkom, pa samim tim je prisutna na klijentskoj strani. Svaka frontend reprezentaciona komponenta aplikacije je realizovana kroz ovaj obrazac.
 
 ## Fizički pogled
 Fizički pogled, odnosno razmeštaj aplikacije, čine serverska i klijentska strana. Server ostvaruje direktnu konekciju sa bazom podataka uz dodatno izvršavanje logike na serverskoj strani. Na kiljentskoj strani je servirana komponenta koja se dinamički menja u zavisnosti od zahteva i direktiva klijenta, za čiju je funkcionalnost neophodna dvosmerna komunikacija sa serverskom stranom.
