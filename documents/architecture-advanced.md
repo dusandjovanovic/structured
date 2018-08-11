@@ -31,7 +31,7 @@ Razlika izmedju kontrolera u MVC obrascu je u tome što su kontroleri na samom v
 
 ![alt text][flux]
 
-[flux]: images/flux-flow-diagram.png
+[flux]: images/flux-architecture.png
 
 Komponente u Flux arhitekturi interaguju po principu magistrale dogadjaja. View propagira akcije kroz centralni Dispatcher, ove akcije mogu biti dalje propagirane u više skladišta. Svako skladište sadrži logiku i podatke koje opisuju trenutno stanje. Nakon promena stanja u skladištu dolazi do promena svih View-a koji oslikavaju to stanje. Ovaj tok dogadjaja je prilagodjen React-ovom okvirnom stilu gde skladište šalje promene do kojih je došlo bez navodjenja načina tranzicija izmedju prethodnog i novog stanja. Ovakav pristup omogućava jednosmeran tok podataka u arhitekturi, gde su akcija, Dispatcher, skladište i View odvojeni čvorovi sa konkretnim ulazima i izazima. Podaci teku kroz Dispatcher - središte arhitekture, koji se može smatrati centralnim registrom callback-ova na koji skladište odgovara. Promene skladišta su emitovane i prepoznate od strane Controller View komponenti.
 
