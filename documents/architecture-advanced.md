@@ -10,15 +10,42 @@ Arhitekturni stil koji se primenjuje nad celom strukturom aplikacije je Layered 
 
 * *Server* - pozadisnki sloj koji enkapsulira bazu podataka i pristup (Node.js)
 * *Reactive model* - sloj koji omotava (*wrapper*) celokupnu logiku pribavljanja podataka i manipulaciju njima
-* *View* - sloj pogleda, interakcija sa korisnikom 
+* *Redux state* - sloj za održavanje stanja aplikacije (state-managment) oslanja se na `react-redux` biblioteku
+* *View* - sloj pogleda, interakcija sa korisnikom
 
+**React** je JavaScript biblioteka za gradjenje korisničkih interfejsa i predstavlja okvir (*engl. framework*). React čini samo View sloj, donosno V iz MVC Model-View-Controller arhitekture jer je osnovna funkcija ove biblioteke označavanje i renderovanje HTML elemenata. React nudi šablonski jezik označavanja elemenata, pritom se bazira na komponentama što znači da se aplikacije grade kroz kompoziciju. Osnovni principi React-a su fleksibilnost, efikasnost i deklerativan kod oslanjajući se na **funkcionalno programiranje**.
+
+Okvirom poput React-a se aplikacije grade od View-a. View je reprezentacija stanja aplikacije. Stanje, sa druge strane, predstavlja promenljiv skup podataka na kome se apliakcija bazira. Stanje se sastoji od **nepromenljivih objetakata**, prinicip poznat kao *Immutability*. Sloj domena se usko vezuje za sloj stanja i može se smatrati njegovim delom, opisuje model predstavljanja podataka i način korišćenja  istih.
+
+**Redux state** sloj je zadužen za održavanje stanja aplikacije kroz jedinstveno Singleton **skladište** (store). React/Redux integracija je inspirisana Flux arhitekturom i u svojoj osnovi je modifikacija Observer obrasca. Odredjene komponente View-a oslikavaju stanje skladišta i imaju mogućnost otpremljenja akcija koje će rezultovati promene stanja, a zatim i refleksiju promene u View sloju gde god je potrebno.
+ 
+**View layer** se sastoji od **prezentacionih (pure) i container (stateful) komponenti**. Prezentacione komponente se brinu o korisničkom interfejsu, odnosno kako stvari izgledaju, a container komponente o tome kako stvari funkcionišu.
+
+* **Views** ili prezentacione komponente
+  1. gradivni elementi korisničkog interfejsa
+  2. mogu da sadrže ugnježdene prezentacione komponente i DOM elemente
+  3. nemaju zavisnosti ka ostalim modulima aplikacije poput Redux-a
+  4. ne definišu načine pribavljanja i mutiranja podataka
+  5. primaju podatke i callback metode isključivo od komponenti više hijerarhije
+  6. najčešće se pišu u vidu funkcionalnih komponenti
+  7. retko poseduju stanja
+
+* **Controller Views** ili container komponente
+  1. orkestruju tok aplikacije i definišu funkcionalnosti
+  2. mogu da sadrže prezentacione i container komponente, uglavnom ne poseduju DOM elemente
+  3. doprimaju podatke prezentacionim komponentama
+  4. ostvaruju zavisnost ka Redux-u u vidu poziva akcija i preslikvanja delova stanja
+  5. često se generišu oslanjajući se na hoc komponente poput Redux-ovog connect() hoc-a
+  6. poseduju stanja
+
+Ovakvom podelom View komponenti imamo konceptualno odvajanje briga. Reupotrebljivost je znatno povećana obzirom da se ista prezentaciona komponenta može koristiti na više mesta u aplikaciji pritom oslanjajući se na različite izvore podataka za svoju prezentaciju. Prezentacione komponente mogu da se smatraju "paletom" aplikacije. Ovim pristupom se istiskuju komponente i kombinuju na različite načine.
+ 
 ---
 
 # Projektni obrasci
-## Flux
-**React** je JavaScript biblioteka za gradjenje korisničkih interfejsa i predstavlja okvir (*engl. framework*). React čini samo View sloj, donosno V iz MVC Model-View-Controller arhitekture jer je osnovna funkcija ove biblioteke označavanje i renderovanje HTML elemenata. React nudi šablonski jezik označavanja elemenata, pritom se bazira na komponentama što znači da se aplikacije grade kroz kompoziciju. Osnovni principi React-a su fleksibilnost, efikasnost i deklerativni kod.
 
-### Flux kao arhitekturni obrazac
+## Flux arhitektura
+
 Obzirom da se React brine o V delu MVC-a, šta je pritom sa Modelom, odnosno M delom? **Flux** je arhitekturni obrazac koji vodi računa o Modelu. Ovo je arhitektura koja omogućava kreiranje **nivoa podataka (engl. data layer)** u JavaScript aplikacijama i koristi se u izradi klijentskih web-aplikacija. Flux upotpunjuje kompozitne View komponente React-a svojim **jednosmernim tokom podataka**. Flux ima četiri osnovne komponente:
 * **Dispatcher** - prima akcije i emituje dogadjaje registrovanim komponentama
 * **Stores** - centralizovana skladišta podataka u vidu container-a stanja aplikacije 
@@ -40,7 +67,7 @@ React se oslanja na Virtualni DOM za renderovanje promena, dok Flux prati korisn
 
 MVC obrazac se sastoji iz Modela koji vodi računa o predstavljanju podataka, View-a koji predstavlja Model i Kontrolora koji sluša korisnikove promene, menja Model i osvežava View. Glavni nedostatak MVC-a je skalabilnost jer porastom složenosti aplikacije Kontroleri postaju usko grlo i prevelikog su obima i složenosti. Kontroler ima zadatak da održava stanje aplikacije i podatke istovremeno. Takodje, kaskadne promene dovode do teškog uočavanja i otklanjanja grešaka - pa je prema ovome ponašanje aplikacija u odredjenim slučajevima nepredvidivo.
 
-## React/Redux
+## React/Redux Observer
 
 ![alt text][redux]
 
