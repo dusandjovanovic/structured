@@ -167,13 +167,119 @@ export default connect(mapStateToProps, mapDispatchToProps) (WrappedComponent)
 ----------__v
 ```
 
-![alt text][redux-state]
+## Composition
 
-[redux-state]: images/redux-state.PNG
+Kompozicija je u React-u veoma istaknuta i dozvoljava fleksibilno sklapanje komponenti. Svaka komponenta poseduje `children` prop preko koga se pristupa svim komponentama koje su ugnježdene uokviru nje. Ovim pristupom se bolje izoluju komponente i formiraju različite kompozicije bez dupliranja koda.
 
-## Decorator - Higher Order Components
+Na primeru `Toolbar` komponente. Uvek su prikazani logo i navigacioni elementi.  
+```jsx
+const toolbar = (props) => (
+    <header className="Toolbar">
+        <Logo />
+        <NavigationItems />
+        {props.children}
+        ...
+    </header>
+);
+```
+`Dropdown` je komponenta koja se prosledjuje kao dete i dinamički se vrši kompozicija po potrebi.
+```jsx
+<Toolbar props...
+    <Dropdown showRequests={(event) => this.showRequestsHandler(event)}
+              hideRequests={(event) => this.showRequestsHandler(event)}
+              ...
+    />
+</Toolbar>
+```
+
+## Decorator: Higher-order components
+
+*Higher-order komponente (hoc)* se koriste za **poboljšavanje i kompoziciju** komponenti njihovim *omotavanjem* što podseća na Decorator obrazac. Hoc je najčešće funkcija koja kao argumenat prima komponentu, obogaćuje je, i vraća kao rezultat novu dekorisanu komponentu. Za Hoc komponentu je neophodno da renderuje komponentu koju obuhvata i da joj prosledi sve originalne props atribute. Sve nakon ovoga predstavlja dekoraciju, odnosno proširivanje osnovne komponente. Hoc komponentom se kontroliše ulaz pa se u vidu props atributa obuhvaćenoj komponenti može proslediti entitet ili skup podataka kome inicijalno nema pristup. Glavna prednost hoc-a je **uvodjenje logiku u dekoraciju** i **propagiranje logike** u vidu props atributa obuhvaćene komponente.
+
+Primer Decorator Higher-order komponente je `withIO`. Ovaj Decorator osnovnu komponentu `WrappedComponent` obogaćuje funkcionalnostima socket.io biblioteke. Lifecycle metode su predefinisane za uspostavljanje WebSocket-a, a metoda poput `addNodeIO(node)` je pridoata logika u vidu props atributa `addNodeIO`.
+```javascript
+function withIO (WrappedComponent) {
+    return class extends React.Component {
+        socket = null;
+
+        componentWillMount() {
+            this.socket = this.props.io('http://localhost:2998/graph');
+            this.socket.on('connect', () => {
+                console.log(this.props.username, 'websocket::opened');
+            });
+            this.socket.on('disconnect', () => {
+                console.log(this.props.username, 'websocket::closed');
+            })
+        }
+
+        componentWillUnmount() {
+            this.socket.close();
+        }
+
+        addNodeIO = (node) => {
+            this.socket.emit('add node', {
+                room: this.props.data.name,
+                sender: this.props.username,
+                node: node
+            });
+        };
+        ...
+        
+        render() {
+            return (
+                <WrappedComponent addNodeIO={this.addNodeIO}
+                                  ...
+                                  {...this.props}
+                                />
+            );
+        }
+}
+```
+
+Multikompozicija i dekoracija su najviše primenjene na `Room` komponentu. Inicijalno ova komponenta nema previše funkcionalnosti osim gradivnog koriničkog interfejsa i odvojeniih containera za predstavljanje chata, grafa i navbara. Dekoratorima koji hijerarhijski zavise jedan od drugog se dobija znatno kompleksnija komponenta bez dupliranja koda i mogućnosti ponovne upotrebe hoc dekoratora. 
+
+U konkretnom primeru dekorator `withMaster` dinamiči dodeljuje privilegije i dozvoljene aktivnosti u vidu elemenata navbara `Room` komponenti, sve to u zavisnosti od statusa korisnika. Ako je korisnik `master` sobe u kojoj se nalazi dobiće dodatne privilegije. `withMaster` je pritom hoc koji se oslanja na metode koje su prethodno propaginare od strane `withIO` i `withGraph` dekoratora.
+
+```javascript
+export default withRouter((withRedux (withIO (withGraph (withMaster (Room))))));
+```
 
 ## Dependency injection
+
+Moduli i komponente poseduju zavinosti (dependency), upravljanje ovim zavisnostima je od krucijalne važnosti. Kada je konkretna zavinost ka nekom izvoru potrebna samo na jednom nivou dubine, ubrizgavanje, odnosno *injection*, može se ostvariti prethodno pomenutim obrascem oslanjajući se na hoc kao posrednik. Kada je medjutim zavisnost potrebna na više nivoa dubine i kada više različitih komponenti treba da se obraća istom itvoru koristi se `context` mogućnost React-a. Inicijalizacija konteksta je prvi korak.
+
+```javascript
+import { createContext } from 'react';
+
+const Context = createContext({});
+
+export const Provider = Context.Provider;
+export const Consumer = Context.Consumer;
+```
+`createContext` vraća objekat koji poseduje `.Provider` i `.Consumer` atribute. `Provider` klasa pridodaje konteksne vrednosti preko `value` prop-a. `Consumer` klasa pristupa prethodno dodatim konktekstnim vrednostima.
+
+Konktekst na primeru ubrizgavanja iste socket.io instance kroz sve module. 
+
+```javascript
+import * as io from 'socket.io-client'
+const context = io();
+
+class App extends React.Component {
+  render() {
+    return (
+      <Provider value={context}>
+        ...
+      </Provider>
+    );
+  }
+};
+```
+
+Obzirom da je inicijalizacija izvršena u korenoj komponenti, sve ostale komponente imaće pristup kontekstu ukoliko se koristi ukoviru tagova `<Consumer>` i `</Consumer>`.
+
+## Factory
+
+
 
 ---
 
