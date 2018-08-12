@@ -277,9 +277,32 @@ class App extends React.Component {
 
 Obzirom da je inicijalizacija izvršena u korenoj komponenti, sve ostale komponente imaće pristup kontekstu ukoliko se koristi ukoviru tagova `<Consumer>` i `</Consumer>`.
 
-## Factory
+## Factory, Abstract Factory
 
+**Factory** obrazac u JavaScript-u se koristi za odvajanje kreacije objekata od ostatka koda. U situacijama kada je proces kreiranja varijabilan ili kompleksan treba uspostaviti bafer u vidu Factory-a. Najprostiji Factory enkapsulira kreiranje nekog objekta, metode za kreiranje mogu da budu parametrizovane. Rezultat je Product objekat, u slučaju različitih tipova očekuju se da ovi objekti imaju konzistentan interfejs. Factory obrazac kao glavnu prednost ima centralizovano i konzistentno kreiranje objekata.
 
+**Abstract Factory** obrazac definiše više metoda koje vraćaju produkte. Daje interfejs za kreiranje familija srodnih objekata bez specifikacija njihovih konkretnih klasa. Bitno je da interfejsi, iako objekata koji su različiti, budu konzistentni jer se na mestu inicijalizacije ne pravi razlika izmedju ovih objekata.
+
+```javascript
+export const graphFactory = () => {
+    let graph = {};
+    
+    const graphProto = {
+        contains: (node),
+        addVertex: (vertex),
+        addVertexRandom: (),
+        removeVertex: (node),
+        addEdge: (nodeOne, nodeTwo),
+        removeEdge: (nodeOne, nodeTwo),
+        getGraph: (),
+        getVertex: (node),
+        getNumVertices: ()
+   }
+   
+   Object.assign(graphProto, {bfs: bfs.bind(graphProto), dfs: dfs.bind(graphProto)});
+   return Object.create(graphProto)
+}
+```
 
 ---
 
