@@ -2,6 +2,11 @@ import React from 'react';
 import {graphFactory} from "../../utils/graph-module/graph.module";
 import randomData from "../../utils/graph-module/graph.random";
 
+const MANAGED_REMOVE_NODE = 'MANAGED_REMOVE_NODE';
+const MANAGED_ADD_EDGE = 'MANAGED_ADD_EDGE';
+const MANAGED_REMOVE_EDGE = 'MANAGED_REMOVE_EDGE';
+const MANAGED_ALGORITHM = 'MANAGED_ALGORITHM';
+
 function withGraph(WrappedComponent) {
     return class extends React.Component {
         graph = new graphFactory();
@@ -9,53 +14,49 @@ function withGraph(WrappedComponent) {
         state = {
             graph: null,
             graphManaged: false,
-            graphManagedAddEdge: false,
-            graphManagedRemoveNode: false,
-            graphManagedRemoveEdge: false
+            graphOperation: null
         };
 
         managedAddEdgeHandler = () => {
             this.setState({
                 graphManaged: true,
-                graphManagedAddEdge: true,
-                graphManagedRemoveNode: false,
-                graphManagedRemoveEdge: false
+                graphOperation: MANAGED_ADD_EDGE
             });
         };
 
         managedRemoveNodeHandler = () => {
             this.setState({
                 graphManaged: true,
-                graphManagedAddEdge: false,
-                graphManagedRemoveNode: true,
-                graphManagedRemoveEdge: false
+                graphOperation: MANAGED_REMOVE_NODE
             });
         };
 
         managedRemoveEdgeHandler = () => {
             this.setState({
                 graphManaged: true,
-                graphManagedAddEdge: false,
-                graphManagedRemoveNode: false,
-                graphManagedRemoveEdge: true
+                graphOperation: MANAGED_REMOVE_EDGE
             });
         };
 
         managedAlgorithm = () => {
             this.setState({
                 graphManaged: true,
-                graphManagedAddEdge: false,
-                graphManagedRemoveNode: false,
-                graphManagedRemoveEdge: false
+                graphOperation: MANAGED_ALGORITHM
             });
         };
 
         managedAlgorithmCanceled = () => {
             this.setState({
                 graphManaged: false,
-                graphManagedAddEdge: false,
-                graphManagedRemoveNode: false,
-                graphManagedRemoveEdge: false
+                graphOperation: null
+            });
+        };
+
+        managedCanceled = () => {
+            this.setState({
+                graph: this.graph.getGraph(),
+                graphManaged: false,
+                graphOperation: null
             });
         };
 
@@ -68,13 +69,7 @@ function withGraph(WrappedComponent) {
                 graph.edges.map(edge => {
                     return this.graph.addEdge(edge.source.key, edge.target.key);
                 });
-                this.setState({
-                    graph: this.graph.getGraph(),
-                    graphManaged: false,
-                    graphManagedAddEdge: false,
-                    graphManagedRemoveNode: false,
-                    graphManagedRemoveEdge: false
-                });
+                this.managedCanceled();
             }
         };
 
@@ -85,58 +80,28 @@ function withGraph(WrappedComponent) {
 
         addNode = () => {
             let node = this.graph.addVertexRandom();
-            this.setState({
-                graph: this.graph.getGraph(),
-                graphManaged: false,
-                graphManagedAddEdge: false,
-                graphManagedRemoveNode: false,
-                graphManagedRemoveEdge: false
-            });
+            this.managedCanceled();
             this.props.addNodeIO(node);
         };
 
         addNodeValue = (node) => {
             this.graph.addVertex(node);
-            this.setState({
-                graph: this.graph.getGraph(),
-                graphManaged: false,
-                graphManagedAddEdge: false,
-                graphManagedRemoveNode: false,
-                graphManagedRemoveEdge: false
-            });
+            this.managedCanceled();
         };
 
         removeNode = (node) => {
             this.graph.removeVertex(node);
-            this.setState({
-                graph: this.graph.getGraph(),
-                graphManaged: false,
-                graphManagedAddEdge: false,
-                graphManagedRemoveNode: false,
-                graphManagedRemoveEdge: false
-            });
+            this.managedCanceled();
         };
 
         addEdge = (source, target) => {
             this.graph.addEdge(source, target);
-            this.setState({
-                graph: this.graph.getGraph(),
-                graphManaged: false,
-                graphManagedAddEdge: false,
-                graphManagedRemoveNode: false,
-                graphManagedRemoveEdge: false
-            });
+            this.managedCanceled();
         };
 
         removeEdge = (source, target) => {
             this.graph.removeEdge(source, target);
-            this.setState({
-                graph: this.graph.getGraph(),
-                graphManaged: false,
-                graphManagedAddEdge: false,
-                graphManagedRemoveNode: false,
-                graphManagedRemoveEdge: false
-            });
+            this.managedCanceled();
         };
 
         render() {
@@ -144,9 +109,7 @@ function withGraph(WrappedComponent) {
                 graph: this.graph,
                 visualization: this.graph.visualization,
                 graphManaged: this.state.graphManaged,
-                graphManagedAddEdge: this.state.graphManagedAddEdge,
-                graphManagedRemoveNode: this.state.graphManagedRemoveNode,
-                graphManagedRemoveEdge: this.state.graphManagedRemoveEdge,
+                graphOperation: this.state.graphOperation,
                 managedAddEdgeHandler: this.managedAddEdgeHandler,
                 managedRemoveNodeHandler: this.managedRemoveNodeHandler,
                 managedRemoveEdgeHandler: this.managedRemoveEdgeHandler,

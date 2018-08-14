@@ -60,7 +60,7 @@ class Chat extends Component {
                     ref='input'
                     rightButtons={
                         <Button color='white' onClick={() => this.messageSend(this.refs.input.input.value)}>
-                            Send
+                            <i className="far fa-comment"></i> Send
                         </Button>
                     }/>
                 <MessageList

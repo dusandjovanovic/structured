@@ -44,19 +44,19 @@ class Graph extends Component {
     };
 
     componentWillUpdate(nextProps, nextState) {
-        if (nextProps.managed && nextProps.managedAddEdge && nextState.nodesSelected.length === 2) {
+        if (nextProps.graphManaged && nextProps.graphOperation === 'MANAGED_ADD_EDGE' && nextState.nodesSelected.length === 2) {
             this.props.addEdge(nextState.nodesSelected[0], nextState.nodesSelected[1]);
             this.setState({
                 nodesSelected: []
             })
         }
-        else if (nextProps.managed && nextProps.managedRemoveEdge && nextState.nodesSelected.length === 2) {
+        else if (nextProps.graphManaged && nextProps.graphOperation === 'MANAGED_REMOVE_EDGE' && nextState.nodesSelected.length === 2) {
             this.props.removeEdge(nextState.nodesSelected[0], nextState.nodesSelected[1]);
             this.setState({
                 nodesSelected: []
             })
         }
-        else if (nextProps.managed && nextProps.managedRemoveNode && nextState.nodesSelected.length === 1) {
+        else if (nextProps.graphManaged && nextProps.graphOperation === 'MANAGED_REMOVE_NODE' && nextState.nodesSelected.length === 1) {
             this.props.removeNode(nextState.nodesSelected[0]);
             this.setState({
                 nodesSelected: []
@@ -65,7 +65,7 @@ class Graph extends Component {
     };
 
     nodeClicked = (node) => {
-        if (this.props.managed) {
+        if (this.props.graphManaged) {
             let updated = this.state.nodesSelected.slice();
             updated.includes(node.key)
                 ? updated.splice(updated.indexOf(node.key), 1)
@@ -87,28 +87,29 @@ class Graph extends Component {
     };
 
     nodeFocused = (node) => {
-        if (!this.props.managed && !this.state.nodeSelected)
+        if (!this.props.graphManaged && !this.state.nodeSelected)
             this.setState({
                 nodeFocused: node
             });
     };
 
     nodeLostFocus = (node) => {
-        if (!this.props.managed)
+        if (!this.props.graphManaged)
             this.setState({
                 nodeFocused: null
             });
     };
 
     surfaceClicked = () => {
-        if (!this.props.managed && this.state.nodeSelected)
+        if (!this.props.graphManaged && this.state.nodeSelected)
             this.setState({
                 nodeSelected: null
             });
     };
 
     render() {
-        // use React for rendering, d3 calculates x and y
+        // react for rendering
+        // d3 for calculating x and y (muttable)
         let nodes = this.props.visualization.nodes.map((node) => {
             let assignClass = this.assignClass(node, false);
             let transform = 'translate(' + node.x + ',' + node.y + ')';
@@ -137,7 +138,7 @@ class Graph extends Component {
             );
         });
         let crosshair = "";
-        if (this.props.managed)
+        if (this.props.graphManaged)
             crosshair = " Crosshair";
 
         return (
@@ -177,7 +178,7 @@ class Graph extends Component {
 
     assignClass = (node, edge) => {
         let assign = "";
-        if (!this.props.managed && this.state.nodeSelected) {
+        if (!this.props.graphManaged && this.state.nodeSelected) {
             if (node.key === this.state.nodeSelected.key)
                 assign = "Selected";
             else if (this.state.nodeCurrent && node.key === this.state.nodeCurrent.key)
@@ -191,7 +192,7 @@ class Graph extends Component {
                 });
             }
         }
-        else if (!this.props.managed && this.state.nodeFocused) {
+        else if (!this.props.graphManaged && this.state.nodeFocused) {
             if (node.key === this.state.nodeFocused.key)
                 assign = "Focused";
             else {
@@ -206,7 +207,7 @@ class Graph extends Component {
                 }
             }
         }
-        else if (this.props.managed && this.state.nodesSelected.includes(node.key)) {
+        else if (this.props.graphManaged && this.state.nodesSelected.includes(node.key)) {
             assign = "Clicked";
         }
         return assign;

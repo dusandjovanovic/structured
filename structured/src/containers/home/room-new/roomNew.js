@@ -73,7 +73,7 @@ class roomNew extends Component {
                                         <option>5</option>
                                     </Input>
                                 </FormGroup>
-                                <Button className="btn btn-danger m-auto btn-large" type="submit">Create</Button>
+                                <Button className="btn btn-danger m-auto btn-large" type="submit"><i className="fas fa-check"></i> Create</Button>
                             </Form>
                         </Modal>
                     </ButtonGroup>

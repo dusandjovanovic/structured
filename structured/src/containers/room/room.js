@@ -69,7 +69,8 @@ class Room extends Component {
                                     this.props.children
                                 }
                                 <Graph visualization={this.props.visualization}
-                                       managed={this.props.graphManaged}
+                                       graphManaged={this.props.graphManaged}
+                                       graphOperation={this.props.graphOperation}
                                        managedAddEdge={this.props.graphManagedAddEdge}
                                        managedRemoveNode={this.props.graphManagedRemoveNode}
                                        managedRemoveEdge={this.props.graphManagedRemoveEdge}

@@ -84,7 +84,7 @@ class Request extends Component {
                 {errorMessage}
                 <form onSubmit={this.submitHandler}>
                     {form}
-                    <Button btnType="Success">SEND A REQUEST</Button>
+                    <Button btnType="Success"><i className="fas fa-user-plus"></i> SEND A REQUEST</Button>
                 </form>
             </div>
         );
