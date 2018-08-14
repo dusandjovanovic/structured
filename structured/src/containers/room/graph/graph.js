@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import GraphLogger from './graph-logger/graphLogger';
-import { Row } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import * as d3 from 'd3';
 import './graph.css';
 
@@ -142,31 +142,35 @@ class Graph extends Component {
 
         return (
             <Row>
-                <svg className={"Container".concat(crosshair)} width={this.props.width} height={this.props.height} onClick={() => this.surfaceClicked()}>
-                    <defs>
-                        <marker id="arrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
-                            <path d="M0,-5L10,0L0,5" fill="#e0e0e0" style={{stroke: 'none'}} />
-                        </marker>
-                        <marker id="focusedArrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
-                            <path d="M0,-5L10,0L0,5" fill="#94d6e9" style={{stroke: 'none'}} />
-                        </marker>
-                        <marker id="unfocusedArrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
-                            <path d="M0,-5L10,0L0,5" fill="#f0f0f0" style={{stroke: 'none'}} />
-                        </marker>
-                        <marker id="clickedArrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
-                            <path d="M0,-5L10,0L0,5" fill="#e6b8ff" style={{stroke: 'none'}} />
-                        </marker>
-                    </defs>
-                    <g>
-                        {links}
-                        {nodes}
-                    </g>
-                </svg>
+                <Col lg="9">
+                    <svg className={"Container".concat(crosshair)} width="100%" viewBox="0 0 800 600" onClick={() => this.surfaceClicked()}>
+                        <defs>
+                            <marker id="arrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
+                                <path d="M0,-5L10,0L0,5" fill="#e0e0e0" style={{stroke: 'none'}} />
+                            </marker>
+                            <marker id="focusedArrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
+                                <path d="M0,-5L10,0L0,5" fill="#94d6e9" style={{stroke: 'none'}} />
+                            </marker>
+                            <marker id="unfocusedArrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
+                                <path d="M0,-5L10,0L0,5" fill="#f0f0f0" style={{stroke: 'none'}} />
+                            </marker>
+                            <marker id="clickedArrowhead" viewBox="0 -5 10 10" refX="28" refY="0" orient="auto" markerWidth="6" markerHeight="6">
+                                <path d="M0,-5L10,0L0,5" fill="#e6b8ff" style={{stroke: 'none'}} />
+                            </marker>
+                        </defs>
+                        <g>
+                            {links}
+                            {nodes}
+                        </g>
+                    </svg>
+                </Col>
+                <Col sm="3">
                 <GraphLogger nodeFocused={this.state.nodeFocused}
                              nodeSelected={this.state.nodeSelected}
                              nodeCurrent={this.state.nodeCurrent}
                              nodeRoot={this.state.nodeRoot}
                              nodesSelected={this.state.nodesSelected}/>
+                </Col>
             </Row>
         );
     }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Wrapper from '../../components-higher/wrapper/wrapper';
+import Wrapper from '../../hoc/wrapper/wrapper';
 import Toolbar from '../../components/navigation/toolbar/toolbar';
 import Dropdown from '../../components/user-interface/dropdown/dropdown';
 import * as actions from "../../redux/actions";

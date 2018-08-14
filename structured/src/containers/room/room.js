@@ -6,16 +6,16 @@ import Chat from './chat/chat';
 import Navbar from './navbar/navbar';
 import Overlay from '../../components/user-interface/spinner-overlay/spinnerOverlay';
 
-import withMaster from "../../components-higher/with-master/withMaster";
-import withRedux from '../../components-higher/with-redux/withRedux';
-import withGraph from "../../components-higher/with-graph/withGraph";
-import withIO from "../../components-higher/with-io/withIO";
+import withMaster from "../../hoc/with-master/withMaster";
+import withRedux from '../../hoc/with-redux/withRedux';
+import withGraph from "../../hoc/with-graph/withGraph";
+import withIO from "../../hoc/with-io/withIO";
 
 import './room.css';
 
 class Room extends Component {
-    graphWidth = 700;
-    graphHeight = 600;
+    graphWidth = 800;
+    graphHeight = 500;
 
     state = {
         redirect: false

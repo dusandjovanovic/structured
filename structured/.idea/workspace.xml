@@ -17,18 +17,18 @@
     <session id="1016856043">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="106" />
+          <entry key="project.closed" value="110" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.2" value="4" />
-          <entry key="project.open.time.3" value="13" />
+          <entry key="project.open.time.3" value="14" />
           <entry key="project.open.time.4" value="35" />
-          <entry key="project.open.time.5" value="32" />
+          <entry key="project.open.time.5" value="35" />
           <entry key="project.open.time.6" value="11" />
           <entry key="project.open.time.7" value="6" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="106" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.opened" value="111" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -39,46 +39,51 @@
           <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room" value="1" />
           <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux" value="1" />
           <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions" value="1" />
+          <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module" value="1" />
           <entry key="babelrc" value="1" />
-          <entry key="css" value="159" />
+          <entry key="css" value="161" />
           <entry key="eslint" value="1" />
           <entry key="eslintrc" value="5" />
           <entry key="html" value="13" />
           <entry key="ico" value="1" />
-          <entry key="js" value="785" />
+          <entry key="js" value="803" />
           <entry key="json" value="3" />
           <entry key="md" value="1" />
           <entry key="svg" value="1" />
+          <entry key="ts" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="159" />
+          <entry key="CSS" value="161" />
           <entry key="ESLint" value="5" />
           <entry key="HTML" value="13" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="4" />
-          <entry key="JavaScript" value="778" />
+          <entry key="JavaScript" value="793" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="1" />
-          <entry key="UML" value="13" />
+          <entry key="TypeScript" value="1" />
+          <entry key="UML" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="2260" />
+          <entry key="css" value="2355" />
           <entry key="eslintrc" value="3" />
           <entry key="html" value="47" />
-          <entry key="js" value="59032" />
+          <entry key="js" value="59284" />
+          <entry key="ts" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="2260" />
+          <entry key="CSS" value="2355" />
           <entry key="ESLint" value="3" />
           <entry key="HTML" value="47" />
-          <entry key="JavaScript" value="59032" />
+          <entry key="JavaScript" value="59284" />
+          <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -91,15 +96,8 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/containers/room/room.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="102" column="80" lean-forward="true" selection-start-line="102" selection-start-column="80" selection-end-line="102" selection-end-column="80" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/src/containers/room/algorithm/core/algorithmCore.js">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -134,7 +132,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/user-interface/spinner-overlay/spinnerOverlay.js" />
         <option value="$PROJECT_DIR$/src/components/navigation/navigation-items/navigationItems.js" />
         <option value="$PROJECT_DIR$/src/components/visualization/graph/graph.js" />
         <option value="$PROJECT_DIR$/src/components/user-interface/something-went-wrong/somethingWentWrong.js" />
@@ -161,8 +158,6 @@
         <option value="$PROJECT_DIR$/src/containers/home/room-new/roomNew.js" />
         <option value="$PROJECT_DIR$/src/containers/room/room.css" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.css" />
-        <option value="$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js" />
         <option value="$PROJECT_DIR$/src/containers/room/graph/graph.css" />
         <option value="$PROJECT_DIR$/src/containers/room/actions-master/master.js" />
         <option value="$PROJECT_DIR$/src/redux/actions/actions.js" />
@@ -172,7 +167,6 @@
         <option value="$PROJECT_DIR$/src/containers/room/chat/chat.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.module.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js" />
-        <option value="$PROJECT_DIR$/src/containers/room/graph/graph.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.random.js" />
         <option value="$PROJECT_DIR$/src/components-higher/with-graph/withGraph.js" />
         <option value="$PROJECT_DIR$/src/components-higher/with-redux/withRedux.js" />
@@ -182,9 +176,13 @@
         <option value="$PROJECT_DIR$/src/components-higher/with-async-loading/withAsyncLoading.js" />
         <option value="$PROJECT_DIR$/src/components-higher/with-master/withMaster.js" />
         <option value="$PROJECT_DIR$/src/containers/room/actions-spectator/spectator.js" />
-        <option value="$PROJECT_DIR$/src/containers/room/room.js" />
         <option value="$PROJECT_DIR$/src/redux/actions/room.js" />
         <option value="$PROJECT_DIR$/src/containers/home/home.js" />
+        <option value="$PROJECT_DIR$/src/containers/room/room.js" />
+        <option value="$PROJECT_DIR$/src/containers/room/graph/graph.js" />
+        <option value="$PROJECT_DIR$/src/containers/room/algorithm/core/algorithmCore.js" />
+        <option value="$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.css" />
+        <option value="$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js" />
       </list>
     </option>
   </component>
@@ -211,8 +209,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1395" />
-    <option name="height" value="745" />
+    <option name="width" value="1399" />
+    <option name="height" value="748" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -239,12 +237,6 @@
               <item name="structured" type="b2602c69:ProjectViewProjectNode" />
               <item name="structured" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components-higher" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="containers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -253,6 +245,35 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="containers" type="462c0819:PsiDirectoryNode" />
               <item name="room" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
+              <item name="structured" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="room" type="462c0819:PsiDirectoryNode" />
+              <item name="algorithm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
+              <item name="structured" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="room" type="462c0819:PsiDirectoryNode" />
+              <item name="graph" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
+              <item name="structured" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
+              <item name="structured" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="graph-module" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -417,22 +438,27 @@
       <workItem from="1533998963385" duration="2743000" />
       <workItem from="1534026320633" duration="179000" />
       <workItem from="1534063918824" duration="760000" />
+      <workItem from="1534070610319" duration="4751000" />
+      <workItem from="1534082208804" duration="2154000" />
+      <workItem from="1534085030470" duration="98000" />
+      <workItem from="1534175164316" duration="32000" />
+      <workItem from="1534238797437" duration="4810000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="306347000" />
+    <option name="totallyTimeSpent" value="318192000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="2208" height="1208" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49871466" visible="true" weight="0.24023438" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49871466" visible="true" weight="0.1946217" />
       <window_info id="Structure" order="1" sideWeight="0.5012854" side_tool="true" weight="0.24023438" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32904884" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3283972" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32904884" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -453,47 +479,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/containers/room/navbar/navbar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/user-interface/something-went-wrong/somethingWentWrong.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/home/home.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/layout/layout.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/favicon.ico">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -522,7 +507,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js">
+    <entry file="file://$PROJECT_DIR$/src/hoc/wrapper/wrapper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="40" selection-start-column="40" selection-end-column="40" />
@@ -543,9 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/room/room.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -557,27 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="14" column="86" selection-start-line="14" selection-start-column="86" selection-end-line="14" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -603,13 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="41" column="63" selection-start-line="41" selection-start-column="63" selection-end-line="41" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.random.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -617,14 +571,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components-higher/with-graph/withGraph.js">
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-graph/withGraph.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="124" column="16" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components-higher/error-handler/errorHandler.js">
+    <entry file="file://$PROJECT_DIR$/src/hoc/error-handler/errorHandler.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
@@ -638,7 +592,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components-higher/with-async-loading/withAsyncLoading.js">
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-async-loading/withAsyncLoading.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
@@ -659,21 +613,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components-higher/with-master/withMaster.js">
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-master/withMaster.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="20" column="58" lean-forward="true" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-170">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components-higher/with-redux/withRedux.js">
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-redux/withRedux.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
@@ -698,34 +645,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="986">
           <caret line="47" column="37" lean-forward="true" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src/containers/layout/layout.js</OriginalElement>
-          <nodes>
-            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/actions/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/containers/layout/layout.css</node>
-            <node x="" y="">$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;</node>
-            <node x="" y="">$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="273.0" y="232.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
         </state>
       </provider>
     </entry>
@@ -1051,13 +970,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/layout/layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1666">
-          <caret line="49" column="41" lean-forward="true" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1065,22 +977,196 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components-higher/with-io/withIO.js">
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/containers/layout/layout.js</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/redux/actions/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/layout/layout.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="273.0" y="232.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/components/navigation/toolbar/toolbar.js">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/logo/logo.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/navigation/navigation-items/navigationItems.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.css</node>
+            <node x="" y="">$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js#Logo#101;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components/navigation/toolbar/toolbar.js#NavigationItems#34;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components/navigation/toolbar/toolbar.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components/navigation/toolbar/toolbar.js#toolbar.css#130;</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="192.0" y="164.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2244">
-          <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+        <state relative-caret-position="408">
+          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-io/withIO.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="71" column="20" lean-forward="true" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/layout/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/utils/graph-module</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js#bfs#1023;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.algorithms.js#dfs#447;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.algorithms.js#queue#46;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.algorithms.js#stack#8;</node>
+            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.module.js#_#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#adapter#52;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#bfs#8;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#dfs#13;</node>
+            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.random.js#_#7;</node>
+            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/queue.module.js#queue#13;</node>
+            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/stack.module.js#stack#13;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/underscore/underscore.js</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="378.0" y="269.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/utils/graph-module/graph.module.js</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js</node>
+            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js#bfs#1023;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.algorithms.js#dfs#447;</node>
+            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.module.js#_#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#adapter#52;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#bfs#8;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#dfs#13;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/underscore/underscore.js</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="258.0" y="196.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/queue.module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="14" column="44" lean-forward="true" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="1750" column="8" selection-start-line="1750" selection-start-column="8" selection-end-line="1750" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/room/room.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="102" column="80" lean-forward="true" selection-start-line="102" selection-start-column="80" selection-end-line="102" selection-end-column="80" />
+        <state relative-caret-position="102">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="563">
+          <caret line="58" column="13" lean-forward="true" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="23" column="24" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="6" column="51" lean-forward="true" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2784">
+          <caret line="159" column="31" lean-forward="true" selection-start-line="159" selection-start-column="31" selection-end-line="159" selection-end-column="31" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/algorithm/core/algorithmCore.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

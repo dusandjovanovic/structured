@@ -8,7 +8,7 @@ import Room from './containers/room/room';
 import Homescreen from './components/homescreen/homescreen';
 import Home from './containers/home/home';
 import NotificationContainer from './containers/notifications/notifications';
-import withAsyncLoading from './components-higher/with-async-loading/withAsyncLoading';
+import withAsyncLoading from './hoc/with-async-loading/withAsyncLoading';
 import * as actions from './redux/actions/index';
 
 const withAsyncSocial = withAsyncLoading(() => {
