@@ -1,0 +1,25 @@
+.react-draggable, .cursor {
+    cursor: move;
+}
+.no-cursor {
+    cursor: auto;
+}
+.cursor-y {
+    cursor: ns-resize;
+}
+.cursor-x {
+    cursor: ew-resize;
+}
+
+.react-draggable {
+    font-family: Inconsolata, monospace;
+    font-size: 1.1em;
+    background: #ffffff;
+    opacity: 0.8;
+    border: 1px solid #152434;
+    display: block;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}

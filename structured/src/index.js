@@ -11,6 +11,7 @@ import authReducer from './redux/reducers/auth';
 import userReducer from './redux/reducers/user';
 import notificationReducer from './redux/reducers/notification';
 import roomReducer from './redux/reducers/room';
+import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -41,6 +41,24 @@ function withGraph(WrappedComponent) {
             });
         };
 
+        managedAlgorithm = () => {
+            this.setState({
+                graphManaged: true,
+                graphManagedAddEdge: false,
+                graphManagedRemoveNode: false,
+                graphManagedRemoveEdge: false
+            });
+        };
+
+        managedAlgorithmCanceled = () => {
+            this.setState({
+                graphManaged: false,
+                graphManagedAddEdge: false,
+                graphManagedRemoveNode: false,
+                graphManagedRemoveEdge: false
+            });
+        };
+
         initiateGraph = (graph) => {
             if (graph) {
                 this.graph = new graphFactory();
@@ -132,6 +150,8 @@ function withGraph(WrappedComponent) {
                 managedAddEdgeHandler: this.managedAddEdgeHandler,
                 managedRemoveNodeHandler: this.managedRemoveNodeHandler,
                 managedRemoveEdgeHandler: this.managedRemoveEdgeHandler,
+                managedAlgorithm: this.managedAlgorithm,
+                managedAlgorithmCanceled: this.managedAlgorithmCanceled,
                 initiateGraph: this.initiateGraph,
                 randomGraph: this.randomGraph,
                 addNode: this.addNode,

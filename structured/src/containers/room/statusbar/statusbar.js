@@ -8,7 +8,7 @@ const statusbar = (props) => (
             : <span className="pr-3 pl-1 text-info master">Master: {props.createdBy}</span>
         }
         <span className="pl-3 pr-0 text-muted">All users in room: </span>
-        {props.users.map(user => (<span className="p-1 text-muted">{user}</span>))}
+        {props.users.map(user => (<span key={user + new Date()} className="p-1 text-muted">{user}</span>))}
     </span>
 );
 

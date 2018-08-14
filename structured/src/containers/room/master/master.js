@@ -23,11 +23,11 @@ class Master extends Component {
                 <div />
                 <div className="btn-toolbar mb-2 mb-md-0">
                     <div className="btn-group mr-2">
-                        <Button className="btn btn-outline-secondary" onClick={() => this.props.randomGraph()}>Random graph ↺</Button>
-                        <Button className="btn btn-outline-secondary" onClick={() => this.props.addNode()}>Add node ↳</Button>
-                        <Button className="btn btn-outline-secondary" onClick={() => this.props.addEdge()}>Add edge ↯</Button>
-                        <Button className="btn btn-outline-secondary" onClick={() => this.props.removeNode()}>Remove node</Button>
-                        <Button className="btn btn-outline-secondary" onClick={() => this.props.removeEdge()}>Remove edge</Button>
+                        <Button className="btn btn-outline-secondary" disabled={this.props.disabled} onClick={() => this.props.randomGraph()}>Random graph ↺</Button>
+                        <Button className="btn btn-outline-secondary" disabled={this.props.disabled} onClick={() => this.props.addNode()}>Add node ↳</Button>
+                        <Button className="btn btn-outline-secondary" disabled={this.props.disabled} onClick={() => this.props.addEdge()}>Add edge ↯</Button>
+                        <Button className="btn btn-outline-secondary" disabled={this.props.disabled} onClick={() => this.props.removeNode()}>Remove node</Button>
+                        <Button className="btn btn-outline-secondary" disabled={this.props.disabled} onClick={() => this.props.removeEdge()}>Remove edge</Button>
                     </div>
                     <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                         <DropdownToggle caret>
@@ -36,8 +36,9 @@ class Master extends Component {
                         <DropdownMenu right>
                             <DropdownItem header>Choose an animation</DropdownItem>
                             <DropdownItem divider />
-                            <DropdownItem>Breadth-first search</DropdownItem>
-                            <DropdownItem>Depth-first search</DropdownItem>
+                            <DropdownItem onClick={() => this.props.algorithmBreadth()}>Breadth-first search</DropdownItem>
+                            <DropdownItem onClick={() => this.props.algorithmDepth()}>Depth-first search</DropdownItem>
+                            <DropdownItem onClick={() => this.props.algorithmCanceled()}>Cancel</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>

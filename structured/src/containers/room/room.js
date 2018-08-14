@@ -6,7 +6,9 @@ import Chat from './chat/chat';
 import Navbar from './navbar/navbar';
 import Statusbar from './statusbar/statusbar';
 import Overlay from '../../components/user-interface/spinner-overlay/spinnerOverlay';
+import AlgorithmCore from './algorithm/core/algorithm';
 
+import withAlgorithm from "../../hoc/with-algorithm/withAlgorithm";
 import withMaster from "../../hoc/with-master/withMaster";
 import withRedux from '../../hoc/with-redux/withRedux';
 import withGraph from "../../hoc/with-graph/withGraph";
@@ -15,9 +17,6 @@ import withIO from "../../hoc/with-io/withIO";
 import './room.css';
 
 class Room extends Component {
-    graphWidth = 800;
-    graphHeight = 500;
-
     state = {
         redirect: false
     };
@@ -66,10 +65,10 @@ class Room extends Component {
                                 </div>
                             </Col>
                             <Col md="9" className="ml-sm-auto pt-3 px-4">
-                                { this.props.children }
+                                {
+                                    this.props.children
+                                }
                                 <Graph visualization={this.props.visualization}
-                                       width={this.graphWidth}
-                                       height={this.graphHeight}
                                        managed={this.props.graphManaged}
                                        managedAddEdge={this.props.graphManagedAddEdge}
                                        managedRemoveNode={this.props.graphManagedRemoveNode}
@@ -77,17 +76,19 @@ class Room extends Component {
                                        removeEdge={(source, target) => this.props.removeEdge(source, target)}
                                        addEdge={(source, target) => this.props.addEdge(source, target)}
                                        removeNode={(node) => this.props.removeNode(node)}
+                                       width={800} height={600}
                                 />
                             </Col>
                             <footer className="footer">
                                 <Container fluid>
-                                    <Statusbar users={this.props.data.users}
-                                               master={this.props.room.master}
-                                               createdBy={this.props.data.createdBy}
-                                            />
+                                    <Statusbar users={this.props.data.users} master={this.props.room.master} createdBy={this.props.data.createdBy} />
                                 </Container>
                             </footer>
                         </Row>
+                        {this.props.algorithm
+                            ? <AlgorithmCore />
+                            : null
+                        }
                     </Container>
                 </div>
         );
@@ -109,4 +110,4 @@ class Room extends Component {
     };
 }
 
-export default withRouter((withRedux (withIO (withGraph (withMaster (Room))))));
+export default withRouter((withRedux (withIO (withGraph (withAlgorithm (withMaster (Room)))))));

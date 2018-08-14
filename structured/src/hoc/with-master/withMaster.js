@@ -15,6 +15,10 @@ function withMaster (WrappedComponent) {
                                 removeNode={this.props.managedRemoveNodeHandler}
                                 addEdge={this.props.managedAddEdgeHandler}
                                 removeEdge={this.props.managedRemoveEdgeHandler}
+                                algorithmBreadth={this.props.algorithmBreadth}
+                                algorithmDepth={this.props.algorithmDepth}
+                                algorithmCanceled={this.props.algorithmCanceled}
+                                disabled={this.props.algorithm}
                         />
                       </WrappedComponent>
                     : <WrappedComponent {...this.props}>
@@ -22,6 +26,7 @@ function withMaster (WrappedComponent) {
                                    removeNode={this.props.managedRemoveNodeHandler}
                                    addEdge={this.props.managedAddEdgeHandler}
                                    removeEdge={this.props.managedRemoveEdgeHandler}
+                                   disabled={this.props.algorithm}
                         />
                       </WrappedComponent>
                 }
