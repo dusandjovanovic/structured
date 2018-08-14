@@ -21,12 +21,18 @@ class Chat extends Component {
 
     messageReceived = (message) => {
         let position = "right";
-        if (message.sender !== this.props.username)
+        let content;
+        if (message.sender !== this.props.username) {
             position = "left";
+            content = message.sender + ":  " + message.msg;
+        }
+        else
+            content = message.msg;
+
         let updated = [...this.state.messages];
         updated.push({
             sender: message.sender,
-            text: message.msg,
+            text: content,
             position: position,
             type: 'text',
             date: new Date(),

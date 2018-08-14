@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import Graph from './graph/graph';
 import Chat from './chat/chat';
 import Navbar from './navbar/navbar';
+import Statusbar from './statusbar/statusbar';
 import Overlay from '../../components/user-interface/spinner-overlay/spinnerOverlay';
 
 import withMaster from "../../hoc/with-master/withMaster";
@@ -78,6 +79,14 @@ class Room extends Component {
                                        removeNode={(node) => this.props.removeNode(node)}
                                 />
                             </Col>
+                            <footer className="footer">
+                                <Container fluid>
+                                    <Statusbar users={this.props.data.users}
+                                               master={this.props.room.master}
+                                               createdBy={this.props.data.createdBy}
+                                            />
+                                </Container>
+                            </footer>
                         </Row>
                     </Container>
                 </div>
