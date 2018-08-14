@@ -49,17 +49,16 @@ structured/
     index.html
     favicon.ico
   src/
+    /assets
     /components
-    /components-higher
     /containers
+    /hoc
     /redux
     /utils
-    App.css
     App.js
     App.test.js
     index.css
     index.js
-    logo.svg
 ```
 
 For the project to build, **these files must exist with exact filenames**:
