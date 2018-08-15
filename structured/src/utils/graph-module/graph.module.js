@@ -46,9 +46,11 @@ export const graphFactory = () => {
         },
         addEdge: (nodeOne, nodeTwo) => {
             if (graphProto.contains(nodeOne) && graphProto.contains(nodeTwo)) {
-                graph[nodeOne].edges[nodeTwo] = true;
-                graph[nodeTwo].input[nodeOne] = true;
-                adapter.graphAdapterEdge(nodeOne, nodeTwo, visualization);
+                if (!graph[nodeOne].edges[nodeTwo] && !graph[nodeTwo].input[nodeOne]) {
+                    graph[nodeOne].edges[nodeTwo] = true;
+                    graph[nodeTwo].input[nodeOne] = true;
+                    adapter.graphAdapterEdge(nodeOne, nodeTwo, visualization);
+                }
             }
         },
         removeEdge: (nodeOne, nodeTwo) => {

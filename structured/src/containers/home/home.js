@@ -6,6 +6,7 @@ import RoomView from './room-view/roomView';
 import { connect } from 'react-redux';
 import * as actions from "../../redux/actions";
 import Overlay from "../../components/user-interface/spinner-overlay/spinnerOverlay";
+import './home.css';
 
 class Home extends React.Component {
     state = {
@@ -44,7 +45,7 @@ class Home extends React.Component {
                     <Row>
                         <RoomNew createAndEnterRoom={(name, maxUsers) => this.createAndEnterRoom(name, maxUsers)}/>
                     </Row>
-                    <hr />
+                    <hr className="mt-5" />
                     {this.props.rooms
                         ? <RoomView enterRoom={(name) => this.enterRoom(name)}
                                     rooms={this.props.rooms}

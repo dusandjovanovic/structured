@@ -33,7 +33,7 @@ class roomNew extends Component {
 
     render() {
         return (
-            <Card className="m-auto">
+            <Card className="shadow m-auto">
                 <CardHeader>
                     <h5>Create your own room</h5>
                 </CardHeader>
