@@ -23,11 +23,11 @@ class Master extends Component {
                 <div />
                 <div className="btn-toolbar mb-2 mb-md-0">
                     <div className="btn-group mr-2">
-                        <Button className="btn btn-outline-secondary" disabled={this.props.disabled} onClick={() => this.props.randomGraph()}><i className="fas fa-code-branch"></i> Random graph</Button>
-                        <Button className="btn btn-outline-secondary" disabled={this.props.disabled} onClick={() => this.props.addNode()}><i className="fas fa-plus"></i> Add node</Button>
-                        <Button className="btn btn-outline-secondary" disabled={this.props.disabled} onClick={() => this.props.addEdge()}><i className="fas fa-link"></i> Add edge</Button>
-                        <Button className="btn btn-outline-secondary" disabled={this.props.disabled} onClick={() => this.props.removeNode()}><i className="fas fa-eraser"></i> Remove node</Button>
-                        <Button className="btn btn-outline-secondary" disabled={this.props.disabled} onClick={() => this.props.removeEdge()}><i className="fas fa-unlink"></i> Remove edge</Button>
+                        <Button outline color="info" disabled={this.props.disabled} onClick={() => this.props.randomGraph()}><i className="fas fa-code-branch"></i> Random graph</Button>
+                        <Button outline color="info" disabled={this.props.disabled} onClick={() => this.props.addNode()}><i className="fas fa-plus"></i> Add node</Button>
+                        <Button outline color="info" disabled={this.props.disabled} onClick={() => this.props.addEdge()}><i className="fas fa-link"></i> Add edge</Button>
+                        <Button outline disabled={this.props.disabled} onClick={() => this.props.removeNode()}><i className="fas fa-eraser"></i> Remove node</Button>
+                        <Button outline disabled={this.props.disabled} onClick={() => this.props.removeEdge()}><i className="fas fa-unlink"></i> Remove edge</Button>
                     </div>
                     <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                         <DropdownToggle caret>
