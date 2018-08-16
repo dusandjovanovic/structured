@@ -117,7 +117,9 @@ Ukoliko je zahtev ispunjen, success je true, ukoliko nije, success je false i dr
 |-------------|---------|-----------------------|-----------------------------------------|-------------------------------------------|
 | /:mode      | GET     | mode: String          | /                                       | data: Room[]                              |
 | /get/:name  | GET     | name: String          | /                                       | data: Room                                |
-| /           | POST    | /                     | name: String, maxUsers: Number, createdBy: String   | msg: String                   |
+| /get-graph/:name| GET | name: String          | /                                       | data: Number[]                            |
+| /           | POST    | /                     | name: String, maxUsers: Number, createdBy: String, roomType: String   | msg: String |
 | /join       | POST    | /                     | roomName: String, username: Number      | msg: String                               |
 | /leave      | POST    | /                     | roomName: String, username: Number      | msg: String                               |
+| /:name      | PUT     | name: String          | node: Number                            | msg: String                               |
 | /:id        | DELETE  | id: String            | /                                       | msg: String                               |
