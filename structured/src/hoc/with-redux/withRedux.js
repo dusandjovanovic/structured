@@ -10,13 +10,7 @@ function withRedux (WrappedComponent) {
     return class extends React.Component {
         render() {
             return (
-                <WrappedComponent io={io}
-                                  username={this.props.username}
-                                  room={this.props.room}
-                                  data={this.props.data}
-                                  error={this.props.error}
-                                  {...this.props}
-                />
+                <WrappedComponent io={io} {...this.props} />
             );
         }
     }

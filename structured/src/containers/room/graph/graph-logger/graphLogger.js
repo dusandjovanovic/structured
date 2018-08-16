@@ -7,8 +7,8 @@ const graphLogger = (props) => (
         <div className="p-2 text-info holder">Selected node: <span className="selected">{props.nodeSelected ? props.nodeSelected.key : null}</span></div>
         <div className="p-2 holder">Current node: <span className="node">{props.nodeCurrent ? props.nodeCurrent.key : null}</span></div>
         <div className="p-2 text-secondary holder">Root node: <span className="node">{props.nodeRoot ? props.nodeRoot.key : null}</span></div>
-        <div className="p-2 text-secondary holder">Watched nodes:
-            <span>{props.nodesSelected.map(node => (<span className="watched">{node}</span>))}</span>
+        <div className="p-2 text-secondary holder">Highlighted nodes:
+            <span>{props.nodesHighlighted.map(node => (<span key={node} className="watched">{node}</span>))}</span>
         </div>
     </div>
 );

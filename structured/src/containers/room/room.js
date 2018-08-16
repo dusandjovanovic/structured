@@ -70,10 +70,24 @@ class Room extends Component {
                                 }
                                 <Graph visualization={this.props.visualization}
                                        graphManaged={this.props.graphManaged}
-                                       graphOperation={this.props.graphOperation}
+                                       graphAnimated={this.props.graphAnimated}
+                                       graphAnimatedEnded={this.props.graphAnimatedEnded}
+
+                                       nodeSelected={this.props.nodeSelected}
+                                       nodeFocused={this.props.nodeFocused}
+                                       nodeCurrent={this.props.nodeCurrent}
+                                       nodesHighlighted={this.props.nodesHighlighted}
+                                       nodeRoot={this.props.nodeRoot}
+
+                                       handlerNodeSelected={this.props.handlerNodeSelected}
+                                       handlerNodeFocused={this.props.handlerNodeFocused}
+                                       handlerNodeLostFocus={this.props.handlerNodeLostFocus}
+                                       handlerViewport={this.props.handlerViewport}
+
                                        managedAddEdge={this.props.graphManagedAddEdge}
                                        managedRemoveNode={this.props.graphManagedRemoveNode}
                                        managedRemoveEdge={this.props.graphManagedRemoveEdge}
+
                                        removeEdge={(source, target) => this.props.removeEdge(source, target)}
                                        addEdge={(source, target) => this.props.addEdge(source, target)}
                                        removeNode={(node) => this.props.removeNode(node)}
@@ -82,7 +96,11 @@ class Room extends Component {
                             </Col>
                             <footer className="footer">
                                 <Container fluid>
-                                    <Statusbar users={this.props.data.users} master={this.props.room.master} createdBy={this.props.data.createdBy} />
+                                    <Statusbar users={this.props.data.users}
+                                               master={this.props.room.master}
+                                               graphManaged={this.props.graphManaged}
+                                               graphOperation={this.props.graphOperation}
+                                               createdBy={this.props.data.createdBy} />
                                 </Container>
                             </footer>
                         </Row>

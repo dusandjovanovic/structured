@@ -12,9 +12,9 @@ function withMaster (WrappedComponent) {
                     ? <WrappedComponent {...this.props}>
                         <Master randomGraph={this.props.randomGraph}
                                 addNode={this.props.addNode}
-                                removeNode={this.props.managedRemoveNodeHandler}
-                                addEdge={this.props.managedAddEdgeHandler}
-                                removeEdge={this.props.managedRemoveEdgeHandler}
+                                removeNode={this.props.graphManagedRemoveNode}
+                                addEdge={this.props.graphManagedAddEdge}
+                                removeEdge={this.props.graphManagedRemoveEdge}
                                 algorithmBreadth={this.props.algorithmBreadth}
                                 algorithmDepth={this.props.algorithmDepth}
                                 algorithmCanceled={this.props.algorithmCanceled}
@@ -23,9 +23,9 @@ function withMaster (WrappedComponent) {
                       </WrappedComponent>
                     : <WrappedComponent {...this.props}>
                         <Spectator addNode={this.props.addNode}
-                                   removeNode={this.props.managedRemoveNodeHandler}
-                                   addEdge={this.props.managedAddEdgeHandler}
-                                   removeEdge={this.props.managedRemoveEdgeHandler}
+                                   removeNode={this.props.graphManagedRemoveNode}
+                                   addEdge={this.props.graphManagedAddEdge}
+                                   removeEdge={this.props.graphManagedRemoveEdge}
                                    disabled={this.props.algorithm}
                         />
                       </WrappedComponent>

@@ -7,21 +7,21 @@ function withAlgorithm (WrappedComponent) {
         };
 
         algorithmBreadth = () => {
-            this.props.managedAlgorithm();
+            this.props.graphManagedAlgorithm();
             this.setState({
                 algorithm: true
             });
         };
 
         algorithmDepth = () => {
-            this.props.managedAlgorithm();
+            this.props.graphManagedAlgorithm();
             this.setState({
                 algorithm: true
             });
         };
 
         algorithmCanceled = () => {
-            this.props.managedAlgorithmCanceled();
+            this.props.graphManagedAlgorithmEnded();
             this.setState({
                 algorithm: false
             });

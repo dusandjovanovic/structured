@@ -3,14 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
-import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
+
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './redux/reducers/auth';
 import userReducer from './redux/reducers/user';
 import notificationReducer from './redux/reducers/notification';
 import roomReducer from './redux/reducers/room';
+
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

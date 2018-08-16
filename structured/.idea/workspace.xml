@@ -17,19 +17,19 @@
     <session id="1016856043">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="118" />
+          <entry key="project.closed" value="123" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.2" value="4" />
           <entry key="project.open.time.3" value="15" />
-          <entry key="project.open.time.4" value="36" />
-          <entry key="project.open.time.5" value="37" />
-          <entry key="project.open.time.6" value="12" />
+          <entry key="project.open.time.4" value="38" />
+          <entry key="project.open.time.5" value="39" />
+          <entry key="project.open.time.6" value="14" />
           <entry key="project.open.time.7" value="6" />
           <entry key="project.open.time.8" value="3" />
-          <entry key="project.opened" value="118" />
+          <entry key="project.opened" value="124" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -42,12 +42,12 @@
           <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions" value="1" />
           <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module" value="1" />
           <entry key="babelrc" value="1" />
-          <entry key="css" value="189" />
+          <entry key="css" value="194" />
           <entry key="eslint" value="1" />
           <entry key="eslintrc" value="5" />
           <entry key="html" value="15" />
           <entry key="ico" value="1" />
-          <entry key="js" value="870" />
+          <entry key="js" value="952" />
           <entry key="json" value="5" />
           <entry key="md" value="1" />
           <entry key="svg" value="1" />
@@ -56,12 +56,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="189" />
+          <entry key="CSS" value="194" />
           <entry key="ESLint" value="5" />
           <entry key="HTML" value="15" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="860" />
+          <entry key="JavaScript" value="942" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="1" />
@@ -71,19 +71,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="2687" />
+          <entry key="css" value="2765" />
           <entry key="eslintrc" value="3" />
           <entry key="html" value="48" />
-          <entry key="js" value="62958" />
+          <entry key="js" value="69502" />
           <entry key="ts" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="2687" />
+          <entry key="CSS" value="2765" />
           <entry key="ESLint" value="3" />
           <entry key="HTML" value="48" />
-          <entry key="JavaScript" value="62958" />
+          <entry key="JavaScript" value="69502" />
           <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
@@ -98,76 +98,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/containers/room/room.js">
+        <entry file="file://$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="72" column="81" selection-start-line="72" selection-start-column="81" selection-end-line="72" selection-end-column="81" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="268">
+              <caret line="9" column="44" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/containers/room/master/master.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="662">
-              <caret line="28" column="39" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/containers/room/spectator/spectator.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1598">
-              <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hoc/with-graph/withGraph.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.module.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+            <state relative-caret-position="676">
+              <caret line="256" column="66" lean-forward="true" selection-start-line="256" selection-start-column="66" selection-end-line="256" selection-end-column="66" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -198,12 +144,19 @@
       <find>console</find>
       <find>width</find>
       <find>nodeClicked</find>
-      <find>nodeFocused</find>
       <find>nodeLostFocus</find>
       <find>surfaceClicked</find>
-      <find>state</find>
       <find>onClick</find>
       <find>managed</find>
+      <find>handler</find>
+      <find>nodeFocused</find>
+      <find>nodeSelected</find>
+      <find>nodesSelected</find>
+      <find>state</find>
+      <find>nodesSele</find>
+      <find>actionTypes</find>
+      <find>this.props</find>
+      <find>assignClass</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -213,14 +166,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components-higher/wrapper-consumer/wrapperConsumer.js" />
-        <option value="$PROJECT_DIR$/src/components-higher/wrapper-master/wrapperMaster.js" />
-        <option value="$PROJECT_DIR$/src/components/homescreen/homescreen.js" />
-        <option value="$PROJECT_DIR$/stories/index.stories.js" />
         <option value="$PROJECT_DIR$/src/components-higher/with-consumer/withConsumer.js" />
         <option value="$PROJECT_DIR$/src/containers/room/graph/graph.css" />
         <option value="$PROJECT_DIR$/src/containers/room/actions-master/master.js" />
-        <option value="$PROJECT_DIR$/src/redux/actions/actions.js" />
         <option value="$PROJECT_DIR$/src/components-higher/with-io/withIo.js" />
         <option value="$PROJECT_DIR$/src/components-higher/socketio/socketio.js" />
         <option value="$PROJECT_DIR$/src/components-higher/with-redux/socketio.js" />
@@ -236,34 +184,39 @@
         <option value="$PROJECT_DIR$/src/containers/room/actions-spectator/spectator.js" />
         <option value="$PROJECT_DIR$/src/redux/actions/room.js" />
         <option value="$PROJECT_DIR$/src/containers/room/statusbar/statusbar.ts" />
-        <option value="$PROJECT_DIR$/src/containers/room/statusbar/statusbar.css" />
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/containers/room/algorithm/core/control-bar/controlBar.js" />
         <option value="$PROJECT_DIR$/src/containers/room/algorithm/core/control-bar/controlBar.css" />
         <option value="$PROJECT_DIR$/src/containers/room/algorithm/core/algorithmCore.css" />
         <option value="$PROJECT_DIR$/src/containers/room/algorithm/core/algorithmCore.js" />
-        <option value="$PROJECT_DIR$/src/containers/room/statusbar/statusbar.js" />
-        <option value="$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js" />
-        <option value="$PROJECT_DIR$/src/hoc/with-master/withMaster.js" />
         <option value="$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.css" />
-        <option value="$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js" />
-        <option value="$PROJECT_DIR$/src/containers/room/room.css" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/containers/room/chat/chat.js" />
         <option value="$PROJECT_DIR$/src/containers/social/request/request.js" />
         <option value="$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js" />
-        <option value="$PROJECT_DIR$/src/hoc/with-graph/withGraph.js" />
-        <option value="$PROJECT_DIR$/src/containers/room/room.js" />
-        <option value="$PROJECT_DIR$/src/containers/room/graph/graph.js" />
         <option value="$PROJECT_DIR$/src/components/logo/logo.js" />
         <option value="$PROJECT_DIR$/src/containers/home/home.css" />
         <option value="$PROJECT_DIR$/src/containers/home/room-new/roomNew.js" />
         <option value="$PROJECT_DIR$/src/containers/home/home.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.module.js" />
-        <option value="$PROJECT_DIR$/src/containers/room/algorithm/core/algorithm.css" />
         <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/containers/room/master/master.js" />
         <option value="$PROJECT_DIR$/src/containers/room/spectator/spectator.js" />
+        <option value="$PROJECT_DIR$/src/hoc/with-master/withMaster.js" />
+        <option value="$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js" />
+        <option value="$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js" />
+        <option value="$PROJECT_DIR$/src/containers/room/algorithm/core/algorithm.css" />
+        <option value="$PROJECT_DIR$/src/redux/actions/graph.js" />
+        <option value="$PROJECT_DIR$/src/hoc/with-redux/withRedux.js" />
+        <option value="$PROJECT_DIR$/src/redux/reducers/graph.js" />
+        <option value="$PROJECT_DIR$/src/redux/actions/actions.js" />
+        <option value="$PROJECT_DIR$/src/redux/actions/index.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/containers/room/graph/graph.js" />
+        <option value="$PROJECT_DIR$/src/containers/room/statusbar/statusbar.css" />
+        <option value="$PROJECT_DIR$/src/containers/room/statusbar/statusbar.js" />
+        <option value="$PROJECT_DIR$/src/containers/room/room.js" />
+        <option value="$PROJECT_DIR$/src/containers/room/room.css" />
+        <option value="$PROJECT_DIR$/src/hoc/with-graph/withGraph.js" />
       </list>
     </option>
   </component>
@@ -317,20 +270,7 @@
               <item name="structured" type="b2602c69:ProjectViewProjectNode" />
               <item name="structured" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="room" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="hoc" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -509,17 +449,23 @@
       <workItem from="1534285837868" duration="513000" />
       <workItem from="1534319844000" duration="5022000" />
       <workItem from="1534334206257" duration="1868000" />
+      <workItem from="1534348858970" duration="13000" />
+      <workItem from="1534348896421" duration="9567000" />
+      <workItem from="1534366306787" duration="2584000" />
+      <workItem from="1534369641549" duration="860000" />
+      <workItem from="1534428661161" duration="2373000" />
+      <workItem from="1534431849020" duration="3436000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="341490000" />
+    <option name="totallyTimeSpent" value="360323000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2208" height="1208" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49871466" visible="true" weight="0.1987238" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49871466" visible="true" weight="0.20145853" />
       <window_info id="Structure" order="1" sideWeight="0.5012854" side_tool="true" weight="0.24023438" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -538,6 +484,26 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49871466" visible="true" weight="0.23632812" />
+      <window_info id="Structure" order="1" sideWeight="0.5012854" side_tool="true" weight="0.24023438" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3283972" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32904884" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32904884" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32904884" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="TypeScript" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -546,276 +512,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src/components-higher</OriginalElement>
-          <nodes>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/error-handler/errorHandler.js#Modal#34;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/error-handler/errorHandler.js#React#7;</node>
-            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.module.js#graphFactory#131;</node>
-            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.random.js</node>
-            <node x="" y="">compose;</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/actions/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/socket.io-client/lib/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/containers/room/master/master.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/modal/modal.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/containers/room/spectator/spectator.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-async-loading/withAsyncLoading.js#React#7;</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-graph/withGraph.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-graph/withGraph.js#graphFactory#35;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-graph/withGraph.js#randomData#102;</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-io/withIO.js#React#7;</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-master/withMaster.js#Master#34;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-master/withMaster.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-master/withMaster.js#Spectator#92;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-master/withMaster.js#Wrapper#158;</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-redux/withRedux.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-redux/withRedux.js#actions#148;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-redux/withRedux.js#compose#75;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-redux/withRedux.js#connect#36;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components-higher/with-redux/withRedux.js#socketio#107;</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="463.0" y="342.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src/containers/layout</OriginalElement>
-          <nodes>
-            <node x="189.0" y="0.0">$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js</node>
-            <node x="387.0" y="27.0">$PROJECT_DIR$/src/redux/actions/index.js</node>
-            <node x="0.0" y="37.0">$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;</node>
-            <node x="28.0" y="194.0">$PROJECT_DIR$/node_modules/react/index.js</node>
-            <node x="425.0" y="215.0">$PROJECT_DIR$/src/containers/layout/layout.css</node>
-            <node x="207.0" y="97.0">$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;</node>
-            <node x="3.0" y="343.0">$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;</node>
-            <node x="350.0" y="374.0">$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js</node>
-            <node x="174.0" y="435.0">$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/node_modules/react/index.js">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/src/containers/layout/layout.css">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/src/redux/actions/index.js">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;" target="$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="273.0" y="232.0" />
-          <SelectedNodes>
-            <node>$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js</node>
-          </SelectedNodes>
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src/redux</OriginalElement>
-          <nodes>
-            <node x="" y="">$PROJECT_DIR$/src/redux/actions/actions.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/reducers/auth.js#actionTypes#7;</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/actions/auth.js#actionTypes#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/auth.js#actions#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/auth.js#axios#49;</node>
-            <node x="" y="">$PROJECT_DIR$/src/utils/axios-handler.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/actions/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/reducers/notification.js#actionTypes#7;</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/actions/notification.js#actionTypes#7;</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/actions/room.js#actionTypes#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/room.js#actions#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/room.js#axios#49;</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/reducers/room.js#actionTypes#7;</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/actions/user.js#actionTypes#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/user.js#actions#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions/user.js#axios#49;</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/reducers/user.js#actionTypes#7;</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="0.7961926091825308" x="448.0" y="437.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src/containers/room/room.js</OriginalElement>
-          <nodes>
-            <node x="" y="">$PROJECT_DIR$/src/containers/room/chat/chat.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/containers/room/graph/graph.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/reactstrap/src/index.js#Col#69;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Container#7;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/reactstrap/src/index.js#Row#44;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react-router-dom/es/index.js#Redirect#491;C:/Users/Dushan/Documents/GitHub/structured/structured/node_modules/react-router-dom/es/index.js#withRouter#995;</node>
-            <node x="" y="">$PROJECT_DIR$/src/containers/room/navbar/navbar.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;</node>
-            <node x="" y="">$PROJECT_DIR$/src/containers/room/room.css</node>
-            <node x="" y="">$PROJECT_DIR$/src/containers/room/room.js#Chat#189;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Col#122;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Container#106;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Graph#154;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Navbar#221;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Overlay#259;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Redirect#49;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#Row#117;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#room.css#614;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withGraph#489;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withIO#559;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withMaster#346;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withRedux#419;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/room/room.js#withRouter#59;</node>
-            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/spinner-overlay/spinnerOverlay.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-graph/withGraph.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-io/withIO.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-master/withMaster.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/with-redux/withRedux.js</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="411.0" y="327.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src/containers/layout/layout.js</OriginalElement>
-          <nodes>
-            <node x="" y="">$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/redux/actions/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react-redux/es/index.js#connect#133;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/containers/layout/layout.css</node>
-            <node x="" y="">$PROJECT_DIR$/src/containers/layout/layout.js#Component#15;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Dropdown#214;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Toolbar#147;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#Wrapper#84;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#actions#288;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#connect#48;C:/Users/Dushan/Documents/GitHub/structured/structured/src/containers/layout/layout.js#layout.css#329;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react/cjs/react.development.js#Component#48133;</node>
-            <node x="" y="">$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/components-higher/wrapper/wrapper.js</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="273.0" y="232.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/components/navigation/toolbar/toolbar.js">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js</OriginalElement>
-          <nodes>
-            <node x="" y="">$PROJECT_DIR$/node_modules/react/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/components/logo/logo.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/components/navigation/navigation-items/navigationItems.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.css</node>
-            <node x="" y="">$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js#Logo#101;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components/navigation/toolbar/toolbar.js#NavigationItems#34;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components/navigation/toolbar/toolbar.js#React#7;C:/Users/Dushan/Documents/GitHub/structured/structured/src/components/navigation/toolbar/toolbar.js#toolbar.css#130;</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="192.0" y="164.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src/utils/graph-module</OriginalElement>
-          <nodes>
-            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js#bfs#1023;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.algorithms.js#dfs#447;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.algorithms.js#queue#46;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.algorithms.js#stack#8;</node>
-            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.module.js#_#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#adapter#52;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#bfs#8;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#dfs#13;</node>
-            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.random.js#_#7;</node>
-            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/queue.module.js#queue#13;</node>
-            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/stack.module.js#stack#13;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/underscore/underscore.js</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="378.0" y="269.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src/utils/graph-module/graph.module.js</OriginalElement>
-          <nodes>
-            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js#bfs#1023;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.algorithms.js#dfs#447;</node>
-            <node x="" y="">$PROJECT_DIR$/src/utils/graph-module/graph.module.js#_#96;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#adapter#52;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#bfs#8;C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module/graph.module.js#dfs#13;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/underscore/underscore.js</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="258.0" y="196.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/graph-module/queue.module.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -845,13 +541,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/room/statusbar/statusbar.ts" />
-    <entry file="file://$PROJECT_DIR$/src/containers/room/statusbar/statusbar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="1" column="27" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1938">
@@ -873,34 +562,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/statusbar/statusbar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-io/withIO.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="79" column="34" lean-forward="true" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="34" column="45" lean-forward="true" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-master/withMaster.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -915,13 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/room/algorithm/core/algorithm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -933,13 +587,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -984,13 +631,6 @@
     <entry file="file://$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/room.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="108" column="1" lean-forward="true" selection-start-line="77" selection-end-line="108" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/home/home.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1026,62 +666,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/algorithm/core/algorithm.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1768">
-          <caret line="52" column="22" lean-forward="true" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-graph/withGraph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/room.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="72" column="81" selection-start-line="72" selection-start-column="81" selection-end-line="72" selection-end-column="81" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1092,10 +680,182 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/notification.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-412">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/room.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="9" column="2" lean-forward="true" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/room/master/master.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="28" column="39" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="39" />
+        <state relative-caret-position="544">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-master/withMaster.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="12" column="58" lean-forward="true" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/algorithm/core/algorithm.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/room.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-816" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-io/withIO.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="52" column="10" lean-forward="true" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2142">
+          <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-redux/withRedux.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="846">
+          <caret line="30" column="84" selection-start-line="30" selection-start-column="84" selection-end-line="30" selection-end-column="84" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/graph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="85" column="37" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/graph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="767">
+          <caret line="141" column="42" lean-forward="true" selection-start-line="141" selection-start-column="42" selection-end-line="141" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="3" column="108" selection-start-line="3" selection-start-column="108" selection-end-line="3" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/statusbar/statusbar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/statusbar/statusbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="12" column="86" selection-start-line="12" selection-start-column="86" selection-end-line="12" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/room.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="96" column="53" selection-start-line="96" selection-start-column="53" selection-end-line="96" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/room.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="9" column="44" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-graph/withGraph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="256" column="66" lean-forward="true" selection-start-line="256" selection-start-column="66" selection-end-line="256" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
