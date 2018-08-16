@@ -45,6 +45,27 @@ router.get('/get/:name', /*passport.authenticate('jwt', {session: false}),*/ fun
   //}
 });
 
+/* GET ROOM */
+router.get('/get-graph/:name', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
+  var token = getToken(req.headers);
+  //if (token) {
+    var name = req.params.name;
+    if (!name) {
+      res.send({success: false, msg: 'Please pass name of the room.'});
+    } else {
+      Room.findOne({name: name}, function(err, room) {
+        if (err) {
+          res.send({success: false, msg: 'MongoDB error: ' + err});
+        } else {
+          res.send({success: true, data: room.graph});
+        }
+      });
+    }
+  //} else {
+  //  return res.status(403).send({success: false, msg: 'Unauthorized.'});
+  //}
+});
+
 /* CREATE ROOM */
 router.post('/', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
   var token = getToken(req.headers);
@@ -52,7 +73,8 @@ router.post('/', /*passport.authenticate('jwt', {session: false}),*/ function(re
     var name = req.body.name;
     var maxUsers = req.body.maxUsers;
     var createdBy = req.body.createdBy;
-    if (!name || !maxUsers || !createdBy) {
+    var roomType = req.body.roomType;
+    if (!name || !maxUsers || !createdBy || !roomType) {
       res.send({success: false, msg: 'Please pass all the arguments.'});
     } else {
       Room.create({
@@ -60,7 +82,9 @@ router.post('/', /*passport.authenticate('jwt', {session: false}),*/ function(re
         currentUsers: 1,
         maxUsers: maxUsers,
         createdBy: createdBy,
-        users: [createdBy]
+        users: [createdBy],
+        roomType: roomType,
+        graph: []
       }, function(err) {
         if (err) {
           res.send({success: false, msg: 'MongoDB error: ' + err});
@@ -150,6 +174,32 @@ router.post('/leave', /*passport.authenticate('jwt', {session: false}),*/ functi
           }
         }
       });
+    }
+  //} else {
+  //  return res.status(403).send({success: false, msg: 'Unauthorized.'});
+  //}
+});
+
+/* UPDATE GRAPH */
+router.put('/:name', /*passport.authenticate('jwt', {session: false}),*/ function(req, res) {
+  var token = getToken(req.headers);
+  //if (token) {
+    var roomName = req.params.name;
+    var node = req.body.node;
+    if (!roomName) {
+      res.send({success: false, msg: 'Please pass name of the room.'});
+    } else {
+      Room.update({ name: roomName },
+        {
+          $push: {graph: node}
+        },
+        function(err) {
+          if (err) {
+            res.send({success: false, msg: 'MongoDB error: ' + err});
+          } else {
+            res.send({success: true, msg: 'Graph updated.'});
+          }
+        });
     }
   //} else {
   //  return res.status(403).send({success: false, msg: 'Unauthorized.'});
