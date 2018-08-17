@@ -38,9 +38,13 @@ function withCompetitive (WrappedComponent) {
 
         competeBegin = () => {
             if (!this.props.graphManaged) {
-                console.log(this.props.graph.bfs(this.props.nodeRoot));
+                let graphTraversed = this.props.graph.bfs(this.props.nodeRoot);
+                this.setState({
+                    graph: graphTraversed
+                });
                 this.props.graphManagedCompete();
-                this.props.competeBeginIO(this.state.competeType);
+                this.props.roomChangeGraph(this.props.room.name, graphTraversed);
+                this.props.competeBeginIO(this.state.competeType, this.props.nodeRoot);
             }
         };
 

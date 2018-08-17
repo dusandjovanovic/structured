@@ -10,26 +10,23 @@ import './social.css';
 
 export class Social extends Component {
     componentDidMount() {
-        this.props.onGetUserData(this.props.username);
+        this.props.userData(this.props.username);
     };
 
     state = {
-        userData: null,
         userSelected: false
     };
 
     userSelectedHandler = (user) => {
-
-        // tbd.. fetching userData for selected user
-
+        this.props.userDataAll(user);
         this.setState({
             userSelected: true
         })
     };
 
     userUnselectedHandler = () => {
+        this.props.userDataAll(null);
         this.setState({
-            userData: null,
             userSelected: false
         });
     };
@@ -71,15 +68,15 @@ export class Social extends Component {
                 <Row>
                     <Col>
                         {waiting}
-                        {this.state.userSelected && !this.props.waiting
-                            ? <UserData userData={this.state.userData}
+                        {this.state.userSelected && this.props.userData && this.props.waiting
+                            ? <UserData userData={this.props.userData}
                                         userUnselectedHandler={this.userUnselectedHandler}
                             />
                             : <Wrapper>
                                 <Request sender={this.props.username}
                                          placeholder="Username"
                                          info="Send a new friend request:"
-                                         onAddFriend={(sender, receiver) => this.props.onAddFriend(sender, receiver)}
+                                         onAddFriend={(sender, receiver) => this.props.friendAdd(sender, receiver)}
                                 />
                                 {friends}
                               </Wrapper>
@@ -95,14 +92,16 @@ const mapStateToProps = state => {
     return {
         username: state.auth.username,
         friends: state.user.friends,
-        waiting: state.user.waiting
+        waiting: state.user.waiting,
+        userData: state.user.userData
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onGetUserData: (username) => dispatch(actions.userData(username)),
-        onAddFriend: (sender, receiver) => dispatch(actions.friendAdd(sender, receiver))
+        userData: (username) => dispatch(actions.userData(username)),
+        userDataAll: (username) => dispatch(actions.userDataAll(username)),
+        friendAdd: (sender, receiver) => dispatch(actions.friendAdd(sender, receiver))
     }
 };
 

@@ -185,13 +185,13 @@ router.put('/:name', /*passport.authenticate('jwt', {session: false}),*/ functio
   var token = getToken(req.headers);
   //if (token) {
     var roomName = req.params.name;
-    var node = req.body.node;
+    var array = req.body.graph;
     if (!roomName) {
       res.send({success: false, msg: 'Please pass name of the room.'});
     } else {
       Room.update({ name: roomName },
         {
-          $push: {graph: node}
+          $set: {graph: array}
         },
         function(err) {
           if (err) {

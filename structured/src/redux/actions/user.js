@@ -10,6 +10,13 @@ export const userFetchData = (username, friends) => {
     }
 };
 
+export const userFetchAllData = (userData) => {
+    return {
+        type: actionTypes.USER_FETCH_ALL_DATA,
+        userData: userData
+    }
+};
+
 export const userFetchDataStart = () => {
     return {
         type: actionTypes.USER_FETCH_DATA_START
@@ -66,6 +73,34 @@ export const userData = (username) => {
                 dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(userFetchDataFail("Fetching social data failed."));
             });
+    }
+};
+
+export const userDataAll = (username) => {
+    return dispatch => {
+        if (!username) {
+            dispatch(userFetchAllData(null));
+        }
+        else {
+            dispatch(userFetchDataStart());
+            let url = '/api/user/' + username;
+            axios.get(url)
+                .then(response => {
+                    if (response.data.success) {
+                        dispatch(userFetchAllData(response.data.data.userData));
+                        dispatch(userFetchDataEnd());
+                    }
+                    else {
+                        console.log('userError:', response.data.error);
+                        dispatch(userFetchDataFail(response.data.error));
+                    }
+                })
+                .catch((error) => {
+                    console.log('userError:', error);
+                    dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
+                    dispatch(userFetchDataFail("Fetching social data failed."));
+                });
+        }
     }
 };
 

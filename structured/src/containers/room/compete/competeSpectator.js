@@ -11,7 +11,7 @@ const compete = (props) => (
                     : 'Depth traversal'
                 }
             </h4>
-            <Button outline color="secondary" disabled={!props.graphManaged} onClick={() => props.competeEnded()}><i className="fas fa-check"></i> Submit result</Button>
+            <Button outline color="secondary" disabled={!props.graphManaged} onClick={() => props.competeEnded()}><i className="fas fa-check"></i> Submit solution</Button>
         </div>
     </div>
 );

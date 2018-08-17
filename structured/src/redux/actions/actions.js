@@ -5,6 +5,7 @@ export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const AUTH_SET_REDIRECT = 'AUTH_SET_REDIRECT';
 
 export const USER_FETCH_DATA = 'USER_FETCH_DATA';
+export const USER_FETCH_ALL_DATA = 'USER_FETCH_ALL_DATA';
 export const USER_FETCH_DATA_FAIL = 'USER_FETCH_DATA_FAIL';
 export const USER_FETCH_DATA_START = 'USER_FETCH_DATA_START';
 export const USER_FETCH_DATA_END = 'USER_FETCH_DATA_END';
@@ -25,4 +26,6 @@ export const ROOM_ERROR = 'ROOM_ERROR';
 export const ROOM_DELETE = 'ROOM_DELETE';
 export const ROOM_DATA = 'ROOM_DATA';
 export const ROOM_START = 'ROOM_START';
+export const ROOM_GRAPH = 'ROOM_GRAPH';
+export const ROOM_GRAPH_CHANGE = 'ROOM_GRAPH_CHANGE';
 export const ROOM_END = 'ROOM_END';

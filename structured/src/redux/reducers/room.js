@@ -84,6 +84,22 @@ const reducer = (state = initialState, action) => {
                 },
                 error: null
             };
+        case actionTypes.ROOM_GRAPH:
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    graph: action.graph
+                }
+            };
+        case actionTypes.ROOM_GRAPH_CHANGE:
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    graph: action.graph
+                }
+            };
         case actionTypes.ROOM_ERROR:
             return {
                 ...state,

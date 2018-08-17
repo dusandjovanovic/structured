@@ -55,6 +55,20 @@ export const roomAll = (rooms) => {
     }
 };
 
+export const roomGraph = (graph) => {
+    return {
+        type: actionTypes.ROOM_GRAPH,
+        graph: graph
+    }
+};
+
+export const roomGraphChange = (graph) => {
+    return {
+        type: actionTypes.ROOM_GRAPH_CHANGE,
+        graph: graph
+    }
+};
+
 export const roomError = (error) => {
     return {
         type:actionTypes.ROOM_ERROR,
@@ -215,6 +229,58 @@ export const roomDeleteExisting = (roomId) => {
             })
             .catch(error => {
                 console.log('deleteError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
+                dispatch(roomError(error));
+            });
+    }
+};
+
+export const roomGetGraph = (name) => {
+    return dispatch => {
+        dispatch(roomInitiate());
+        let url = '/api/rooms/get-graph/' + name;
+        axios.get(url)
+            .then(response => {
+                if (response.data.success) {
+                    dispatch(roomGraph(response.data.data));
+                    dispatch(roomEnd());
+                }
+                else {
+                    console.log('roomError:', response.data.msg);
+                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
+                    dispatch(roomError(response.data.msg));
+                }
+            })
+            .catch((error) => {
+                console.log('roomError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
+                dispatch(roomError(error));
+            });
+    }
+};
+
+export const roomChangeGraph = (name, graph) => {
+    return dispatch => {
+        dispatch(roomInitiate());
+        let url = '/api/rooms/' + name;
+        let data = {
+            graph: graph
+        };
+        axios.put(url, data)
+            .then(response => {
+                console.log(response, name, graph);
+                if (response.data.success) {
+                    dispatch(roomGraphChange(graph));
+                    dispatch(roomEnd());
+                }
+                else {
+                    console.log('roomError:', response.data.msg);
+                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
+                    dispatch(roomError(response.data.msg));
+                }
+            })
+            .catch((error) => {
+                console.log('roomError:', error);
                 dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(roomError(error));
             });

@@ -11,9 +11,7 @@ class roomView extends Component {
                     {this.props.rooms.length > 0
                         ? this.props.rooms.map(room => {
                             return (
-                                <Card color="secondary"
-                                      className={"shadow text-center m-2 mb-3".concat(room.roomType === 'learn' ? " bg-light" : " text-white bg-dark")}
-                                      key={room._id.concat(room.currentUsers)}>
+                                <Card color="secondary" key={room._id.concat(room.currentUsers)} className={"shadow text-center m-2 mb-3".concat(room.roomType === 'learn' ? " bg-light" : " text-white bg-dark")} >
                                     <CardHeader>
                                         <CardTitle className="mb-0">
                                             {room.name}
@@ -48,7 +46,6 @@ class roomView extends Component {
                 </Row>
             );
         }
-
         return (preview);
     }
 };

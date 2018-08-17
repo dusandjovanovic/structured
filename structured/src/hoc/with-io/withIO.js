@@ -68,9 +68,10 @@ function withIO (WrappedComponent) {
             });
         };
 
-        competeBeginIO = (competeType) => {
+        competeBeginIO = (competeType, rootNode) => {
             this.socket.emit('compete begin', {
-                algorithmName: competeType
+                algorithmName: competeType,
+                root: rootNode
             });
         };
 
