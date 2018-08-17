@@ -18,11 +18,10 @@ class ExModal extends React.Component {
     }
 
     render() {
-        const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={this.toggle}>&times;</button>;
         return (
             <div className="ml-2 mr-2">
-                <Button color="danger" disabled={!this.props.buttonCondition} onClick={this.toggle}>{this.props.buttonLabel}</Button>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} external={externalCloseBtn}>
+                <Button className={this.props.buttonClass} disabled={!this.props.buttonCondition} onClick={this.toggle}>{this.props.buttonLabel}</Button>
+                <Modal className="modal-lg" isOpen={this.state.modal} toggle={this.toggle}>
                     <ModalHeader>{this.props.title}</ModalHeader>
                     <ModalBody>
                         {this.props.children}

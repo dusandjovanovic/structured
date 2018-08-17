@@ -98,11 +98,12 @@ class Graph extends Component {
                     </svg>
                 </Col>
                 <Col sm="3">
-                <GraphLogger nodeFocused={this.props.nodeFocused}
-                             nodeSelected={this.props.nodeSelected}
+                <GraphLogger nodeSelected={this.props.nodeSelected}
                              nodeCurrent={this.props.nodeCurrent}
                              nodeRoot={this.props.nodeRoot}
-                             nodesHighlighted={this.props.nodesHighlighted}/>
+                             nodesHighlighted={this.props.nodesHighlighted}
+                             nodesAdjacent={this.props.nodesAdjacent}
+                />
                 </Col>
             </Row>
         );

@@ -4,6 +4,7 @@ const initialState = {
     username: null,
     friends: null,
     requests: null,
+    waiting: null,
     error: null
 };
 
@@ -15,11 +16,22 @@ const reducer = (state = initialState, action) => {
                 username: action.username,
                 friends: action.friends
             };
+        case actionTypes.USER_FETCH_DATA_START:
+            return {
+                ...state,
+                waiting: true
+            };
+        case actionTypes.USER_FETCH_DATA_END:
+            return {
+                ...state,
+                waiting: null
+            };
         case actionTypes.USER_FETCH_DATA_FAIL:
             return {
                 username: null,
                 friends: null,
-                error: action.error
+                error: action.error,
+                waiting: null
             };
         case actionTypes.FRIENDS_FETCH_REQUESTS:
             return {

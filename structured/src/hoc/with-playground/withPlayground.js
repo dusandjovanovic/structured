@@ -3,8 +3,26 @@ import Master from '../../containers/room/master/master';
 import Spectator from '../../containers/room/spectator/spectator'
 import Wrapper from '../wrapper/wrapper';
 
-function withMaster (WrappedComponent) {
+function withPlayground (WrappedComponent) {
     return class extends React.Component {
+        componentDidMount() {
+            if (this.props.username !== this.props.data.createdBy) {
+                this.props.getGraphIO();
+                this.props.socket.on(this.props.username, received => {
+                    this.props.initiateGraph(received.graph);
+                });
+            }
+            else if (this.props.username === this.props.data.createdBy) {
+                this.props.socket.on(this.props.data.createdBy, (received) => {
+                    this.props.addGraphIO(received.username, this.props.visualization);
+                });
+            }
+
+            this.props.socket.on(this.props.data.name + ' add node', received => {
+                this.props.addNodeValue(received.node);
+            });
+        };
+
         render() {
             return (
                 <Wrapper>
@@ -36,4 +54,4 @@ function withMaster (WrappedComponent) {
     }
 }
 
-export default withMaster;
+export default withPlayground;

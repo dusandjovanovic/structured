@@ -24,8 +24,8 @@ class Home extends React.Component {
         });
     };
 
-    createAndEnterRoom = (name, maxUsers) => {
-        this.props.roomCreateNew(name, maxUsers, this.props.username);
+    createAndEnterRoom = (name, maxUsers, roomType) => {
+        this.props.roomCreateNew(name, maxUsers, roomType, this.props.username);
         this.setState({
             redirect: true
         });
@@ -35,15 +35,21 @@ class Home extends React.Component {
         let waiting = null;
         if (this.props.waiting)
             waiting = <Overlay />;
-        else if (this.state.redirect && !this.props.waiting && !this.props.error && this.props.data._id)
-            waiting = <Redirect to="/room" />;
+        else if (this.state.redirect && !this.props.waiting && !this.props.error && this.props.data._id)  {
+            if (this.props.data.roomType === 'practise')
+                 waiting = <Redirect to="/room" />;
+            else if (this.props.data.roomType === 'compete')
+                waiting = <Redirect to="/compete" />;
+            else if (this.props.data.roomType === 'learn')
+                waiting = <Redirect to="/learn" />;
+        }
 
         return (
             <div className="bg-light p-4">
                 {waiting}
                 <Container>
                     <Row>
-                        <RoomNew createAndEnterRoom={(name, maxUsers) => this.createAndEnterRoom(name, maxUsers)}/>
+                        <RoomNew createAndEnterRoom={(name, maxUsers, roomType) => this.createAndEnterRoom(name, maxUsers, roomType)}/>
                     </Row>
                     <hr className="mt-5" />
                     {this.props.rooms
@@ -75,7 +81,7 @@ const mapDispatchToProps = dispatch => {
     return {
         roomGetAll: (mode) => dispatch(actions.roomGetAll(mode)),
         roomJoinExisting : (name, username) => dispatch(actions.roomJoinExisting(name, username)),
-        roomCreateNew: (name, maxUsers, username) => dispatch(actions.roomCreateNew(name, maxUsers, username))
+        roomCreateNew: (name, maxUsers, roomType, username) => dispatch(actions.roomCreateNew(name, maxUsers, roomType, username))
     }
 };
 

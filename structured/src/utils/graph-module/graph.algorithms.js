@@ -2,9 +2,9 @@ import {stack} from './stack.module';
 import {queue} from './queue.module';
 
 let graph;
-let keys;
+let solution = [];
 
-const displayVertex = (node) => console.log(node);
+const displayVertex = (node) => solution.push(node);
 
 const getUnvistedVertex = (vertex) => {
     for (let node in graph[vertex].edges) {
@@ -21,13 +21,13 @@ const resetSearch = () => {
     }
 };
 
-export function dfs () {
+export function dfs (root) {
     graph = this.getGraph();
-    keys = Object.keys(graph);
+    solution = [];
     let graphStack = stack();
-    graph[keys[0]].visited = true;
-    displayVertex(keys[0]);
-    graphStack.push(keys[0]);
+    graph[root].visited = true;
+    displayVertex(root);
+    graphStack.push(root);
 
     while (!graphStack.isEmpty()) {
         let unvistedVertex = getUnvistedVertex(graphStack.peek());
@@ -42,16 +42,17 @@ export function dfs () {
     }
 
     resetSearch();
+    return solution;
 }
 
-export function bfs () {
+export function bfs (root) {
     graph = this.getGraph();
-    keys = Object.keys(graph);
+    solution = [];
     let unvistedVertex;
     let graphQueue = queue();
-    graph[keys[0]].visited = true;
-    displayVertex(keys[0]);
-    graphQueue.enqueue(keys[0]);
+    graph[root].visited = true;
+    displayVertex(root);
+    graphQueue.enqueue(root);
 
     while (!graphQueue.isEmpty()) {
         let tempVertex = graphQueue.dequeue();
@@ -66,4 +67,5 @@ export function bfs () {
     }
 
     resetSearch();
+    return solution;
 }

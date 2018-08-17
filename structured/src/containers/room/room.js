@@ -9,10 +9,12 @@ import Overlay from '../../components/user-interface/spinner-overlay/spinnerOver
 import AlgorithmCore from './algorithm/core/algorithm';
 
 import withAlgorithm from "../../hoc/with-algorithm/withAlgorithm";
-import withMaster from "../../hoc/with-master/withMaster";
+import withPlayground from "../../hoc/with-playground/withPlayground";
 import withRedux from '../../hoc/with-redux/withRedux';
 import withGraph from "../../hoc/with-graph/withGraph";
 import withIO from "../../hoc/with-io/withIO";
+import withCompetitive from "../../hoc/with-competitive/withCompetitive";
+import withLearn from "../../hoc/with-learn/withLearn";
 
 import './room.css';
 
@@ -23,23 +25,6 @@ class Room extends Component {
 
     componentDidMount() {
         window.addEventListener("beforeunload", this.leaveRoom);
-        if (this.props.username !== this.props.data.createdBy) {
-            this.props.getGraphIO();
-
-            this.props.socket.on(this.props.username, received => {
-                this.props.initiateGraph(received.graph);
-            });
-        }
-        else if (this.props.username === this.props.data.createdBy) {
-            this.props.socket.on(this.props.data.createdBy, (received) => {
-                this.props.addGraphIO(received.username, this.props.visualization);
-            });
-        }
-
-        this.props.socket.on(this.props.data.name + ' add node', received => {
-            console.log('websocket::node ', received.node);
-            this.props.addNodeValue(received.node);
-        });
     };
 
     componentWillUnmount() {
@@ -59,12 +44,15 @@ class Room extends Component {
                     <Navbar deleteRoom={() => this.deleteRoom()} leaveRoom={() => this.leaveRoom()} room={this.props.room}/>
                     <Container fluid>
                         <Row>
-                            <Col md="3" className="sidebar d-none d-md-block bg-light">
-                                <div className="sidebar-sticky">
-                                    <Chat room={this.props.room.name} username={this.props.username} io={this.props.io} />
-                                </div>
-                            </Col>
-                            <Col md="9" className="ml-sm-auto pt-3 px-4">
+                            {this.props.competitive || this.props.learn
+                                ? null
+                                : <Col md="3" className="sidebar d-none d-md-block bg-light">
+                                    <div className="sidebar-sticky">
+                                        <Chat room={this.props.room.name} username={this.props.username} io={this.props.io} />
+                                    </div>
+                                  </Col>
+                            }
+                            <Col md={this.props.competitive || this.props.learn ? "12" : "9"} className="ml-sm-auto pt-3 px-4">
                                 {
                                     this.props.children
                                 }
@@ -77,6 +65,7 @@ class Room extends Component {
                                        nodeFocused={this.props.nodeFocused}
                                        nodeCurrent={this.props.nodeCurrent}
                                        nodesHighlighted={this.props.nodesHighlighted}
+                                       nodesAdjacent={this.props.nodesAdjacent}
                                        nodeRoot={this.props.nodeRoot}
 
                                        handlerNodeSelected={this.props.handlerNodeSelected}
@@ -129,4 +118,6 @@ class Room extends Component {
     };
 }
 
-export default withRouter((withRedux (withIO (withGraph (withAlgorithm (withMaster (Room)))))));
+export const RoomPlayground = withRouter((withRedux (withIO (withGraph (withAlgorithm (withPlayground (Room)))))));
+export const RoomCompete = withRouter((withRedux (withIO (withGraph (withCompetitive (Room))))));
+export const RoomLearn = withRouter((withRedux (withGraph (withLearn (Room)))));

@@ -109,12 +109,13 @@ export const roomGetData = (name, username) => {
     }
 };
 
-export const roomCreateNew = (name, maxUsers, username) => {
+export const roomCreateNew = (name, maxUsers, roomType, username) => {
     return dispatch => {
         dispatch(roomInitiate());
         const data = {
             name: name,
             maxUsers: maxUsers,
+            roomType: roomType,
             createdBy: username
         };
         let url = '/api/rooms';

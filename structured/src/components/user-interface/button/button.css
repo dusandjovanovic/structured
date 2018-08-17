@@ -6,7 +6,6 @@
     cursor: pointer;
     font: inherit;
     margin: 10px;
-    font-weight: bold;
 }
 
 .Button:disabled {

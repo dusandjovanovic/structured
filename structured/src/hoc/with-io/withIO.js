@@ -7,10 +7,10 @@ function withIO (WrappedComponent) {
         componentWillMount() {
             this.socket = this.props.io('http://localhost:2998/graph');
             this.socket.on('connect', () => {
-                console.log(this.props.username, 'websocket::opened');
+                // console.log(this.props.username, 'websocket::opened');
             });
             this.socket.on('disconnect', () => {
-                console.log(this.props.username, 'websocket::closed');
+                // console.log(this.props.username, 'websocket::closed');
             })
         }
 
@@ -68,6 +68,19 @@ function withIO (WrappedComponent) {
             });
         };
 
+        competeBeginIO = (competeType) => {
+            this.socket.emit('compete begin', {
+                algorithmName: competeType
+            });
+        };
+
+        competeEndedIO = (score) => {
+            this.socket.emit('compete ended', {
+                username: this.props.username,
+                score: score
+            });
+        };
+
         render() {
             return (
                 <WrappedComponent addNodeIO={this.addNodeIO}
@@ -76,6 +89,8 @@ function withIO (WrappedComponent) {
                                   removeEdgeIO={this.removeEdgeIO}
                                   addGraphIO={this.addGraphIO}
                                   getGraphIO={this.getGraphIO}
+                                  competeBeginIO={this.competeBeginIO}
+                                  competeEndedIO={this.competeEndedIO}
                                   socket={this.socket}
                                   {...this.props}
                                 />

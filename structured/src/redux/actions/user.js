@@ -10,6 +10,18 @@ export const userFetchData = (username, friends) => {
     }
 };
 
+export const userFetchDataStart = () => {
+    return {
+        type: actionTypes.USER_FETCH_DATA_START
+    }
+};
+
+export const userFetchDataEnd = () => {
+    return {
+        type: actionTypes.USER_FETCH_DATA_END
+    }
+};
+
 export const userFetchDataFail = (error) => {
     return {
         type: actionTypes.USER_FETCH_DATA_FAIL,
@@ -33,6 +45,7 @@ export const friendFail = (error) => {
 
 export const userData = (username) => {
     return dispatch => {
+        dispatch(userFetchDataStart());
         let url = '/api/user/' + username;
         axios.get(url)
             .then(response => {
@@ -41,6 +54,7 @@ export const userData = (username) => {
                     for (let element in response.data.data.friends)
                         friends.push(response.data.data.friends[element]);
                     dispatch(userFetchData(username, friends));
+                    dispatch(userFetchDataEnd());
                 }
                 else {
                     console.log('userError:', response.data.error);

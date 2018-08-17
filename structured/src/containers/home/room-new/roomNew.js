@@ -5,7 +5,9 @@ import Modal from '../../../components/user-interface/modal/modal';
 
 class roomNew extends Component {
     roomName = '';
-    roomUsers = 1;
+    roomUsers = {
+        value: 1
+    };
 
     state = {
         dropdownOpen: false,
@@ -21,7 +23,7 @@ class roomNew extends Component {
 
     newRoomHandler = (event) => {
         event.preventDefault();
-        this.props.createAndEnterRoom(this.roomName.value, this.roomUsers.value);
+        this.props.createAndEnterRoom(this.roomName.value, this.roomUsers.value, this.state.roomType);
     };
 
     modeHandler = (mode) => {
@@ -45,34 +47,35 @@ class roomNew extends Component {
                     <CardText>By creating a new room you are a room Master, others who join are spectators and can see
                         everything you do.</CardText>
                     <ButtonGroup>
-                        <Button onClick={() => this.modeHandler("practise")}>Practise</Button>
-                        <Button onClick={() => this.modeHandler("compete")}>Compete</Button>
+                        <Button onClick={() => this.modeHandler('practise')}>Practise</Button>
+                        <Button onClick={() => this.modeHandler('compete')}>Compete</Button>
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret>
                                 More
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem onClick={() => this.modeHandler("practise")}>Learn</DropdownItem>
+                                <DropdownItem onClick={() => this.modeHandler("learn")}>Learn</DropdownItem>
                             </DropdownMenu>
                         </ButtonDropdown>
-                        <Modal title="Create a new room"
-                               buttonCondition={this.state.newAvailable}
-                               buttonLabel="New!">
+                        <Modal title="Create a new room" buttonCondition={this.state.newAvailable} buttonLabel="New!" buttonClass="btn-danger">
                             <Form onSubmit={this.newRoomHandler}>
                                 <FormGroup>
                                     <Label for="room">Room name:</Label>
                                     <Input type="input" innerRef={(node) => this.roomName = node} name="roomIdentifier" id="room" placeholder="room identifier"/>
                                 </FormGroup>
-                                <FormGroup>
-                                    <Label for="exampleSelect">Number of users:</Label>
-                                    <Input type="select" name="select" id="exampleSelect" innerRef={(node) => this.roomUsers = node}>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </Input>
-                                </FormGroup>
+                                {this.state.roomType === 'learn'
+                                    ? null
+                                    : <FormGroup>
+                                        <Label for="exampleSelect">Number of users:</Label>
+                                        <Input type="select" name="select" id="exampleSelect" innerRef={(node) => this.roomUsers = node}>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </Input>
+                                      </FormGroup>
+                                }
                                 <Button className="btn btn-danger m-auto btn-large" type="submit"><i className="fas fa-check"></i> Create</Button>
                             </Form>
                         </Modal>

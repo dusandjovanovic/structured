@@ -20,7 +20,7 @@ export const graphFactory = () => {
         addVertex: (node) => {
             if (!graphProto.contains(node)) {
                 graph[node] = {edges: {}, input: {}, visited: false};
-                adapter.graphAdapterNode(node, visualization);
+                adapter.graphAdapterNode(node.toString(), visualization);
                 vertices += 1;
             }
         },
@@ -32,14 +32,13 @@ export const graphFactory = () => {
             return random;
         },
         removeVertex: (node) => {
-            console.log(node);
             if (graphProto.contains(node)) {
                 for (let item in graph[node].edges) {
                     if (graph[node].edges.hasOwnProperty(item)) {
                         graphProto.removeEdge(node, item);
                     }
                 }
-                adapter.graphAdapterNodeRemove(node, visualization);
+                adapter.graphAdapterNodeRemove(node.toString(), visualization);
                 vertices -= 1;
                 delete graph[node];
             }
@@ -49,7 +48,7 @@ export const graphFactory = () => {
                 if (!graph[nodeOne].edges[nodeTwo] && !graph[nodeTwo].input[nodeOne]) {
                     graph[nodeOne].edges[nodeTwo] = true;
                     graph[nodeTwo].input[nodeOne] = true;
-                    adapter.graphAdapterEdge(nodeOne, nodeTwo, visualization);
+                    adapter.graphAdapterEdge(nodeOne.toString(), nodeTwo.toString(), visualization);
                 }
             }
         },
@@ -57,7 +56,7 @@ export const graphFactory = () => {
             if (graphProto.contains(nodeOne) && graphProto.contains(nodeTwo)) {
                 delete graph[nodeOne].edges[nodeTwo];
                 delete graph[nodeTwo].input[nodeOne];
-                adapter.graphAdapterEdgeRemove(nodeOne, nodeTwo, visualization);
+                adapter.graphAdapterEdgeRemove(nodeOne.toString(), nodeTwo.toString(), visualization);
             }
         },
         getGraph: () => graph,
