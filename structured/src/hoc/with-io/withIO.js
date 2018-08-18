@@ -55,6 +55,7 @@ function withIO (WrappedComponent) {
         addGraphIO = (receiver, graph) => {
             if (graph) {
                 this.socket.emit('graph', {
+                    room: this.props.room.name,
                     username: receiver,
                     graph: graph
                 })
@@ -68,16 +69,18 @@ function withIO (WrappedComponent) {
             });
         };
 
-        competeBeginIO = (competeType, rootNode) => {
+        competeBeginIO = (algorithmName, rootNode) => {
             this.socket.emit('compete begin', {
-                algorithmName: competeType,
+                room: this.props.room.name,
+                agName: algorithmName,
                 root: rootNode
             });
         };
 
         competeEndedIO = (score) => {
-            this.socket.emit('compete ended', {
-                username: this.props.username,
+            this.socket.emit('compete end', {
+                room: this.props.room.name,
+                user: this.props.username,
                 score: score
             });
         };

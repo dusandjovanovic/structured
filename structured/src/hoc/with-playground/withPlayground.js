@@ -18,7 +18,7 @@ function withPlayground (WrappedComponent) {
                 });
             }
 
-            this.props.socket.on(this.props.data.name + ' add node', received => {
+            this.props.socket.on(this.props.room.name + ' add node', received => {
                 this.props.addNodeValue(received.node);
             });
         };

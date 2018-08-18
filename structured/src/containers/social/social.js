@@ -43,7 +43,7 @@ export class Social extends Component {
                     <ListGroupItem tag="a" href="#" onClick={() => this.userSelectedHandler(this.props.username)} className="list-group-item-action active bg-dark flex-column align-items-start p-4" key={this.props.username}>
                         <div className="d-flex w-100 justify-content-between">
                             <h4 className="mb-1">{this.props.username}</h4>
-                            <small className="text-light"> 3 days ago</small>
+                            <small className="text-light"> few days ago</small>
                         </div>
                         <p className="mb-1 pt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et malesuada libero. Quisque ante dolor, pharetra sed pulvinar sed, gravida feugiat velit. Mauris eget mi ex.</p>
                         <small className="Highlighted">Select for more user info</small>
@@ -53,7 +53,7 @@ export class Social extends Component {
                             <ListGroupItem tag="a" href="#" onClick={(friend) => this.userSelectedHandler(friend)} className="list-group-item-action flex-column align-items-start p-4" key={friend}>
                                 <div className="d-flex w-100 justify-content-between">
                                     <h4 className="mb-1">{friend}</h4>
-                                    <small className="text-info"> 3 days ago</small>
+                                    <small className="text-info"> few days ago</small>
                                 </div>
                                 <p className="mb-1 pt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et malesuada libero. Quisque ante dolor, pharetra sed pulvinar sed, gravida feugiat velit. Mauris eget mi ex.</p>
                                 <small className="Highlighted">Select for more user info</small>

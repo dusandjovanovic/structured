@@ -27,12 +27,12 @@ function withCompetitive (WrappedComponent) {
                 });
             }
 
-            this.props.socket.on('compete begin', received => {
-                this.competeBegan(received.algorithmType, received.root);
+            this.props.socket.on(this.props.room.name + ' compete begin', received => {
+                this.competeBegan(received.agName, received.root);
             });
 
-            this.props.socket.on('compete ended', received => {
-                this.competeEndedByFriend(received.username, received.score);
+            this.props.socket.on('compete end', received => {
+                this.competeEndedByFriend(received.user, received.score);
             });
         };
 
@@ -56,7 +56,7 @@ function withCompetitive (WrappedComponent) {
                     .then(response => {
                         this.setState({
                             competeType: algorithm,
-                            graph: this.props.room.data.graph,
+                            graph: response.data,
                         });
                     });
             }

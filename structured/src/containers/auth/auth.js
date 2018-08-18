@@ -11,10 +11,11 @@ class Auth extends Component {
     state = {
         controls: {
             username: {
+                signin: true,
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Username'
+                    placeholder: 'username'
                 },
                 value: '',
                 validation: {
@@ -25,10 +26,11 @@ class Auth extends Component {
                 touched: false
             },
             password: {
+                signin: true,
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Password'
+                    placeholder: 'password'
                 },
                 value: '',
                 validation: {
@@ -37,12 +39,28 @@ class Auth extends Component {
                 },
                 valid: false,
                 touched: false
+            },
+            about: {
+                signin: false,
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'something about yourself',
+                    rows: '4'
+                },
+                value: '',
+                validation: {
+                    required: false,
+                    isEmail: false
+                },
+                valid: true,
+                touched: false
             }
         },
-        isSignup: true
+        signup: true
     };
 
-    checkValidity (value, rules) {
+    checkValidity = (value, rules) => {
         let isValid = true;
         if (rules.required)
             isValid = value.trim() !== '' && isValid;
@@ -71,12 +89,12 @@ class Auth extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        this.props.onAuth(this.state.controls.username.value, this.state.controls.password.value, this.state.isSignup);
+        this.props.onAuth(this.state.controls.username.value, this.state.controls.password.value, this.state.signup);
     };
 
     switchAuthModeHandler = () => {
         this.setState(prevState => ({
-            isSignup: !prevState.isSignup
+            signup: !prevState.signup
         }));
     };
 
@@ -89,16 +107,16 @@ class Auth extends Component {
             });
         }
 
-        let form = formElements.map(element => (
-            <Input elementType={element.config.elementType}
+        let form = formElements.map(element => ((this.state.signup || element.config.signin)
+            ? <Input elementType={element.config.elementType}
                    elementConfig={element.config.elementConfig}
                    value={element.config.value}
                    changed={(event) => this.inputChangedHandler(event, element.id)}
                    invalid={!element.config.valid}
                    shouldValidate={element.config.validation}
                    touched={element.config.touched}
-                   key={element.id}/>
-
+                   key={element.id} />
+            : null
         ));
         if (this.props.waiting)
             form = <Spinner/>;
@@ -118,9 +136,9 @@ class Auth extends Component {
                     {form}
                     <Button btnType="Success">SUBMIT</Button>
                 </form>
-                {this.state.isSignup ? <p>Already have an account? <strong>Sign in instead.</strong></p> : null}
+                {this.state.signup ? <p>Already have an account? <strong>Sign in instead.</strong></p> : null}
                 <Button btnType="Danger" clicked={this.switchAuthModeHandler}>
-                    SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}
+                    SWITCH TO {this.state.signup ? 'SIGNIN' : 'SIGNUP'}
                 </Button>
             </div>
         );
