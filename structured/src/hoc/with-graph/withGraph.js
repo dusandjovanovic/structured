@@ -285,7 +285,8 @@ function withGraph(WrappedComponent) {
                 graphManagedRemoveEdge: this.graphManagedRemoveEdge,
                 graphManagedAlgorithm: this.graphManagedAlgorithm,
                 graphManagedAlgorithmEnded: this.graphManagedAlgorithmEnded,
-                graphManagedCompete: this.graphManagedCompete
+                graphManagedCompete: this.graphManagedCompete,
+                graphNodeRoot: this.graphNodeRoot,
             };
             return <WrappedComponent {...proxyPropagate} {...this.props} />
         }

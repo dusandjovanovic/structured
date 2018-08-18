@@ -18,7 +18,8 @@ function withCompetitive (WrappedComponent) {
             if (this.props.username !== this.props.data.createdBy) {
                 this.props.getGraphIO();
                 this.props.socket.on(this.props.username, received => {
-                    this.props.initiateGraph(received.graph);
+                    if (!this.props.graphManaged)
+                        this.props.initiateGraph(received.graph);
                 });
             }
             else if (this.props.username === this.props.data.createdBy) {
@@ -28,7 +29,7 @@ function withCompetitive (WrappedComponent) {
             }
 
             this.props.socket.on('compete begin', received => {
-                this.competeBegin();
+                this.competeBegan(received.algorithmType, received.root);
             });
 
             this.props.socket.on('compete ended', received => {
@@ -37,14 +38,29 @@ function withCompetitive (WrappedComponent) {
         };
 
         competeBegin = () => {
-            if (!this.props.graphManaged) {
-                let graphTraversed = this.props.graph.bfs(this.props.nodeRoot);
-                this.setState({
-                    graph: graphTraversed
+            let graphTraversed = this.props.graph.bfs(this.props.nodeRoot);
+            this.setState({
+                graph: graphTraversed
+            });
+            this.props.graphManagedCompete();
+            this.props.roomChangeGraph(this.props.room.name, graphTraversed)
+                .then(response => {
+                    this.props.competeBeginIO(this.state.competeType, this.props.nodeRoot);
                 });
+        };
+
+        competeBegan = (algorithm, root) => {
+            if (!this.props.graphManaged) {
+                this.props.graphNodeRoot(root);
                 this.props.graphManagedCompete();
-                this.props.roomChangeGraph(this.props.room.name, graphTraversed);
-                this.props.competeBeginIO(this.state.competeType, this.props.nodeRoot);
+                this.props.roomGetGraph(this.props.room.name)
+                    .then(response => {
+                        this.setState({
+                            competeType: algorithm,
+                            graph: this.props.room.data.graph,
+                            score: 0
+                        });
+                    });
             }
         };
 
