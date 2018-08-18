@@ -2,6 +2,30 @@
 
 URL: http://localhost:2998/graph
 
+Compete mod:
+```javascript
+onCompeteBegin() {
+  emit('compete begin', {room: room.name, agName: algorithmName, root: root})
+}
+```
+```javascript
+// u konstruktoru, npr.
+on.(room.name + ' compete begin', (rcv) => {
+  beginCompeting(rcv.agName, rcv.root)
+})
+```
+```javascript
+onCompeteEnd() {
+  emit('compete end', {room: room.name, user: user.name, score: getScore()})
+}
+```
+```javascript
+// u konstruktoru, npr.
+on.(room.name + ' compete end', (rcv) => {
+  displayResultForUser(rcv.user, rcv.score)
+})
+```
+
 Pseudokod client strane:
 ```javascript
 onJoinRoom() {
@@ -10,7 +34,7 @@ onJoinRoom() {
   
   on(user.name, (graph) => {
     setCurrentGraph(graph)
-  }
+  })
 }
 ```
 ```javascript
@@ -18,7 +42,7 @@ onJoinRoom() {
 if (user.name === room.createdBy) // definisemo samo za 'mastera'
   on(room.createdBy, (rcv) => {
     emit('graph', {username: rcv.username, graph: getCurrentGraph()})
-  }
+  })
 ```
 ```javascript
 onAddNode(newNode) {
@@ -33,11 +57,11 @@ onAddEdge(newEdge) {
 // u konstruktoru, npr. ili bilo gde gde vam odgovara
 on.(room.name + ' add node', (rcv) => {
   addNode(rcv.node) // takodje postoji i rcv.sender za onog koji je napravio izmenu
-}
+})
 
 on.(room.name + ' add edge', (rcv) => {
   addEdge(rcv.edge) // takodje postoji i rcv.sender za onog koji je napravio izmenu
-}
+})
 ```
 
 ## JSON
