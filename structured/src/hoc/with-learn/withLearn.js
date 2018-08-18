@@ -1,5 +1,5 @@
 import React from 'react';
-import Learn from '../../containers/room/learn/learn';
+import Learn from '../../containers/room/toolbar/toolbar-learn/learn';
 
 const GRAPH_LEARN_GRAPHS = 'GRAPH_LEARN_GRAPHS';
 const GRAPH_LEARN_REPRESENTATIONS = 'GRAPH_LEARN_REPRESENTATIONS';

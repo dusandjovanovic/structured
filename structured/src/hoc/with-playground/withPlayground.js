@@ -1,6 +1,6 @@
 import React from 'react';
-import Master from '../../containers/room/master/master';
-import Spectator from '../../containers/room/spectator/spectator'
+import Master from '../../containers/room/toolbar/toolbar-master/master';
+import Spectator from '../../containers/room/toolbar/toolbar-spectator/spectator'
 import Wrapper from '../wrapper/wrapper';
 
 function withPlayground (WrappedComponent) {

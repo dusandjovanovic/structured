@@ -70,7 +70,7 @@ function withIO (WrappedComponent) {
         };
 
         competeBeginIO = (algorithmName, rootNode) => {
-            this.socket.emit('compete begin', {
+            this.socket.emit('toolbar-compete begin', {
                 room: this.props.room.name,
                 agName: algorithmName,
                 root: rootNode
@@ -78,7 +78,7 @@ function withIO (WrappedComponent) {
         };
 
         competeEndedIO = (score) => {
-            this.socket.emit('compete end', {
+            this.socket.emit('toolbar-compete end', {
                 room: this.props.room.name,
                 user: this.props.username,
                 score: score

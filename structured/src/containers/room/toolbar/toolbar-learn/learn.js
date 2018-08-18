@@ -1,6 +1,6 @@
 import React  from 'react';
 import { Button } from "reactstrap";
-import Modal from "../../../components/user-interface/modal/modal";
+import Modal from "../../../../components/user-interface/modal/modal";
 
 const learn = (props) => (
     <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
