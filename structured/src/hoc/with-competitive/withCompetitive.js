@@ -10,8 +10,7 @@ function withCompetitive (WrappedComponent) {
     return class extends React.Component {
         state = {
             competeType: COMPETE_BREADTH,
-            graph: [],
-            score: 0
+            graph: []
         };
 
         componentDidMount() {
@@ -58,15 +57,23 @@ function withCompetitive (WrappedComponent) {
                         this.setState({
                             competeType: algorithm,
                             graph: this.props.room.data.graph,
-                            score: 0
                         });
                     });
             }
         };
 
         competeEnded = () => {
+            let scored = 0;
+            for (let index in this.props.nodesHighlighted) {
+                if (typeof this.state.graph[index] !== 'undefined')
+                    scored += (this.props.nodesHighlighted[index] === this.state.graph[index]
+                        ? 10
+                        : 1
+                    );
+            }
             this.props.graphManagedEnded();
-            this.props.competeEndedIO(this.state.score);
+            this.props.competeEndedIO(scored);
+            this.props.userCompeteScore(this.props.username, scored);
             if (!this.props.master)
                 this.props.getGraphIO();
         };

@@ -97,7 +97,7 @@ class Graph extends Component {
                         </g>
                     </svg>
                 </Col>
-                <Col sm="3">
+                <Col sm="3" className="pl-0 pr-0">
                 <GraphLogger nodeSelected={this.props.nodeSelected}
                              nodeCurrent={this.props.nodeCurrent}
                              nodeRoot={this.props.nodeRoot}

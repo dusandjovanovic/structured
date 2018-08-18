@@ -71,7 +71,7 @@ export const userData = (username) => {
             .catch((error) => {
                 console.log('userError:', error);
                 dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                dispatch(userFetchDataFail("Fetching social data failed."));
+                dispatch(userFetchDataFail(error.message));
             });
     }
 };
@@ -98,7 +98,7 @@ export const userDataAll = (username) => {
                 .catch((error) => {
                     console.log('userError:', error);
                     dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                    dispatch(userFetchDataFail("Fetching social data failed."));
+                    dispatch(userFetchDataFail(error.message));
                 });
         }
     }
@@ -148,7 +148,7 @@ export const friendRequests = (username, push) => {
             .catch(error => {
                 console.log('requestError:', error);
                 dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                dispatch(friendFail("Fetching social data failed."));
+                dispatch(friendFail(error.message));
             });
     }
 };
@@ -202,7 +202,7 @@ export const friendAdd = (username, friendUsername) => {
             .catch(error => {
                 console.log('addError:', error);
                 dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                dispatch(friendFail("Fetching social data failed."));
+                dispatch(friendFail(error.message));
             });
     }
 };
@@ -221,7 +221,7 @@ export const friendConfirm = (requestId, username) => {
             .catch(error => {
                 console.log('confirmError:', error);
                 dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                dispatch(friendFail("Fetching social data failed."));
+                dispatch(friendFail(error.message));
             });
     }
 };
@@ -237,7 +237,33 @@ export const friendDelete = (requestId, username) => {
             .catch(error => {
                 console.log('deleteError:', error);
                 dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                dispatch(friendFail("Fetching social data failed."));
+                dispatch(friendFail(error.message));
+            });
+    }
+};
+
+export const userCompeteScore = (username, score) => {
+    return dispatch => {
+        const data = {
+            username: username,
+            score: score
+        };
+        let url = '/api/user/' + username;
+        axios.post(url, data)
+            .then(response => {
+                if (response.data.success) {
+                    dispatch(actions.notificationSystem("Your solution was successfully submitted. With the overall score of " + score + ".", "success", 10, null, null));
+                }
+                else {
+                    console.log('roomLeaveError:', response.data.msg);
+                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
+                    dispatch(userFetchDataFail(response.data.msg));
+                }
+            })
+            .catch(error => {
+                console.log('roomLeaveError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
+                dispatch(userFetchDataFail(error.message));
             });
     }
 };
