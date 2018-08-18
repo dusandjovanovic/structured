@@ -18,6 +18,15 @@ module.exports = function(io) {
     client.on('add edge', (rcv) => {
       graph.emit(rcv.room + ' add edge', {sender: rcv.sender, edge: rcv.edge});
     });
+
+    client.on('compete begin', (rcv) => {
+      graph.emit(rcv.room + ' compete begin', {agName: rcv.agName, root: rcv.root});
+    });
+
+    client.on('compete end', (rcv) => {
+      graph.emit(rcv.room + ' compete end', {user: rcv.user, score: rcv.score});
+    });
+
   });
 };
   
