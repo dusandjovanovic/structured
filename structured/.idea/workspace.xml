@@ -17,7 +17,7 @@
     <session id="1016856043">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="149" />
+          <entry key="project.closed" value="150" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
@@ -47,7 +47,7 @@
           <entry key="eslintrc" value="5" />
           <entry key="html" value="15" />
           <entry key="ico" value="1" />
-          <entry key="js" value="1238" />
+          <entry key="js" value="1249" />
           <entry key="json" value="5" />
           <entry key="md" value="1" />
           <entry key="png" value="1" />
@@ -62,7 +62,7 @@
           <entry key="HTML" value="15" />
           <entry key="Image" value="2" />
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="1228" />
+          <entry key="JavaScript" value="1239" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="2" />
@@ -75,7 +75,7 @@
           <entry key="css" value="3121" />
           <entry key="eslintrc" value="3" />
           <entry key="html" value="48" />
-          <entry key="js" value="86088" />
+          <entry key="js" value="86778" />
           <entry key="ts" value="1" />
         </counts>
       </usages-collector>
@@ -84,7 +84,7 @@
           <entry key="CSS" value="3121" />
           <entry key="ESLint" value="3" />
           <entry key="HTML" value="48" />
-          <entry key="JavaScript" value="86088" />
+          <entry key="JavaScript" value="86778" />
           <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
@@ -99,13 +99,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/containers/dashboard/dashboard.js">
+        <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="544">
+              <caret line="22" column="43" lean-forward="true" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -123,8 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>console</find>
-      <find>width</find>
       <find>nodeClicked</find>
       <find>nodeLostFocus</find>
       <find>surfaceClicked</find>
@@ -153,6 +148,8 @@
       <find>does n</find>
       <find>dashboardSele</find>
       <find>promise</find>
+      <find>root</find>
+      <find>inEdges</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,10 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.css" />
-        <option value="$PROJECT_DIR$/src/containers/social/user-data/userData.css" />
-        <option value="$PROJECT_DIR$/src/containers/auth/auth.css" />
-        <option value="$PROJECT_DIR$/src/containers/social/social.css" />
         <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/containers/social/request/request.css" />
         <option value="$PROJECT_DIR$/src/containers/social/request/request.js" />
@@ -189,7 +182,6 @@
         <option value="$PROJECT_DIR$/src/containers/home/room-new/roomNew.js" />
         <option value="$PROJECT_DIR$/src/hoc/with-playground/withPlayground.js" />
         <option value="$PROJECT_DIR$/src/hoc/with-graph/withGraph.js" />
-        <option value="$PROJECT_DIR$/src/hoc/with-io/withIO.js" />
         <option value="$PROJECT_DIR$/src/containers/room/graph/graph.js" />
         <option value="$PROJECT_DIR$/src/hoc/with-redux/withRedux.js" />
         <option value="$PROJECT_DIR$/src/containers/home/home.js" />
@@ -212,7 +204,12 @@
         <option value="$PROJECT_DIR$/src/containers/room/statusbar/statusbar.js" />
         <option value="$PROJECT_DIR$/src/containers/room/room.js" />
         <option value="$PROJECT_DIR$/src/redux/actions/user.js" />
+        <option value="$PROJECT_DIR$/src/hoc/with-io/withIO.js" />
+        <option value="$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js" />
         <option value="$PROJECT_DIR$/src/containers/dashboard/dashboard.js" />
+        <option value="$PROJECT_DIR$/src/hoc/with-compete/withCompete.js" />
+        <option value="$PROJECT_DIR$/src/utils/graph-module/graph.random.js" />
+        <option value="$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js" />
       </list>
     </option>
   </component>
@@ -267,20 +264,14 @@
               <item name="structured" type="b2602c69:ProjectViewProjectNode" />
               <item name="structured" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="hoc" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="structured" type="b2602c69:ProjectViewProjectNode" />
               <item name="structured" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="graph-module" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -489,12 +480,12 @@
       <workItem from="1534654073910" duration="14177000" />
       <workItem from="1534686609480" duration="3473000" />
       <workItem from="1534692962214" duration="1834000" />
-      <workItem from="1534697591943" duration="1852000" />
+      <workItem from="1534697591943" duration="4860000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="441502000" />
+    <option name="totallyTimeSpent" value="444510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -547,27 +538,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/containers/room/toolbar/toolbar-compete/compete.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="42" column="131" lean-forward="true" selection-start-line="42" selection-start-column="131" selection-end-line="42" selection-end-column="131" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/actions/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="1" column="104" selection-start-line="1" selection-start-column="88" selection-end-line="1" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/user-interface/input/input.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -612,24 +582,10 @@
     <entry file="file://$PROJECT_DIR$/src/redux/reducers/notification.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1054">
-          <caret line="19" column="12" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/room/toolbar/toolbar-compete/competeSpectator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-graph/withGraph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="236" column="31" lean-forward="true" selection-start-line="236" selection-start-column="31" selection-end-line="236" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -731,13 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-io/withIO.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/home/home.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="836">
@@ -814,13 +763,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3162">
           <caret line="93" column="1" lean-forward="true" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-compete/withCompete.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="15" column="18" lean-forward="true" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -859,13 +804,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-graph/withGraph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="93" column="26" selection-start-line="93" selection-start-column="26" selection-end-line="93" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-io/withIO.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="104" column="26" selection-start-line="104" selection-start-column="26" selection-end-line="104" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/dashboard/dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+        <state relative-caret-position="204">
+          <caret line="24" column="73" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="73" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="19" column="12" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.random.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-compete/withCompete.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="78" column="182" selection-start-line="78" selection-start-column="182" selection-end-line="78" selection-end-column="182" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="22" column="43" lean-forward="true" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
         </state>
       </provider>
     </entry>

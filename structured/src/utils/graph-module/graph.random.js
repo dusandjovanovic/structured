@@ -19,6 +19,8 @@ function randomData() {
             };
             link.source.key = _.random(0, 20);
             link.target.key = _.random(0, 20);
+            while (link.target.key === link.source.key)
+                link.target.key = _.random(0, 20);
             link.key = link.source.key + '->' + link.target.key;
             return link;
         }).uniq((link) => link.key)

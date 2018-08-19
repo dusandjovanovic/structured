@@ -16,11 +16,15 @@ export const graphAdapterEdge = (source, target, graph) => {
             target: graph.nodes[dstNode]
         });
         graph.nodes.map(node => {
-            if (node.key === source)
-                return node.outEdges.push(target);
-            else if (node.key === target)
-                return node.inEdges.push(source);
-            return null;
+            if (node.key === source) {
+                node.outEdges.push(target);
+                node.outEdges.sort((a, b) => a-b);
+            }
+            else if (node.key === target) {
+                node.inEdges.push(source);
+                node.inEdges.sort((a, b) => a-b);
+            }
+            return true;
         });
     }
 };

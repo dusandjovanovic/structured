@@ -31,7 +31,7 @@ function withCompete (WrappedComponent) {
                 this.competeBegan(received.agName, received.root);
             });
 
-            this.props.socket.on('compete end', received => {
+            this.props.socket.on(this.props.room.name + ' compete end', received => {
                 this.competeEndedByFriend(received.user, received.score);
             });
         };
@@ -67,7 +67,7 @@ function withCompete (WrappedComponent) {
             let scored = 0;
             for (let index in this.props.nodesHighlighted)
                 if (typeof this.state.graph[index] !== 'undefined')
-                    scored += (this.props.nodesHighlighted[index] === this.state.graph[index] ? 10 : 1);
+                    scored += (this.props.nodesHighlighted[index] === this.state.graph[index] ? 100/this.state.graph.length : 0);
             this.props.graphManagedEnded();
             this.props.competeEndedIO(scored);
             this.props.userCompeteScore(this.props.username, scored);
@@ -76,7 +76,7 @@ function withCompete (WrappedComponent) {
         };
 
         competeEndedByFriend = (username, score) => {
-            this.props.notificationSystem(username + " just finished the competition. With the overall score of " + score + "points.", "info", 10, null, null);
+            this.props.notificationSystem((this.props.username === username ? 'You' : username).concat(" just finished the competition. With the overall score of " + score.toFixed(2) + " points."), "info", 10, null, null);
         };
 
         competeBreadth = () => {

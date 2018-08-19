@@ -66,6 +66,15 @@ function withIO (WrappedComponent) {
             }
         };
 
+        randomGraphIO = (graph) => {
+            if (graph) {
+                this.socket.emit('random graph', {
+                    room: this.props.room.name,
+                    graph: graph
+                })
+            }
+        };
+
         getGraphIO = () => {
             this.socket.emit('get graph', {
                 username: this.props.username,
@@ -89,6 +98,20 @@ function withIO (WrappedComponent) {
             });
         };
 
+        algorithmBeginIO = (algorithmName, rootNode) => {
+            this.socket.emit('algorithm begin', {
+                room: this.props.room.name,
+                agName: algorithmName,
+                root: rootNode
+            });
+        };
+
+        algorithmEndedIO = () => {
+            this.socket.emit('algorithm end', {
+                room: this.props.room.name
+            });
+        };
+
         render() {
             return (
                 <WrappedComponent addNodeIO={this.addNodeIO}
@@ -97,8 +120,11 @@ function withIO (WrappedComponent) {
                                   removeEdgeIO={this.removeEdgeIO}
                                   addGraphIO={this.addGraphIO}
                                   getGraphIO={this.getGraphIO}
+                                  randomGraphIO={this.randomGraphIO}
                                   competeBeginIO={this.competeBeginIO}
                                   competeEndedIO={this.competeEndedIO}
+                                  algorithmBeginIO={this.algorithmBeginIO}
+                                  algorithmEndedIO={this.algorithmEndedIO}
                                   socket={this.socket}
                                   {...this.props}
                                 />

@@ -24,11 +24,14 @@ export class Dashboard extends Component {
                 let rawData = [{date: new Date(), score: 22}, {date: new Date(), score: 24}, {date: new Date(), score: 33}, {date: new Date(), score: 42}, {date: new Date(), score: 38}, {date: new Date(), score: 51}, {date: new Date(), score: 55}, {date: new Date(), score: 51}, {date: new Date(), score: 56}, {date: new Date(), score: 59}, {date: new Date(), score: 65}, {date: new Date(), score: 66}, {date: new Date(), score: 72}, {date: new Date(), score: 80}];
                 let userData = rawData.slice(Math.max(rawData.length - 15, 1));
                 let data = []; let labels = []; let today = 0;
+                rawData.map(element => {
+                    if (element.date.getDate() === new Date().getDate())
+                        today = today + 1;
+                    return true;
+                });
                 userData.map(element => {
                     data.push(element.score);
                     labels.push(element.date.toLocaleDateString("en-us"));
-                    if (element.date.getDate() === new Date().getDate())
-                        ++today;
                     return true;
                 });
                 this.setState({
