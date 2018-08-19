@@ -13,7 +13,7 @@ import withPlayground from "../../hoc/with-playground/withPlayground";
 import withRedux from '../../hoc/with-redux/withRedux';
 import withGraph from "../../hoc/with-graph/withGraph";
 import withIO from "../../hoc/with-io/withIO";
-import withCompetitive from "../../hoc/with-competitive/withCompetitive";
+import withCompete from "../../hoc/with-compete/withCompete";
 import withLearn from "../../hoc/with-learn/withLearn";
 
 import './room.css';
@@ -119,5 +119,5 @@ class Room extends Component {
 }
 
 export const RoomPlayground = withRouter((withRedux (withIO (withGraph (withAlgorithm (withPlayground (Room)))))));
-export const RoomCompete = withRouter((withRedux (withIO (withGraph (withCompetitive (Room))))));
+export const RoomCompete = withRouter((withRedux (withIO (withGraph (withCompete (Room))))));
 export const RoomLearn = withRouter((withRedux (withGraph (withLearn (Room)))));

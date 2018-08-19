@@ -6,7 +6,7 @@ import Wrapper from '../wrapper/wrapper';
 const COMPETE_BREADTH = 'COMPETE_BREADTH';
 const COMPETE_DEPTH = 'COMPETE_DEPTH';
 
-function withCompetitive (WrappedComponent) {
+function withCompete (WrappedComponent) {
     return class extends React.Component {
         state = {
             competeType: COMPETE_BREADTH,
@@ -120,4 +120,4 @@ function withCompetitive (WrappedComponent) {
     }
 }
 
-export default withCompetitive;
+export default withCompete;
