@@ -84,22 +84,27 @@ export const userDataAll = (username) => {
         else {
             dispatch(userFetchDataStart());
             let url = '/api/user/' + username;
-            axios.get(url)
-                .then(response => {
-                    if (response.data.success) {
-                        dispatch(userFetchAllData(response.data.data.userData));
-                        dispatch(userFetchDataEnd());
-                    }
-                    else {
-                        console.log('userError:', response.data.error);
-                        dispatch(userFetchDataFail(response.data.error));
-                    }
-                })
-                .catch((error) => {
-                    console.log('userError:', error);
-                    dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                    dispatch(userFetchDataFail(error.message));
-                });
+            return new Promise(function(resolve, reject) {
+                axios.get(url)
+                    .then(response => {
+                        if (response.data.success) {
+                            dispatch(userFetchAllData(response.data.data.userData));
+                            dispatch(userFetchDataEnd());
+                            resolve(response.data);
+                        }
+                        else {
+                            console.log('userError:', response.data.error);
+                            dispatch(userFetchDataFail(response.data.error));
+                            reject(response.data.error);
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('userError:', error);
+                        dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
+                        dispatch(userFetchDataFail(error.message));
+                        reject(error.message);
+                    });
+            });
         }
     }
 };

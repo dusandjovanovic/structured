@@ -17,19 +17,19 @@
     <session id="1016856043">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="148" />
+          <entry key="project.closed" value="149" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.2" value="5" />
           <entry key="project.open.time.3" value="19" />
-          <entry key="project.open.time.4" value="46" />
+          <entry key="project.open.time.4" value="47" />
           <entry key="project.open.time.5" value="45" />
           <entry key="project.open.time.6" value="18" />
           <entry key="project.open.time.7" value="8" />
           <entry key="project.open.time.8" value="3" />
-          <entry key="project.opened" value="149" />
+          <entry key="project.opened" value="150" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -47,7 +47,7 @@
           <entry key="eslintrc" value="5" />
           <entry key="html" value="15" />
           <entry key="ico" value="1" />
-          <entry key="js" value="1236" />
+          <entry key="js" value="1238" />
           <entry key="json" value="5" />
           <entry key="md" value="1" />
           <entry key="png" value="1" />
@@ -62,7 +62,7 @@
           <entry key="HTML" value="15" />
           <entry key="Image" value="2" />
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="1226" />
+          <entry key="JavaScript" value="1228" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="2" />
@@ -75,7 +75,7 @@
           <entry key="css" value="3121" />
           <entry key="eslintrc" value="3" />
           <entry key="html" value="48" />
-          <entry key="js" value="85333" />
+          <entry key="js" value="86088" />
           <entry key="ts" value="1" />
         </counts>
       </usages-collector>
@@ -84,7 +84,7 @@
           <entry key="CSS" value="3121" />
           <entry key="ESLint" value="3" />
           <entry key="HTML" value="48" />
-          <entry key="JavaScript" value="85333" />
+          <entry key="JavaScript" value="86088" />
           <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
@@ -98,23 +98,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/dashboard/dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="170">
+              <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/containers/room/statusbar/statusbar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -132,7 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>links</find>
       <find>console</find>
       <find>width</find>
       <find>nodeClicked</find>
@@ -162,6 +152,7 @@
       <find>wrapper</find>
       <find>does n</find>
       <find>dashboardSele</find>
+      <find>promise</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -212,16 +203,16 @@
         <option value="$PROJECT_DIR$/src/containers/room/room.css" />
         <option value="$PROJECT_DIR$/src/containers/dashboard/user-data/userData.js" />
         <option value="$PROJECT_DIR$/src/containers/dashboard/dashboard.css" />
-        <option value="$PROJECT_DIR$/src/redux/actions/user.js" />
         <option value="$PROJECT_DIR$/src/redux/reducers/user.js" />
         <option value="$PROJECT_DIR$/src/containers/dashboard/dashboard-friends/dashboardFriends.js" />
         <option value="$PROJECT_DIR$/src/containers/dashboard/dashboard-navbar/dashboardNavbar.js" />
-        <option value="$PROJECT_DIR$/src/containers/dashboard/dashboard.js" />
         <option value="$PROJECT_DIR$/src/hoc/with-competitive/withCompetitive.js" />
         <option value="$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js" />
         <option value="$PROJECT_DIR$/src/containers/dashboard/dashboard-cards/dashboardCards.js" />
         <option value="$PROJECT_DIR$/src/containers/room/statusbar/statusbar.js" />
         <option value="$PROJECT_DIR$/src/containers/room/room.js" />
+        <option value="$PROJECT_DIR$/src/redux/actions/user.js" />
+        <option value="$PROJECT_DIR$/src/containers/dashboard/dashboard.js" />
       </list>
     </option>
   </component>
@@ -259,6 +250,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -281,14 +273,19 @@
               <item name="structured" type="b2602c69:ProjectViewProjectNode" />
               <item name="structured" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="hoc" type="462c0819:PsiDirectoryNode" />
-              <item name="with-playground" type="462c0819:PsiDirectoryNode" />
+              <item name="redux" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
+              <item name="structured" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="redux" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -491,12 +488,13 @@
       <workItem from="1534647955175" duration="6091000" />
       <workItem from="1534654073910" duration="14177000" />
       <workItem from="1534686609480" duration="3473000" />
-      <workItem from="1534692962214" duration="1489000" />
+      <workItem from="1534692962214" duration="1834000" />
+      <workItem from="1534697591943" duration="1852000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="439305000" />
+    <option name="totallyTimeSpent" value="441502000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -688,13 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/actions/room.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="78" column="30" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/room/toolbar/toolbar-learn/learn.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -706,13 +697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="23" column="19" lean-forward="true" selection-start-line="23" selection-start-column="19" selection-end-line="26" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/actions/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2944">
-          <caret line="189" column="42" selection-start-line="189" selection-start-column="37" selection-end-line="189" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -734,6 +718,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -804,6 +791,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -824,16 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3162">
           <caret line="93" column="1" lean-forward="true" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/dashboard/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -860,8 +840,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/room/statusbar/statusbar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+        <state relative-caret-position="442">
+          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/room.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="248" column="24" lean-forward="true" selection-start-line="248" selection-start-column="24" selection-end-line="248" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="84" column="32" lean-forward="true" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/dashboard/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

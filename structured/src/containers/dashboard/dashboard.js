@@ -13,47 +13,40 @@ export class Dashboard extends Component {
     state = {
         dashboard: true,
         userData: null,
-        userDataHistory: null
+        userDataHistory: null,
+        userDataToday: 0
     };
 
     componentDidMount() {
         this.props.userData(this.props.username);
-        this.props.userDataAll(this.props.username);
-        this.setState({
-            dashboard: true,
-            userData: {
-                labels: ['11.08', '12.08', '13.08', '14.08', '15.08', '16.08', '17.08', '18.08', '19.08', '20.08', '21.08', '22.08', '23.08', '24.08'],
-                datasets: [
-                    {
-                        label: 'scored w/ time',
-                        fill: true,
-                        lineTension: 0.1,
-                        backgroundColor: 'rgba(115, 152, 163,0.4)',
-                        borderColor: 'rgba(115, 152, 163,1)',
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBackgroundColor: '#fff',
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                        pointHoverBorderColor: 'rgba(220,220,220,1)',
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [65, 59, 80, 81, 56, 55, 43, 44, 57, 77, 71, 82, 83, 84]
-                    }
-                ],
-                options: {
-                    legend: {
-                        display: false,
+        this.props.userDataAll(this.props.username)
+            .then(response => {
+                let rawData = [{date: new Date(), score: 22}, {date: new Date(), score: 24}, {date: new Date(), score: 33}, {date: new Date(), score: 42}, {date: new Date(), score: 38}, {date: new Date(), score: 51}, {date: new Date(), score: 55}, {date: new Date(), score: 51}, {date: new Date(), score: 56}, {date: new Date(), score: 59}, {date: new Date(), score: 65}, {date: new Date(), score: 66}, {date: new Date(), score: 72}, {date: new Date(), score: 80}];
+                let userData = rawData.slice(Math.max(rawData.length - 15, 1));
+                let data = []; let labels = []; let today = 0;
+                userData.map(element => {
+                    data.push(element.score);
+                    labels.push(element.date.toLocaleDateString("en-us"));
+                    if (element.date.getDate() === new Date().getDate())
+                        ++today;
+                    return true;
+                });
+                this.setState({
+                    dashboard: true,
+                    userData: {
+                        labels: [...labels],
+                        datasets: [{label: 'scored w/ time', fill: true, lineTension: 0.1, backgroundColor: 'rgba(115, 152, 163,0.4)', borderColor: 'rgba(115, 152, 163,1)', borderCapStyle: 'butt', borderDash: [], borderDashOffset: 0.0, borderJoinStyle: 'miter', pointBorderColor: 'rgba(75,192,192,1)', pointBackgroundColor: '#fff', pointBorderWidth: 1, pointHoverRadius: 5, pointHoverBackgroundColor: 'rgba(75,192,192,1)', pointHoverBorderColor: 'rgba(220,220,220,1)', pointHoverBorderWidth: 2, pointRadius: 1, pointHitRadius: 10,
+                            data: [...data]
+                            }
+                        ],
+                        options: {
+                            legend: { display: false }
+                        }
                     },
-                }
-            },
-            userDataHistory: [{date: new Date(), score: 122}, {date: new Date(), score: 255}, {date: new Date(), score: 255}, , {date: new Date(), score: 255}, , {date: new Date(), score: 255}]
-        });
+                    userDataHistory: [...rawData],
+                    userDataToday: today
+                });
+            });
     };
 
     dashboardSelected = (dashboard) => {
@@ -83,15 +76,15 @@ export class Dashboard extends Component {
                                 <DashboardCards friendAdd={this.props.friendAdd}
                                                 username={this.props.username}
                                                 numRequests={this.props.requests.length}
-                                                numCompetes={11} />
+                                                numCompetes={this.state.userDataToday} />
 
                                 <Card className="shadow-sm mb-3">
                                     <CardHeader>
                                         <i className="fas fa-chart-area"> </i>
-                                        <span> Your last two weeks</span>
+                                        <span> Your last compete games</span>
                                     </CardHeader>
                                     <CardBody className="p-5">
-                                        {this.props.waiting || !this.state.userData
+                                        {this.props.waiting || !this.state.userDataHistory
                                             ? null
                                             : <Line data={this.state.userData} options={this.state.userData.options} />
                                         }
@@ -104,7 +97,7 @@ export class Dashboard extends Component {
                                 <Card className="shadow-sm mb-3">
                                     <CardHeader>
                                         <i className="fas fa-table"> </i>
-                                        <span> Your latest compete games</span>
+                                        <span> All your games</span>
                                     </CardHeader>
                                     <CardBody>
                                         {this.props.waiting || !this.state.userDataHistory
