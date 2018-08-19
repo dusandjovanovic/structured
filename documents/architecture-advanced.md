@@ -171,6 +171,37 @@ export default connect(mapStateToProps, mapDispatchToProps) (WrappedComponent)
 
 Kompozicija je u React-u veoma istaknuta i dozvoljava fleksibilno sklapanje komponenti. Svaka komponenta poseduje `children` prop preko koga se pristupa svim komponentama koje su ugnježdene uokviru nje. Ovim pristupom se bolje izoluju komponente i formiraju različite kompozicije bez dupliranja koda.
 
+Na primeru soba različitih tipova toolbarova navbar elementi se dinamički "ubrizgavaju" i mogu da budu različitih tipova. Vrši se kompozicija `Room` komponenti sa elementima tipa `toolbar-master`, `toolbar-spectator`, `toolbar-compete`, `toolbar-compete-spectator` i `toolbar-learn` u zavisnosti od tipa sobe u kojoj je korisnik i njegovih privilegija.
+
+![alt text][toolbar]
+
+[toolbar]: images/toolbar.png
+
+```jsx
+<Wrapper>
+                {this.props.room.master
+                    ? <WrappedComponent {...this.props}>
+                        <ToolbarMaster randomGraph={this.props.randomGraph}
+                                addNode={this.props.addNode}
+                                removeNode={this.props.graphManagedRemoveNode}
+                                addEdge={this.props.graphManagedAddEdge}
+                                removeEdge={this.props.graphManagedRemoveEdge}
+                                algorithmBreadth={this.props.algorithmBreadth}
+                                algorithmDepth={this.props.algorithmDepth}
+
+                        />
+                      </WrappedComponent>
+                    : <WrappedComponent {...this.props}>
+                        <ToolbarSpectator addNode={this.props.addNode}
+                                   removeNode={this.props.graphManagedRemoveNode}
+                                   addEdge={this.props.graphManagedAddEdge}
+                                   removeEdge={this.props.graphManagedRemoveEdge}
+                        />
+                      </WrappedComponent>
+                }
+                </Wrapper>
+```
+
 Na primeru `Toolbar` komponente. Uvek su prikazani logo i navigacioni elementi.  
 ```jsx
 const toolbar = (props) => (
@@ -191,6 +222,7 @@ const toolbar = (props) => (
     />
 </Toolbar>
 ```
+
 
 ## Decorator: Higher-order components
 
@@ -238,10 +270,12 @@ function withIO (WrappedComponent) {
 
 Multikompozicija i dekoracija su najviše primenjene na `Room` komponentu. Inicijalno ova komponenta nema previše funkcionalnosti osim gradivnog koriničkog interfejsa i odvojeniih containera za predstavljanje chata, grafa i navbara. Dekoratorima koji hijerarhijski zavise jedan od drugog se dobija znatno kompleksnija komponenta bez dupliranja koda i mogućnosti ponovne upotrebe hoc dekoratora. 
 
-U konkretnom primeru dekorator `withMaster` dinamiči dodeljuje privilegije i dozvoljene aktivnosti u vidu elemenata navbara `Room` komponenti, sve to u zavisnosti od statusa korisnika. Ako je korisnik `master` sobe u kojoj se nalazi dobiće dodatne privilegije. `withMaster` je pritom hoc koji se oslanja na metode koje su prethodno propaginare od strane `withIO` i `withGraph` dekoratora.
+U konkretnom primeru dekorator `withPlaygroud` se koristi za gradjenje soba `practice` tipa i dinamiči dodeljuje privilegije i dozvoljene aktivnosti u vidu elemenata navbara `Room` komponenti, sve to u zavisnosti od statusa korisnika. Ako je korisnik `master` sobe u kojoj se nalazi dobiće dodatne privilegije. `withPlaygroud` je pritom hoc koji se oslanja na metode koje su prethodno propaginare od strane `withIO` i `withGraph` dekoratora. Pored `withPlayground` dekoratora od ključne su važnosti i dekoratori `withCompete` i `withLearn`. Ova tri hoc-a se koriste za formiranje soba različitih tipova i shodno tipu soba se oslanja na različite mogućnosti i atribute.
 
 ```javascript
-export default withRouter((withRedux (withIO (withGraph (withMaster (Room))))));
+export const RoomPlayground = withRouter((withRedux (withIO (withGraph (withAlgorithm (withPlayground (Room)))))));
+export const RoomCompete = withRouter((withRedux (withIO (withGraph (withCompete (Room))))));
+export const RoomLearn = withRouter((withRedux (withGraph (withLearn (Room)))));
 ```
 
 ## Dependency injection
@@ -282,6 +316,10 @@ Obzirom da je inicijalizacija izvršena u korenoj komponenti, sve ostale kompone
 **Factory** obrazac u JavaScript-u se koristi za odvajanje kreacije objekata od ostatka koda. U situacijama kada je proces kreiranja varijabilan ili kompleksan treba uspostaviti bafer u vidu Factory-a. Najprostiji Factory enkapsulira kreiranje nekog objekta, metode za kreiranje mogu da budu parametrizovane. Rezultat je Product objekat, u slučaju različitih tipova očekuju se da ovi objekti imaju konzistentan interfejs. Factory obrazac kao glavnu prednost ima centralizovano i konzistentno kreiranje objekata.
 
 **Abstract Factory** obrazac definiše više metoda koje vraćaju produkte. Daje interfejs za kreiranje familija srodnih objekata bez specifikacija njihovih konkretnih klasa. Bitno je da interfejsi, iako objekata koji su različiti, budu konzistentni jer se na mestu inicijalizacije ne pravi razlika izmedju ovih objekata.
+
+## Builder
+
+**Builder** obrazac koristi se za enkapsulaciju gradjenja kompleksnih objekata tokom vremena, delegiranjem zahteva na niže nivoe.
 
 ```javascript
 export const graphFactory = () => {
