@@ -36,7 +36,7 @@ class Home extends React.Component {
         if (this.props.waiting)
             waiting = <Overlay />;
         else if (this.state.redirect && !this.props.waiting && !this.props.error && this.props.data._id)  {
-            if (this.props.data.roomType === 'practise')
+            if (this.props.data.roomType === 'practice')
                  waiting = <Redirect to="/room" />;
             else if (this.props.data.roomType === 'compete')
                 waiting = <Redirect to="/compete" />;

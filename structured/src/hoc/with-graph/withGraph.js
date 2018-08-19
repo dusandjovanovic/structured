@@ -226,7 +226,7 @@ function withGraph(WrappedComponent) {
             this.graphAnimated();
         };
 
-        addNodeValue = (node) => {
+        addReceivedNode = (node) => {
             this.graph.addVertex(node);
             this.managedEnded();
             this.graphAnimated();
@@ -234,17 +234,37 @@ function withGraph(WrappedComponent) {
 
         removeNode = (node) => {
             this.graph.removeVertex(node);
+            this.props.removeNodeIO(node);
+            this.managedEnded();
+            this.graphAnimated();
+        };
+
+        removeReceivedNode = (node) => {
+            this.graph.removeVertex(node);
             this.managedEnded();
             this.graphAnimated();
         };
 
         addEdge = (source, target) => {
             this.graph.addEdge(source, target);
+            this.props.addEdgeIO(source, target);
+            this.managedEnded();
+            this.graphAnimated();
+        };
+
+        addReceivedEdge = (source, target) => {
+            this.graph.addEdge(source, target);
             this.managedEnded();
             this.graphAnimated();
         };
 
         removeEdge = (source, target) => {
+            this.graph.removeEdge(source, target);
+            this.managedEnded();
+            this.graphAnimated();
+        };
+
+        removeReceivedEdge = (source, target) => {
             this.graph.removeEdge(source, target);
             this.managedEnded();
             this.graphAnimated();
@@ -258,10 +278,13 @@ function withGraph(WrappedComponent) {
                 initiateGraph: this.initiateGraph,
                 randomGraph: this.randomGraph,
                 addNode: this.addNode,
-                addNodeValue: this.addNodeValue,
+                addReceivedNode: this.addReceivedNode,
                 removeNode: this.removeNode,
+                removeReceivedNode: this.removeReceivedNode,
                 addEdge: this.addEdge,
+                addReceivedEdge: this.addReceivedEdge,
                 removeEdge: this.removeEdge,
+                removeReceivedEdge: this.removeReceivedEdge,
 
                 nodeSelected: this.state.nodeSelected,
                 nodeFocused: this.state.nodeFocused,

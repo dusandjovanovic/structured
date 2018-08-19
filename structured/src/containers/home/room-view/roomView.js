@@ -35,7 +35,7 @@ class roomView extends Component {
                                     </CardBody>
                                     <CardText className="p-2">
                                         <small className="text-muted p">
-                                            {room.time}
+                                            {new Date(room.time).toLocaleDateString("en-us", {hour: 'numeric', minute: 'numeric'})}
                                         </small>
                                     </CardText>
                                 </Card>

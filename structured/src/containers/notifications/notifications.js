@@ -21,7 +21,7 @@ class NotificationContainer extends Component {
 
     render() {
         return (
-            <NotificationSystem ref="notificationSystem"/>
+            <NotificationSystem ref="notificationSystem" />
         );
     }
 }

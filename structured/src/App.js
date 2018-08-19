@@ -11,8 +11,8 @@ import NotificationContainer from './containers/notifications/notifications';
 import withAsyncLoading from './hoc/with-async-loading/withAsyncLoading';
 import * as actions from './redux/actions/index';
 
-const withAsyncSocial = withAsyncLoading(() => {
-    return import('./containers/social/social');
+const withAsyncDashboard = withAsyncLoading(() => {
+    return import('./containers/dashboard/dashboard');
 });
 
 class App extends Component {
@@ -33,7 +33,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/auth" component={Auth}/>
                     <Route path="/logout" component={Logout}/>
-                    <Route path="/social" component={withAsyncSocial}/>
+                    <Route path="/dashboard" component={withAsyncDashboard}/>
                     <Route path="/room" component={RoomPlayground}/>
                     <Route path="/compete" component={RoomCompete}/>
                     <Route path="/learn" component={RoomLearn}/>

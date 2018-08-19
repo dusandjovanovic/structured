@@ -12,7 +12,7 @@ class roomNew extends Component {
     state = {
         dropdownOpen: false,
         newAvailable: false,
-        roomType: 'practise'
+        roomType: 'practice'
     };
 
     toggle = () => {
@@ -23,7 +23,7 @@ class roomNew extends Component {
 
     newRoomHandler = (event) => {
         event.preventDefault();
-        this.props.createAndEnterRoom(this.roomName.value, this.roomUsers.value, this.state.roomType);
+        this.props.createAndEnterRoom(this.roomName.value.trim(), this.roomUsers.value, this.state.roomType);
     };
 
     modeHandler = (mode) => {
@@ -47,7 +47,7 @@ class roomNew extends Component {
                     <CardText>By creating a new room you are a room Master, others who join are spectators and can see
                         everything you do.</CardText>
                     <ButtonGroup>
-                        <Button onClick={() => this.modeHandler('practise')}>Practise</Button>
+                        <Button onClick={() => this.modeHandler('practice')}>Practice</Button>
                         <Button onClick={() => this.modeHandler('compete')}>Compete</Button>
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret>

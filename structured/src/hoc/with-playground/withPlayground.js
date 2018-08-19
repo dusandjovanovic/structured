@@ -19,7 +19,10 @@ function withPlayground (WrappedComponent) {
             }
 
             this.props.socket.on(this.props.room.name + ' add node', received => {
-                this.props.addNodeValue(received.node);
+                this.props.addReceivedNode(received.node);
+            });
+            this.props.socket.on(this.props.room.name + ' add edge', received => {
+                this.props.addReceivedEdge(received.edge.source, received.edge.target);
             });
         };
 

@@ -187,7 +187,7 @@ export const friendAdd = (username, friendUsername) => {
                             else
                                 dispatch(actions.notificationSystem(
                                     'Username does not exist. Please try again.',
-                                    'success',
+                                    'error',
                                     10,
                                     null,
                                     null
@@ -195,7 +195,7 @@ export const friendAdd = (username, friendUsername) => {
                         })
                         .catch(error => {
                             console.log('addError:', error);
-                            dispatch(friendFail("Fetching social data failed."));
+                            dispatch(friendFail("Fetching dashboard data failed."));
                         });
                 }
             })

@@ -30,8 +30,10 @@ function withIO (WrappedComponent) {
             this.socket.emit('add edge', {
                 room: this.props.data.name,
                 sender: this.props.username,
-                source: source,
-                target: target
+                edge: {
+                    source: source,
+                    target: target
+                }
             });
         };
 
@@ -47,8 +49,10 @@ function withIO (WrappedComponent) {
             this.socket.emit('remove edge', {
                 room: this.props.data.name,
                 sender: this.props.username,
-                source: source,
-                target: target
+                edge: {
+                    source: source,
+                    target: target
+                }
             });
         };
 
@@ -70,7 +74,7 @@ function withIO (WrappedComponent) {
         };
 
         competeBeginIO = (algorithmName, rootNode) => {
-            this.socket.emit('toolbar-compete begin', {
+            this.socket.emit('compete begin', {
                 room: this.props.room.name,
                 agName: algorithmName,
                 root: rootNode
@@ -78,7 +82,7 @@ function withIO (WrappedComponent) {
         };
 
         competeEndedIO = (score) => {
-            this.socket.emit('toolbar-compete end', {
+            this.socket.emit('compete end', {
                 room: this.props.room.name,
                 user: this.props.username,
                 score: score

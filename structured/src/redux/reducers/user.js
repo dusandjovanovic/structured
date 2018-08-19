@@ -2,8 +2,8 @@ import * as actionTypes from '../actions/actions';
 
 const initialState = {
     username: null,
-    friends: null,
-    requests: null,
+    friends: [],
+    requests: [],
     userData: null,
     waiting: null,
     error: null
