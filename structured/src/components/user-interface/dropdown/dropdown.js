@@ -24,7 +24,9 @@ const dropdown = (props) => {
         <div className="Dropdown">
             <div id="holder"
                onMouseEnter={props.showRequests}
-               onMouseLeave={props.hideRequests}><i className="fas fa-user-friends"></i>  {props.name}</div>
+               onMouseLeave={props.hideRequests}>
+                <i className="fas fa-user-friends"> </i>  {props.name}
+                </div>
             <ToolTip active={props.active}
                      style={style}
                      position="bottom"
@@ -36,8 +38,7 @@ const dropdown = (props) => {
                                 <div key={element.sender}>
                                     <DropdownElement element={element.sender}
                                                      clickedLeft={element.clickedLeft}
-                                                     clickedRight={element.clickedRight}
-                                    />
+                                                     clickedRight={element.clickedRight} />
                                 </div>
                                 )
                         )

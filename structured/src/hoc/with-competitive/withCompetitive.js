@@ -49,8 +49,8 @@ function withCompetitive (WrappedComponent) {
         };
 
         competeBegan = (algorithm, root) => {
+            this.props.notificationSystem((this.props.room.master ? 'You' : 'A room Master').concat(" just started a compete session. Submit your solution when ready!"), "warning", 10, null, null);
             if (!this.props.graphManaged) {
-                this.props.notificationSystem((this.props.room.master ? 'You' : 'A room Master').concat(" just started a compete session. Submit your solution when ready!"), "warning", 10, null, null);
                 this.props.graphNodeRoot(root);
                 this.props.graphManagedCompete();
                 this.props.roomGetGraph(this.props.room.name)
@@ -76,7 +76,7 @@ function withCompetitive (WrappedComponent) {
         };
 
         competeEndedByFriend = (username, score) => {
-            this.props.notificationSystem("Your friend " + username + " just finished the competition. With the overall score of " + score + ".", "info", 10, null, null);
+            this.props.notificationSystem(username + " just finished the competition. With the overall score of " + score + "points.", "info", 10, null, null);
         };
 
         competeBreadth = () => {

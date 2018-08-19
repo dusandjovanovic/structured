@@ -16,7 +16,7 @@ class dashboardCards extends Component {
                     <div className="shadow card text-white bg-primary o-hidden h-100">
                         <div className="card-body">
                             <div className="card-body-icon">
-                                <i className="fas fa-user-friends"></i>
+                                <i className="fas fa-user-friends"> </i>
                             </div>
                             <div className="mr-5">{this.props.numRequests} New friend requests</div>
                             <Modal title="Add a new friend" buttonCondition buttonLabel="Add a new friend" buttonClass="float-left btn btn-outline-light btn-sm m-1">

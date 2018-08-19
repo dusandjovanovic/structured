@@ -5,7 +5,7 @@ import * as actions from '../../redux/actions/index';
 import DashboardCards from './dashboard-cards/dashboardCards';
 import DashboardFriends from './dashboard-friends/dashboardFriends';
 import DashboardNavbar from './dashboard-navbar/dashboardNavbar';
-import { Table, Container, Row, Nav, NavItem, NavLink, Breadcrumb, BreadcrumbItem, Card, CardHeader, CardBody, CardFooter,} from 'reactstrap';
+import { Table, Container, Row, Breadcrumb, BreadcrumbItem, Card, CardHeader, CardBody, CardFooter,} from 'reactstrap';
 import Overlay from "../../components/user-interface/spinner-overlay/spinnerOverlay";
 import './dashboard.css';
 
@@ -52,7 +52,7 @@ export class Dashboard extends Component {
                     },
                 }
             },
-            userDataHistory: [{date: new Date(), score: 122}, {date: new Date(), score: 255}, , {date: new Date(), score: 255}, , {date: new Date(), score: 255}, , {date: new Date(), score: 255}]
+            userDataHistory: [{date: new Date(), score: 122}, {date: new Date(), score: 255}, {date: new Date(), score: 255}, , {date: new Date(), score: 255}, , {date: new Date(), score: 255}]
         });
     };
 
