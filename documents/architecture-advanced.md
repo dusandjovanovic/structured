@@ -181,21 +181,15 @@ Na primeru soba različitih tipova toolbarova navbar elementi se dinamički "ubr
 <Wrapper>
                 {this.props.room.master
                     ? <WrappedComponent {...this.props}>
-                        <ToolbarMaster randomGraph={this.props.randomGraph}
-                                addNode={this.props.addNode}
-                                removeNode={this.props.graphManagedRemoveNode}
-                                addEdge={this.props.graphManagedAddEdge}
-                                removeEdge={this.props.graphManagedRemoveEdge}
+                        <ToolbarMaster ...shared props
+                                randomGraph={this.props.randomGraph}                       
                                 algorithmBreadth={this.props.algorithmBreadth}
                                 algorithmDepth={this.props.algorithmDepth}
 
                         />
                       </WrappedComponent>
                     : <WrappedComponent {...this.props}>
-                        <ToolbarSpectator addNode={this.props.addNode}
-                                   removeNode={this.props.graphManagedRemoveNode}
-                                   addEdge={this.props.graphManagedAddEdge}
-                                   removeEdge={this.props.graphManagedRemoveEdge}
+                        <ToolbarSpectator ...shared props
                         />
                       </WrappedComponent>
                 }
