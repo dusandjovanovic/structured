@@ -2,6 +2,21 @@
 
 URL: http://localhost:2998/graph
 
+Master changed:
+```javascript
+var receivedData = request.post(\leave)
+showMessage(receivedData.msg)
+if (receivedData.newMaster != null) {
+  emit('master changed', {master: receivedData.newMaster})
+}
+```
+```javascript
+// u konstruktoru, npr.
+on.(room.name + ' master changed', (rcv) => {
+  showMessage(rcv.msg)
+})
+```
+----------------
 ```javascript
 onGraphChange(changedGraph) {
   if (room.master == user.name) { // ako je korisnik master
@@ -122,6 +137,6 @@ Ukoliko je zahtev ispunjen, success je true, ukoliko nije, success je false i dr
 | /get-graph/:name| GET | name: String          | /                                       | data: Number[]                            |
 | /           | POST    | /                     | name: String, maxUsers: Number, createdBy: String, roomType: String   | msg: String |
 | /join       | POST    | /                     | roomName: String, username: Number      | msg: String                               |
-| /leave      | POST    | /                     | roomName: String, username: Number      | msg: String                               |
+| /leave      | POST    | /                     | roomName: String, username: Number      | msg: String, newMaster: String            |
 | /:name      | PUT     | name: String          | node: Number                            | msg: String                               |
 | /:id        | DELETE  | id: String            | /                                       | msg: String                               |
