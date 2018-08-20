@@ -217,6 +217,12 @@ function withGraph(WrappedComponent) {
         randomGraph = () => {
             let randomGraph = randomData();
             this.initiateGraph(randomGraph);
+            this.props.changeGraphIO(randomGraph);
+        };
+
+        randomGraphOffline = () => {
+            let randomGraph = randomData();
+            this.initiateGraph(randomGraph);
         };
 
         addNode = () => {
@@ -260,6 +266,7 @@ function withGraph(WrappedComponent) {
 
         removeEdge = (source, target) => {
             this.graph.removeEdge(source, target);
+            this.props.removeEdgeIO(source, target);
             this.managedEnded();
             this.graphAnimated();
         };
@@ -277,6 +284,7 @@ function withGraph(WrappedComponent) {
 
                 initiateGraph: this.initiateGraph,
                 randomGraph: this.randomGraph,
+                randomGraphOffline: this.randomGraphOffline,
                 addNode: this.addNode,
                 addReceivedNode: this.addReceivedNode,
                 removeNode: this.removeNode,

@@ -113,7 +113,7 @@ function withLearn (WrappedComponent) {
         render() {
             return (
                 <WrappedComponent learn {...this.props}>
-                    <Learn randomGraph={this.props.randomGraph}
+                    <Learn randomGraph={this.props.randomGraphOffline}
                            graphLearn={this.graphLearn}
                     />
                 </WrappedComponent>

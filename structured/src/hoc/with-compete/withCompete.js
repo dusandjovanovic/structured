@@ -20,6 +20,9 @@ function withCompete (WrappedComponent) {
                     if (!this.props.graphManaged)
                         this.props.initiateGraph(received.graph);
                 });
+                this.props.socket.on('graph change', received => {
+                    this.props.initiateGraph(received.graph);
+                });
             }
             else if (this.props.username === this.props.data.createdBy) {
                 this.props.socket.on(this.props.data.createdBy, (received) => {

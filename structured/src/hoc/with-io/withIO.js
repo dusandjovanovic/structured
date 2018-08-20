@@ -66,9 +66,9 @@ function withIO (WrappedComponent) {
             }
         };
 
-        randomGraphIO = (graph) => {
+        changeGraphIO = (graph) => {
             if (graph) {
-                this.socket.emit('random graph', {
+                this.socket.emit('graph change', {
                     room: this.props.room.name,
                     graph: graph
                 })
@@ -120,7 +120,7 @@ function withIO (WrappedComponent) {
                                   removeEdgeIO={this.removeEdgeIO}
                                   addGraphIO={this.addGraphIO}
                                   getGraphIO={this.getGraphIO}
-                                  randomGraphIO={this.randomGraphIO}
+                                  changeGraphIO={this.changeGraphIO}
                                   competeBeginIO={this.competeBeginIO}
                                   competeEndedIO={this.competeEndedIO}
                                   algorithmBeginIO={this.algorithmBeginIO}

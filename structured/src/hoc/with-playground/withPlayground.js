@@ -11,6 +11,9 @@ function withPlayground (WrappedComponent) {
                 this.props.socket.on(this.props.username, received => {
                     this.props.initiateGraph(received.graph);
                 });
+                this.props.socket.on('graph change', received => {
+                    this.props.initiateGraph(received.graph);
+                });
             }
             else if (this.props.username === this.props.data.createdBy) {
                 this.props.socket.on(this.props.data.createdBy, (received) => {
@@ -21,8 +24,14 @@ function withPlayground (WrappedComponent) {
             this.props.socket.on(this.props.room.name + ' add node', received => {
                 this.props.addReceivedNode(received.node);
             });
+            this.props.socket.on(this.props.room.name + ' remove node', received => {
+                this.props.removeReceivedNode(received.node);
+            });
             this.props.socket.on(this.props.room.name + ' add edge', received => {
                 this.props.addReceivedEdge(received.edge.source, received.edge.target);
+            });
+            this.props.socket.on(this.props.room.name + ' remove edge', received => {
+                this.props.removeReceivedEdge(received.edge.source, received.edge.target);
             });
         };
 
