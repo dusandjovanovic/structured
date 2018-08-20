@@ -2,7 +2,43 @@
 
 URL: http://localhost:2998/graph
 
-
+```javascript
+onGraphChange(changedGraph) {
+  if (room.master == user.name) { // ako je korisnik master
+    emit.('graph change', {graph: changedGraph})
+  }
+}
+```
+```javascript
+// u konstruktoru, npr.
+if (room.master != user.name) { // ako je korisnik spectator
+  on.('graph change', (rcv) => {
+    changeGraph(rcv.graph)
+  })
+}
+```
+```javascript
+onRemoveNode(removedNode) {
+  emit.('remove node', {room: room.name, sender: user.name, node: removedNode})
+}
+```
+```javascript
+onRemoveEdge(removedEdge) {
+  emit.('remove edge', {room: room.name, sender: user.name, node: removedNode})
+}
+```
+```javascript
+// u konstruktoru, npr.
+on.(room.name + ' remove node', (rcv) => {
+  removeNode(rcv.sender, rcv.node)
+})
+```
+```javascript
+// u konstruktoru, npr.
+on.(room.name + ' remove edge', (rcv) => {
+  removeEdge(rcv.sender, rcv.edge)
+})
+```
 
 ## JSON
 
