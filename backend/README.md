@@ -2,17 +2,30 @@
 
 URL: http://localhost:2998/graph
 
-Master changed:
+Master changed and room entered left:
 ```javascript
-var receivedData = request.post(\leave)
-showMessage(receivedData.msg)
-if (receivedData.newMaster != null) {
-  emit('master changed', {master: receivedData.newMaster})
+ onLeaveRoom() {
+  var receivedData = request.post(\leave)
+  showMessage('Room left')
+  if (receivedData.newMaster != null) {
+    emit('master changed', {master: receivedData.newMaster})
+  } else {
+    emit('join and leave room', {room: room.name, msg: receivedData.msg})
+  }
+}
+onJoinRoom() {
+  var receivedData = request.post(\join)
+  showMessage('Room joined')
+  emit('join and leave room', {room: room.name, msg: receivedData.msg})
 }
 ```
 ```javascript
 // u konstruktoru, npr.
 on.(room.name + ' master changed', (rcv) => {
+  showMessage(rcv.msg)
+})
+
+on.(room.name + ' join and leave room', (rcv) => {
   showMessage(rcv.msg)
 })
 ```
