@@ -171,7 +171,23 @@ router.post('/leave', /*passport.authenticate('jwt', {session: false}),*/ functi
                 if (err) {
                   res.send({success: false, msg: 'MongoDB error: ' + err});
                 } else {
-                  res.send({success: true, msg: 'Room left.'});
+                  var newMaster = null;
+                  if (room.createdBy === username) {
+                    newMaster = room.users[0];
+                    Room.update({name: roomName}, {
+                      createdBy: newMaster
+                    }, function(err) {
+                      if (err) {
+                        res.send({success: false, msg: 'MongoDB error: ' + err});
+                      }
+                    });
+                  }
+
+                  res.send({
+                    success: true,
+                    msg: 'Room left.',
+                    newMaster: newMaster
+                  });
                 }
               });
           } else {

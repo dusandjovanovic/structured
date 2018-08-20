@@ -39,6 +39,10 @@ module.exports = function(io) {
       graph.emit(rcv.room + ' compete end', {user: rcv.user, score: rcv.score});
     });
 
+    client.on('master changed', (rcv) => {
+      graph.emit(rcv.room + ' master changed', {msg: 'Master left. New master is: ' + rcv.master});
+    });
+
   });
 };
   
