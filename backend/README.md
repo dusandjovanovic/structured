@@ -2,67 +2,7 @@
 
 URL: http://localhost:2998/graph
 
-Compete mod:
-```javascript
-onCompeteBegin() {
-  emit('compete begin', {room: room.name, agName: algorithmName, root: root})
-}
-```
-```javascript
-// u konstruktoru, npr.
-on.(room.name + ' compete begin', (rcv) => {
-  beginCompeting(rcv.agName, rcv.root)
-})
-```
-```javascript
-onCompeteEnd() {
-  emit('compete end', {room: room.name, user: user.name, score: getScore()})
-}
-```
-```javascript
-// u konstruktoru, npr.
-on.(room.name + ' compete end', (rcv) => {
-  displayResultForUser(rcv.user, rcv.score)
-})
-```
 
-Pseudokod client strane:
-```javascript
-onJoinRoom() {
-  if (user.name != room.createdBy) // ukoliko nije 'master' korisnik
-    emit('get graph', {username: user.name, masterName: room.createdBy})
-  
-  on(user.name, (graph) => {
-    setCurrentGraph(graph)
-  })
-}
-```
-```javascript
-// u konstruktoru, npr.
-if (user.name === room.createdBy) // definisemo samo za 'mastera'
-  on(room.createdBy, (rcv) => {
-    emit('graph', {username: rcv.username, graph: getCurrentGraph()})
-  })
-```
-```javascript
-onAddNode(newNode) {
-  emit('add node', {room: room.name, sender: user.name, node: newNode})
-}
-
-onAddEdge(newEdge) {
-  emit('add edge', {room: room.name, sender: user.name, edge: newEdge})
-}
-```
-```javascript
-// u konstruktoru, npr. ili bilo gde gde vam odgovara
-on.(room.name + ' add node', (rcv) => {
-  addNode(rcv.node) // takodje postoji i rcv.sender za onog koji je napravio izmenu
-})
-
-on.(room.name + ' add edge', (rcv) => {
-  addEdge(rcv.edge) // takodje postoji i rcv.sender za onog koji je napravio izmenu
-})
-```
 
 ## JSON
 
@@ -111,7 +51,7 @@ Ukoliko je zahtev ispunjen, success je true, ukoliko nije, success je false i dr
 
 | Call        | Type    | Params                | Body                                    | Data                                      |
 |-------------|---------|-----------------------|-----------------------------------------|-------------------------------------------|
-| /register   | POST    | /                     | username: String, password: String      | /                                         |
+| /register   | POST    | /                     | username: String, password: String, about: String  | /                              |
 | /login      | POST    | /                     | username: String, password: String      | token: JWT token                          |
                     
 ### User                    
@@ -119,7 +59,9 @@ Ukoliko je zahtev ispunjen, success je true, ukoliko nije, success je false i dr
                     
 | Call        | Type    | Params                | Body                                    | Data                                      |
 |-------------|---------|-----------------------|-----------------------------------------|-------------------------------------------|
-| /:username  | GET     | username: String      | /                                       | data: User                                      |
+| /:username  | GET     | username: String      | /                                       | data: User                                |
+| /:username/history  | GET     | username: String      | /                               | history: {date: Date, score: Number}      |
+| /:username  | PUT     | username: String      | score: Number                           | msg: String                               |
                     
 ### Friend request                    
 * **URI**: /api/friend-request                    
