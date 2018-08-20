@@ -19,7 +19,7 @@ class dashboardCards extends Component {
                                 <i className="fas fa-user-friends"> </i>
                             </div>
                             <div className="mr-5">{this.props.numRequests} New friend requests</div>
-                            <Modal title="Add a new friend" buttonCondition buttonLabel="Add a new friend" buttonClass="float-left btn btn-outline-light btn-sm m-1">
+                            <Modal title="Add a new friend" buttonCondition buttonLabel="Add a new friend" buttonClass="float-left btn btn-outline-light btn-sm ml-3 mr-2 mt-2 mb-1">
                                 <Form onSubmit={this.addFriendHandler}>
                                     <FormGroup>
                                         <Label for="room">Enter your friends username:</Label>

@@ -19,7 +19,7 @@ class ExModal extends React.Component {
 
     render() {
         return (
-            <div className="ml-2 mr-2">
+            <div className="ml-0 mr-0">
                 <Button className={this.props.buttonClass} disabled={!this.props.buttonCondition} onClick={this.toggle}>{this.props.buttonLabel}</Button>
                 <Modal className="modal-lg" isOpen={this.state.modal} toggle={this.toggle}>
                     <ModalHeader>{this.props.title}</ModalHeader>

@@ -55,7 +55,7 @@ class roomNew extends Component {
                                 <DropdownItem onClick={() => this.modeHandler("learn")}>Learn</DropdownItem>
                             </DropdownMenu>
                         </ButtonDropdown>
-                        <Modal title="Create a new room" buttonCondition={this.state.newAvailable} buttonLabel="New!" buttonClass="btn-danger">
+                        <Modal title="Create a new room" buttonCondition={this.state.newAvailable} buttonLabel="New!" buttonClass="ml-2 btn-danger">
                             <Form onSubmit={this.newRoomHandler}>
                                 <FormGroup>
                                     <Label for="room">Room name:</Label>
