@@ -11,7 +11,7 @@ function withPlayground (WrappedComponent) {
                 this.props.socket.on(this.props.username, received => {
                     this.props.initiateGraph(received.graph);
                 });
-                this.props.socket.on('graph change', received => {
+                this.props.socket.on(this.props.room + ' graph change', received => {
                     this.props.initiateGraph(received.graph);
                 });
             }
