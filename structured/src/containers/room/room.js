@@ -25,6 +25,7 @@ class Room extends Component {
 
     componentDidMount() {
         window.addEventListener("beforeunload", this.leaveRoom);
+        this.props.joinLeaveRoomIO(this.props.username + " just joined the room.");
     };
 
     componentWillUnmount() {
@@ -110,7 +111,15 @@ class Room extends Component {
     };
 
     leaveRoom = () => {
-        this.props.roomLeaveExisting(this.props.room.name, this.props.username);
+        const self = this;
+        this.props.roomLeaveExisting(this.props.room.name, this.props.username)
+            .then(response => {
+                console.log(response);
+                if (response.master !== null)
+                    self.props.masterChangedIO(response.master);
+                else
+                    self.props.joinLeaveRoomIO(response.msg);
+            });
         this.setState({
             redirect: true
         });

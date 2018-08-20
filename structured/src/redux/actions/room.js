@@ -161,25 +161,33 @@ export const roomJoinExisting = (name, username) => {
             roomName: name,
             username: username
         };
-        let url = '/api/rooms/join';
-        axios.post(url, data)
-            .then(response => {
-                if (response.data.success) {
-                    dispatch(roomGetData(name, username));
-                    dispatch(roomJoin(name));
-                    dispatch(roomGetAll('all'));
-                }
-                else {
-                    console.log('roomJoinError:', response.data.msg);
-                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
-                    dispatch(roomError(response.data.msg));
-                }
-            })
-            .catch(error => {
-                console.log('roomJoinError:', error);
-                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                dispatch(roomError(error));
-            });
+        return new Promise(function(resolve, reject) {
+            let url = '/api/rooms/join';
+            axios.post(url, data)
+                .then(response => {
+                    if (response.data.success) {
+                        resolve({
+                            msg: response.data.msg,
+                            master: response.data.newMaster
+                        });
+                        dispatch(roomGetData(name, username));
+                        dispatch(roomJoin(name));
+                        dispatch(roomGetAll('all'));
+                    }
+                    else {
+                        console.log('roomJoinError:', response.data.msg);
+                        dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
+                        dispatch(roomError(response.data.msg));
+                        reject(response.data.msg);
+                    }
+                })
+                .catch(error => {
+                    console.log('roomJoinError:', error);
+                    dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
+                    dispatch(roomError(error));
+                    reject(error.message);
+                });
+        });
     }
 };
 
@@ -190,24 +198,32 @@ export const roomLeaveExisting = (name, username) => {
             roomName: name,
             username: username
         };
-        let url = '/api/rooms/leave';
-        axios.post(url, data)
-            .then(response => {
-                if (response.data.success) {
-                    dispatch(roomLeave());
-                    dispatch(roomGetAll('all'));
-                }
-                else {
-                    console.log('roomLeaveError:', response.data.msg);
-                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
-                    dispatch(roomError(response.data.msg));
-                }
-            })
-            .catch(error => {
-                console.log('roomLeaveError:', error);
-                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                dispatch(roomError(error));
-            });
+        return new Promise(function(resolve, reject) {
+            let url = '/api/rooms/leave';
+            axios.post(url, data)
+                .then(response => {
+                    if (response.data.success) {
+                        resolve({
+                            msg: response.data.msg,
+                            master: response.data.newMaster
+                        });
+                        dispatch(roomLeave());
+                        dispatch(roomGetAll('all'));
+                    }
+                    else {
+                        console.log('roomLeaveError:', response.data.msg);
+                        dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
+                        dispatch(roomError(response.data.msg));
+                        reject(response.data.msg);
+                    }
+                })
+                .catch(error => {
+                    console.log('roomLeaveError:', error);
+                    dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
+                    dispatch(roomError(error));
+                    reject(error.message);
+                });
+        });
     }
 };
 

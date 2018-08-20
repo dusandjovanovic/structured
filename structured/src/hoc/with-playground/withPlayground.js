@@ -21,6 +21,13 @@ function withPlayground (WrappedComponent) {
                 });
             }
 
+            this.props.socket.on(this.props.room.name + ' master changed', received => {
+                console.log('master changed', received);
+            });
+            this.props.socket.on(this.props.room.name + ' join and leave room', received => {
+                this.props.notificationSystem(received.msg, "warning", 10, null, null);
+            });
+
             this.props.socket.on(this.props.room.name + ' add node', received => {
                 this.props.addReceivedNode(received.node);
             });

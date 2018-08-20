@@ -112,6 +112,21 @@ function withIO (WrappedComponent) {
             });
         };
 
+        joinLeaveRoomIO = (message) => {
+            console.log('join/leave', message, this.props.room.name);
+            this.socket.emit('join and leave room', {
+                room: this.props.room.name,
+                msg: message
+            });
+        };
+
+        masterChangedIO = (master) => {
+            this.socket.emit('master changed', {
+                room: this.props.room.name,
+                master: master
+            });
+        };
+
         render() {
             return (
                 <WrappedComponent addNodeIO={this.addNodeIO}
@@ -125,6 +140,8 @@ function withIO (WrappedComponent) {
                                   competeEndedIO={this.competeEndedIO}
                                   algorithmBeginIO={this.algorithmBeginIO}
                                   algorithmEndedIO={this.algorithmEndedIO}
+                                  joinLeaveRoomIO={this.joinLeaveRoomIO}
+                                  masterChangedIO={this.masterChangedIO}
                                   socket={this.socket}
                                   {...this.props}
                                 />

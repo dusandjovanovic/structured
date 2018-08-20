@@ -20,7 +20,7 @@ function withCompete (WrappedComponent) {
                     if (!this.props.graphManaged)
                         this.props.initiateGraph(received.graph);
                 });
-                this.props.socket.on('graph change', received => {
+                this.props.socket.on(this.props.room + ' graph change', received => {
                     this.props.initiateGraph(received.graph);
                 });
             }
