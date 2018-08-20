@@ -12,7 +12,7 @@ onGraphChange(changedGraph) {
 ```javascript
 // u konstruktoru, npr.
 if (room.master != user.name) { // ako je korisnik spectator
-  on.('graph change', (rcv) => {
+  on.(room.name + ' graph change', (rcv) => {
     changeGraph(rcv.graph)
   })
 }
