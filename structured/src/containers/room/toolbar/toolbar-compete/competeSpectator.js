@@ -16,7 +16,7 @@ const compete = (props) => (
             <Button outline color="secondary"
                     disabled={!props.graphManaged}
                     onClick={() => props.competeEnded()}>
-                <i className="fas fa-check"></i> Submit solution
+                <i className="fas fa-check"> </i> Submit solution
             </Button>
 
             <Modal title="Some hints about traversals" buttonCondition buttonLabel="Help!" buttonClass="btn-outline">

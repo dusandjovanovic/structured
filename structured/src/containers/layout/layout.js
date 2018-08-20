@@ -42,8 +42,7 @@ class Layout extends Component {
                               active={this.state.showRequests}
                               elements={this.state.elementsRequests}
                               isAuthenticated={this.props.isAuthenticated}
-                              default="You don't have any requests."
-                    />
+                              default="You don't have any requests." />
                 </Toolbar>
                 }
                 <main className="Content">

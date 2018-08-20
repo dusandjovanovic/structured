@@ -45,7 +45,7 @@ class Home extends React.Component {
         }
 
         return (
-            <div className="bg-light p-4">
+            <div className="bg-light contain p-4">
                 {waiting}
                 <Container>
                     <Row>
@@ -56,8 +56,7 @@ class Home extends React.Component {
                         ? <RoomView enterRoom={(name) => this.enterRoom(name)}
                                     rooms={this.props.rooms}
                                     waiting={this.props.waiting}
-                                    stick={this.props.waiting && this.props.rooms.length > 0}
-                          />
+                                    stick={this.props.waiting && this.props.rooms.length > 0} />
                         : null
                     }
                 </Container>

@@ -19,19 +19,20 @@ export class Dashboard extends Component {
 
     componentDidMount() {
         this.props.userData(this.props.username);
-        this.props.userDataAll(this.props.username)
+        this.props.userHistory(this.props.username)
             .then(response => {
-                let rawData = [{date: new Date(), score: 22}, {date: new Date(), score: 24}, {date: new Date(), score: 33}, {date: new Date(), score: 42}, {date: new Date(), score: 38}, {date: new Date(), score: 51}, {date: new Date(), score: 55}, {date: new Date(), score: 51}, {date: new Date(), score: 56}, {date: new Date(), score: 59}, {date: new Date(), score: 65}, {date: new Date(), score: 66}, {date: new Date(), score: 72}, {date: new Date(), score: 80}];
-                let userData = rawData.slice(Math.max(rawData.length - 15, 1));
+                const localTime = new Date();
+                const rawData = [...response.data];
+                let userData = rawData.slice(Math.max(rawData.length - 15, 0));
                 let data = []; let labels = []; let today = 0;
                 rawData.map(element => {
-                    if (element.date.getDate() === new Date().getDate())
+                    if (new Date(element.date).getDate() === localTime.getDate())
                         today = today + 1;
                     return true;
                 });
                 userData.map(element => {
                     data.push(element.score);
-                    labels.push(element.date.toLocaleDateString("en-us"));
+                    labels.push(new Date(element.date).toLocaleDateString("en-us"));
                     return true;
                 });
                 this.setState({
@@ -93,7 +94,7 @@ export class Dashboard extends Component {
                                         }
                                     </CardBody>
                                     <CardFooter>
-                                        <small className="text-muted">Updated just now</small>
+                                        <small className="text-muted">last updated just now</small>
                                     </CardFooter>
                                 </Card>
 
@@ -118,8 +119,8 @@ export class Dashboard extends Component {
                                                     this.state.userDataHistory.map((element, index) => (
                                                         <tr key={index}>
                                                             <th scope="row">{index+1}</th>
-                                                            <td>{element.date.toLocaleDateString("en-us", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'})}</td>
-                                                            <td>{element.score}</td>
+                                                            <td>{new Date(element.date).toLocaleDateString("en-us", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'})}</td>
+                                                            <td>{element.score.toFixed(2)}</td>
                                                         </tr>
                                                     ))
                                                 }
@@ -128,7 +129,7 @@ export class Dashboard extends Component {
                                         }
                                     </CardBody>
                                     <CardFooter>
-                                        <small className="text-muted">Updated just now</small>
+                                        <small className="text-muted">last updated just now</small>
                                     </CardFooter>
                                 </Card>
                             </Container>
@@ -163,7 +164,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         userData: (username) => dispatch(actions.userData(username)),
-        userDataAll: (username) => dispatch(actions.userDataAll(username)),
+        userHistory: (username) => dispatch(actions.userHistory(username)),
         friendAdd: (sender, receiver) => dispatch(actions.friendAdd(sender, receiver))
     }
 };

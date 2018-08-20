@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Input from '../../components/user-interface/input/input';
 import Button from '../../components/user-interface/button/button';
 import Spinner from '../../components/user-interface/spinner/spinner';

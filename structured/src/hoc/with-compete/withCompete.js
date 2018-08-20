@@ -28,7 +28,7 @@ function withCompete (WrappedComponent) {
             }
 
             this.props.socket.on(this.props.room.name + ' compete begin', received => {
-                this.competeBegan(received.agName, received.root);
+                this.competeInitiate(received.agName, received.root);
             });
 
             this.props.socket.on(this.props.room.name + ' compete end', received => {
@@ -48,13 +48,13 @@ function withCompete (WrappedComponent) {
                 });
         };
 
-        competeBegan = (algorithm, root) => {
+        competeInitiate = (algorithm, root) => {
             this.props.notificationSystem((this.props.room.master ? 'You' : 'A room Master').concat(" just started a compete session. Submit your solution when ready!"), "warning", 10, null, null);
             if (!this.props.graphManaged) {
-                this.props.graphNodeRoot(root);
-                this.props.graphManagedCompete();
                 this.props.roomGetGraph(this.props.room.name)
                     .then(response => {
+                        this.props.graphManagedCompete();
+                        this.props.graphNodeRoot(root);
                         this.setState({
                             competeType: algorithm,
                             graph: response.data,
@@ -68,9 +68,9 @@ function withCompete (WrappedComponent) {
             for (let index in this.props.nodesHighlighted)
                 if (typeof this.state.graph[index] !== 'undefined')
                     scored += (this.props.nodesHighlighted[index] === this.state.graph[index] ? 100/this.state.graph.length : 0);
-            this.props.graphManagedEnded();
             this.props.competeEndedIO(scored);
-            this.props.userCompeteScore(this.props.username, scored);
+            this.props.userHistoryAdd(this.props.username, scored);
+            this.props.graphManagedEnded();
             if (!this.props.master)
                 this.props.getGraphIO();
         };

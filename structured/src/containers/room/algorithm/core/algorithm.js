@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
-import './algorithm.css';
 import ControlBar from "./control-bar/controlBar";
+import './algorithm.css';
 
 class algorithm extends Component {
     render() {

@@ -40,12 +40,10 @@ class roomNew extends Component {
                     <h5>Create your own room</h5>
                 </CardHeader>
                 <CardBody>
-                    <CardSubtitle>A new room your friends could join.. Everyone can see your <mark>actions and
-                        messages</mark>.</CardSubtitle>
+                    <CardSubtitle>A new room your friends could join. Everyone can see your actions and messages.</CardSubtitle>
                 </CardBody>
                 <CardBody>
-                    <CardText>By creating a new room you are a room Master, others who join are spectators and can see
-                        everything you do.</CardText>
+                    <CardText>By creating a new room you are a room Master, others who join are spectators and can see everything you do.</CardText>
                     <ButtonGroup>
                         <Button onClick={() => this.modeHandler('practice')}>Practice</Button>
                         <Button onClick={() => this.modeHandler('compete')}>Compete</Button>
@@ -76,7 +74,7 @@ class roomNew extends Component {
                                         </Input>
                                       </FormGroup>
                                 }
-                                <Button className="btn btn-danger m-auto btn-large" type="submit"><i className="fas fa-check"></i> Create</Button>
+                                <Button className="btn btn-danger m-auto btn-large" type="submit"><i className="fas fa-check"> </i> Create</Button>
                             </Form>
                         </Modal>
                     </ButtonGroup>

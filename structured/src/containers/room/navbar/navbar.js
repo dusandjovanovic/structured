@@ -13,7 +13,7 @@ const navbar = (props) => (
                     <NavItem className="text-nowrap">
                         <NavLink className="nav-link text-danger"
                                  onClick={() => props.deleteRoom()}
-                                 href="#">
+                                 href="#" >
                             Delete room
                         </NavLink>
                     </NavItem>
@@ -23,7 +23,7 @@ const navbar = (props) => (
             <NavItem className="text-nowrap">
                 <NavLink className="nav-link text-secondary"
                          onClick={() => props.leaveRoom()}
-                         href="#">
+                         href="#" >
                     Leave room
                 </NavLink>
             </NavItem>

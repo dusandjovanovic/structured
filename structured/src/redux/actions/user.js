@@ -10,10 +10,10 @@ export const userFetchData = (username, friends) => {
     }
 };
 
-export const userFetchAllData = (userData) => {
+export const userFetchHistory = (userData) => {
     return {
-        type: actionTypes.USER_FETCH_ALL_DATA,
-        userData: userData
+        type: actionTypes.USER_FETCH_HISTORY,
+        history: userData
     }
 };
 
@@ -76,36 +76,56 @@ export const userData = (username) => {
     }
 };
 
-export const userDataAll = (username) => {
+export const userHistory = (username) => {
     return dispatch => {
-        if (!username) {
-            dispatch(userFetchAllData(null));
-        }
-        else {
-            dispatch(userFetchDataStart());
-            let url = '/api/user/' + username;
-            return new Promise(function(resolve, reject) {
-                axios.get(url)
-                    .then(response => {
-                        if (response.data.success) {
-                            dispatch(userFetchAllData(response.data.data.userData));
-                            dispatch(userFetchDataEnd());
-                            resolve(response.data);
-                        }
-                        else {
-                            console.log('userError:', response.data.error);
-                            dispatch(userFetchDataFail(response.data.error));
-                            reject(response.data.error);
-                        }
-                    })
-                    .catch((error) => {
-                        console.log('userError:', error);
-                        dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                        dispatch(userFetchDataFail(error.message));
-                        reject(error.message);
-                    });
+        dispatch(userFetchDataStart());
+        let url = '/api/user/' + username + '/history';
+        return new Promise(function(resolve, reject) {
+            axios.get(url)
+                .then(response => {
+                    if (response.data.success) {
+                        dispatch(userFetchHistory(response.data.data.userData));
+                        dispatch(userFetchDataEnd());
+                        resolve(response.data);
+                    }
+                    else {
+                        console.log('userError:', response.data.error);
+                        dispatch(userFetchDataFail(response.data.error));
+                        reject(response.data.error);
+                    }
+                })
+                .catch((error) => {
+                    console.log('userError:', error);
+                    dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
+                    dispatch(userFetchDataFail(error.message));
+                    reject(error.message);
+                });
+        });
+    }
+};
+
+export const userHistoryAdd = (username, score) => {
+    return dispatch => {
+        const data = {
+            score: score
+        };
+        let url = '/api/user/' + username;
+        axios.put(url, data)
+            .then(response => {
+                if (response.data.success) {
+                    dispatch(actions.notificationSystem("Your solution was successfully submitted. You can see it in your history on dashboard.", "success", 10, null, null));
+                }
+                else {
+                    console.log('roomLeaveError:', response.data.msg);
+                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
+                    dispatch(userFetchDataFail(response.data.msg));
+                }
+            })
+            .catch(error => {
+                console.log('roomLeaveError:', error);
+                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
+                dispatch(userFetchDataFail(error.message));
             });
-        }
     }
 };
 
@@ -243,32 +263,6 @@ export const friendDelete = (requestId, username) => {
                 console.log('deleteError:', error);
                 dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
                 dispatch(friendFail(error.message));
-            });
-    }
-};
-
-export const userCompeteScore = (username, score) => {
-    return dispatch => {
-        const data = {
-            username: username,
-            score: score
-        };
-        let url = '/api/user/' + username;
-        axios.post(url, data)
-            .then(response => {
-                if (response.data.success) {
-                    dispatch(actions.notificationSystem("Your solution was successfully submitted. With the overall score of " + score + ".", "success", 10, null, null));
-                }
-                else {
-                    console.log('roomLeaveError:', response.data.msg);
-                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
-                    dispatch(userFetchDataFail(response.data.msg));
-                }
-            })
-            .catch(error => {
-                console.log('roomLeaveError:', error);
-                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                dispatch(userFetchDataFail(error.message));
             });
     }
 };
