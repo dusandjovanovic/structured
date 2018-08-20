@@ -12,7 +12,7 @@ module.exports = function(io) {
     });
 
     client.on('graph change', (rcv) => {
-      graph.emit('graph change', {graph: rcv.graph});
+      graph.emit(rcv.room + ' graph change', {graph: rcv.graph});
     });
 
     client.on('add node', (rcv) => {
