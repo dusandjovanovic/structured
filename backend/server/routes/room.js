@@ -162,34 +162,48 @@ router.post('/leave', /*passport.authenticate('jwt', {session: false}),*/ functi
             var index = room.users.indexOf(username);
             room.users.splice(index, 1);
             var cu = room.currentUsers - 1;
-            Room.update({name: roomName},
-              {
-                currentUsers: cu,
-                users: room.users
-              },
-              function(err) {
+            if (cu === 0) {
+              Room.deleteOne({name: roomName}, function(err) {
                 if (err) {
                   res.send({success: false, msg: 'MongoDB error: ' + err});
                 } else {
-                  var newMaster = null;
-                  if (room.createdBy === username) {
-                    newMaster = room.users[0];
-                    Room.update({name: roomName}, {
-                      createdBy: newMaster
-                    }, function(err) {
-                      if (err) {
-                        res.send({success: false, msg: 'MongoDB error: ' + err});
-                      }
-                    });
-                  }
-
                   res.send({
                     success: true,
-                    msg: username + ' left the room.',
-                    newMaster: newMaster
+                    msg: 'Room deleted.',
+                    newMaster: null
                   });
                 }
               });
+            } else {
+              Room.update({name: roomName},
+                {
+                  currentUsers: cu,
+                  users: room.users
+                },
+                function(err) {
+                  if (err) {
+                    res.send({success: false, msg: 'MongoDB error: ' + err});
+                  } else {
+                    var newMaster = null;
+                    if (room.createdBy === username) {
+                      newMaster = room.users[0];
+                      Room.update({name: roomName}, {
+                        createdBy: newMaster
+                      }, function(err) {
+                        if (err) {
+                          res.send({success: false, msg: 'MongoDB error: ' + err});
+                        }
+                      });
+                    }
+  
+                    res.send({
+                      success: true,
+                      msg: username + ' left the room.',
+                      newMaster: newMaster
+                    });
+                  }
+                });
+            }
           } else {
             res.send({success: true, msg: 'User not in the room.'});
           }
