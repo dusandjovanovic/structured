@@ -20,12 +20,20 @@ import './room.css';
 
 class Room extends Component {
     state = {
-        redirect: false
+        redirect: false,
+        room: null
     };
+
+    componentWillReceiveProps (nextProps) {
+        if (nextProps.room.name)
+            this.setState({
+                room: nextProps.room.name
+            })
+    }
 
     componentDidMount() {
         window.addEventListener("beforeunload", this.leaveRoom);
-        this.props.joinLeaveRoomIO(this.props.username + " just joined the room.");
+        this.props.joinLeaveRoomIO(this.props.room.name, this.props.username + " just joined the room.");
     };
 
     componentWillUnmount() {
@@ -111,18 +119,18 @@ class Room extends Component {
     };
 
     leaveRoom = () => {
-        const self = this;
         this.props.roomLeaveExisting(this.props.room.name, this.props.username)
             .then(response => {
-                console.log(response);
                 if (response.master !== null)
-                    self.props.masterChangedIO(response.master);
+                    this.props.masterChangedIO(this.state.room, response.master);
                 else
-                    self.props.joinLeaveRoomIO(response.msg);
+                    this.props.joinLeaveRoomIO(this.state.room, response.msg);
+
+                this.setState({
+                    redirect: true
+                });
             });
-        this.setState({
-            redirect: true
-        });
+
         return "unloading";
     };
 }

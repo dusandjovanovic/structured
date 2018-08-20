@@ -31,6 +31,7 @@ const mapDispatchToProps = dispatch => {
         roomDeleteExisting: (roomId) => dispatch(actions.roomDeleteExisting(roomId)),
         roomGetGraph: (name) => dispatch(actions.roomGetGraph(name)),
         roomChangeGraph: (name, graph) => dispatch(actions.roomChangeGraph(name, graph)),
+        roomGetData: (name, username) => dispatch(actions.roomGetData(name, username)),
         userHistoryAdd: (username, score) => dispatch(actions.userHistoryAdd(username, score)),
         notificationSystem: (message, level, autoDismiss, action, onRemove) => dispatch(actions.notificationSystem(message, level, autoDismiss, action, onRemove))
     }

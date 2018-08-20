@@ -7,10 +7,10 @@ function withIO (WrappedComponent) {
         componentWillMount() {
             this.socket = this.props.io('http://localhost:2998/graph');
             this.socket.on('connect', () => {
-                // console.log(this.props.username, 'websocket::opened');
+                console.log(this.props.username, 'WebSocket opened');
             });
             this.socket.on('disconnect', () => {
-                // console.log(this.props.username, 'websocket::closed');
+                console.log(this.props.username, 'WebSocket closed');
             })
         }
 
@@ -112,17 +112,17 @@ function withIO (WrappedComponent) {
             });
         };
 
-        joinLeaveRoomIO = (message) => {
-            console.log('join/leave', message, this.props.room.name);
+        joinLeaveRoomIO = (room, message) => {
+            console.log('EMITING');
             this.socket.emit('join and leave room', {
-                room: this.props.room.name,
+                room: room,
                 msg: message
             });
         };
 
-        masterChangedIO = (master) => {
+        masterChangedIO = (room, master) => {
             this.socket.emit('master changed', {
-                room: this.props.room.name,
+                room: room,
                 master: master
             });
         };
