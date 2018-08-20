@@ -131,7 +131,7 @@ router.post('/join', /*passport.authenticate('jwt', {session: false}),*/ functio
                 if (err) {
                   res.send({success: false, msg: 'MongoDB error: ' + err});
                 } else {
-                  res.send({success: true, msg: 'Joined room.'});
+                  res.send({success: true, msg: username + ' joined the room.'});
                 }
               });
           }
@@ -185,7 +185,7 @@ router.post('/leave', /*passport.authenticate('jwt', {session: false}),*/ functi
 
                   res.send({
                     success: true,
-                    msg: 'Room left.',
+                    msg: username + ' left the room.',
                     newMaster: newMaster
                   });
                 }

@@ -43,6 +43,10 @@ module.exports = function(io) {
       graph.emit(rcv.room + ' master changed', {msg: 'Master left. New master is: ' + rcv.master});
     });
 
+    client.on('join and leave room', (rcv) => {
+      graph.emit(rcv.room + ' join and leave room', {msg: rcv.msg});
+    });
+
   });
 };
   
