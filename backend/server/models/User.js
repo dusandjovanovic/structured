@@ -12,6 +12,14 @@ var UserSchema = new Schema({
     type: String,
     required: true
   },
+  about: String,
+  history: [{
+    date: {
+      type: Date,
+      default: Date.now
+    },
+    score: Number
+  }],
   friends: [{
     type: String
   }]

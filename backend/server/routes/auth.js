@@ -8,12 +8,16 @@ var router = express.Router();
 var User = require("../models/user");
 
 router.post('/register', function(req, res) {
-  if (!req.body.username || !req.body.password) {
-    res.send({success: false, msg: 'Please pass username and password.'});
+  var username = req.body.username;
+  var password = req.body.password;
+  //var about = req.body.about;
+  if (!username || !password){// || !about) {
+    res.send({success: false, msg: 'Please populate all the fields.'});
   } else {
     var newUser = new User({
-      username: req.body.username,
-      password: req.body.password
+      username: username,
+      password: password//,
+     // about: about
     });
     // save the user
     newUser.save(function(err) {

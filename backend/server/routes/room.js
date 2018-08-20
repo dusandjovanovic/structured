@@ -87,11 +87,16 @@ router.post('/', /*passport.authenticate('jwt', {session: false}),*/ function(re
         graph: []
       }, function(err) {
         if (err) {
-          res.send({success: false, msg: 'MongoDB error: ' + err});
+          if (err.code == 11000) {
+            res.send({success: false, msg: 'There is already a room with that name.'});
+          } else {
+            res.send({success: false, msg: 'MongoDB error: ' + err});
+          }
         } else {
           res.send({success: true, msg: 'Successfully created a room.'});
         }
       });
+
     }
   //} else {
   //  return res.status(403).send({success: false, msg: 'Unauthorized.'});

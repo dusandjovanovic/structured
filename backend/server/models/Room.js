@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 
 var RoomSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    unique: true
+  },
   roomType: String,
   users: [{
     type: String
