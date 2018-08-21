@@ -27,7 +27,7 @@ function withPlayground (WrappedComponent) {
             });
 
             this.props.socket.on(this.props.room.name + ' join and leave room', received => {
-                this.props.roomGetData(this.props.room.name, this.props.room.username);
+                // this.props.roomGetData(this.props.room.name, this.props.room.username);
                 this.props.notificationSystem(received.msg, "warning", 10, null, null);
             });
 
