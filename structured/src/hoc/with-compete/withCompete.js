@@ -20,7 +20,7 @@ function withCompete (WrappedComponent) {
                     if (!this.props.graphManaged)
                         this.props.initiateGraph(received.graph);
                 });
-                this.props.socket.on(this.props.room + ' graph change', received => {
+                this.props.socket.on(this.props.room.name + ' graph change', received => {
                     this.props.initiateGraph(received.graph);
                 });
             }
@@ -28,15 +28,27 @@ function withCompete (WrappedComponent) {
                 this.props.socket.on(this.props.data.createdBy, (received) => {
                     this.props.addGraphIO(received.username, this.props.visualization);
                 });
+                this.props.socket.on(this.props.room + ' graph change', received => {
+                    return received;
+                });
             }
 
             this.props.socket.on(this.props.room.name + ' compete begin', received => {
                 this.competeInitiate(received.agName, received.root);
             });
-
             this.props.socket.on(this.props.room.name + ' compete end', received => {
                 this.competeEndedByFriend(received.user, received.score);
             });
+
+            this.props.joinLeaveRoomIO(this.props.room.name, this.props.username + " joined the room.");
+        };
+
+        componentDidUpdate(prevProps) {
+            if (this.props.room.master !== prevProps.room.master) {
+                this.props.socket.on(this.props.data.createdBy, (received) => {
+                    this.props.addGraphIO(received.username, this.props.visualization);
+                });
+            }
         };
 
         competeBegin = () => {

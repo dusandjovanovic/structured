@@ -11,7 +11,7 @@ function withPlayground (WrappedComponent) {
                 this.props.socket.on(this.props.username, received => {
                     this.props.initiateGraph(received.graph);
                 });
-                this.props.socket.on(this.props.room + ' graph change', received => {
+                this.props.socket.on(this.props.room.name + ' graph change', received => {
                     this.props.initiateGraph(received.graph);
                 });
             }
@@ -22,12 +22,11 @@ function withPlayground (WrappedComponent) {
             }
 
             this.props.socket.on(this.props.room.name + ' master changed', received => {
-                this.props.roomGetData(this.props.room.name, this.props.room.username);
-                this.props.notificationSystem(received.msg, "warning", 10, null, null);
+                this.props.roomGetData(this.props.room.name, this.props.username);
+                this.props.notificationSystem(received.msg, "error", 10, null, null);
             });
-
             this.props.socket.on(this.props.room.name + ' join and leave room', received => {
-                // this.props.roomGetData(this.props.room.name, this.props.room.username);
+                this.props.roomGetData(this.props.room.name, this.props.username);
                 this.props.notificationSystem(received.msg, "warning", 10, null, null);
             });
 
@@ -43,6 +42,19 @@ function withPlayground (WrappedComponent) {
             this.props.socket.on(this.props.room.name + ' remove edge', received => {
                 this.props.removeReceivedEdge(received.edge.source, received.edge.target);
             });
+
+            this.props.joinLeaveRoomIO(this.props.room.name, this.props.username + " joined the room.");
+        };
+
+        componentDidUpdate(prevProps) {
+            if (this.props.room.master !== prevProps.room.master) {
+                this.props.socket.on(this.props.data.createdBy, (received) => {
+                    this.props.addGraphIO(received.username, this.props.visualization);
+                });
+                this.props.socket.on(this.props.room + ' graph change', received => {
+                    return received;
+                });
+            }
         };
 
         render() {

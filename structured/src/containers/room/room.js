@@ -24,16 +24,9 @@ class Room extends Component {
         room: null
     };
 
-    componentWillReceiveProps (nextProps) {
-        if (nextProps.room.name)
-            this.setState({
-                room: nextProps.room.name
-            })
-    }
-
     componentDidMount() {
         window.addEventListener("beforeunload", this.leaveRoom);
-        this.props.joinLeaveRoomIO(this.props.room.name, this.props.username + " just joined the room.");
+        this.setState({room: this.props.room.name});
     };
 
     componentWillUnmount() {
@@ -121,10 +114,11 @@ class Room extends Component {
     leaveRoom = () => {
         this.props.roomLeaveExisting(this.props.room.name, this.props.username)
             .then(response => {
-                if (response.master !== null)
-                    this.props.masterChangedIO(this.state.room, response.master);
-                else
-                    this.props.joinLeaveRoomIO(this.state.room, response.msg);
+                if (!this.props.learn)
+                    if (response.master !== null)
+                        this.props.masterChangedIO(this.state.room, response.master);
+                    else
+                        this.props.joinLeaveRoomIO(this.state.room, response.msg);
 
                 this.setState({
                     redirect: true
