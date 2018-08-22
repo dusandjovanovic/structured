@@ -17,19 +17,19 @@
     <session id="1016856043">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="158" />
+          <entry key="project.closed" value="161" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.2" value="5" />
-          <entry key="project.open.time.3" value="19" />
-          <entry key="project.open.time.4" value="50" />
+          <entry key="project.open.time.3" value="20" />
+          <entry key="project.open.time.4" value="52" />
           <entry key="project.open.time.5" value="47" />
           <entry key="project.open.time.6" value="20" />
           <entry key="project.open.time.7" value="9" />
           <entry key="project.open.time.8" value="3" />
-          <entry key="project.opened" value="158" />
+          <entry key="project.opened" value="161" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -47,7 +47,7 @@
           <entry key="eslintrc" value="5" />
           <entry key="html" value="15" />
           <entry key="ico" value="1" />
-          <entry key="js" value="1314" />
+          <entry key="js" value="1337" />
           <entry key="json" value="5" />
           <entry key="md" value="1" />
           <entry key="png" value="1" />
@@ -62,7 +62,7 @@
           <entry key="HTML" value="15" />
           <entry key="Image" value="2" />
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="1304" />
+          <entry key="JavaScript" value="1327" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="2" />
@@ -75,7 +75,7 @@
           <entry key="css" value="3187" />
           <entry key="eslintrc" value="3" />
           <entry key="html" value="48" />
-          <entry key="js" value="90310" />
+          <entry key="js" value="91111" />
           <entry key="ts" value="1" />
         </counts>
       </usages-collector>
@@ -84,7 +84,7 @@
           <entry key="CSS" value="3187" />
           <entry key="ESLint" value="3" />
           <entry key="HTML" value="48" />
-          <entry key="JavaScript" value="90310" />
+          <entry key="JavaScript" value="91111" />
           <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
@@ -97,30 +97,12 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hoc/with-compete/withCompete.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hoc/with-playground/withPlayground.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/room/room.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="120" column="82" selection-start-line="120" selection-start-column="82" selection-end-line="120" selection-end-column="82" />
+            <state relative-caret-position="238">
+              <caret line="127" column="23" lean-forward="true" selection-start-line="127" selection-start-column="23" selection-end-line="127" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -195,7 +177,6 @@
         <option value="$PROJECT_DIR$/src/hoc/with-competitive/withCompetitive.js" />
         <option value="$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js" />
         <option value="$PROJECT_DIR$/src/containers/room/statusbar/statusbar.js" />
-        <option value="$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.random.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js" />
         <option value="$PROJECT_DIR$/src/containers/home/room-view/roomView.js" />
@@ -220,13 +201,14 @@
         <option value="$PROJECT_DIR$/src/containers/room/toolbar/toolbar-learn/learn.js" />
         <option value="$PROJECT_DIR$/src/containers/home/room-new/roomNew.js" />
         <option value="$PROJECT_DIR$/src/containers/dashboard/dashboard-cards/dashboardCards.js" />
+        <option value="$PROJECT_DIR$/src/redux/actions/index.js" />
+        <option value="$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js" />
+        <option value="$PROJECT_DIR$/src/hoc/with-redux/withRedux.js" />
         <option value="$PROJECT_DIR$/src/redux/actions/room.js" />
         <option value="$PROJECT_DIR$/src/redux/reducers/room.js" />
         <option value="$PROJECT_DIR$/src/hoc/with-io/withIO.js" />
-        <option value="$PROJECT_DIR$/src/hoc/with-redux/withRedux.js" />
-        <option value="$PROJECT_DIR$/src/redux/actions/index.js" />
-        <option value="$PROJECT_DIR$/src/hoc/with-playground/withPlayground.js" />
         <option value="$PROJECT_DIR$/src/hoc/with-compete/withCompete.js" />
+        <option value="$PROJECT_DIR$/src/hoc/with-playground/withPlayground.js" />
         <option value="$PROJECT_DIR$/src/containers/room/room.js" />
       </list>
     </option>
@@ -265,6 +247,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -272,22 +255,10 @@
               <item name="structured" type="b2602c69:ProjectViewProjectNode" />
               <item name="structured" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -500,11 +471,14 @@
       <workItem from="1534798278752" duration="13944000" />
       <workItem from="1534812484279" duration="166000" />
       <workItem from="1534812810476" duration="235000" />
+      <workItem from="1534813326623" duration="531000" />
+      <workItem from="1534853038894" duration="102000" />
+      <workItem from="1534857989269" duration="3354000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="468203000" />
+    <option name="totallyTimeSpent" value="472190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -647,13 +621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/home/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="48" column="25" lean-forward="true" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/layout/layout.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1598">
@@ -747,13 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="45" column="20" lean-forward="true" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/reducers/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -796,13 +756,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-graph/withGraph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6290">
-          <caret line="286" column="60" selection-start-line="286" selection-start-column="60" selection-end-line="286" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/dashboard/dashboard-cards/dashboardCards.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
@@ -824,34 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-io/withIO.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3536">
-          <caret line="125" column="19" lean-forward="true" selection-start-line="125" selection-start-column="19" selection-end-line="125" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/actions/room.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="62" column="2" lean-forward="true" selection-start-line="62" selection-start-column="2" selection-end-line="62" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-redux/withRedux.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/room.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1788">
-          <caret line="70" column="23" lean-forward="true" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hoc/with-learn/withLearn.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -859,24 +784,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-redux/withRedux.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="29" column="55" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/room.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="669">
+          <caret line="85" column="29" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/room.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="210" column="21" lean-forward="true" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/hoc/with-compete/withCompete.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="533">
+          <caret line="48" column="77" selection-start-line="48" selection-start-column="77" selection-end-line="48" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-io/withIO.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="124" column="15" lean-forward="true" selection-start-line="124" selection-start-column="15" selection-end-line="124" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-graph/withGraph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8228">
+          <caret line="286" column="60" selection-start-line="286" selection-start-column="60" selection-end-line="286" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hoc/with-playground/withPlayground.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+        <state relative-caret-position="340">
+          <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/home/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/room/room.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="120" column="82" selection-start-line="120" selection-start-column="82" selection-end-line="120" selection-end-column="82" />
+        <state relative-caret-position="238">
+          <caret line="127" column="23" lean-forward="true" selection-start-line="127" selection-start-column="23" selection-end-line="127" selection-end-column="23" />
         </state>
       </provider>
     </entry>

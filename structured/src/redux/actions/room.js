@@ -166,13 +166,10 @@ export const roomJoinExisting = (name, username) => {
             axios.post(url, data)
                 .then(response => {
                     if (response.data.success) {
-                        resolve({
-                            msg: response.data.msg,
-                            master: response.data.newMaster
-                        });
                         dispatch(roomGetData(name, username));
                         dispatch(roomJoin(name));
                         dispatch(roomGetAll('all'));
+                        resolve(response.data);
                     }
                     else {
                         console.log('roomJoinError:', response.data.msg);
@@ -191,24 +188,26 @@ export const roomJoinExisting = (name, username) => {
     }
 };
 
-export const roomLeaveExisting = (name, username) => {
+export const roomLeaveExisting = (name, username, roomDeleted) => {
     return dispatch => {
         dispatch(roomInitiate());
         const data = {
             roomName: name,
             username: username
         };
-        return new Promise(function(resolve, reject) {
+
+        if (roomDeleted) {
+            dispatch(roomLeave());
+            dispatch(roomGetAll('all'));
+        }
+        else return new Promise(function(resolve, reject) {
             let url = '/api/rooms/leave';
             axios.post(url, data)
                 .then(response => {
                     if (response.data.success) {
-                        resolve({
-                            msg: response.data.msg,
-                            master: response.data.newMaster
-                        });
                         dispatch(roomLeave());
                         dispatch(roomGetAll('all'));
+                        resolve(response.data);
                     }
                     else {
                         console.log('roomLeaveError:', response.data.msg);
@@ -231,23 +230,28 @@ export const roomDeleteExisting = (roomId) => {
     return dispatch => {
         dispatch(roomInitiate());
         let url = '/api/rooms/' + roomId;
-        axios.delete(url)
-            .then(response => {
-                if (response.data.success) {
-                    dispatch(roomDelete());
-                    dispatch(roomGetAll('all'));
-                }
-                else {
-                    console.log('roomDeleteError:', response.data.msg);
-                    dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
-                    dispatch(roomError(response.data.msg));
-                }
-            })
-            .catch(error => {
-                console.log('deleteError:', error);
-                dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
-                dispatch(roomError(error));
-            });
+        return new Promise(function(resolve, reject) {
+            axios.delete(url)
+                .then(response => {
+                    if (response.data.success) {
+                        dispatch(roomDelete());
+                        dispatch(roomGetAll('all'));
+                        resolve(response.data);
+                    }
+                    else {
+                        console.log('roomDeleteError:', response.data.msg);
+                        dispatch(actions.notificationSystem(response.data.msg, 'error', 10, null, null));
+                        dispatch(roomError(response.data.msg));
+                        reject(response.data.msg);
+                    }
+                })
+                .catch(error => {
+                    console.log('deleteError:', error);
+                    dispatch(actions.notificationSystem(error.message, 'error', 10, null, null));
+                    dispatch(roomError(error));
+                    reject(error.message);
+                });
+        });
     }
 };
 

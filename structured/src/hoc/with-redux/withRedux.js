@@ -27,7 +27,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        roomLeaveExisting: (name, username) => dispatch(actions.roomLeaveExisting(name, username)),
+        roomLeaveExisting: (name, username, roomDeleted) => dispatch(actions.roomLeaveExisting(name, username, roomDeleted)),
         roomDeleteExisting: (roomId) => dispatch(actions.roomDeleteExisting(roomId)),
         roomGetGraph: (name) => dispatch(actions.roomGetGraph(name)),
         roomChangeGraph: (name, graph) => dispatch(actions.roomChangeGraph(name, graph)),

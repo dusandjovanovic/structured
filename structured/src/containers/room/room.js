@@ -21,12 +21,21 @@ import './room.css';
 class Room extends Component {
     state = {
         redirect: false,
-        room: null
+        roomName: null
     };
 
     componentDidMount() {
         window.addEventListener("beforeunload", this.leaveRoom);
-        this.setState({room: this.props.room.name});
+        this.setState({roomName: this.props.room.name});
+
+        if (!this.props.learn)
+        this.props.socket.on(this.props.room.name + ' delete room', received => {
+            this.props.roomLeaveExisting(this.props.room.name, this.props.username, true);
+            this.props.notificationSystem("The room has been deleted.", "error", 5, null, null);
+            this.setState({
+                redirect: true
+            });
+        });
     };
 
     componentWillUnmount() {
@@ -105,20 +114,25 @@ class Room extends Component {
     };
 
     deleteRoom = () => {
-        this.props.roomDeleteExisting(this.props.data._id);
-        this.setState({
-            redirect: true
-        });
+        this.props.roomDeleteExisting(this.props.data._id)
+            .then(response => {
+                if (!this.props.learn)
+                    this.props.deleteRoomIO(this.state.roomName);
+
+                this.setState({
+                    redirect: true
+                });
+            });
     };
 
     leaveRoom = () => {
-        this.props.roomLeaveExisting(this.props.room.name, this.props.username)
+        this.props.roomLeaveExisting(this.props.room.name, this.props.username, false)
             .then(response => {
                 if (!this.props.learn)
-                    if (response.master !== null)
-                        this.props.masterChangedIO(this.state.room, response.master);
+                    if (response.newMaster)
+                        this.props.masterChangedIO(this.state.roomName, response.newMaster);
                     else
-                        this.props.joinLeaveRoomIO(this.state.room, response.msg);
+                        this.props.joinLeaveRoomIO(this.state.roomName, response.msg);
 
                 this.setState({
                     redirect: true

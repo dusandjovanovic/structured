@@ -47,5 +47,8 @@ module.exports = function(io) {
       graph.emit(rcv.room + ' join and leave room', {msg: rcv.msg});
     });
 
+    client.on('delete room', (rcv) => {
+      graph.emit(rcv.room + ' delete room');
+    });
   });
 };

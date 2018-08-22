@@ -7,10 +7,10 @@ function withIO (WrappedComponent) {
         componentWillMount() {
             this.socket = this.props.io('http://localhost:2998/graph');
             this.socket.on('connect', () => {
-                console.log(this.props.username, 'WebSocket opened');
+                // console.log(this.props.username, 'WebSocket opened');
             });
             this.socket.on('disconnect', () => {
-                console.log(this.props.username, 'WebSocket closed');
+                // console.log(this.props.username, 'WebSocket closed');
             })
         }
 
@@ -112,11 +112,16 @@ function withIO (WrappedComponent) {
             });
         };
 
-        joinLeaveRoomIO = (room, message) => {
-            console.log('EMITING');
+        joinLeaveRoomIO = (roomName, message) => {
             this.socket.emit('join and leave room', {
-                room: room,
+                room: roomName,
                 msg: message
+            });
+        };
+
+        deleteRoomIO = (roomName) => {
+            this.socket.emit('delete room', {
+                room: roomName
             });
         };
 
@@ -141,6 +146,7 @@ function withIO (WrappedComponent) {
                                   algorithmBeginIO={this.algorithmBeginIO}
                                   algorithmEndedIO={this.algorithmEndedIO}
                                   joinLeaveRoomIO={this.joinLeaveRoomIO}
+                                  deleteRoomIO={this.deleteRoomIO}
                                   masterChangedIO={this.masterChangedIO}
                                   socket={this.socket}
                                   {...this.props}

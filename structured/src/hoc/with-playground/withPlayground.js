@@ -23,11 +23,11 @@ function withPlayground (WrappedComponent) {
 
             this.props.socket.on(this.props.room.name + ' master changed', received => {
                 this.props.roomGetData(this.props.room.name, this.props.username);
-                this.props.notificationSystem(received.msg, "error", 10, null, null);
+                this.props.notificationSystem(received.msg, "warning", 5, null, null);
             });
             this.props.socket.on(this.props.room.name + ' join and leave room', received => {
                 this.props.roomGetData(this.props.room.name, this.props.username);
-                this.props.notificationSystem(received.msg, "warning", 10, null, null);
+                this.props.notificationSystem(received.msg, "info", 5, null, null);
             });
 
             this.props.socket.on(this.props.room.name + ' add node', received => {
@@ -47,14 +47,13 @@ function withPlayground (WrappedComponent) {
         };
 
         componentDidUpdate(prevProps) {
-            if (this.props.room.master !== prevProps.room.master) {
-                this.props.socket.on(this.props.data.createdBy, (received) => {
+            if (this.props.room.master && this.props.room.master !== prevProps.room.master) {
+                this.props.socket.on(this.props.username, (received) => {
                     this.props.addGraphIO(received.username, this.props.visualization);
                 });
-                this.props.socket.on(this.props.room + ' graph change', received => {
-                    return received;
-                });
-            }
+                this.props.socket.off(this.props.room.name + ' graph change');
+                this.props.socket.off(this.props.room.name + ' delete room');
+                }
         };
 
         render() {

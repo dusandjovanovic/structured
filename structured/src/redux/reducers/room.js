@@ -82,7 +82,8 @@ const reducer = (state = initialState, action) => {
                     master: false
                 },
                 data: {
-                    _id: null
+                    _id: null,
+                    users: []
                 },
                 error: null
             };

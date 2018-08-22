@@ -25,11 +25,8 @@ function withCompete (WrappedComponent) {
                 });
             }
             else if (this.props.username === this.props.data.createdBy) {
-                this.props.socket.on(this.props.data.createdBy, (received) => {
+                this.props.socket.on(this.props.username, (received) => {
                     this.props.addGraphIO(received.username, this.props.visualization);
-                });
-                this.props.socket.on(this.props.room + ' graph change', received => {
-                    return received;
                 });
             }
 
@@ -44,10 +41,12 @@ function withCompete (WrappedComponent) {
         };
 
         componentDidUpdate(prevProps) {
-            if (this.props.room.master !== prevProps.room.master) {
-                this.props.socket.on(this.props.data.createdBy, (received) => {
+            if (this.props.room.master && this.props.room.master !== prevProps.room.master) {
+                this.props.socket.on(this.props.username, (received) => {
                     this.props.addGraphIO(received.username, this.props.visualization);
                 });
+                this.props.socket.off(this.props.room.name + ' graph change');
+                this.props.socket.off(this.props.room.name + ' delete room');
             }
         };
 
