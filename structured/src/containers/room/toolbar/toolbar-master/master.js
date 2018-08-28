@@ -36,8 +36,8 @@ class Master extends Component {
                         <DropdownMenu right>
                             <DropdownItem header>Choose an animation</DropdownItem>
                             <DropdownItem divider />
-                            <DropdownItem onClick={() => this.props.algorithmBreadth()}>Breadth-first search</DropdownItem>
-                            <DropdownItem onClick={() => this.props.algorithmDepth()}>Depth-first search</DropdownItem>
+                            <DropdownItem onClick={() => this.props.algorithmBegin('ALGORITHM_BREADTH')}>Breadth-first search</DropdownItem>
+                            <DropdownItem onClick={() => this.props.algorithmBegin('ALGORITHM_DEPTH')}>Depth-first search</DropdownItem>
                             <DropdownItem onClick={() => this.props.algorithmCanceled()}>Cancel</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>

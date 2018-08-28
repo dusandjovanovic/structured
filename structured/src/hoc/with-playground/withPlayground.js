@@ -18,6 +18,8 @@ function withPlayground (WrappedComponent) {
             else if (this.props.username === this.props.data.createdBy) {
                 this.props.socket.on(this.props.data.createdBy, (received) => {
                     this.props.addGraphIO(received.username, this.props.visualization);
+                    if (this.props.graphOperation === 'GRAPH_MANAGED_ALGORITHM')
+                        this.props.algorithmBeginIO(this.props.algorithmType, this.props.algorithmState.states, this.props.nodeRoot);
                 });
             }
 
@@ -50,6 +52,8 @@ function withPlayground (WrappedComponent) {
             if (this.props.room.master && this.props.room.master !== prevProps.room.master) {
                 this.props.socket.on(this.props.username, (received) => {
                     this.props.addGraphIO(received.username, this.props.visualization);
+                    if (this.props.graphOperation === 'GRAPH_MANAGED_ALGORITHM')
+                        this.props.algorithmBeginIO(this.props.algorithmType, this.props.algorithmState.states, this.props.nodeRoot);
                 });
                 this.props.socket.off(this.props.room.name + ' graph change');
                 this.props.socket.off(this.props.room.name + ' delete room');
@@ -66,8 +70,7 @@ function withPlayground (WrappedComponent) {
                                 removeNode={this.props.graphManagedRemoveNode}
                                 addEdge={this.props.graphManagedAddEdge}
                                 removeEdge={this.props.graphManagedRemoveEdge}
-                                algorithmBreadth={this.props.algorithmBreadth}
-                                algorithmDepth={this.props.algorithmDepth}
+                                algorithmBegin={this.props.algorithmBegin}
                                 algorithmCanceled={this.props.algorithmCanceled}
                                 disabled={this.props.algorithm}
                         />

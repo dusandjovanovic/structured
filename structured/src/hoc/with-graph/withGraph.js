@@ -135,6 +135,9 @@ function withGraph(WrappedComponent) {
 
         handlerNodeSelected = (node) => {
             if (this.state.graphManaged) {
+                if (this.state.graphOperation === GRAPH_MANAGED_ALGORITHM)
+                    return;
+
                 this.graphNodesAdjacent(node.outEdges);
                 let updated = this.state.nodesHighlighted.slice();
                 updated.includes(node.key)

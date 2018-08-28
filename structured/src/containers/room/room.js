@@ -88,6 +88,9 @@ class Room extends Component {
                                        managedRemoveNode={this.props.graphManagedRemoveNode}
                                        managedRemoveEdge={this.props.graphManagedRemoveEdge}
 
+                                       algorithm={this.props.algorithm}
+                                       algorithmState={this.props.algorithmState}
+
                                        removeEdge={(source, target) => this.props.removeEdge(source, target)}
                                        addEdge={(source, target) => this.props.addEdge(source, target)}
                                        removeNode={(node) => this.props.removeNode(node)}
@@ -105,7 +108,12 @@ class Room extends Component {
                             </footer>
                         </Row>
                         {this.props.algorithm
-                            ? <AlgorithmCore />
+                            ? <AlgorithmCore algorithmNextState={this.props.algorithmNextState}
+                                             algorithmPreviousState={this.props.algorithmPreviousState}
+                                             algorithmVisualize={this.props.algorithmVisualize}
+                                             algorithmPause={this.props.algorithmPause}
+                                             algorithmActive={this.props.algorithmActive}
+                            />
                             : null
                         }
                     </Container>

@@ -103,6 +103,9 @@ class Graph extends Component {
                              nodeRoot={this.props.nodeRoot}
                              nodesHighlighted={this.props.nodesHighlighted}
                              nodesAdjacent={this.props.nodesAdjacent}
+
+                             algorithm={this.props.algorithm}
+                             algorithmState={this.props.algorithmState}
                 />
                 </Col>
             </Row>
@@ -111,11 +114,17 @@ class Graph extends Component {
 
     chromaticVisualization = (node, edge) => {
         let assign = "";
-        if (!this.props.graphManaged && this.props.nodeSelected) {
+        if (this.props.algorithmState) {
+            if (node.key === this.props.algorithmState.tempVertex)
+                assign = "Selected";
+            else if (node.key === this.props.algorithmState.unvisitedVertex)
+                assign = "Visited";
+            else if (this.props.algorithmState.solution.includes(node.key))
+                assign = "Clicked";
+        }
+        else if (!this.props.graphManaged && this.props.nodeSelected) {
             if (node.key === this.props.nodeSelected.key)
                 assign = "Selected";
-            else if (this.props.nodeCurrent && node.key === this.props.nodeCurrent.key)
-                assign = "Current";
             else if (!edge) {
                 node.inEdges.map(source => {
                     if (source === this.props.nodeSelected.key)

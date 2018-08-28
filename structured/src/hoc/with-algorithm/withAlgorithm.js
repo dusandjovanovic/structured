@@ -1,4 +1,6 @@
 import React from 'react';
+import { interval } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
 
 const ALGORITHM_BREADTH = 'ALGORITHM_BREADTH';
 const ALGORITHM_DEPTH = 'ALGORITHM_DEPTH';
@@ -7,31 +9,76 @@ function withAlgorithm (WrappedComponent) {
     return class extends React.Component {
         state = {
             algorithm: false,
-            algorithmType: ALGORITHM_BREADTH
+            algorithmType: ALGORITHM_BREADTH,
+            algorithmState: {
+                active: false,
+                currentState: null,
+                current: 0,
+                states: []
+            }
         };
 
-        componentDidMount() {
+        componentDidMount = () => {
+            if (this.props.username !== this.props.data.createdBy) {
+                this.props.socket.on(this.props.room.name + ' algorithm end', received => {
+                    this.algorithmEnded();
+                });
+            }
             this.props.socket.on(this.props.room.name + ' algorithm begin', received => {
-                this.algorithmBegin(received.agName, received.root);
-            });
-            this.props.socket.on(this.props.room.name + ' algorithm end', received => {
-                this.algorithmEnded();
+                this.algorithmInitiate(received.agName, received.agIterations, received.root);
             });
         };
 
-        algorithmBreadth = (root) => {
-            this.props.graphNodeRoot(root);
-            this.props.graphManagedAlgorithm();
-            this.setState({
-                algorithm: true
-            });
+        componentDidUpdate(prevProps) {
+            if (this.props.room.master && this.props.room.master !== prevProps.room.master) {
+                this.props.socket.off(this.props.room.name + ' algorithm end');
+            }
         };
 
-        algorithmDepth = (root) => {
-            this.props.graphNodeRoot(root);
-            this.props.graphManagedAlgorithm();
+        algorithmNextState = () => {
+            if (this.state.algorithmState.current < this.state.algorithmState.states.length) {
+                this.setState({
+                    algorithmState: {
+                        ...this.state.algorithmState,
+                        current: this.state.algorithmState.current + 1,
+                        currentState: this.state.algorithmState.states[this.state.algorithmState.current + 1]
+                    }
+                });
+            }
+            else {
+                this.algorithmPause();
+            }
+        };
+
+        algorithmPreviousState = () => {
+            if (this.state.algorithmState.current > 0) {
+                this.setState({
+                    algorithmState: {
+                        ...this.state.algorithmState,
+                        current: this.state.algorithmState.current - 1,
+                        currentState: this.state.algorithmState.states[this.state.algorithmState.current - 1]
+                    }
+                });
+            }
+        };
+
+        algorithmVisualize = () => {
             this.setState({
-                algorithm: true
+                algorithmState: {
+                    ...this.state.algorithmState,
+                    active: true
+                }
+            });
+            const source = interval(1000);
+            source.pipe(takeWhile(async => this.state.algorithmState.active)).subscribe(async => this.algorithmNextState());
+        };
+
+        algorithmPause = () => {
+            this.setState({
+                algorithmState: {
+                    ...this.state.algorithmState,
+                    active: false
+                }
             });
         };
 
@@ -39,39 +86,78 @@ function withAlgorithm (WrappedComponent) {
             this.props.graphManagedAlgorithmEnded();
             this.props.algorithmEndedIO();
             this.setState({
-                algorithm: false
+                algorithm: false,
+                algorithmState: {
+                    active: false,
+                    current: 0,
+                    currentState: null,
+                    states: []
+                }
             });
         };
 
-        algorithmBegin = (algorithmType, root) => {
-            this.props.notificationSystem((this.props.room.master ? 'You' : 'A room Master').concat(" just started an algorithm visualization."), "warning", 10, null, null);
-            if (!this.props.graphManaged) {
-                switch (algorithmType) {
-                    case ALGORITHM_BREADTH:
-                        this.algorithmBreadth(root);
-                        break;
-                    case ALGORITHM_DEPTH:
-                        this.algorithmDepth(root);
-                        break;
-                    default:
-                        return;
+        algorithmBegin = (algorithmType) => {
+            let algorithmIterations;
+            switch (algorithmType) {
+                case ALGORITHM_DEPTH:
+                    algorithmIterations = this.props.graph.observable(this.props.nodeRoot, ALGORITHM_DEPTH);
+                    break;
+                default:
+                    algorithmIterations = this.props.graph.observable(this.props.nodeRoot, ALGORITHM_BREADTH);
+            }
+            this.props.algorithmBeginIO(algorithmType, algorithmIterations, this.props.nodeRoot);
+            this.props.graphManagedAlgorithm();
+            this.setState({
+                algorithm: true,
+                algorithmType: algorithmType,
+                algorithmState: {
+                    states: algorithmIterations,
+                    currentState: this.state.algorithmState.states[0],
+                    current: 0
                 }
+            });
+        };
+
+        algorithmInitiate = (algorithmType, algorithmIterations, root) => {
+            if (!this.state.algorithm) {
+                this.props.notificationSystem("A room Master just started an algorithm visualization.", "warning", 10, null, null);
+                this.props.graphManagedAlgorithm();
+                this.props.graphNodeRoot(root);
+                this.setState({
+                    algorithm: true,
+                    algorithmType: algorithmType,
+                    algorithmState: {
+                        states: algorithmIterations,
+                        current: 0
+                    }
+                });
             }
         };
 
         algorithmEnded = () => {
             this.props.graphManagedAlgorithmEnded();
             this.setState({
-                algorithm: false
+                algorithm: false,
+                algorithmState: {
+                    active: false,
+                    current: 0,
+                    states: []
+                }
             });
         };
 
         render() {
             return (
                 <WrappedComponent algorithm={this.state.algorithm}
-                                  algorithmBreadth={this.algorithmBreadth}
-                                  algorithmDepth={this.algorithmDepth}
+                                  algorithmBegin={this.algorithmBegin}
                                   algorithmCanceled={this.algorithmCanceled}
+                                  algorithmNextState={this.algorithmNextState}
+                                  algorithmPreviousState={this.algorithmPreviousState}
+                                  algorithmVisualize={this.algorithmVisualize}
+                                  algorithmPause={this.algorithmPause}
+                                  algorithmState={this.state.algorithmState.currentState}
+                                  algorithmActive={this.state.algorithmState.active}
+                                  algorithmType={this.state.algorithmType}
                                   {...this.props}
                 />
             );

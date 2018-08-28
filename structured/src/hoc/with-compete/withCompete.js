@@ -51,10 +51,22 @@ function withCompete (WrappedComponent) {
         };
 
         competeBegin = () => {
-            let graphTraversed = this.props.graph.bfs(this.props.nodeRoot);
+            let graphTraversed;
+            switch (this.state.competeType) {
+                case COMPETE_BREADTH:
+                    graphTraversed = this.props.graph.bfs(this.props.nodeRoot);
+                    break;
+                case COMPETE_DEPTH:
+                    graphTraversed = this.props.graph.dfs(this.props.nodeRoot);
+                    break;
+                default:
+                    graphTraversed = this.props.graph.bfs(this.props.nodeRoot);
+                    break;
+            }
             this.setState({
                 graph: graphTraversed
             });
+
             this.props.graphManagedCompete();
             this.props.roomChangeGraph(this.props.room.name, graphTraversed)
                 .then(response => {

@@ -98,10 +98,11 @@ function withIO (WrappedComponent) {
             });
         };
 
-        algorithmBeginIO = (algorithmName, rootNode) => {
+        algorithmBeginIO = (algorithmName, algorithmIterations, rootNode) => {
             this.socket.emit('algorithm begin', {
                 room: this.props.room.name,
                 agName: algorithmName,
+                agIterations: algorithmIterations,
                 root: rootNode
             });
         };

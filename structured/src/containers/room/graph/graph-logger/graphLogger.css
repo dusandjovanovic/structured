@@ -1,6 +1,6 @@
 .Logger {
-    font-family: Inconsolata, monospace;
     font-size: 1.1em;
+    font-family: Consolas, monaco, monospace;
     float: left;
     width: auto;
 }
@@ -18,7 +18,7 @@ span.node {
      display: inline-block;
      font-weight: bold;
      line-height: 1.6em;
-     margin-right: 15px;
+     margin-right: 10px;
      text-align: center;
      width: 1.6em;
  }
@@ -32,7 +32,7 @@ span.selected {
     display: inline-block;
     font-weight: bold;
     line-height: 1.6em;
-    margin-right: 15px;
+    margin-right: 10px;
     text-align: center;
     width: 1.6em;
 }
@@ -46,7 +46,7 @@ span.watched {
     display: inline-block;
     font-weight: bold;
     line-height: 1.6em;
-    margin-right: 15px;
+    margin-right: 10px;
     text-align: center;
     width: 1.6em;
 }
@@ -60,7 +60,7 @@ span.adjacent {
     display: inline-block;
     font-weight: bold;
     line-height: 1.6em;
-    margin-right: 15px;
+    margin-right: 10px;
     text-align: center;
     width: 1.6em;
 }

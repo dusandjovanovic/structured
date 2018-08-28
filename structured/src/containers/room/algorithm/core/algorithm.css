@@ -12,10 +12,10 @@
 }
 
 .react-draggable {
-    font-family: Inconsolata, monospace;
-    font-size: 1.1em;
+    font-family: Consolas, monospace;
+    font-size: 1.3em;
     background: #ffffff;
-    opacity: 0.8;
+    opacity: 0.9;
     border: 1px solid #152434;
     box-shadow: 2px 2px 3px 2px #7d7d7d;
     display: block;

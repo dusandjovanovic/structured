@@ -3,6 +3,8 @@ import {queue} from './queue.module';
 
 let graph;
 let solution = [];
+let visited = [];
+let stream = [];
 
 const displayVertex = (node) => solution.push(node);
 
@@ -21,9 +23,89 @@ const resetSearch = () => {
     }
 };
 
+const observableState = (visited, solution, tempVertex, unvisitedVertex) => ({
+    visited: [...visited],
+    solution: [...solution],
+    tempVertex: tempVertex,
+    unvisitedVertex: unvisitedVertex
+});
+
+export function observable (root, ALGORITHM_TYPE) {
+    graph = this.getGraph();
+    switch (ALGORITHM_TYPE) {
+        case 'ALGORITHM_BREADTH':
+            return bfsObservable(root, graph);
+        case 'ALGORITHM_DEPTH':
+            return dfsObservable(root, graph);
+        default:
+            return;
+    }
+}
+
+export function bfs (root) {
+    graph = this.getGraph();
+    solution = [];
+    visited = [];
+    let unvistedVertex;
+    let graphQueue = queue();
+    graph[root].visited = true;
+    displayVertex(root);
+    graphQueue.enqueue(root);
+
+    while (!graphQueue.isEmpty()) {
+        let tempVertex = graphQueue.dequeue();
+        unvistedVertex = getUnvistedVertex(tempVertex);
+
+        while (unvistedVertex !== false) {
+            graph[unvistedVertex].visited = true;
+            displayVertex(unvistedVertex);
+            graphQueue.enqueue(unvistedVertex);
+            unvistedVertex = getUnvistedVertex(tempVertex);
+        }
+    }
+
+    resetSearch();
+    return solution;
+}
+
+function bfsObservable (root, graph) {
+    solution = [];
+    visited = [];
+    stream = [];
+    let unvistedVertex;
+    let graphQueue = queue();
+    stream.push(observableState(visited, solution, root, null));
+    graph[root].visited = true;
+    visited.push(root);
+    stream.push(observableState(visited, solution, root, null));
+    displayVertex(root);
+    graphQueue.enqueue(root);
+
+    while (!graphQueue.isEmpty()) {
+        let tempVertex = graphQueue.dequeue();
+        unvistedVertex = getUnvistedVertex(tempVertex);
+        stream.push(observableState(visited, solution, tempVertex, unvistedVertex));
+
+        while (unvistedVertex !== false) {
+            stream.push(observableState(visited, solution, tempVertex, unvistedVertex));
+            graph[unvistedVertex].visited = true;
+            visited.push(unvistedVertex);
+            displayVertex(unvistedVertex);
+            stream.push(observableState(visited, solution, tempVertex, unvistedVertex));
+            graphQueue.enqueue(unvistedVertex);
+            unvistedVertex = getUnvistedVertex(tempVertex);
+            stream.push(observableState(visited, solution, tempVertex, unvistedVertex));
+        }
+    }
+
+    resetSearch();
+    return stream;
+}
+
 export function dfs (root) {
     graph = this.getGraph();
     solution = [];
+    visited = [];
     let graphStack = stack();
     graph[root].visited = true;
     displayVertex(root);
@@ -45,27 +127,33 @@ export function dfs (root) {
     return solution;
 }
 
-export function bfs (root) {
-    graph = this.getGraph();
+export function dfsObservable (root, graph) {
     solution = [];
-    let unvistedVertex;
-    let graphQueue = queue();
+    visited = [];
+    stream = [];
+    let graphStack = stack();
     graph[root].visited = true;
+    stream.push(observableState(visited, solution, root, null));
+    visited.push(root);
     displayVertex(root);
-    graphQueue.enqueue(root);
+    graphStack.push(root);
+    stream.push(observableState(visited, solution, root, null));
 
-    while (!graphQueue.isEmpty()) {
-        let tempVertex = graphQueue.dequeue();
-        unvistedVertex = getUnvistedVertex(tempVertex);
+    while (!graphStack.isEmpty()) {
+        let unvistedVertex = getUnvistedVertex(graphStack.peek());
+        stream.push(observableState(visited, solution, unvistedVertex, null));
 
-        while (unvistedVertex !== false) {
+        if (unvistedVertex === false) {
+            graphStack.pop()
+        } else {
             graph[unvistedVertex].visited = true;
+            visited.push(unvistedVertex);
+            stream.push(observableState(visited, solution, unvistedVertex, null));
             displayVertex(unvistedVertex);
-            graphQueue.enqueue(unvistedVertex);
-            unvistedVertex = getUnvistedVertex(tempVertex);
+            stream.push(observableState(visited, solution, unvistedVertex, null));
+            graphStack.push(unvistedVertex);
         }
     }
 
-    resetSearch();
-    return solution;
+    return stream;
 }
