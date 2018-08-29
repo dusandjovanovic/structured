@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = require('../models/User.js');
+var Graph = require('../models/Graph.js');
 var passport = require('passport');
 require('../config/passport')(passport);
 
@@ -13,7 +13,7 @@ router.get('/:id', /*passport.authenticate('jwt', {session: false}),*/ function(
     if (!id) {
       res.send({success: false, msg: 'Please pass the id of the graph.'});
     } else {
-      Room.findOne({_id: id}, function(err, graph) {
+      Graph.findOne({_id: id}, function(err, graph) {
         if (err) {
           res.send({success: false, msg: 'MongoDB error: ' + err});
         } else {
@@ -49,3 +49,5 @@ router.post('/', /*passport.authenticate('jwt', {session: false}),*/ function(re
   //  return res.status(403).send({success: false, msg: 'Unauthorized.'});
   //}
 });
+
+module.exports = router;
