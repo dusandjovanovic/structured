@@ -2,8 +2,8 @@ import React from 'react';
 import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 
-const ALGORITHM_BREADTH = 'ALGORITHM_BREADTH';
-const ALGORITHM_DEPTH = 'ALGORITHM_DEPTH';
+const ALGORITHM_BREADTH = 'ALGORITHM_BREADTH_OBSERVABLE';
+const ALGORITHM_DEPTH = 'ALGORITHM_DEPTH_OBSERVABLE';
 
 function withAlgorithm (WrappedComponent) {
     return class extends React.Component {
@@ -25,7 +25,6 @@ function withAlgorithm (WrappedComponent) {
                 });
             }
             this.props.socket.on(this.props.room.name + ' algorithm begin', received => {
-                console.log(received);
                 this.algorithmInitiate(received.agName, received.agIterations, received.root);
             });
         };
@@ -37,6 +36,7 @@ function withAlgorithm (WrappedComponent) {
         };
 
         algorithmNextState = () => {
+            console.log('NOW');
             if (this.state.algorithmState.current < this.state.algorithmState.states.length) {
                 this.setState({
                     algorithmState: {
@@ -98,14 +98,7 @@ function withAlgorithm (WrappedComponent) {
         };
 
         algorithmBegin = (algorithmType) => {
-            let algorithmIterations;
-            switch (algorithmType) {
-                case ALGORITHM_DEPTH:
-                    algorithmIterations = this.props.graph.observable(this.props.nodeRoot, ALGORITHM_DEPTH);
-                    break;
-                default:
-                    algorithmIterations = this.props.graph.observable(this.props.nodeRoot, ALGORITHM_BREADTH);
-            }
+            let algorithmIterations = this.props.graph.algorithm(this.props.nodeRoot, algorithmType);
             this.props.algorithmBeginIO(algorithmType, algorithmIterations, this.props.nodeRoot);
             this.props.graphManagedAlgorithm();
             this.setState({
@@ -113,7 +106,7 @@ function withAlgorithm (WrappedComponent) {
                 algorithmType: algorithmType,
                 algorithmState: {
                     states: algorithmIterations,
-                    currentState: this.state.algorithmState.states[0],
+                    currentState: algorithmIterations[0],
                     current: 0
                 }
             });

@@ -3,8 +3,8 @@ import Compete from '../../containers/room/toolbar/toolbar-compete/compete';
 import CompeteSpectator from '../../containers/room/toolbar/toolbar-compete/competeSpectator';
 import Wrapper from '../wrapper/wrapper';
 
-const COMPETE_BREADTH = 'COMPETE_BREADTH';
-const COMPETE_DEPTH = 'COMPETE_DEPTH';
+const COMPETE_BREADTH = 'ALGORITHM_BREADTH';
+const COMPETE_DEPTH = 'ALGORITHM_DEPTH';
 
 function withCompete (WrappedComponent) {
     return class extends React.Component {
@@ -51,22 +51,10 @@ function withCompete (WrappedComponent) {
         };
 
         competeBegin = () => {
-            let graphTraversed;
-            switch (this.state.competeType) {
-                case COMPETE_BREADTH:
-                    graphTraversed = this.props.graph.bfs(this.props.nodeRoot);
-                    break;
-                case COMPETE_DEPTH:
-                    graphTraversed = this.props.graph.dfs(this.props.nodeRoot);
-                    break;
-                default:
-                    graphTraversed = this.props.graph.bfs(this.props.nodeRoot);
-                    break;
-            }
+            let graphTraversed = this.props.graph.algorithm(this.props.nodeRoot, this.state.competeType);
             this.setState({
                 graph: graphTraversed
             });
-
             this.props.graphManagedCompete();
             this.props.roomChangeGraph(this.props.room.name, graphTraversed)
                 .then(response => {

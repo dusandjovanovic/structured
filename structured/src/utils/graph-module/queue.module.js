@@ -8,7 +8,7 @@ export const queue = (data = []) => {
         back: () => dataStore[dataStore.length - 1],
         isEmpty: () => dataStore.length === 0,
         length: () => dataStore.length,
-        getQueue: () => dataStore,
+        getQueue: () => dataStore.map(element => element),
         setQueue: (data) => {
             dataStore = data
         },

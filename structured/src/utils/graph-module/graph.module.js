@@ -1,4 +1,4 @@
-import {bfs, dfs, observable} from './graph.algorithms';
+import {algorithm} from './graph.algorithms';
 import * as adapter from './graph.adapter';
 import _ from 'underscore';
 
@@ -65,6 +65,6 @@ export const graphFactory = () => {
         visualization: visualization
     };
 
-    Object.assign(graphProto, {bfs: bfs.bind(graphProto), dfs: dfs.bind(graphProto), observable: observable.bind(graphProto)});
+    Object.assign(graphProto, {algorithm: algorithm.bind(graphProto)});
     return Object.create(graphProto)
 };

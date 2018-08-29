@@ -105,6 +105,7 @@ class Graph extends Component {
                              nodesAdjacent={this.props.nodesAdjacent}
 
                              algorithm={this.props.algorithm}
+                             algorithmType={this.props.algorithmType}
                              algorithmState={this.props.algorithmState}
                 />
                 </Col>

@@ -25,6 +25,18 @@ const graphLogger = (props) => (
               </div>
             : null
         }
+        {props.algorithmState && props.algorithmType === 'ALGORITHM_BREADTH_OBSERVABLE'
+            ? <div className="p-2 text-secondary holder"><span className="pr-2">Queue:</span>
+                <span>{props.algorithmState.structure.map(node => (<span key={node} className="node">{node}</span>))}</span>
+              </div>
+            : null
+        }
+        {props.algorithmState && props.algorithmType === 'ALGORITHM_DEPTH_OBSERVABLE'
+            ? <div className="p-2 text-secondary holder"><span className="pr-2">Stack:</span>
+                <span>{props.algorithmState.structure.map(node => (<span key={node} className="node">{node}</span>))}</span>
+              </div>
+            : null
+        }
     </div>
 );
 

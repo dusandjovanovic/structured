@@ -90,6 +90,7 @@ class Room extends Component {
 
                                        algorithm={this.props.algorithm}
                                        algorithmState={this.props.algorithmState}
+                                       algorithmType={this.props.algorithmType}
 
                                        removeEdge={(source, target) => this.props.removeEdge(source, target)}
                                        addEdge={(source, target) => this.props.addEdge(source, target)}
@@ -112,6 +113,8 @@ class Room extends Component {
                                              algorithmPreviousState={this.props.algorithmPreviousState}
                                              algorithmVisualize={this.props.algorithmVisualize}
                                              algorithmPause={this.props.algorithmPause}
+                                             algorithmType={this.props.algorithmType}
+                                             algorithmState={this.props.algorithmState}
                                              algorithmActive={this.props.algorithmActive}
                             />
                             : null

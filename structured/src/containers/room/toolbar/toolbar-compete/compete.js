@@ -23,7 +23,7 @@ class Compete extends Component {
                 <div />
                 <div className="btn-toolbar mb-2 mb-md-0">
                     <h4 className="m-auto" style={{position: 'absolute', left: '0%', paddingLeft: '1.5rem'}}>
-                        {this.props.competeType === 'COMPETE_BREADTH'
+                        {this.props.competeType === 'ALGORITHM_BREADTH'
                             ? 'Breadth-first search'
                             : 'Depth-first search'
                         }

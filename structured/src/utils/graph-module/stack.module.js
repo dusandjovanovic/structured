@@ -10,7 +10,7 @@ export const stack = (data = [], t = 0) => {
         peek: () => dataStore[top - 1],
         length: () => top,
         isEmpty: () => top === 0,
-        getStack: () => dataStore
+        getStack: () => dataStore.map(element => element),
     };
 
     return Object.create(stackProto)
