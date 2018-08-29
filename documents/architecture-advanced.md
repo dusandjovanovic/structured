@@ -354,7 +354,7 @@ Nov algoritam se može dodati kroz `strategy` u dva oblika:
  - `algorithmName ? observable`
 
 `algorithmName` kao rezultat ima niz obidjenih/relevantnih. `algorithmName ? observable` je proširenje ovog algoritma koje za ` observable === true` vraća niz koraka koji pretstavljaju stanje grafa. Koraci moraju da budu modelovani u obliku:
-```json
+```javascript
 {
  visited: [string],
  solution: [string],
