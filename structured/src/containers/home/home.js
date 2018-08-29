@@ -12,10 +12,16 @@ class Home extends React.Component {
     state = {
         redirect: false
     };
+    interval;
 
     componentDidMount() {
         this.props.roomGetAll("all");
-    }
+        this.interval = setInterval(() => this.props.roomGetAll("all"), 20000);
+    };
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    };
 
     enterRoom = (name) => {
         this.props.roomJoinExisting(name, this.props.username);

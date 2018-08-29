@@ -25,6 +25,7 @@ function withAlgorithm (WrappedComponent) {
                 });
             }
             this.props.socket.on(this.props.room.name + ' algorithm begin', received => {
+                console.log(received);
                 this.algorithmInitiate(received.agName, received.agIterations, received.root);
             });
         };
@@ -120,7 +121,7 @@ function withAlgorithm (WrappedComponent) {
 
         algorithmInitiate = (algorithmType, algorithmIterations, root) => {
             if (!this.state.algorithm) {
-                this.props.notificationSystem("A room Master just started an algorithm visualization.", "warning", 10, null, null);
+                this.props.notificationSystem("A room Master just started an algorithm visualization.", "success", 10, null, null);
                 this.props.graphManagedAlgorithm();
                 this.props.graphNodeRoot(root);
                 this.setState({
@@ -135,6 +136,7 @@ function withAlgorithm (WrappedComponent) {
         };
 
         algorithmEnded = () => {
+            this.props.notificationSystem("Algorithm visualization ended. You are able to change the graph again.", "warning", 10, null, null);
             this.props.graphManagedAlgorithmEnded();
             this.setState({
                 algorithm: false,
@@ -155,6 +157,7 @@ function withAlgorithm (WrappedComponent) {
                                   algorithmPreviousState={this.algorithmPreviousState}
                                   algorithmVisualize={this.algorithmVisualize}
                                   algorithmPause={this.algorithmPause}
+                                  algorithmVisualization={this.state.algorithmState}
                                   algorithmState={this.state.algorithmState.currentState}
                                   algorithmActive={this.state.algorithmState.active}
                                   algorithmType={this.state.algorithmType}

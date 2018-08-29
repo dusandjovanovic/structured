@@ -19,7 +19,7 @@ function withPlayground (WrappedComponent) {
                 this.props.socket.on(this.props.data.createdBy, (received) => {
                     this.props.addGraphIO(received.username, this.props.visualization);
                     if (this.props.graphOperation === 'GRAPH_MANAGED_ALGORITHM')
-                        this.props.algorithmBeginIO(this.props.algorithmType, this.props.algorithmState.states, this.props.nodeRoot);
+                        this.props.algorithmBeginIO(this.props.algorithmType, this.props.algorithmVisualization.states, this.props.nodeRoot);
                 });
             }
 
@@ -53,7 +53,7 @@ function withPlayground (WrappedComponent) {
                 this.props.socket.on(this.props.username, (received) => {
                     this.props.addGraphIO(received.username, this.props.visualization);
                     if (this.props.graphOperation === 'GRAPH_MANAGED_ALGORITHM')
-                        this.props.algorithmBeginIO(this.props.algorithmType, this.props.algorithmState.states, this.props.nodeRoot);
+                        this.props.algorithmBeginIO(this.props.algorithmType, this.props.algorithmVisualization.states, this.props.nodeRoot);
                 });
                 this.props.socket.off(this.props.room.name + ' graph change');
                 this.props.socket.off(this.props.room.name + ' delete room');
