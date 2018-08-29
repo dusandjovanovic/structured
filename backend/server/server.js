@@ -10,6 +10,7 @@ var user = require('./routes/user');
 var auth = require('./routes/auth');
 var friendrequest = require('./routes/friend-request');
 var room = require('./routes/room');
+var graph = require('./routes/graph');
 var app = express();
 
 mongoose.connect('mongodb://localhost:27017/structured', {
@@ -34,6 +35,7 @@ app.use('/api/user', user);
 app.use('/api/auth', auth);
 app.use('/api/friend-request', friendrequest);
 app.use('/api/rooms', room);
+app.use('/api/graph', graph);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
