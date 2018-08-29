@@ -79,16 +79,16 @@ Programiranje vođeno događajima (engl. Event-driven programming) je paradigma 
 
 [redux]: images/redux-architecture.png
 
-Osnovni elementi priloženog dijagrama pripadaju odvojenim celinama - React-u i Redux-u. Redux čine servisi, akcije, kreatori akcija (*action creators*), svoditelji (*reducers*) i selektori. Šabloni (*templates*) i komponente predstavljaju React. Container je deo koji dozvoljava labavo spajanje ovih razdvojenih delova, dozvoljavajući individualne promene. Stanje aplikacije se nalazi u jednom centralnom skladištu - store, za raziku od više skladišta koja mogu da budu deo Flux arhitekture. Kada se stanje u skladištu promeni, ove promene preslikane su preko Container-a do samog View-a što znači ponovno renderovanje kritičnih elemenata DOM-a.
+Osnovni elementi priloženog dijagrama pripadaju odvojenim celinama - React-u i Redux-u. Redux čine servisi, akcije, kreatori akcija (*action creators*), svoditelji (*reducers*) i selektori. Šabloni (*templates*) i komponente predstavljaju React. Container je deo koji dozvoljava labavo spajanje ovih razdvojenih delova, dozvoljavajući individualne promene. Stanje aplikacije se nalazi u jednom centralnom skladištu - store, za raziku od više skladišta koja mogu da budu deo Flux arhitekture. Kada se stanje u skladištu promeni, ove promene preslikane su preko Container-a do samog View-a što znači ponovno **rerenderovanje** kritičnih elemenata DOM-a.
 
-Postoji nekoliko temeljnih razlika izmedju Redux-a i Flux arhitekture. Pre svega, Redux je JavaScript biblioteka i koristi se kao middleware u React/Redux obrascu. Akcije kao koncept postoje na obe strane, medjutim akcije u Redux-u mogu pored JavaScript objekata da budu funkcije i obećanja. Konvencija Flux-a dozvoljava više skladišta od kojih je svako Singleton objekat, sa druge strane, Redux preporučuje samo jedno skladište koje je interno izdeljeno po domenima podataka. Redux ne poseduje Dispatcher, mehanizam otpremljivanja akcija je integrisan u skladište u vidu prostog API-a oko skladišta. U Flux arhitekturi sama logika promene stanja aplikacije u odnosu na nastalu akciju nalazi se uokviru skladišta, Redux se u ovom segmentu oslanja na svoditelje (reducers). Kada je akcija otpremljena kroz API skladišta, namenjeni reducer se poziva i menja stanje, odnosno skladište. Skladište Redux-a je nepromenljivo (immutable), ovo je omogućeno korišćenjem funkcija bez bočnih efekata kao svoditelje, svoditelji menjaju kopiju prethodnog stanja koje primaju kao argumenat, i vraćaju promenjenu kopiju kao rezultat.
+Postoji nekoliko temeljnih razlika izmedju Redux-a i Flux arhitekture. Pre svega, Redux je JavaScript biblioteka i koristi se kao middleware u React/Redux obrascu. Akcije kao koncept postoje na obe strane, medjutim akcije u Redux-u mogu pored JavaScript objekata da budu funkcije i obećanja. Konvencija Flux-a dozvoljava više skladišta od kojih je svako Singleton objekat, sa druge strane, Redux preporučuje samo jedno skladište koje je interno izdeljeno po domenima podataka. Redux ne poseduje Dispatcher, mehanizam otpremljivanja akcija je integrisan u skladište u vidu prostog **API-a oko skladišta**. U Flux arhitekturi sama logika promene stanja aplikacije u odnosu na nastalu akciju nalazi se uokviru skladišta, Redux se u ovom segmentu oslanja na svoditelje (reducers). Kada je akcija otpremljena kroz API skladišta, namenjeni reducer se poziva i menja stanje, odnosno skladište. Skladište Redux-a je **nepromenljivo (immutable)**, ovo je omogućeno korišćenjem funkcija bez bočnih efekata kao svoditelje, svoditelji menjaju kopiju prethodnog stanja koje primaju kao argumenat, i vraćaju promenjenu kopiju kao rezultat.
 
-Komponente u React-u su renderovane i odredjene skupom atributa *props*, ovi atributi su prosledjeni od strane komponenti višeg nivoa hijerarhije. U ovom slučaju komponenta najvišeg nivoa označena je kao Template, jedina svrha ove komponente je da preko mehanizma prosledjivanja atributa dostavi neophodne atribute za interakciju sa Redux-om svim nižim komponentama aplikacije. Container komponenta služi za spajanje neke od komponenti nižeg nivoa sa Redux modulom. Uzima tri argumenta: objekat koji mapira **stanje** u props, objekat koji mapira **akcije koje mogu da se otpreme (dispatch)** u props i poslednji objekat koji omogućava sklapanje novih atributa i preslikavanje istih na konkretnu React komponentu.
+Komponente u React-u su renderovane i odredjene skupom atributa *props*, ovi atributi su prosledjeni od strane komponenti višeg nivoa hijerarhije. U ovom slučaju komponenta najvišeg nivoa označena je kao **Template**, jedina svrha ove komponente je da preko mehanizma prosledjivanja atributa dostavi neophodne atribute za interakciju sa Redux-om svim nižim komponentama aplikacije. **Container komponenta** luži za spajanje neke od komponenti nižeg nivoa sa Redux modulom. Uzima tri argumenta: objekat koji mapira **stanje** u props, objekat koji mapira **akcije koje mogu da se otpreme (dispatch)** u props i poslednji objekat koji omogućava sklapanje novih atributa i preslikavanje istih na konkretnu React komponentu.
 
 Akcija je objekat koji sadrži tip akcije i stanje koje je promenjeno zbog akcije. Kretori akcija su kod koji se poziva da bi se otpremila (dispatch) konkretna akcija, koja na kraju rezultuje pozivom svoditelja (reducer) koji menja stanje skladišta. Akcija se može tumačiti kao dogadja koji se javlja, pritom se uz dogadjaj vezuje njegov tip i svi podaci koji su relevantni za dalje odvijanje.
 Korišćenjem connect mogućnosti Redux modula **akcije i segmenti stanja mapiraju se na props atribute React komponenti.**
 
-Prilikom svake akcije koja je otpremljena (dispatched) konkretan svoditelj (reducer) je pozvan i dodeljena mu je ta akcija. Parametri reducera su akcija koja je pozvana i prethodno stanje, reazultat svoditelja je novo stanje. U zavinosti od spektra akcija koje su dostupne nad skaldištem treba da postoje svoditelji koji su namenjeni svakoj od njih. Bitan aspekt Redux-a je da se postojeće stanje ne modifikuje, već se novo stanje formira i zamenjuje prethodno iz skladišta.
+Prilikom svake akcije koja je otpremljena (dispatched) konkretan svoditelj (reducer) je pozvan i dodeljena mu je ta akcija. Parametri reducera su akcija koja je pozvana i prethodno stanje, **reazultat svoditelja je novo stanje**. U zavinosti od spektra akcija koje su dostupne nad skaldištem treba da postoje svoditelji koji su namenjeni svakoj od njih. Bitan aspekt Redux-a je da se postojeće stanje ne modifikuje, već se novo stanje formira i zamenjuje prethodno iz skladišta.
 
 ### Povezivanje React aplikacije sa Redux-om
 Napravljeno skladište treba dostaviti komponentama. Ovde se koristi komponenta `Provider` iz `react-redux` biblioteke koja dostavlja skladište svim komponentama nižeg nivoa.
@@ -315,7 +315,7 @@ Obzirom da je inicijalizacija izvršena u korenoj komponenti, sve ostale kompone
 
 **Builder** obrazac koristi se za enkapsulaciju gradjenja kompleksnih objekata tokom vremena, delegiranjem zahteva na niže nivoe. `graphProto` poseduje metode za gradjenje globalnog objekta `graph` na koji se istovremeno oslanja više komponenti. Cilj primene je razdvajanje kreiranja objekta od reprezentacije. `graphProto` se može smatrati `concreteBuilder` implementacijom, nema potrebe za `Builder` abstrakcijom u vidu interfejsa obzirom da se ne grade druge strukture podataka. Interno `graphProto` koristi `Factory` obrazac za kreiranje delova objekata.
 
-### Factory
+#### Factory
 
 **Factory** obrazac u JavaScript-u se koristi za odvajanje kreacije objekata od ostatka koda. U situacijama kada je proces kreiranja varijabilan ili kompleksan treba uspostaviti bafer u vidu Factory-a. Najprostiji Factory enkapsulira kreiranje nekog objekta, metode za kreiranje mogu da budu parametrizovane. Rezultat je Product objekat, u slučaju različitih tipova očekuju se da ovi objekti imaju konzistentan interfejs. Factory obrazac kao glavnu prednost ima centralizovano i konzistentno kreiranje objekata.
 
@@ -343,29 +343,49 @@ export const graphFactory = () => {
 
 `algorithm`
  - `breadthFirstSearch`
- - `depthFirstSearch`
  - `breadthFirstSearch ? observable`
+ - `depthFirstSearch`
  - `depthFirstSearch ? observable`
  
-### Algoritmi
+#### Algoritmi
 
 Nov algoritam se može dodati kroz `strategy` u dva oblika:
  - `algorithmName`
  - `algorithmName ? observable`
 
-`algorithmName` kao rezultat ima niz obidjenih/relevantnih. `algorithmName ? observable` je proširenje ovog algoritma koje za ` observable === true` vraća niz koraka koji pretstavljaju stanje grafa. Koraci moraju da budu modelovani u obliku:
-```javascript
+`algorithmName` kao rezultat vraća niz obidjenih/relevantnih čvorova. `algorithmName ? observable` je proširenje ovog algoritma koje za ` observable === true` vraća niz koraka koji predstavljaju stanje grafa. Koraci moraju da budu modelovani u obliku:
+```json
 {
- visited: [string],
- solution: [string],
- tempVertex: string,
- unvisitedVertex: string,
- algorithmLine: string,
- structure : [string],
+  visited: [string],
+  solution: [string],
+  tempVertex: string,
+  unvisitedVertex: string,
+  algorithmLine: string,
+  structure : [string],
 }
 ```
 
 `visited` kao niz posećenih čvorova, `solution` kao rešenje, `tempVertex`/`unvisitedVertex` mogu da predstavljaju različite čvorove u etapama algoritma. `algorithmLine` trenutnu aktivnu liniju pseudo koda koji predstavlja algoritam i `structure` sadržaj pomoćne strukture poput reda ili steka.
+Ova dva različita oblika koriste se odvojeno u `practice` i `compete` sobama.
+
+### Observable/Iterator
+
+Obrazac `observable` koristi se kod vizualizacija algoritama nad grafom u veoma prostom obliku, oslanjajući se na biblioteku `rxjs`. Ima ulogu `iteratora` nad *nizom stanja* u kojima se graf nalazi u toku izvršavanja konkretnog algoritma, *generisanim pomenutim `observable` varijantama algoritama*.
+
+```javascript
+algorithmVisualize = () => {
+            ...
+            const source$ = interval(1000);
+            source$.pipe(takeWhile(async => this.state.algorithmState.active))
+                .subscribe(async => this.algorithmNextState());
+        };
+```
+
+`rxjs` se retko koristi uz React.js zbog već postojećeg dinamičkog `react-redux` state managment-a. Medjutim, u aplikaciji se stanje grafa ne održava kroz `redux-store` i to ostavlja prostora za reaktivno programiranje uz `rxjs`.
+
+> Reactive Programming with rxjs
+> ReactiveX provides a collection of operators with which you can filter, select, transform, combine, and compose Observables. This allows for efficient execution and composition.
+> You can think of the Observable class as a “push” equivalent to Iterable, which is a “pull.” With an Iterable, the consumer pulls values from the producer and the thread blocks until those values arrive. By contrast, with an Observable the producer pushes values to the consumer whenever values are available. This approach is more flexible, because values can arrive synchronously or asynchronously.
 
 ---
 
