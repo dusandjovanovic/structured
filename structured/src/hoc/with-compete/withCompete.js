@@ -30,6 +30,15 @@ function withCompete (WrappedComponent) {
                 });
             }
 
+            this.props.socket.on(this.props.room.name + ' master changed', received => {
+                this.props.roomGetData(this.props.room.name, this.props.username);
+                this.props.notificationSystem(received.msg, "warning", 5, null, null);
+            });
+            this.props.socket.on(this.props.room.name + ' join and leave room', received => {
+                this.props.roomGetData(this.props.room.name, this.props.username);
+                this.props.notificationSystem(received.msg, "info", 5, null, null);
+            });
+
             this.props.socket.on(this.props.room.name + ' compete begin', received => {
                 this.competeInitiate(received.agName, received.root);
             });

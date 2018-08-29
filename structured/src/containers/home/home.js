@@ -16,7 +16,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.props.roomGetAll("all");
-        this.interval = setInterval(() => this.props.roomGetAll("all"), 20000);
+        this.interval = setInterval(() => this.props.roomGetAll("all"), 10000);
     };
 
     componentWillUnmount() {
