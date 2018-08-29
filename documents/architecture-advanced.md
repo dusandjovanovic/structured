@@ -381,7 +381,7 @@ algorithmVisualize = () => {
         };
 ```
 
-`rxjs` se retko koristi uz React.js zbog već postojećeg dinamičkog `react-redux` state managment-a. Medjutim, u aplikaciji se stanje grafa ne održava kroz `redux` store i to ostavlja prostora za oslanjanje na reaktivno programiranje uz pomoć biblioteke `rxjs`.
+`rxjs` se retko koristi uz React.js zbog već postojećeg dinamičkog `react-redux` state managment-a. Medjutim, u aplikaciji se stanje grafa ne održava kroz `redux-store` i to ostavlja prostora za reaktivno programiranje uz `rxjs`.
 
 > Reactive Programming with rxjs
 > ReactiveX provides a collection of operators with which you can filter, select, transform, combine, and compose Observables. This allows for efficient execution and composition.
