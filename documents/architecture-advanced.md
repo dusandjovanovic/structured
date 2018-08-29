@@ -370,7 +370,18 @@ Ova dva različita oblika koriste se odvojeno u `practice` i `compete` sobama.
 
 ### Observable/Iterator
 
-Obrazac `observable` koristi se kod vizualizacija algoritama nad grafom u veoma prostom obliku, oslanjajući se na biblioteku `rxjs`. Ima ulogu `iteratora` nad *nizom stanja* u kojima se graf nalazi u toku izvršavanja konkretnog algoritma, *generisanim pomenutim `observable` varijantama algoritama*. 
+Obrazac `observable` koristi se kod vizualizacija algoritama nad grafom u veoma prostom obliku, oslanjajući se na biblioteku `rxjs`. Ima ulogu `iteratora` nad *nizom stanja* u kojima se graf nalazi u toku izvršavanja konkretnog algoritma, *generisanim pomenutim `observable` varijantama algoritama*.
+
+```javascript
+algorithmVisualize = () => {
+            ...
+            const source$ = interval(1000);
+            source$.pipe(takeWhile(async => this.state.algorithmState.active))
+                .subscribe(async => this.algorithmNextState());
+        };
+```
+
+`rxjs` se retko koristi uz React.js zbog već postojećeg dinamičkog `react-redux` state managment-a. Medjutim, u aplikaciji se stanje grafa ne održava kroz `redux` store i to ostavlja prostora za oslanjanje na reaktivno programiranje uz pomoć biblioteke `rxjs`.
 
 > Reactive Programming with rxjs
 > ReactiveX provides a collection of operators with which you can filter, select, transform, combine, and compose Observables. This allows for efficient execution and composition.
