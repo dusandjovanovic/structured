@@ -315,7 +315,7 @@ Obzirom da je inicijalizacija izvršena u korenoj komponenti, sve ostale kompone
 
 **Builder** obrazac koristi se za enkapsulaciju gradjenja kompleksnih objekata tokom vremena, delegiranjem zahteva na niže nivoe. `graphProto` poseduje metode za gradjenje globalnog objekta `graph` na koji se istovremeno oslanja više komponenti. Cilj primene je razdvajanje kreiranja objekta od reprezentacije. `graphProto` se može smatrati `concreteBuilder` implementacijom, nema potrebe za `Builder` abstrakcijom u vidu interfejsa obzirom da se ne grade druge strukture podataka. Interno `graphProto` koristi `Factory` obrazac za kreiranje delova objekata.
 
-### Factory
+#### Factory
 
 **Factory** obrazac u JavaScript-u se koristi za odvajanje kreacije objekata od ostatka koda. U situacijama kada je proces kreiranja varijabilan ili kompleksan treba uspostaviti bafer u vidu Factory-a. Najprostiji Factory enkapsulira kreiranje nekog objekta, metode za kreiranje mogu da budu parametrizovane. Rezultat je Product objekat, u slučaju različitih tipova očekuju se da ovi objekti imaju konzistentan interfejs. Factory obrazac kao glavnu prednost ima centralizovano i konzistentno kreiranje objekata.
 
@@ -343,17 +343,17 @@ export const graphFactory = () => {
 
 `algorithm`
  - `breadthFirstSearch`
- - `depthFirstSearch`
  - `breadthFirstSearch ? observable`
+ - `depthFirstSearch`
  - `depthFirstSearch ? observable`
  
-### Algoritmi
+#### Algoritmi
 
 Nov algoritam se može dodati kroz `strategy` u dva oblika:
  - `algorithmName`
  - `algorithmName ? observable`
 
-`algorithmName` kao rezultat ima niz obidjenih/relevantnih. `algorithmName ? observable` je proširenje ovog algoritma koje za ` observable === true` vraća niz koraka koji pretstavljaju stanje grafa. Koraci moraju da budu modelovani u obliku:
+`algorithmName` kao rezultat vraća niz obidjenih/relevantnih čvorova. `algorithmName ? observable` je proširenje ovog algoritma koje za ` observable === true` vraća niz koraka koji predstavljaju stanje grafa. Koraci moraju da budu modelovani u obliku:
 ```javascript
 {
  visited: [string],
@@ -366,6 +366,15 @@ Nov algoritam se može dodati kroz `strategy` u dva oblika:
 ```
 
 `visited` kao niz posećenih čvorova, `solution` kao rešenje, `tempVertex`/`unvisitedVertex` mogu da predstavljaju različite čvorove u etapama algoritma. `algorithmLine` trenutnu aktivnu liniju pseudo koda koji predstavlja algoritam i `structure` sadržaj pomoćne strukture poput reda ili steka.
+Ova dva različita oblika koriste se odvojeno u `practice` i `compete` sobama.
+
+### Observable/Iterator
+
+Obrazac `observable` koristi se kod vizualizacija algoritama nad grafom u veoma prostom obliku, oslanjajući se na biblioteku `rxjs`. Ima ulogu `iteratora` nad *nizom stanja* u kojima se graf nalazi u toku izvršavanja konkretnog algoritma, *generisanim pomenutim `observable` varijantama algoritama*. 
+
+> Reactive Programming with rxjs
+> ReactiveX provides a collection of operators with which you can filter, select, transform, combine, and compose Observables. This allows for efficient execution and composition.
+> You can think of the Observable class as a “push” equivalent to Iterable, which is a “pull.” With an Iterable, the consumer pulls values from the producer and the thread blocks until those values arrive. By contrast, with an Observable the producer pushes values to the consumer whenever values are available. This approach is more flexible, because values can arrive synchronously or asynchronously.
 
 ---
 
