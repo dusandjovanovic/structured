@@ -36,7 +36,6 @@ function withAlgorithm (WrappedComponent) {
         };
 
         algorithmNextState = () => {
-            console.log('NOW');
             if (this.state.algorithmState.current < this.state.algorithmState.states.length) {
                 this.setState({
                     algorithmState: {
@@ -71,7 +70,8 @@ function withAlgorithm (WrappedComponent) {
                 }
             });
             const source = interval(1000);
-            source.pipe(takeWhile(async => this.state.algorithmState.active)).subscribe(async => this.algorithmNextState());
+            source.pipe(takeWhile(async => this.state.algorithmState.active))
+                .subscribe(async => this.algorithmNextState());
         };
 
         algorithmPause = () => {
@@ -109,6 +109,8 @@ function withAlgorithm (WrappedComponent) {
                     currentState: algorithmIterations[0],
                     current: 0
                 }
+            }, () => {
+                this.algorithmVisualize();
             });
         };
 
@@ -124,6 +126,8 @@ function withAlgorithm (WrappedComponent) {
                         states: algorithmIterations,
                         current: 0
                     }
+                }, () => {
+                    this.algorithmVisualize();
                 });
             }
         };

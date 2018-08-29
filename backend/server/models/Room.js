@@ -10,7 +10,7 @@ var RoomSchema = new mongoose.Schema({
     type: String
   }],
   graph: [{
-    type: Number
+    type: String
   }],
   currentUsers: Number,
   maxUsers: Number,

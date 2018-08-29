@@ -17,7 +17,7 @@
     <session id="1016856043">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="170" />
+          <entry key="project.closed" value="173" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="1" />
@@ -25,13 +25,13 @@
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.2" value="5" />
-          <entry key="project.open.time.3" value="20" />
+          <entry key="project.open.time.3" value="21" />
           <entry key="project.open.time.4" value="53" />
-          <entry key="project.open.time.5" value="52" />
+          <entry key="project.open.time.5" value="53" />
           <entry key="project.open.time.6" value="21" />
           <entry key="project.open.time.7" value="10" />
           <entry key="project.open.time.8" value="3" />
-          <entry key="project.opened" value="171" />
+          <entry key="project.opened" value="173" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -44,12 +44,12 @@
           <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/redux/actions" value="1" />
           <entry key="JavaScript-modules-diagram/C:/Users/Dushan/Documents/GitHub/structured/structured/src/utils/graph-module" value="1" />
           <entry key="babelrc" value="1" />
-          <entry key="css" value="227" />
+          <entry key="css" value="229" />
           <entry key="eslint" value="1" />
           <entry key="eslintrc" value="5" />
           <entry key="html" value="16" />
           <entry key="ico" value="1" />
-          <entry key="js" value="1422" />
+          <entry key="js" value="1428" />
           <entry key="json" value="10" />
           <entry key="md" value="1" />
           <entry key="png" value="1" />
@@ -59,12 +59,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="227" />
+          <entry key="CSS" value="229" />
           <entry key="ESLint" value="5" />
           <entry key="HTML" value="16" />
           <entry key="Image" value="2" />
           <entry key="JSON" value="11" />
-          <entry key="JavaScript" value="1412" />
+          <entry key="JavaScript" value="1418" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="2" />
@@ -74,21 +74,21 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="3247" />
+          <entry key="css" value="3253" />
           <entry key="eslintrc" value="3" />
           <entry key="html" value="48" />
-          <entry key="js" value="98623" />
+          <entry key="js" value="98777" />
           <entry key="json" value="14" />
           <entry key="ts" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="3247" />
+          <entry key="CSS" value="3253" />
           <entry key="ESLint" value="3" />
           <entry key="HTML" value="48" />
           <entry key="JSON" value="14" />
-          <entry key="JavaScript" value="98623" />
+          <entry key="JavaScript" value="98777" />
           <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
@@ -103,64 +103,37 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js">
+        <entry file="file://$PROJECT_DIR$/src/containers/layout/layout.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2550">
-              <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="341">
+              <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/containers/room/room.js">
+        <entry file="file://$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="817">
-              <caret line="92" column="49" lean-forward="true" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="100" column="25" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="33" column="85" lean-forward="true" selection-start-line="33" selection-start-column="85" selection-end-line="33" selection-end-column="85" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hoc/with-playground/withPlayground.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2346">
-              <caret line="72" column="71" selection-start-line="72" selection-start-column="71" selection-end-line="72" selection-end-column="71" />
+            <state relative-caret-position="102">
+              <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js">
+        <entry file="file://$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="71" column="35" lean-forward="true" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="306">
+              <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -217,10 +190,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/containers/dashboard/user-data/userData.js" />
-        <option value="$PROJECT_DIR$/src/containers/dashboard/dashboard-friends/dashboardFriends.js" />
         <option value="$PROJECT_DIR$/src/hoc/with-competitive/withCompetitive.js" />
-        <option value="$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js" />
         <option value="$PROJECT_DIR$/src/containers/room/statusbar/statusbar.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.random.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js" />
@@ -258,16 +228,19 @@
         <option value="$PROJECT_DIR$/src/containers/home/home.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.module.js" />
         <option value="$PROJECT_DIR$/src/containers/room/toolbar/toolbar-compete/compete.js" />
-        <option value="$PROJECT_DIR$/src/hoc/with-compete/withCompete.js" />
         <option value="$PROJECT_DIR$/src/containers/room/toolbar/toolbar-master/master.js" />
-        <option value="$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js" />
         <option value="$PROJECT_DIR$/src/containers/room/algorithm/core/algorithm.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/queue.module.js" />
         <option value="$PROJECT_DIR$/src/containers/room/graph/graph.js" />
         <option value="$PROJECT_DIR$/src/containers/room/room.js" />
         <option value="$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/stack.module.js" />
+        <option value="$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js" />
+        <option value="$PROJECT_DIR$/src/hoc/with-compete/withCompete.js" />
         <option value="$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js" />
+        <option value="$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js" />
+        <option value="$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.css" />
+        <option value="$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.css" />
       </list>
     </option>
   </component>
@@ -307,6 +280,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -317,11 +291,6 @@
             <path>
               <item name="structured" type="b2602c69:ProjectViewProjectNode" />
               <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -329,32 +298,11 @@
               <item name="structured" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="containers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="room" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="structured" type="b2602c69:ProjectViewProjectNode" />
-              <item name="structured" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="graph-module" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -373,18 +321,18 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2018.1.5\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured\src\utils" />
-      <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured" />
-      <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured\src\propTypes" />
-      <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured\src\components\visualization\graph" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured\src\containers\room\toolbar" />
       <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured\src\containers\room" />
       <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured\src\components-higher\socketio" />
       <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured\src\components\homescreen" />
       <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured\src\containers\home" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured\src\utils" />
+      <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured" />
+      <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured\src\propTypes" />
+      <recent name="C:\Users\Dushan\Documents\GitHub\structured\structured\src\components\visualization\graph" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -579,12 +527,14 @@
       <workItem from="1535485196580" duration="10556000" />
       <workItem from="1535496384848" duration="25000" />
       <workItem from="1535496689349" duration="4000" />
-      <workItem from="1535528230371" duration="18116000" />
+      <workItem from="1535528230371" duration="20132000" />
+      <workItem from="1535551463908" duration="76000" />
+      <workItem from="1535551861916" duration="405000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="516989000" />
+    <option name="totallyTimeSpent" value="519486000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -637,39 +587,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.adapter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/home/room-view/roomView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/home/home.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/layout/layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="47" column="42" lean-forward="true" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/chat/chat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1020" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/room/statusbar/statusbar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -887,20 +804,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-compete/withCompete.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="53" column="60" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.module.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="658">
           <caret line="67" column="45" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#84#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -922,26 +829,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hoc/with-playground/withPlayground.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2346">
-          <caret line="72" column="71" selection-start-line="72" selection-start-column="71" selection-end-line="72" selection-end-column="71" />
         </state>
       </provider>
     </entry>
@@ -956,16 +843,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="100" column="25" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="33" column="85" lean-forward="true" selection-start-line="33" selection-start-column="85" selection-end-line="33" selection-end-column="85" />
         </state>
       </provider>
     </entry>
@@ -983,13 +860,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-playground/withPlayground.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2346">
+          <caret line="72" column="71" selection-start-line="72" selection-start-column="71" selection-end-line="72" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/room/graph/graph-logger/graphLogger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="33" column="85" lean-forward="true" selection-start-line="33" selection-start-column="85" selection-end-line="33" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-compete/withCompete.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="86" column="46" lean-forward="true" selection-start-line="86" selection-start-column="46" selection-end-line="86" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hoc/with-algorithm/withAlgorithm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/graph-module/graph.algorithms.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="71" column="35" lean-forward="true" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
+        <state relative-caret-position="2856">
+          <caret line="84" column="59" selection-start-line="84" selection-start-column="59" selection-end-line="84" selection-end-column="59" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/user-interface/dropdown/dropdown.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/layout/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/navigation/toolbar/toolbar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
         </state>
       </provider>
     </entry>

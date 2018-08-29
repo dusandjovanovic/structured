@@ -25,7 +25,7 @@ const dropdown = (props) => {
             <div id="holder"
                onMouseEnter={props.showRequests}
                onMouseLeave={props.hideRequests}>
-                <i className="fas fa-user-friends"> </i>  {props.name}
+                <i className="fas fa-user-friends"> </i>
                 </div>
             <ToolTip active={props.active}
                      style={style}

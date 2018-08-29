@@ -81,8 +81,8 @@ function breadthFirstSearch (root, graph, observable = false) {
             displayVertex(unvistedVertex);
             stream.push(observableState(visited, solution, tempVertex, unvistedVertex, [12], graphQueue.getQueue()));
             graphQueue.enqueue(unvistedVertex);
-            unvistedVertex = getUnvistedVertex(tempVertex);
             stream.push(observableState(visited, solution, tempVertex, unvistedVertex, [13], graphQueue.getQueue()));
+            unvistedVertex = getUnvistedVertex(tempVertex);
         }
     }
 
@@ -122,8 +122,8 @@ function depthFirstSearch (root, graph, observable = false) {
             visited.push(unvistedVertex);
             displayVertex(unvistedVertex);
             stream.push(observableState(visited, solution, unvistedVertex, null, [12], graphStack.getStack()));
-            stream.push(observableState(visited, solution, unvistedVertex, null, [13], graphStack.getStack()));
             graphStack.push(unvistedVertex);
+            stream.push(observableState(visited, solution, unvistedVertex, null, [13], graphStack.getStack()));
         }
     }
 
