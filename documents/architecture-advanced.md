@@ -67,6 +67,12 @@ React se oslanja na Virtualni DOM za renderovanje promena, dok Flux prati korisn
 
 MVC obrazac se sastoji iz Modela koji vodi računa o predstavljanju podataka, View-a koji predstavlja Model i Kontrolora koji sluša korisnikove promene, menja Model i osvežava View. Glavni nedostatak MVC-a je skalabilnost jer porastom složenosti aplikacije Kontroleri postaju usko grlo i prevelikog su obima i složenosti. Kontroler ima zadatak da održava stanje aplikacije i podatke istovremeno. Takodje, kaskadne promene dovode do teškog uočavanja i otklanjanja grešaka - pa je prema ovome ponašanje aplikacija u odredjenim slučajevima nepredvidivo.
 
+## Backend: Publish and subscribe
+
+Programiranje vođeno događajima (engl. Event-driven programming) je paradigma u programiranju u kojoj je tok programa određeno događajima kao što su akcije korisnika (klik mišem, pritiskanje tastera), senzor izlaza, ili porukama iz drugih programa / niti. Programiranje vođeno događajima je dominantna paradigma koja se koristi kod grafičkih korisničkih interfejsa i u drugim aplikacijama koje su usmerene da obavljaju pojedine radnje u odgovoru na korisnički unos.
+
+`publish–subscribe` je obrazac koji se koristi za razmenu poruka gde pošaljioci (publishers) ne navode konkretna odredišta poruka, odnosno primaoce (subscribers), već **kategorizuju poruke u klase** bez znanja da li uopšte ima primaoca. Slično tome, primaoci se registruju na konkretne klase i primaju poruke tih klasa kad god su poslate. Korišćenjem `publish–subscribe` obrasca razdvojene su poruke *na nivou sobe u kojoj se nalaze korisnici*.
+
 ## React/Redux Observer
 
 ![alt text][redux]
@@ -262,9 +268,9 @@ function withIO (WrappedComponent) {
 }
 ```
 
-Multikompozicija i dekoracija su najviše primenjene na `Room` komponentu. Inicijalno ova komponenta nema previše funkcionalnosti osim gradivnog koriničkog interfejsa i odvojeniih containera za predstavljanje chata, grafa i navbara. Dekoratorima koji hijerarhijski zavise jedan od drugog se dobija znatno kompleksnija komponenta bez dupliranja koda i mogućnosti ponovne upotrebe hoc dekoratora. 
+Kompozicija i dekoracija su najviše primenjene na `Room` komponentu. Inicijalno ova komponenta nema previše funkcionalnosti osim gradivnog koriničkog interfejsa i odvojeniih containera za predstavljanje chata, grafa i navbara. Dekoratorima se dobija znatno kompleksnija komponenta bez dupliranja koda i mogućnosti ponovne upotrebe hoc dekoratora.
 
-U konkretnom primeru dekorator `withPlaygroud` se koristi za gradjenje soba `practice` tipa i dinamiči dodeljuje privilegije i dozvoljene aktivnosti u vidu elemenata navbara `Room` komponenti, sve to u zavisnosti od statusa korisnika. Ako je korisnik `master` sobe u kojoj se nalazi dobiće dodatne privilegije. `withPlaygroud` je pritom hoc koji se oslanja na metode koje su prethodno propaginare od strane `withIO` i `withGraph` dekoratora. Pored `withPlayground` dekoratora od ključne su važnosti i dekoratori `withCompete` i `withLearn`. Ova tri hoc-a se koriste za formiranje soba različitih tipova i shodno tipu soba se oslanja na različite mogućnosti i atribute.
+U konkretnom primeru dekorator `withPlaygroud` se koristi za gradjenje soba `practice` tipa i dinamiči dodeljuje privilegije i dozvoljene aktivnosti u vidu elemenata navbara `Room` komponenti, sve to u zavisnosti od statusa korisnika. Ako je korisnik `master` sobe u kojoj se nalazi dobiće dodatne privilegije. `withPlaygroud` je pritom hoc koji se oslanja na metode koje su prethodno propaginare od strane `withIO` i `withGraph` dekoratora. Pored `withPlayground` dekoratora od ključne su važnosti i dekoratori `withCompete` i `withLearn`. Ova tri hoc-a se koriste za formiranje soba različitih tipova i shodno tipu soba se oslanja na različite mogućnosti i atribute. `withAlgorithm` dekorator dodaje mogućnost vitualizacija različitih algoritama, mogućnot koja je potrebna samo u sobama `practice` tipa.
 
 ```javascript
 export const RoomPlayground = withRouter((withRedux (withIO (withGraph (withAlgorithm (withPlayground (Room)))))));
@@ -305,15 +311,13 @@ class App extends React.Component {
 
 Obzirom da je inicijalizacija izvršena u korenoj komponenti, sve ostale komponente imaće pristup kontekstu ukoliko se koristi ukoviru tagova `<Consumer>` i `</Consumer>`.
 
-## Factory, Abstract Factory
-
-**Factory** obrazac u JavaScript-u se koristi za odvajanje kreacije objekata od ostatka koda. U situacijama kada je proces kreiranja varijabilan ili kompleksan treba uspostaviti bafer u vidu Factory-a. Najprostiji Factory enkapsulira kreiranje nekog objekta, metode za kreiranje mogu da budu parametrizovane. Rezultat je Product objekat, u slučaju različitih tipova očekuju se da ovi objekti imaju konzistentan interfejs. Factory obrazac kao glavnu prednost ima centralizovano i konzistentno kreiranje objekata.
-
-**Abstract Factory** obrazac definiše više metoda koje vraćaju produkte. Daje interfejs za kreiranje familija srodnih objekata bez specifikacija njihovih konkretnih klasa. Bitno je da interfejsi, iako objekata koji su različiti, budu konzistentni jer se na mestu inicijalizacije ne pravi razlika izmedju ovih objekata.
-
 ## Builder
 
-**Builder** obrazac koristi se za enkapsulaciju gradjenja kompleksnih objekata tokom vremena, delegiranjem zahteva na niže nivoe.
+**Builder** obrazac koristi se za enkapsulaciju gradjenja kompleksnih objekata tokom vremena, delegiranjem zahteva na niže nivoe. `graphProto` poseduje metode za gradjenje globalnog objekta `graph` na koji se istovremeno oslanja više komponenti. Cilj primene je razdvajanje kreiranja objekta od reprezentacije. `graphProto` se može smatrati `concreteBuilder` implementacijom, nema potrebe za `Builder` abstrakcijom u vidu interfejsa obzirom da se ne grade druge strukture podataka. Interno `graphProto` koristi `Factory` obrazac za kreiranje delova objekata.
+
+### Factory
+
+**Factory** obrazac u JavaScript-u se koristi za odvajanje kreacije objekata od ostatka koda. U situacijama kada je proces kreiranja varijabilan ili kompleksan treba uspostaviti bafer u vidu Factory-a. Najprostiji Factory enkapsulira kreiranje nekog objekta, metode za kreiranje mogu da budu parametrizovane. Rezultat je Product objekat, u slučaju različitih tipova očekuju se da ovi objekti imaju konzistentan interfejs. Factory obrazac kao glavnu prednost ima centralizovano i konzistentno kreiranje objekata.
 
 ```javascript
 export const graphFactory = () => {
@@ -331,10 +335,37 @@ export const graphFactory = () => {
         getNumVertices: ()
    }
    
-   Object.assign(graphProto, {bfs: bfs.bind(graphProto), dfs: dfs.bind(graphProto)});
    return Object.create(graphProto)
 }
 ```
+
+## Strategy
+
+`algorithm`
+ - `breadthFirstSearch`
+ - `depthFirstSearch`
+ - `breadthFirstSearch ? observable`
+ - `depthFirstSearch ? observable`
+ 
+### Algoritmi
+
+Nov algoritam se može dodati kroz `strategy` u dva oblika:
+ - `algorithmName`
+ - `algorithmName ? observable`
+
+`algorithmName` kao rezultat ima niz obidjenih/relevantnih. `algorithmName ? observable` je proširenje ovog algoritma koje za ` observable === true` vraća niz koraka koji pretstavljaju stanje grafa. Koraci moraju da budu modelovani u obliku:
+```javascript
+{
+ visited: [string],
+ solution: [string],
+ tempVertex: string,
+ unvisitedVertex: string,
+ algorithmLine: string,
+ structure : [string],
+}
+```
+
+`visited` kao niz posećenih čvorova, `solution` kao rešenje, `tempVertex`/`unvisitedVertex` mogu da predstavljaju različite čvorove u etapama algoritma. `algorithmLine` trenutnu aktivnu liniju pseudo koda koji predstavlja algoritam i `structure` sadržaj pomoćne strukture poput reda ili steka.
 
 ---
 
