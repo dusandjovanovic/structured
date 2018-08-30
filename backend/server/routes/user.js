@@ -49,8 +49,8 @@ router.put('/:username', /*passport.authenticate('jwt', {session: false}),*/ fun
   //if (token) {
     var username = req.params.username;
     var score = req.body.score;
-    if (!score) {
-      res.send({success: false, msg: 'Score not provided.'});
+    if (!username) {
+      res.send({success: false, msg: 'Username not provided.'});
     } else {
       User.update({username: username},
         {

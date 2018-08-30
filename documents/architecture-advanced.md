@@ -71,7 +71,60 @@ MVC obrazac se sastoji iz Modela koji vodi računa o predstavljanju podataka, Vi
 
 Programiranje vođeno događajima (engl. Event-driven programming) je paradigma u programiranju u kojoj je tok programa određeno događajima kao što su akcije korisnika (klik mišem, pritiskanje tastera), senzor izlaza, ili porukama iz drugih programa / niti. Programiranje vođeno događajima je dominantna paradigma koja se koristi kod grafičkih korisničkih interfejsa i u drugim aplikacijama koje su usmerene da obavljaju pojedine radnje u odgovoru na korisnički unos.
 
-`publish–subscribe` je obrazac koji se koristi za razmenu poruka gde pošaljioci (publishers) ne navode konkretna odredišta poruka, odnosno primaoce (subscribers), već **kategorizuju poruke u klase** bez znanja da li uopšte ima primaoca. Slično tome, primaoci se registruju na konkretne klase i primaju poruke tih klasa kad god su poslate. Korišćenjem `publish–subscribe` obrasca razdvojene su poruke *na nivou sobe u kojoj se nalaze korisnici*.
+**Publish and subscribe** je obrazac koji se koristi za razmenu poruka gde pošaljioci (publishers) ne navode konkretna odredišta poruka, odnosno primaoce (subscribers), već **kategorizuju poruke u klase** bez znanja da li uopšte ima primaoca. Slično tome, primaoci se registruju na konkretne klase i primaju poruke tih klasa kad god su poslate. Korišćenjem `publish–subscribe` obrasca razdvojene su poruke *na nivou sobe u kojoj se nalaze korisnici*.
+
+### Publish and subscribe i socket.io
+
+Upotreba publish and subscribe obrasca sa bibliotekom socket.io odrađena je na veoma jednostavan način. Svaka instanca publish and subscribe obrasca u biblioteci socket.io predstavlja se paradigmom *namespace*, što u suštini znači dodeljivanje različitih krajnjih tačaka ili putanja.
+
+* Primer kreiranje namespace-a
+```javascript
+var nsp = io.of('/my-namespace');
+```
+
+U okviru jednog namespace-a, pošiljaoci poruka mogu da se prijave na poruke (subscribe), i šalju poruke (publish) koje će se proslediti svim prijavljenima (subscribers) na istom namespace-u, kao što i sam obrazac nalaže.
+
+* Primer prijave na namespace (subscribe)
+```javascript
+nsp.on('connection', function(socket){
+  console.log('someone connected');
+});
+```
+* Primer slanje na namespace-u (publish)
+```javascript
+nsp.emit('hi', 'everyone!');
+```
+
+Kategorizacija poruka u klase izvršena je tako što se svakoj klasi dodeli identifikator na osnovu koga će se klase razlikovati, i time svaka poruka poslata u okviru jedne klase će biti prosleđena samo prijavljenima na toj klasi.
+
+* Primer prijave u okviru klase (subscribe)
+```javascript
+nsp.on('connection', function(socket){
+  socket.on('classA', function(msg){
+    print(msg) // hello classA!
+  });
+  socket.on('classB', function(msg){
+    print(msg) // hello classB!
+  });
+});
+```
+* Primer slanje u okviru klase (publish)
+```javascript
+nsp.emit('classA', 'hello classA!');
+nsp.emit('classB', 'hello classB!');
+```
+
+U aplikaciji structured iskorišćene su dve instance publish and subscribe obrasca sa svojim klasama:
+* **chat**
+  * chat message
+  * *roomname*
+* **graph**
+  * get graph
+  * *mastername*
+  * graph
+  * *username*
+  * graph change
+  * *roomname* graph change ...
 
 ## React/Redux Observer
 
