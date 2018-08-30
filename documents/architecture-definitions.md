@@ -108,7 +108,15 @@ Jedna od popularnijih biblioetka koja se koristi u fazi razvoja softvera. Korist
 
 Manje poznata biblioteka koja se koristi za generisanje asinhronih notifikacija koje najčešće obaveštavaju korisnika o neregularnim dogadjajima poput neuspele konekcije, problema ili nemogućnosti izvršenja nekih zahteva i slično.
 
-Ostale manje relevantne biblioteke: `axios`, `lodash`, `unserscore`, ..
+`mongoose`
+
+Najpopularnija biblioteka za modelovanje objekata MongoDB baze podataka. Dizajnirana je za rad u asinhronom okruženju. Pruža rešenje za modelovanje podataka zasnovano na šemama. Uključuje ugrađene type-casting, validaciju, pravljenje upita i drugo.
+
+`passport` `passport-jwt`
+
+Ova biblioteka predstavlja middleware za autentikaciju u Express okruženju. Jedina svrha ove biblioteke je da potvrdi autentičnost zahteva korišćenjem skupa dodataka zvanih strategije. Passport ne upravlja rutama, niti zavisi od šeme baze podataka, što dozvoljava maksimalnu fleksibilnost programeru da donosi odluke na nivou aplikacije.
+
+Ostale manje relevantne biblioteke: `axios`, `bcrypt-nodejs`, `bluebird`, `body-parser`, `lodash`, `unserscore`, ...
 
 Sve zavisnosti sa modulima i bibilotekama mogu se pogledati u datoteci `package.json`.
 
