@@ -9,39 +9,155 @@ Za ostvarivanje realtime komunikacije između klijenata iskorišćena je Socket.
 
 [communication]: architecture/diagram-communication-model.png
 
-Prilikom uspostavljanja komunikacije izmedju serverske (backend) i klijentske (frontend) strane postoje različite rute za prosledjivanje konkretnih poruka. Sadržaj poruke je jedinstven i daje informacije o daljem toku dogadjaja.
+## Model podataka poruka
 
-`new-message`
+Prilikom uspostavljanja komunikacije izmedju reactive-model i klijentske (frontend) strane postoje različite rute za prosledjivanje konkretnih poruka.
+Možemo razlikovati dve vrste poruka koje se prosleđuju, na osnovu toga čemu te poruke služe:
+* **Chat poruke**
+* **Graph poruke**
 
-`{
- text: string
- self: boolean
- time: date
- }`
- 
-Ruta koja se koristi za razmenu chat poruka. Sadrzaj poruke je JavaScript objekat koji se prenosi izmedju obe strane i sastoji se od tekstualnog sadrzaja poruke, informacije o posaljiocu i vremena slanja. Poruka je pre svega dodata u listu poruka izvornog kontrolera, a za tim poslata serveru. Kada server primi poruku po ovoj ruti broadcastovana je svim konekcijama osim izvorne, odnosno konekcije sa koje je stigla sama poruka.
+### Model podataka chat poruka
 
+**`chat message`**
+```javascript
+{
+  room: String,
+  sender: String,
+  msg: String
+}
+```
+Prosleđuje se kada korisnik pošalje chat poruku ostalim korisnicima.
 
-`new-node`
+### Model podataka graph poruka
 
-`{
- node: number
- linkCount: number
- }`
- 
-Za realizaciju funkcionalnosti dodavanja cvorova i emitovanje promena ostalim klijentima koristi se ruta new-node. Sadrzaj poruke je JavaScript objekat koji sadrzi vrednost cvora koji se dodaje u graf, kao i broj veza. Prilikom dodavanja novog cvora izvrsava se promena lokalne strukture grafa kod klijenta koji vrsi izmene, nakon cega se asinhronim upisom obezbedjuje perzistencija podataka. Zatim, kontroler klijenta salje zahtev serveru, koji emituje novonastalu promenu svim povezanim klijentima.
+**`get graph`**
+```javascript
+{
+  masterName: String,
+  username: String
+}
+```
+Prosleđuje se master korisniku sobe kada korisnik uđe u sobu da bi mu master poslao graf sobe.
 
-![alt text][node]
+**`graph`**
+```javascript
+{
+  username: String,
+  graph: Graph
+}
+```
+Prosleđuje se korisniku koji je ušao u sobu koja sadrži trenutni graf sobe.
 
-[node]: architecture/activity-user-adds-node.png
+**`graph change`**
+```javascript
+{
+  room: String,
+  graph: Graph
+}
+```
+Prosleđuje se svim korisnicima sobe kada master korisnik generiše novi graf.
 
+**`add node`**
+```javascript
+{
+  room: String,
+  sender: String,
+  node: Node
+}
+```
+Prosleđuje se svim korisnicima sobe kada neki korisnik doda čvor.
 
-`new-edge`
+**`remove node`**
+```javascript
+{
+  room: String,
+  sender: String,
+  node: Node
+}
+```
+Prosleđuje se svim korisnicima sobe kada neki korisnik ukloni čvor.
 
-`{
- source: number
- target: number
- }`
- 
-Analogno gorenavedenoj komunikacionoj ruti za dodavanje novog cvora izvrsava se i dodavanje novog potega u graf. Sadrzaj poruke je JavaScript objekat koji sadrzi vrednosti izvornog i odredisnog cvora koje taj poteg povezuje.
-Prilikom obrade zahteva na serverskoj strani emituje se novonastala promena svim preostalim klijentima. Svaki kontroler klijenta ima metodu koja se poziva prilikom pristizanja konkretne poruke.
+**`add edge`**
+```javascript
+{
+  room: String,
+  sender: String,
+  edge: Edge
+}
+```
+Prosleđuje se svim korisnicima sobe kada neki korisnik doda poteg.
+
+**`remove edge`**
+```javascript
+{
+  room: String,
+  sender: String,
+  edge: Edge
+}
+```
+Prosleđuje se svim korisnicima sobe kada neki korisnik ukloni poteg.
+
+**`compete begin`**
+```javascript
+{
+  room: String,
+  agName: String,
+  root: Number
+}
+```
+Prosleđuje se svim korisnicima sobe kada master korisnik započne compete mod.
+
+**`compete end`**
+```javascript
+{
+  room: String,
+  user: String,
+  score: Number
+}
+```
+Prosleđuje se svim korisnicima sobe kada korisnik koji šalje poruku završi sa algoritmom.
+
+**`algorithm begin`**
+```javascript
+{
+  room: String,
+  agName: String,
+  agIterations: Number,
+  root: Number
+}
+```
+Prosleđuje se ...
+
+**`algorithm end`**
+```javascript
+{
+  room: String
+}
+```
+Prosleđuje se ...
+
+**`master changed`**
+```javascript
+{
+  room: String,
+  master: String
+}
+```
+Prosleđuje se svim korisnicima sobe kada master napusti sobu i dodeli se novi master. Informativna poruka.
+
+**`join and leave room`**
+```javascript
+{
+  room: String,
+  msg: String
+}
+```
+Prosleđuje se svim korisnicima sobe kada novi korisnik upadne u sobu ili kada neki korisnik napusti sobu. Informativna poruka.
+
+**`delete room`**
+```javascript
+{
+  room: String
+}
+```
+Prosleđuje se...
