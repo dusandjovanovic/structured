@@ -1,3 +1,28 @@
+structured
+------
+Web application for realtime collaborative **graph visualization**. Multiple modes like **playground and competitive**, compete sessions are graded and bound to user's personal history available in dashboard. Includes **continuous algorithm simulations** for multiple users at the same time. Made possible with MERN, this stack consists of MongoDB, Express, **React w/ Redux, and Node.js**. Given the popularity of React on the frontend and of Node.js on the backend, the MERN stack is one of the most popular stack of technologies for building a modern single-page app.
+
+
+
+![alt text][screenshot_algorithm]
+
+[screenshot_algorithm]: documents/images/screenshot_algorithm.PNG
+
+
+![alt text][screenshot_playground]
+
+[screenshot_playground]: documents/images/screenshot_playground.PNG
+
+
+![alt text][screenshot_compete]
+
+[screenshot_compete]: documents/images/screenshot_compete.PNG
+
+
+![alt text][screenshot_dashboard]
+
+[screenshot_dashboard]: documents/images/screenshot_dashboard.PNG
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 In the project directory, you can run:
 
