@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import ControlBar from "./control-bar/controlBar";
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { arduinoLight } from 'react-syntax-highlighter/styles/hljs';
+import { arduinoLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import './algorithm.css';
 
 const codeBreadth = `1. procedure BFS(G, v):
