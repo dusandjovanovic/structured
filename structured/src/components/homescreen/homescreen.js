@@ -1,21 +1,9 @@
-import React, {Component} from 'react';
-import neuralNet from './splashcreen';
+import React, { Component } from "react";
 
 class Homescreen extends Component {
-    componentDidMount() {
-        neuralNet(this.intro.current);
+    render() {
+        return <h4>structured</h4>;
     }
-
-    constructor(props) {
-        super(props);
-        this.intro = React.createRef();
-    }
-
-    render () {
-        return (
-            <canvas style={{margin: '-60px 0px'}} ref={this.intro}> </canvas>
-        );
-    }
-};
+}
 
 export default Homescreen;
