@@ -1,66 +1,85 @@
-import React, { Component } from "react";
+import React from "react";
+import AppFrame from "./containers/frame/frame";
+import BoundaryError from "./components/interface/boundary-error/boundaryError";
+import BoundaryLoading from "./components/interface/boundary-loading/boundaryLoading";
+import NotificationHandler from "./components/compound/notification-handler/notificationHandler";
+
 import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import Layout from "./containers/layout/layout";
-import Auth from "./containers/auth/auth";
-import Logout from "./containers/auth/logout/logout";
+
+import { authenticatePersisted } from "./store/actions/index";
+
 import { RoomPlayground, RoomCompete, RoomLearn } from "./containers/room/room";
-import Homescreen from "./components/homescreen/homescreen";
-import Home from "./containers/home/home";
-import NotificationContainer from "./containers/notifications/notifications";
-import withAsyncLoading from "./hoc/with-async-loading/withAsyncLoading";
-import * as actions from "./redux/actions/index";
+const Home = React.lazy(() => import("./containers/home/home"));
+const Homescreen = React.lazy(() =>
+    import("./containers/homescreen/homescreen")
+);
+const Auth = React.lazy(() => import("./containers/auth/auth"));
+const Dashboard = React.lazy(() => import("./containers/dashboard/dashboard"));
 
-const withAsyncDashboard = withAsyncLoading(() => {
-    return import("./containers/dashboard/dashboard");
-});
-
-class App extends Component {
+class App extends React.Component {
     componentDidMount() {
-        this.props.onTryAutoSignIn();
+        this.props.authenticatePersisted();
     }
 
     render() {
-        let routing = (
-            <Switch>
-                <Route path="/auth" component={Auth} />
-                <Route path="/" exact component={Homescreen} />
-                <Redirect to="/" />
-            </Switch>
-        );
-        if (this.props.authenticated)
-            routing = (
-                <Switch>
-                    <Route path="/auth" component={Auth} />
-                    <Route path="/logout" component={Logout} />
-                    <Route path="/dashboard" component={withAsyncDashboard} />
-                    <Route path="/room" component={RoomPlayground} />
-                    <Route path="/compete" component={RoomCompete} />
-                    <Route path="/learn" component={RoomLearn} />
-                    <Route path="/" exact component={Home} />
-                </Switch>
-            );
         return (
-            <React.Fragment>
-                <Layout>
-                    <NotificationContainer />
-                    {routing}
-                </Layout>
-            </React.Fragment>
+            <BoundaryError>
+                <AppFrame>
+                    <NotificationHandler />
+                    {!this.props.authenticated ? (
+                        <React.Suspense fallback={<BoundaryLoading />}>
+                            <Switch>
+                                <Route path="/auth" exact>
+                                    <Auth />
+                                </Route>
+                                <Route path="/" exact>
+                                    <Homescreen />
+                                </Route>
+                                <Redirect to="/" />
+                            </Switch>
+                        </React.Suspense>
+                    ) : (
+                        <React.Suspense fallback={<BoundaryLoading />}>
+                            <Switch>
+                                <Route path="/auth" exact>
+                                    <Auth />
+                                </Route>
+                                <Route path="/dashboard" exact>
+                                    <Dashboard />
+                                </Route>
+                                <Route path="/room" exact>
+                                    <RoomPlayground />
+                                </Route>
+                                <Route path="/compete" exact>
+                                    <RoomCompete />
+                                </Route>
+                                <Route path="/learn" exact>
+                                    <RoomLearn />
+                                </Route>
+                                <Route path="/" exact>
+                                    <Home />
+                                </Route>
+                                <Redirect to="/" />
+                            </Switch>
+                        </React.Suspense>
+                    )}
+                </AppFrame>
+            </BoundaryError>
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        authenticated: state.auth.token !== null,
+        authenticated: state.auth.authenticated,
         requests: state.user.requests
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onTryAutoSignIn: () => dispatch(actions.authCheckState())
+        authenticatePersisted: () => dispatch(authenticatePersisted())
     };
 };
 

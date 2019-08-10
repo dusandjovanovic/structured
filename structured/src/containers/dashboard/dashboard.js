@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Line} from "react-chartjs-2";
-import * as actions from '../../redux/actions/index';
+import * as actions from '../../store/actions/index';
 import DashboardCards from './dashboard-cards/dashboardCards';
 import DashboardFriends from './dashboard-friends/dashboardFriends';
 import DashboardNavbar from './dashboard-navbar/dashboardNavbar';
 import { Table, Container, Row, Breadcrumb, BreadcrumbItem, Card, CardHeader, CardBody, CardFooter,} from 'reactstrap';
 import Overlay from "../../components/user-interface/spinner-overlay/spinnerOverlay";
 import './dashboard.css';
+
+import { styles } from "./stylesheet";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 export class Dashboard extends Component {
     state = {
