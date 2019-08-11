@@ -68,7 +68,7 @@ export const styles = theme => ({
         backgroundColor: theme.palette.primary.main,
         color: "#FFFFFF",
         boxShadow:
-            "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 0 10px rgba(0, 163, 184, 0.5)"
+            "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 0 10px rgba(40, 44, 52, 0.5)"
     },
     transparent: {
         backgroundColor: "transparent !important",

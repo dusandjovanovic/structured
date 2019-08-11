@@ -1,43 +1,132 @@
-import React from 'react';
-import './graphLogger.css';
+import React from "react";
+import GraphNode from "./graph-node/graphNode";
+import GraphNodeList from "./graph-node-list/graphNodeList";
+import Grid from "@material-ui/core/Grid";
 
-const graphLogger = (props) => (
-    <div className="Logger mr-2 ml-2">
-        <div className="p-2 text-info holder"><span className="pr-2">Selected:</span><span className="selected">{props.nodeSelected ? props.nodeSelected.key : null}</span></div>
-        <div className="p-2 holder"><span className="pr-2">Adjacent:</span>
-            <span>{props.nodesAdjacent.map(node => (<span key={node} className="adjacent">{node}</span>))}</span>
-        </div>
-        <div className="p-2 pr-4 text-secondary holder"><span className="pr-2">Root:</span><span className="node">{props.nodeRoot}</span></div>
-        <div className="p-2 pr-4 text-secondary holder"><span className="pr-2">Highlighted:</span>
-            <span>{props.nodesHighlighted.map(node => (<span key={node} className="watched">{node}</span>))}</span>
-        </div>
-        {props.algorithmState
-            ? <div>
-                <hr className="p-2" />
-                <div className="p-2 holder"><span className="pr-2">Current:</span><span className="selected">{props.algorithmState.tempVertex}</span></div>
-                <div className="p-2 holder"><span className="pr-2">Unvisited:</span><span className="node">{props.algorithmState.unvisitedVertex}</span></div>
-                <div className="p-2 text-secondary holder"><span className="pr-2">Visited:</span>
-                    <span>{props.algorithmState.visited.map(node => (<span key={node} className="node">{node}</span>))}</span>
-                </div>
-                <div className="p-2 text-secondary holder"><span className="pr-2">Traversed:</span>
-                    <span>{props.algorithmState.solution.map(node => (<span key={node} className="watched">{node}</span>))}</span>
-                </div>
-              </div>
-            : null
-        }
-        {props.algorithmState && props.algorithmType === 'ALGORITHM_BREADTH_OBSERVABLE'
-            ? <div className="p-2 text-secondary holder"><span className="pr-2">Queue:</span>
-                <span>{props.algorithmState.structure.map(node => (<span key={node} className="node">{node}</span>))}</span>
-              </div>
-            : null
-        }
-        {props.algorithmState && props.algorithmType === 'ALGORITHM_DEPTH_OBSERVABLE'
-            ? <div className="p-2 text-secondary holder"><span className="pr-2">Stack:</span>
-                <span>{props.algorithmState.structure.map(node => (<span key={node} className="node">{node}</span>))}</span>
-              </div>
-            : null
-        }
-    </div>
-);
+import { styles } from "./stylesheet";
+import withStyles from "@material-ui/core/styles/withStyles";
+import classNames from "classnames";
 
-export default graphLogger;
+import {
+    ALGORITHM_BREADTH_OBSERVABLE,
+    ALGORITHM_DEPTH_OBSERVABLE
+} from "../../../../utils/constants";
+
+const graphLogger = props => {
+    
+    const { classes } = props;
+
+    return (
+        <Grid container className={classes.root}>
+            <GraphNode
+                text="Selected:"
+                show={props.nodeSelected && props.nodeSelected.key}
+                node={props.nodeSelected ? props.nodeSelected.key : null}
+                holderClass={classNames(classes.holder, classes.selectedText)}
+                nodeClass={classNames(classes.node, classes.selected)}
+            />
+
+            <GraphNodeList
+                text="Adjacent:"
+                nodes={props.nodesAdjacent}
+                holderClass={classNames(classes.holder, classes.primaryText)}
+                nodeClass={classNames(classes.node, classes.adjacent)}
+            />
+
+            <GraphNode
+                show
+                text="Root:"
+                node={props.nodeRoot}
+                holderClass={classNames(classes.holder, classes.primaryAltText)}
+                nodeClass={classes.node}
+            />
+
+            <GraphNodeList
+                text="Highlighted:"
+                nodes={props.nodesHighlighted}
+                holderClass={classNames(classes.holder, classes.primaryAltText)}
+                nodeClass={classNames(classes.node, classes.watched)}
+            />
+
+            {props.algorithmState ? (
+                <div>
+                    <hr className={classes.separator} />
+
+                    <GraphNode
+                        text="Current:"
+                        show={
+                            props.algorithmState &&
+                            props.algorithmState.tempVertex
+                        }
+                        node={props.algorithmState.tempVertex}
+                        holderClass={classNames(
+                            classes.holder,
+                            classes.primaryText
+                        )}
+                        nodeClass={classNames(classes.node, classes.selected)}
+                    />
+
+                    <GraphNode
+                        text="Unvisited:"
+                        show={
+                            props.algorithmState &&
+                            props.algorithmState.unvisitedVertex
+                        }
+                        node={props.algorithmState.unvisitedVertex}
+                        holderClass={classNames(
+                            classes.holder,
+                            classes.primaryText
+                        )}
+                        nodeClass={classes.node}
+                    />
+
+                    <GraphNodeList
+                        text="Visited:"
+                        nodes={props.algorithmState.visited}
+                        holderClass={classNames(
+                            classes.holder,
+                            classes.primaryAltText
+                        )}
+                        nodeClass={classes.node}
+                    />
+
+                    <GraphNodeList
+                        text="Traversed:"
+                        nodes={props.algorithmState.solution}
+                        holderClass={classNames(
+                            classes.holder,
+                            classes.primaryAltText
+                        )}
+                        nodeClass={classNames(classes.node, classes.watched)}
+                    />
+                </div>
+            ) : null}
+            {props.algorithmState &&
+            props.algorithmType === ALGORITHM_BREADTH_OBSERVABLE ? (
+                <GraphNodeList
+                    text="Queue:"
+                    nodes={props.algorithmState.structure}
+                    holderClass={classNames(
+                        classes.holder,
+                        classes.primaryAltText
+                    )}
+                    nodeClass={classes.node}
+                />
+            ) : null}
+            {props.algorithmState &&
+            props.algorithmType === ALGORITHM_DEPTH_OBSERVABLE ? (
+                <GraphNodeList
+                    text="Stack:"
+                    nodes={props.algorithmState.structure}
+                    holderClass={classNames(
+                        classes.holder,
+                        classes.primaryAltText
+                    )}
+                    nodeClass={classes.node}
+                />
+            ) : null}
+        </Grid>
+    );
+};
+
+export default withStyles(styles)(React.memo(graphLogger));

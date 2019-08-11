@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import Draggable from 'react-draggable';
+import React, { Component } from "react";
+import Draggable from "react-draggable";
 import ControlBar from "./control-bar/controlBar";
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { arduinoLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import './algorithm.css';
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { arduinoLight } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import "./algorithm.css";
 
 const codeBreadth = `1. procedure BFS(G, v):
 2.    create a queue Q
@@ -40,22 +40,24 @@ class algorithm extends Component {
         algorithmLine: 1
     };
 
-    componentWillReceiveProps (nextProps) {
-        if (nextProps.algorithmState)
+    componentDidUpdate(prevProps) {
+        if (
+            this.props.algorithmState &&
+            this.props.algorithmState.algorithmLine !== this.state.algorithmLine
+        )
             this.setState({
-                algorithmLine: nextProps.algorithmState.algorithmLine
+                algorithmLine: this.props.algorithmState.algorithmLine
             });
         else
             this.setState({
                 algorithmLine: 1
             });
-    };
+    }
 
     algorithmInit = () => {
         if (!this.props.algorithmActive) {
             this.props.algorithmVisualize();
-        }
-        else {
+        } else {
             this.props.algorithmPause();
         }
     };
@@ -63,35 +65,49 @@ class algorithm extends Component {
     render() {
         return (
             <Draggable defaultClassName="react-draggable" bounds="parent">
-                <div style={{display: 'flex'}}>
-                    <div className="p-4 mb-5 ml-4 mr-4" style={{flex: 1, width: '100%', flexDirection: 'column'}}>
-                        <SyntaxHighlighter language="python"
-                                           style={arduinoLight}
-                                           wrapLines={true}
-                                           lineProps={(lineNumber) => ({
-                                               style: {
-                                                   display: "block",
-                                                   color: this.state.algorithmLine === lineNumber ? '#cbf7ff' : null,
-                                                   backgroundColor: this.state.algorithmLine === lineNumber ? '#4a515b' : '#ffffff'
-                                               }
-                                           })}
+                <div style={{ display: "flex" }}>
+                    <div
+                        className="p-4 mb-5 ml-4 mr-4"
+                        style={{
+                            flex: 1,
+                            width: "100%",
+                            flexDirection: "column"
+                        }}
+                    >
+                        <SyntaxHighlighter
+                            language="python"
+                            style={arduinoLight}
+                            wrapLines={true}
+                            lineProps={lineNumber => ({
+                                style: {
+                                    display: "block",
+                                    color:
+                                        this.state.algorithmLine === lineNumber
+                                            ? "#cbf7ff"
+                                            : null,
+                                    backgroundColor:
+                                        this.state.algorithmLine === lineNumber
+                                            ? "#4a515b"
+                                            : "#ffffff"
+                                }
+                            })}
                         >
-                            {
-                                this.props.algorithmType === 'ALGORITHM_DEPTH_OBSERVABLE'
+                            {this.props.algorithmType ===
+                            "ALGORITHM_DEPTH_OBSERVABLE"
                                 ? codeDepth
-                                : codeBreadth
-                            }
+                                : codeBreadth}
                         </SyntaxHighlighter>
                     </div>
-                    <ControlBar play={this.algorithmInit}
-                                playing={this.props.algorithmActive}
-                                goToPrevStep={this.props.algorithmPreviousState}
-                                goToNextStep={this.props.algorithmNextState}
+                    <ControlBar
+                        play={this.algorithmInit}
+                        playing={this.props.algorithmActive}
+                        goToPrevStep={this.props.algorithmPreviousState}
+                        goToNextStep={this.props.algorithmNextState}
                     />
                 </div>
             </Draggable>
         );
-    };
+    }
 }
 
 export default algorithm;

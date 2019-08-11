@@ -1,6 +1,8 @@
 import React from "react";
 import {Redirect} from "react-router";
 
+/* eslint react/display-name: 0 */
+
 const withRedirection = WrappedComponent => {
     return class extends WrappedComponent {
 

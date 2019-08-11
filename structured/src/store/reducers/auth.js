@@ -11,7 +11,7 @@ import {
 const initialState = {
     authenticated: false,
     token: null,
-    userId: null,
+    username: null,
     waiting: false,
     error: null,
     redirect: "/"
@@ -36,13 +36,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: action.payload.token,
-                userId: action.payload.userId
+                username: action.payload.username
             };
         case AUTH_CLEAR_CREDENTIALS:
             return {
                 ...state,
                 token: null,
-                userId: null
+                username: null
             };
         case AUTH_ERROR:
             return {

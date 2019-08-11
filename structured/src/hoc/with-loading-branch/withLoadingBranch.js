@@ -2,6 +2,8 @@ import React from "react";
 import ProgressIndicator from "../../components/building-blocks/progress-indicator/progressIndicator";
 import Typography from "@material-ui/core/Typography";
 
+/* eslint react/display-name: 0 */
+
 const withLoadingBranch = WrappedComponent => {
     return class extends WrappedComponent {
 

@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import 'react-chat-elements/dist/main.css';
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import "react-chat-elements/dist/main.css";
 import { Input, MessageList } from "react-chat-elements";
-import { Button } from "reactstrap";
 
-class Chat extends Component {
+class Chat extends React.Component {
     socket = null;
     state = {
         messages: []
@@ -11,31 +12,31 @@ class Chat extends Component {
 
     constructor(props) {
         super(props);
-        this.socket = this.props.io('http://localhost:2998/chat');
-        this.socket.on(this.props.room, message => this.messageReceived(message));
-    };
+        this.socket = this.props.io("http://localhost:2998/chat");
+        this.socket.on(this.props.room, message =>
+            this.messageReceived(message)
+        );
+    }
 
     componentWillUnmount() {
         this.socket.close();
-    };
+    }
 
-    messageReceived = (message) => {
+    messageReceived = message => {
         let position = "right";
         let content;
         if (message.sender !== this.props.username) {
             position = "left";
             content = message.sender + ":  " + message.msg;
-        }
-        else
-            content = message.msg;
+        } else content = message.msg;
 
         let updated = [...this.state.messages];
         updated.push({
             sender: message.sender,
             text: content,
             position: position,
-            type: 'text',
-            date: new Date(),
+            type: "text",
+            date: new Date()
         });
 
         this.setState({
@@ -43,8 +44,8 @@ class Chat extends Component {
         });
     };
 
-    messageSend = (message) => {
-        this.socket.emit('chat message', {
+    messageSend = message => {
+        this.socket.emit("chat message", {
             room: this.props.room,
             sender: this.props.username,
             msg: message
@@ -53,22 +54,29 @@ class Chat extends Component {
 
     render() {
         return (
-            <div>
+            <Grid container>
                 <Input
+                    ref="input"
                     placeholder="Type a message.."
                     minHeight={100}
-                    ref='input'
                     rightButtons={
-                        <Button color='white' onClick={() => this.messageSend(this.refs.input.input.value)}>
-                            <i className="far fa-comment"></i> Send
+                        <Button
+                            color="primary"
+                            onClick={() =>
+                                this.messageSend(this.refs.input.input.value)
+                            }
+                        >
+                            Send
                         </Button>
-                    }/>
+                    }
+                />
                 <MessageList
-                    className='message-list mt-2'
+                    className="message-list"
                     lockable={true}
-                    toBottomHeight={'100%'}
-                    dataSource={this.state.messages} />
-            </div>
+                    toBottomHeight={"100%"}
+                    dataSource={this.state.messages}
+                />
+            </Grid>
         );
     }
 }

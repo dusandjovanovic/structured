@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/* eslint react/display-name: 0 */
+
 const withDraggable = WrappedComponent => {
     return class extends React.Component {
         state = {

@@ -1,18 +1,55 @@
-import React from 'react';
-import { Button } from "reactstrap";
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import Toolbar from "../../../../components/interface/toolbar/toolbar";
 
-const spectator = (props) => (
-    <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-        <h3> </h3>
-        <div className="btn-toolbar mb-2 mb-md-0">
-            <div className="btn-group mr-2">
-                <Button outline color="info" disabled={props.disabled} onClick={() => props.addNode()}><i className="fas fa-plus"></i> Add node</Button>
-                <Button outline color="info" disabled={props.disabled} onClick={() => props.addEdge()}><i className="fas fa-link"></i> Add edge</Button>
-                <Button outline disabled={props.disabled} onClick={() => props.removeNode()}><i className="fas fa-eraser"></i> Remove node</Button>
-                <Button outline disabled={props.disabled} onClick={() => props.removeEdge()}><i className="fas fa-unlink"></i> Remove edge</Button>
-            </div>
-        </div>
-    </div>
-);
+import Add from "@material-ui/icons/Add";
+import Clear from "@material-ui/icons/Clear";
+import Edit from "@material-ui/icons/Edit";
+import BorderColor from "@material-ui/icons/BorderColor";
 
-export default spectator;
+import { styles } from "./stylesheet";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+const spectator = props => {
+    const { classes } = props;
+
+    return (
+        <Toolbar>
+            <Grid container justify="flex-end">
+                <Button
+                    color="primary"
+                    disabled={props.disabled}
+                    onClick={() => props.addNode()}
+                >
+                    <Add className={classes.icon} /> Add node
+                </Button>
+                <Button
+                    color="primary"
+                    disabled={props.disabled}
+                    onClick={() => props.addEdge()}
+                >
+                    <Edit className={classes.icon} /> Add edge
+                </Button>
+
+                <Button
+                    color="primary"
+                    disabled={props.disabled}
+                    onClick={() => props.removeNode()}
+                >
+                    <Clear className={classes.icon} /> Remove node
+                </Button>
+
+                <Button
+                    color="primary"
+                    disabled={props.disabled}
+                    onClick={() => props.removeEdge()}
+                >
+                    <BorderColor className={classes.icon} /> Remove edge
+                </Button>
+            </Grid>
+        </Toolbar>
+    );
+};
+
+export default withStyles(styles)(React.memo(spectator));

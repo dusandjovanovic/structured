@@ -1,8 +1,10 @@
 import React from "react";
-import { Container, Row } from "reactstrap";
-import { Redirect, withRouter } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
 import RoomNew from "./room-new/roomNew";
+import RoomNewModal from "./room-new-modal/roomNewModal";
 import RoomView from "./room-view/roomView";
+
+import { Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
@@ -13,6 +15,7 @@ import withErrorHandler from "../../hoc/with-error-handler/withErrorHandler";
 class Home extends React.Component {
     state = {
         redirect: false,
+        newRoom: false,
         error: {
             hasError: false,
             name: null,
@@ -44,6 +47,20 @@ class Home extends React.Component {
         });
     };
 
+    handleNewRoomOpen = () => {
+        this.setState({
+            newRoom: true
+        });
+    };
+
+    handleNewRoomClose = () => {
+        if (!this.state.error.hasError) {
+            this.setState({
+                newRoom: false
+            });
+        }
+    };
+
     render() {
         const { classes } = this.props;
 
@@ -64,34 +81,29 @@ class Home extends React.Component {
         }
 
         return (
-            <div className={classes.root}>
+            <Grid container className={classes.root}>
                 {redirection}
-                <Container>
-                    <Row>
-                        <RoomNew
-                            createAndEnterRoom={(name, maxUsers, roomType) =>
-                                this.createAndEnterRoom(
-                                    name,
-                                    maxUsers,
-                                    roomType
-                                )
-                            }
-                        />
-                    </Row>
-                    <hr className="mt-5" />
-                    {this.props.rooms ? (
+                <RoomNewModal
+                    open={this.state.newRoom}
+                    handleModalClose={this.handleNewRoomClose}
+                    createAndEnterRoom={this.createAndEnterRoom}
+                />
+                <Grid container justify="center" alignItems="center">
+                    <Grid item md={8} xs={10}>
+                        <RoomNew handleNewRoomOpen={this.handleNewRoomOpen} />
+                    </Grid>
+                    <Grid item md={8} xs={10}>
+                        <hr />
+                    </Grid>
+                    <Grid item xs={10}>
                         <RoomView
                             enterRoom={name => this.enterRoom(name)}
                             rooms={this.props.rooms}
                             waiting={this.props.waiting}
-                            stick={
-                                this.props.waiting &&
-                                this.props.rooms.length > 0
-                            }
                         />
-                    ) : null}
-                </Container>
-            </div>
+                    </Grid>
+                </Grid>
+            </Grid>
         );
     }
 }

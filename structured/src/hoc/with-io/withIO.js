@@ -1,25 +1,28 @@
-import React from 'react';
+import React from "react";
 
-function withIO (WrappedComponent) {
+/* eslint react/display-name: 0 */
+
+const withIO = WrappedComponent => {
     return class extends React.Component {
         socket = null;
 
-        componentWillMount() {
-            this.socket = this.props.io('http://localhost:2998/graph');
-            this.socket.on('connect', () => {
-                // console.log(this.props.username, 'WebSocket opened');
+        constructor(props) {
+            super(props);
+            this.socket = this.props.io("http://localhost:2998/graph");
+            this.socket.on("connect", () => {
+                console.log(this.props.username, "WebSocket opened");
             });
-            this.socket.on('disconnect', () => {
-                // console.log(this.props.username, 'WebSocket closed');
-            })
+            this.socket.on("disconnect", () => {
+                console.log(this.props.username, "WebSocket closed");
+            });
         }
 
         componentWillUnmount() {
             this.socket.close();
         }
 
-        addNodeIO = (node) => {
-            this.socket.emit('add node', {
+        addNodeIO = node => {
+            this.socket.emit("add node", {
                 room: this.props.data.name,
                 sender: this.props.username,
                 node: node
@@ -27,7 +30,7 @@ function withIO (WrappedComponent) {
         };
 
         addEdgeIO = (source, target) => {
-            this.socket.emit('add edge', {
+            this.socket.emit("add edge", {
                 room: this.props.data.name,
                 sender: this.props.username,
                 edge: {
@@ -37,8 +40,8 @@ function withIO (WrappedComponent) {
             });
         };
 
-        removeNodeIO = (node) => {
-            this.socket.emit('remove node', {
+        removeNodeIO = node => {
+            this.socket.emit("remove node", {
                 room: this.props.data.name,
                 sender: this.props.username,
                 node: node
@@ -46,7 +49,7 @@ function withIO (WrappedComponent) {
         };
 
         removeEdgeIO = (source, target) => {
-            this.socket.emit('remove edge', {
+            this.socket.emit("remove edge", {
                 room: this.props.data.name,
                 sender: this.props.username,
                 edge: {
@@ -58,40 +61,40 @@ function withIO (WrappedComponent) {
 
         addGraphIO = (receiver, graph) => {
             if (graph) {
-                this.socket.emit('graph', {
+                this.socket.emit("graph", {
                     room: this.props.room.name,
                     username: receiver,
                     graph: graph
-                })
+                });
             }
         };
 
-        changeGraphIO = (graph) => {
+        changeGraphIO = graph => {
             if (graph) {
-                this.socket.emit('graph change', {
+                this.socket.emit("graph change", {
                     room: this.props.room.name,
                     graph: graph
-                })
+                });
             }
         };
 
         getGraphIO = () => {
-            this.socket.emit('get graph', {
+            this.socket.emit("get graph", {
                 username: this.props.username,
                 masterName: this.props.data.createdBy
             });
         };
 
         competeBeginIO = (algorithmName, rootNode) => {
-            this.socket.emit('compete begin', {
+            this.socket.emit("compete begin", {
                 room: this.props.room.name,
                 agName: algorithmName,
                 root: rootNode
             });
         };
 
-        competeEndedIO = (score) => {
-            this.socket.emit('compete end', {
+        competeEndedIO = score => {
+            this.socket.emit("compete end", {
                 room: this.props.room.name,
                 user: this.props.username,
                 score: score
@@ -99,7 +102,7 @@ function withIO (WrappedComponent) {
         };
 
         algorithmBeginIO = (algorithmName, algorithmIterations, rootNode) => {
-            this.socket.emit('algorithm begin', {
+            this.socket.emit("algorithm begin", {
                 room: this.props.room.name,
                 agName: algorithmName,
                 agIterations: algorithmIterations,
@@ -108,26 +111,26 @@ function withIO (WrappedComponent) {
         };
 
         algorithmEndedIO = () => {
-            this.socket.emit('algorithm end', {
+            this.socket.emit("algorithm end", {
                 room: this.props.room.name
             });
         };
 
         joinLeaveRoomIO = (roomName, message) => {
-            this.socket.emit('join and leave room', {
+            this.socket.emit("join and leave room", {
                 room: roomName,
                 msg: message
             });
         };
 
-        deleteRoomIO = (roomName) => {
-            this.socket.emit('delete room', {
+        deleteRoomIO = roomName => {
+            this.socket.emit("delete room", {
                 room: roomName
             });
         };
 
         masterChangedIO = (room, master) => {
-            this.socket.emit('master changed', {
+            this.socket.emit("master changed", {
                 room: room,
                 master: master
             });
@@ -135,26 +138,27 @@ function withIO (WrappedComponent) {
 
         render() {
             return (
-                <WrappedComponent addNodeIO={this.addNodeIO}
-                                  addEdgeIO={this.addEdgeIO}
-                                  removeNodeIO={this.removeNodeIO}
-                                  removeEdgeIO={this.removeEdgeIO}
-                                  addGraphIO={this.addGraphIO}
-                                  getGraphIO={this.getGraphIO}
-                                  changeGraphIO={this.changeGraphIO}
-                                  competeBeginIO={this.competeBeginIO}
-                                  competeEndedIO={this.competeEndedIO}
-                                  algorithmBeginIO={this.algorithmBeginIO}
-                                  algorithmEndedIO={this.algorithmEndedIO}
-                                  joinLeaveRoomIO={this.joinLeaveRoomIO}
-                                  deleteRoomIO={this.deleteRoomIO}
-                                  masterChangedIO={this.masterChangedIO}
-                                  socket={this.socket}
-                                  {...this.props}
-                                />
+                <WrappedComponent
+                    addNodeIO={this.addNodeIO}
+                    addEdgeIO={this.addEdgeIO}
+                    removeNodeIO={this.removeNodeIO}
+                    removeEdgeIO={this.removeEdgeIO}
+                    addGraphIO={this.addGraphIO}
+                    getGraphIO={this.getGraphIO}
+                    changeGraphIO={this.changeGraphIO}
+                    competeBeginIO={this.competeBeginIO}
+                    competeEndedIO={this.competeEndedIO}
+                    algorithmBeginIO={this.algorithmBeginIO}
+                    algorithmEndedIO={this.algorithmEndedIO}
+                    joinLeaveRoomIO={this.joinLeaveRoomIO}
+                    deleteRoomIO={this.deleteRoomIO}
+                    masterChangedIO={this.masterChangedIO}
+                    socket={this.socket}
+                    {...this.props}
+                />
             );
         }
-    }
+    };
 };
 
 export default withIO;

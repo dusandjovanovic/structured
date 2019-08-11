@@ -97,9 +97,7 @@ class Register extends React.Component {
                                     required
                                     type={inputs.username.config.type}
                                     label={inputs.username.config.label}
-                                    placeholder={
-                                        inputs.username.placeholder
-                                    }
+                                    placeholder={inputs.username.placeholder}
                                     error={
                                         inputs.username.touched &&
                                         !inputs.username.valid
@@ -131,6 +129,29 @@ class Register extends React.Component {
                                         inputChangedHandler(
                                             event,
                                             inputs.password.id
+                                        )
+                                    }
+                                />
+
+                                <TextField
+                                    key={inputs.repeatPassword.id}
+                                    className={classes.textField}
+                                    fullWidth={true}
+                                    margin="normal"
+                                    required
+                                    type={inputs.repeatPassword.config.type}
+                                    label={inputs.repeatPassword.config.label}
+                                    placeholder={
+                                        inputs.repeatPassword.config.placeholder
+                                    }
+                                    error={
+                                        inputs.repeatPassword.touched &&
+                                        !inputs.repeatPassword.valid
+                                    }
+                                    onChange={event =>
+                                        inputChangedHandler(
+                                            event,
+                                            inputs.repeatPassword.id
                                         )
                                     }
                                 />

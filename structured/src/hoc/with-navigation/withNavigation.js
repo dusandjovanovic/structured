@@ -7,7 +7,9 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-function withNavigation(WrappedComponent) {
+/* eslint react/display-name: 0 */
+
+const withNavigation = (WrappedComponent) => {
     return class extends React.Component {
         state = {
             value: "/"

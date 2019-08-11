@@ -2,9 +2,11 @@ import React from "react";
 import { interval } from "rxjs";
 import { takeWhile } from "rxjs/operators";
 
-const ALGORITHM_BREADTH = "ALGORITHM_BREADTH_OBSERVABLE";
+import { ALGORITHM_BREADTH } from "../../utils/constants";
 
-function withAlgorithm(WrappedComponent) {
+/* eslint react/display-name: 0 */
+
+const withAlgorithm = WrappedComponent => {
     return class extends React.Component {
         state = {
             algorithm: false,
@@ -202,6 +204,6 @@ function withAlgorithm(WrappedComponent) {
             );
         }
     };
-}
+};
 
 export default withAlgorithm;

@@ -1,53 +1,110 @@
-import React, { Component } from 'react';
-import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Toolbar from "../../../../components/interface/toolbar/toolbar";
 
-class Compete extends Component {
-    constructor(props) {
-        super(props);
+import Replay from "@material-ui/icons/Replay";
 
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            dropdownOpen: false
-        };
-    }
+import { styles } from "./stylesheet";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-    toggle() {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
-    }
+class Compete extends React.PureComponent {
+    state = {
+        anchorEl: null
+    };
+
+    handleToggle = event => {
+        this.setState({
+            anchorEl: event.currentTarget
+        });
+    };
+
+    handleClose = () => {
+        this.setState({
+            anchorEl: null
+        });
+    };
 
     render() {
-        return (
-            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <div />
-                <div className="btn-toolbar mb-2 mb-md-0">
-                    <h4 className="m-auto" style={{position: 'absolute', left: '0%', paddingLeft: '1.5rem'}}>
-                        {this.props.competeType === 'ALGORITHM_BREADTH'
-                            ? 'Breadth-first search'
-                            : 'Depth-first search'
-                        }
-                    </h4>
-                    <div className="btn-group mr-2">
-                        <Button outline color="info" disabled={this.props.graphManaged} onClick={() => this.props.randomGraph()}><i className="fas fa-code-branch"></i> Random graph</Button>
-                        <Button outline color="info" disabled={this.props.graphManaged || !this.props.graphExists} onClick={() => this.props.competeBegin()}><i className="fab fa-stack-overflow"></i> Begin</Button>
-                        <Button outline color="secondary" disabled={!this.props.graphManaged} onClick={() => this.props.competeEnded()}><i className="fas fa-check"></i> Submit result</Button>
-                    </div>
-                    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                        <DropdownToggle disabled={this.props.graphManaged} caret>
-                            Algorithms
-                        </DropdownToggle>
-                        <DropdownMenu right>
-                            <DropdownItem header>Choose an algorithm</DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem onClick={() => this.props.competeBreadth()}>Breadth-first search (default)</DropdownItem>
-                            <DropdownItem onClick={() => this.props.competeDepth()}>Depth-first search</DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                </div>
-            </div>
-        );
-    };
-};
+        const { classes } = this.props;
 
-export default Compete;
+        return (
+            <Toolbar>
+                <Grid container>
+                    <Grid item xs={3}>
+                        <Typography variant="h5">
+                            {this.props.competeType === "COMPETE_BREADTH"
+                                ? "Breadth-first search"
+                                : "Depth-first search"}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={9}>
+                        <Grid container justify="flex-end">
+                            <Button
+                                color="primary"
+                                disabled={this.props.graphManaged}
+                                onClick={() => this.props.randomGraph()}
+                            >
+                                <Replay className={classes.icon} /> Random graph
+                            </Button>
+                            <Button
+                                color="primary"
+                                disabled={
+                                    this.props.graphManaged ||
+                                    !this.props.graphExists
+                                }
+                                onClick={() => this.props.competeBegin()}
+                            >
+                                <Replay className={classes.icon} /> Begin
+                            </Button>
+                            <Button
+                                color="primary"
+                                disabled={!this.props.graphManaged}
+                                onClick={() => this.props.competeEnded()}
+                            >
+                                <Replay className={classes.icon} /> Submit
+                                result
+                            </Button>
+                            <Menu
+                                id="algorithm-menu"
+                                anchorEl={this.state.anchorEl}
+                                keepMounted
+                                open={Boolean(this.state.anchorEl)}
+                                onClose={this.handleClose}
+                                disabled={this.props.graphManaged}
+                            >
+                                <MenuItem
+                                    onClick={() => {
+                                        this.props.competeBreadth();
+                                        this.handleClose();
+                                    }}
+                                >
+                                    Breadth-first search
+                                </MenuItem>
+                                <MenuItem
+                                    onClick={() => {
+                                        this.props.competeDepth();
+                                        this.handleClose();
+                                    }}
+                                >
+                                    Depth-first search
+                                </MenuItem>
+                                <MenuItem
+                                    disabled={this.props.disabled}
+                                    onClick={() => this.handleClose()}
+                                >
+                                    Cancel algorithm
+                                </MenuItem>
+                            </Menu>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Toolbar>
+        );
+    }
+}
+
+export default withStyles(styles)(Compete);

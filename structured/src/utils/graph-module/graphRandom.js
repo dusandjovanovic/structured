@@ -6,9 +6,11 @@ function randomData() {
             var node = {};
             node.key = _.random(0, 20);
             return node;
-        }).uniq(function(node) {
+        })
+        .uniq(function(node) {
             return node.key;
-        }).value();
+        })
+        .value();
 
     let edges = _.chain(_.range(30))
         .map(function() {
@@ -21,12 +23,13 @@ function randomData() {
             link.target.key = _.random(0, 20);
             while (link.target.key === link.source.key)
                 link.target.key = _.random(0, 20);
-            link.key = link.source.key + '->' + link.target.key;
+            link.key = link.source.key + "->" + link.target.key;
             return link;
-        }).uniq((link) => link.key)
+        })
+        .uniq(link => link.key)
         .value();
 
-    return {nodes, edges};
+    return { nodes, edges };
 }
 
 export default randomData;

@@ -3,10 +3,11 @@ import Compete from "../../containers/room/toolbar/toolbar-compete/compete";
 import CompeteSpectator from "../../containers/room/toolbar/toolbar-compete/competeSpectator";
 import Wrapper from "../wrapper/wrapper";
 
-const COMPETE_BREADTH = "ALGORITHM_BREADTH";
-const COMPETE_DEPTH = "ALGORITHM_DEPTH";
+import { COMPETE_BREADTH, COMPETE_DEPTH } from "../../utils/constants";
 
-function withCompete(WrappedComponent) {
+/* eslint react/display-name: 0 */
+
+const withCompete = WrappedComponent => {
     return class extends React.Component {
         state = {
             competeType: COMPETE_BREADTH,
@@ -203,6 +204,6 @@ function withCompete(WrappedComponent) {
             );
         }
     };
-}
+};
 
 export default withCompete;

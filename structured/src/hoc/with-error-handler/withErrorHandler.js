@@ -2,6 +2,8 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {internalNotificationsAdd} from "../../store/actions/index";
 
+/* eslint react/display-name: 0 */
+
 const withErrorHandler = WrappedComponent => {
     return class extends WrappedComponent {
         componentDidUpdate(prevProps, prevState, snapshot) {

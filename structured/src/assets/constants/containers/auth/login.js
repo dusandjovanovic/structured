@@ -1,11 +1,11 @@
 export const formElements = {
     username: {
         id: "username",
-        value: '',
+        value: "",
         config: {
-            type: 'text',
-            placeholder: 'username',
-            label: 'Enter your username'
+            type: "text",
+            placeholder: "username",
+            label: "Enter your username"
         },
         rules: {
             minLength: 1,
@@ -17,11 +17,11 @@ export const formElements = {
     },
     password: {
         id: "password",
-        value: '',
+        value: "",
         config: {
-            type: 'password',
-            placeholder: 'password',
-            label: 'Enter your password'
+            type: "password",
+            placeholder: "password",
+            label: "Enter your password"
         },
         rules: {
             minLength: 5,

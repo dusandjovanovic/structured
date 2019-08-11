@@ -68,7 +68,7 @@ class Header extends React.Component {
     };
 
     render() {
-        const { classes, links, heading, fixed, absolute, color } = this.props;
+        const { classes, links, fixed, absolute, color } = this.props;
 
         let appBarClasses = classes.appBar;
         appBarClasses += ` ${classes[color]}`;

@@ -1,6 +1,8 @@
 import React from 'react';
 
-function withAsyncLoading(WrappedComponent) {
+/* eslint react/display-name: 0 */
+
+const withAsyncLoading = (WrappedComponent) => {
     return class extends React.Component {
         state = {
             component: null

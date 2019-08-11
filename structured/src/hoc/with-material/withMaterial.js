@@ -3,14 +3,16 @@ import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-function withMaterial(Component) {
+/* eslint react/display-name: 0 */
+
+const withMaterial = (Component) => {
     return class extends React.Component {
         theme = createMuiTheme({
             palette: {
                 primary: {
-                    light: "#00c9e1",
-                    main: "#00a3b8",
-                    dark: "#006a7a"
+                    light: "#49515f",
+                    main: "#282c34",
+                    dark: "#121417"
                 },
                 secondary: {
                     light: "#ff1e68",

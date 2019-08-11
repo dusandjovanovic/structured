@@ -1,8 +1,44 @@
-export const primaryColor = "#af2cc5";
+export const primaryColor = "#282c34";
 export const warningColor = "#ffa21a";
 export const dangerColor = "#f55a4e";
 export const successColor = "#5cb860";
 export const infoColor = "#00d3ee";
+
+export const graphColors = {
+    node: {
+        fill: "#a5a5a5",
+        stroke: "#d1d1d1",
+        text: "#282c34"
+    },
+    adjacent: {
+        fill: "#d6db59",
+        stroke: "#faffc5",
+        text: "#5a5e27"
+    },
+    clicked: {
+        fill: "#bf00ff",
+        stroke: "#e6b8ff",
+        text: "#ea00ff"
+    },
+    visited: {
+        fill: "#5c585e",
+        stroke: "#858284",
+        text: "#5c585e"
+    },
+    focused: {
+        fill: "#4cbadb",
+        stroke: "#bfeeff",
+        text: "#005a94"
+    },
+    selected: {
+        fill: "#4cbadb",
+        stroke: "#bfeeff",
+        text: "#005a94"
+    },
+    edge: {
+        stroke: "#cccccc"
+    }
+};
 
 export const drawerWidth = 260;
 

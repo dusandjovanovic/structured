@@ -63,7 +63,7 @@ export const friendFail = error => {
 export const userData = username => {
     return dispatch => {
         dispatch(userFetchDataStart());
-
+        
         axios
             .getInstance()
             .get(userGetDataRoute(username))
@@ -155,7 +155,6 @@ export const friendRequests = (username, push) => {
                         const id = response.data.data[request]._id;
                         const receiver = response.data.data[request].receiver;
                         const sender = response.data.data[request].sender;
-                        const requestId = response.data.data[request]._id;
                         const time = response.data.data[request].time;
                         received.push({
                             id: id,

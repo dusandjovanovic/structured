@@ -5,6 +5,8 @@ import {compose} from "redux";
 import {styles} from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
 
+/* eslint react/display-name: 0 */
+
 const withModal = WrappedComponent => {
     return class extends React.Component {
         render() {

@@ -12,12 +12,12 @@ import { friendRequests } from "./index";
 import { initAuth, readAuth, removeAuth } from "../../utils/storage";
 import { axios, authRoute, authRegisterRoute } from "../../utils/api";
 
-const authUpdateCredentials = (token, userId) => {
+const authUpdateCredentials = (token, username) => {
     return {
         type: AUTH_UPDATE_CREDENTIALS,
         payload: {
-            token: token,
-            userId: userId
+            token,
+            username
         }
     };
 };
@@ -69,7 +69,7 @@ export const authenticatePersisted = () => {
     return dispatch => {
         let local = readAuth();
         if (local && local.access_token) {
-            dispatch(authUpdateCredentials(local.access_token, local.userId));
+            dispatch(authUpdateCredentials(local.access_token, local.user_id));
             dispatch(authSuccess());
         }
     };

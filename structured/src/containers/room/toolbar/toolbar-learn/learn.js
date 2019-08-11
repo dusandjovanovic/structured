@@ -1,25 +1,91 @@
-import React  from 'react';
-import { Button } from "reactstrap";
-import Modal from "../../../../components/user-interface/modal/modal";
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import Toolbar from "../../../../components/interface/toolbar/toolbar";
 
-const learn = (props) => (
-    <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-        <div />
-        <div className="btn-toolbar mb-2 mb-md-0">
-            <div className="btn-group">
-                <Button outline color="info" className="mr-2" onClick={() => props.randomGraph()}><i className="fas fa-code-branch"></i> Random graph</Button>
-                <Modal title="What are graphs?" buttonCondition buttonLabel="What are graphs?" buttonClass="btn btn-outline-secondary">
-                    {props.graphLearn('GRAPH_LEARN_GRAPHS')}
-                </Modal>
-                <Modal title="Different representations" buttonCondition buttonLabel="Different representations" buttonClass="btn btn-outline-secondary">
-                    {props.graphLearn('GRAPH_LEARN_REPRESENTATIONS')}
-                </Modal>
-                <Modal title="Graph traversals" buttonCondition buttonLabel="Graph traversals" buttonClass="btn btn-outline-secondary">
-                    {props.graphLearn('GRAPH_LEARN_TRAVERSALS')}
-                </Modal>
-            </div>
-        </div>
-    </div>
-);
+import Replay from "@material-ui/icons/Replay";
 
-export default learn;
+import { styles } from "./stylesheet";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+import {
+    GRAPH_LEARN_GRAPHS,
+    GRAPH_LEARN_REPRESENTATIONS,
+    GRAPH_LEARN_TRAVERSALS
+} from "../../../../utils/constants";
+
+class Learn extends React.PureComponent {
+    state = {
+        learn: null
+    };
+
+    handleStateChange = value => {
+        this.setState({
+            learn: value
+        });
+    };
+
+    handleDialogClose = () => {
+        this.setState({
+            learn: null
+        });
+    };
+
+    render() {
+        const { classes } = this.props;
+
+        return (
+            <React.Fragment>
+                <Toolbar>
+                    <Grid container justify="flex-end">
+                        <Button
+                            color="primary"
+                            onClick={() => this.props.randomGraph()}
+                        >
+                            <Replay className={classes.icon} /> Random graph
+                        </Button>
+                        <Button
+                            color="secondary"
+                            onClick={() =>
+                                this.handleStateChange(GRAPH_LEARN_GRAPHS)
+                            }
+                        >
+                            What are graphs
+                        </Button>
+                        <Button
+                            color="secondary"
+                            onClick={() =>
+                                this.handleStateChange(
+                                    GRAPH_LEARN_REPRESENTATIONS
+                                )
+                            }
+                        >
+                            Graph presentations
+                        </Button>
+                        <Button
+                            color="secondary"
+                            onClick={() =>
+                                this.handleStateChange(GRAPH_LEARN_TRAVERSALS)
+                            }
+                        >
+                            Graph traversals
+                        </Button>
+                    </Grid>
+                </Toolbar>
+                <Dialog
+                    onClose={this.handleDialogClose}
+                    aria-labelledby="graph-dialog"
+                    open={this.state.learn}
+                    maxWidth="md"
+                >
+                    <DialogContent>
+                        {this.props.graphLearn(this.state.learn)}
+                    </DialogContent>
+                </Dialog>
+            </React.Fragment>
+        );
+    }
+}
+export default withStyles(styles)(Learn);

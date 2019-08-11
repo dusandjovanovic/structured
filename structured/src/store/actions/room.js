@@ -10,7 +10,6 @@ import {
     roomDeleteRoute,
     roomCreateNewRoute
 } from "../../utils/api";
-import * as actions from "./index";
 
 export const roomCreate = name => {
     return {

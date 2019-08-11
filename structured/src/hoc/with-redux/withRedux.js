@@ -6,7 +6,9 @@ import socketio from "socket.io-client";
 import * as actions from "../../store/actions/index";
 const io = socketio;
 
-function withRedux(WrappedComponent) {
+/* eslint react/display-name: 0 */
+
+const withRedux = (WrappedComponent) => {
     return class extends React.Component {
         render() {
             return <WrappedComponent io={io} {...this.props} />;

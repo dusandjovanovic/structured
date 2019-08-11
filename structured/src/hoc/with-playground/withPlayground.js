@@ -3,7 +3,9 @@ import Master from "../../containers/room/toolbar/toolbar-master/master";
 import Spectator from "../../containers/room/toolbar/toolbar-spectator/spectator";
 import Wrapper from "../wrapper/wrapper";
 
-function withPlayground(WrappedComponent) {
+/* eslint react/display-name: 0 */
+
+const withPlayground = (WrappedComponent) => {
     return class extends React.Component {
         componentDidMount() {
             if (this.props.username !== this.props.data.createdBy) {
