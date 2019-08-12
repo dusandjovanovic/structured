@@ -1,4 +1,3 @@
-import * as actionTypes from "../actions.js";
 import {
     axios,
     roomJoinRoute,
@@ -11,76 +10,90 @@ import {
     roomCreateNewRoute
 } from "../../utils/api";
 
-export const roomCreate = name => {
+import {
+    ROOM_INIT,
+    ROOM_END,
+    ROOM_DATA,
+    ROOM_ALL,
+    ROOM_CREATE,
+    ROOM_DELETE,
+    ROOM_JOIN,
+    ROOM_LEAVE,
+    ROOM_GRAPH,
+    ROOM_GRAPH_CHANGE,
+    ROOM_ERROR
+} from "../actions.js";
+
+const roomCreate = name => {
     return {
-        type: actionTypes.ROOM_CREATE,
+        type: ROOM_CREATE,
         name: name
     };
 };
 
-export const roomDelete = () => {
+const roomDelete = () => {
     return {
-        type: actionTypes.ROOM_DELETE
+        type: ROOM_DELETE
     };
 };
 
-export const roomJoin = name => {
+const roomJoin = name => {
     return {
-        type: actionTypes.ROOM_JOIN,
+        type: ROOM_JOIN,
         name: name
     };
 };
 
-export const roomLeave = () => {
+const roomLeave = () => {
     return {
-        type: actionTypes.ROOM_LEAVE
+        type: ROOM_LEAVE
     };
 };
 
-export const roomInitiate = () => {
+const roomInitiate = () => {
     return {
-        type: actionTypes.ROOM_START
+        type: ROOM_INIT
     };
 };
 
-export const roomEnd = () => {
+const roomEnd = () => {
     return {
-        type: actionTypes.ROOM_END
+        type: ROOM_END
     };
 };
 
-export const roomData = (data, master) => {
+const roomData = (data, master) => {
     return {
-        type: actionTypes.ROOM_DATA,
+        type: ROOM_DATA,
         master: master,
         data: data
     };
 };
 
-export const roomAll = rooms => {
+const roomAll = rooms => {
     return {
-        type: actionTypes.ROOM_ALL,
+        type: ROOM_ALL,
         rooms: rooms
     };
 };
 
-export const roomGraph = graph => {
+const roomGraph = graph => {
     return {
-        type: actionTypes.ROOM_GRAPH,
+        type: ROOM_GRAPH,
         graph: graph
     };
 };
 
-export const roomGraphChange = graph => {
+const roomGraphChange = graph => {
     return {
-        type: actionTypes.ROOM_GRAPH_CHANGE,
+        type: ROOM_GRAPH_CHANGE,
         graph: graph
     };
 };
 
-export const roomError = error => {
+const roomError = error => {
     return {
-        type: actionTypes.ROOM_ERROR,
+        type: ROOM_ERROR,
         error: error
     };
 };
@@ -108,8 +121,8 @@ export const roomGetAll = mode => {
     };
 };
 
-export const roomGetData = (name, username) => {
-    return dispatch => {
+export const roomGetData = name => {
+    return (dispatch, getState) => {
         dispatch(roomInitiate());
 
         axios
@@ -120,7 +133,8 @@ export const roomGetData = (name, username) => {
                     dispatch(
                         roomData(
                             response.data.data,
-                            username === response.data.data.createdBy
+                            getState().auth.username ===
+                                response.data.data.createdBy
                         )
                     );
                 } else {
@@ -135,15 +149,15 @@ export const roomGetData = (name, username) => {
     };
 };
 
-export const roomCreateNew = (name, maxUsers, roomType, username) => {
-    return dispatch => {
+export const roomCreateNew = (name, maxUsers, roomType) => {
+    return (dispatch, getState) => {
         dispatch(roomInitiate());
 
         const data = {
             name: name,
             maxUsers: maxUsers,
             roomType: roomType,
-            createdBy: username
+            createdBy: getState().auth.username
         };
 
         axios
@@ -152,7 +166,7 @@ export const roomCreateNew = (name, maxUsers, roomType, username) => {
             .then(response => {
                 if (response.data.success) {
                     dispatch(roomCreate(name));
-                    dispatch(roomGetData(name, username));
+                    dispatch(roomGetData(name));
                     dispatch(roomGetAll("all"));
                 } else {
                     console.log("roomCreateError:", response.data.msg);
@@ -166,13 +180,13 @@ export const roomCreateNew = (name, maxUsers, roomType, username) => {
     };
 };
 
-export const roomJoinExisting = (name, username) => {
-    return dispatch => {
+export const roomJoinExisting = name => {
+    return (dispatch, getState) => {
         dispatch(roomInitiate());
 
         const data = {
             roomName: name,
-            username: username
+            username: getState().auth.username
         };
 
         return new Promise(function(resolve, reject) {
@@ -181,7 +195,7 @@ export const roomJoinExisting = (name, username) => {
                 .post(roomJoinRoute, data)
                 .then(response => {
                     if (response.data.success) {
-                        dispatch(roomGetData(name, username));
+                        dispatch(roomGetData(name));
                         dispatch(roomJoin(name));
                         dispatch(roomGetAll("all"));
                         resolve(response.data);
@@ -200,13 +214,13 @@ export const roomJoinExisting = (name, username) => {
     };
 };
 
-export const roomLeaveExisting = (name, username, roomDeleted) => {
-    return dispatch => {
+export const roomLeaveExisting = (name, roomDeleted) => {
+    return (dispatch, getState) => {
         dispatch(roomInitiate());
 
         const data = {
             roomName: name,
-            username: username
+            username: getState().auth.username
         };
 
         if (roomDeleted) {
