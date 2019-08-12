@@ -145,28 +145,17 @@ export const friendRequests = (username, push) => {
             .get(userGetFriendRequestsRoute(username))
             .then(response => {
                 if (response.data.success) {
-                    let received = [];
-                    for (let request in response.data.data) {
-                        const id = response.data.data[request]._id;
-                        const receiver = response.data.data[request].receiver;
-                        const sender = response.data.data[request].sender;
-                        const time = response.data.data[request].time;
-                        received.push({
-                            id: id,
-                            receiver: receiver,
-                            sender: sender,
-                            time: time
-                        });
-                        if (push)
+                    if (push)
+                        response.data.data.map(element => {
                             dispatch(
                                 actions.internalNotificationsAdd(
                                     "You have a new friend request from " +
-                                        sender,
+                                        element.sender,
                                     "success"
                                 )
                             );
-                    }
-                    dispatch(friendRequestsFetch(received));
+                        });
+                    dispatch(friendRequestsFetch(response.data.data));
                 } else {
                     console.log("requestsError:", response.data.msg);
                     dispatch(friendFail(response.data.msg));
