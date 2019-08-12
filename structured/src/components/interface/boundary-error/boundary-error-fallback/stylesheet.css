@@ -1,0 +1,9 @@
+.error-boundary--container {
+    width: 60%;
+    margin: 6rem auto;
+    padding: 3rem;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 1px 6px rgba(128, 128, 128, 0.35);
+    background-color: #faf6d0;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.4) 35px, rgba(255,255,255,.4) 70px);
+}

@@ -1,53 +1,36 @@
-import React, {Component} from 'react';
-import { Row, Card, CardHeader, CardText, CardBody, CardTitle, Button} from 'reactstrap';
-import SomethingWentWrong from "../../../components/user-interface/something-went-wrong/somethingWentWrong";
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import RoomCard from "./room-card/roomCard";
+import SomethingWentWrong from "../../../components/interface/something-went-wrong/somethingWentWrong";
 
-class roomView extends Component {
-    render() {
-        let preview = null;
-        if (!this.props.waiting || this.props.stick) {
-            preview = (
-                <Row>
-                    {this.props.rooms.length > 0
-                        ? this.props.rooms.map(room => {
-                            return (
-                                <Card color="secondary" key={room._id.concat(room.currentUsers)} className={"shadow text-center m-2 mb-3".concat(room.roomType === 'learn' ? " bg-light" : " text-white bg-dark")} >
-                                    <CardHeader>
-                                        <CardTitle className="mb-0">
-                                            {room.name}
-                                        </CardTitle>
-                                        <span>
-                                        {room.currentUsers === room.maxUsers
-                                            ? <small className="text-danger">unavailable</small>
-                                            : <small className="text-success">available</small>
-                                        }
-                                        <small className="text-info"> {room.roomType}</small>
-                                        </span>
-                                    </CardHeader>
-                                    <CardBody className="m-2">
-                                        <CardText>
-                                            Currently {room.currentUsers} users in the room, out of {room.maxUsers}.
-                                        </CardText>
-                                        <Button disabled={room.currentUsers === room.maxUsers}
-                                                onClick={() => this.props.enterRoom(room.name)}>
-                                            Join room
-                                        </Button>
-                                    </CardBody>
-                                    <CardText className="p-2">
-                                        <small className="text-muted p">
-                                            {new Date(room.time).toLocaleDateString("en-us", {hour: 'numeric', minute: 'numeric'})}
-                                        </small>
-                                    </CardText>
-                                </Card>
-                            );
-                        })
-                        : <SomethingWentWrong text="Such empty, your friends didn't create any rooms."
-                                              alternative="...or something went wrong :("/>}
-                </Row>
-            );
-        }
-        return (preview);
-    }
-};
+import { styles } from "./stylesheet";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-export default roomView;
+const roomView = props => (
+    <Grid className={props.classes.grid}>
+        {props.rooms.length > 0 ? (
+            props.rooms.map(room => {
+                return (
+                    <Grid
+                        item
+                        key={room["_id"]}
+                        className={props.classes.gridItem}
+                    >
+                        <RoomCard
+                            type={room.roomType}
+                            name={room.name}
+                            time={room.time}
+                            currentUsers={room.currentUsers}
+                            maxUsers={room.maxUsers}
+                            enterRoom={props.enterRoom}
+                        />
+                    </Grid>
+                );
+            })
+        ) : (
+            <SomethingWentWrong text="Such empty, your friends didn't create any rooms." />
+        )}
+    </Grid>
+);
+
+export default withStyles(styles)(React.memo(roomView));

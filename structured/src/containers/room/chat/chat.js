@@ -1,41 +1,43 @@
-import React, { Component } from 'react';
-import 'react-chat-elements/dist/main.css';
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 import { Input, MessageList } from "react-chat-elements";
-import { Button } from "reactstrap";
+import withIOMessaging from "../../../hoc/with-io-messaging/withIOMessaging";
+import "react-chat-elements/dist/main.css";
 
-class Chat extends Component {
-    socket = null;
+import { styles } from "./stylesheet";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+class Chat extends React.PureComponent {
     state = {
         messages: []
     };
 
     constructor(props) {
         super(props);
-        this.socket = this.props.io('http://localhost:2998/chat');
-        this.socket.on(this.props.room, message => this.messageReceived(message));
-    };
+        this.inputRef = React.createRef();
+    }
 
-    componentWillUnmount() {
-        this.socket.close();
-    };
+    componentDidMount() {
+        this.props.socket.on(this.props.room, message =>
+            this.messageReceived(message)
+        );
+    }
 
-    messageReceived = (message) => {
+    messageReceived = message => {
         let position = "right";
         let content;
         if (message.sender !== this.props.username) {
             position = "left";
             content = message.sender + ":  " + message.msg;
-        }
-        else
-            content = message.msg;
+        } else content = message.msg;
 
         let updated = [...this.state.messages];
         updated.push({
-            sender: message.sender,
             text: content,
             position: position,
-            type: 'text',
-            date: new Date(),
+            type: "text",
+            date: new Date()
         });
 
         this.setState({
@@ -43,34 +45,45 @@ class Chat extends Component {
         });
     };
 
-    messageSend = (message) => {
-        this.socket.emit('chat message', {
-            room: this.props.room,
-            sender: this.props.username,
-            msg: message
-        });
-    };
-
     render() {
+        const { classes } = this.props;
+
         return (
-            <div>
-                <Input
-                    placeholder="Type a message.."
-                    minHeight={100}
-                    ref='input'
-                    rightButtons={
-                        <Button color='white' onClick={() => this.messageSend(this.refs.input.input.value)}>
-                            <i className="far fa-comment"></i> Send
-                        </Button>
-                    }/>
-                <MessageList
-                    className='message-list mt-2'
-                    lockable={true}
-                    toBottomHeight={'100%'}
-                    dataSource={this.state.messages} />
-            </div>
+            <Grid container className={classes.root}>
+                <Grid item xs={12}>
+                    <Input
+                        ref={this.inputRef}
+                        placeholder="Type a message to send.."
+                        inputStyle={{
+                            margin: "0.75rem"
+                        }}
+                        rightButtons={
+                            <Button
+                                color="primary"
+                                onClick={() =>
+                                    this.props.messageSendIO(
+                                        this.inputRef.current.input.value,
+                                        this.props.room,
+                                        this.props.username
+                                    )
+                                }
+                            >
+                                Message
+                            </Button>
+                        }
+                    />
+                </Grid>
+                <Grid item xs={12} className={classes.messageView}>
+                    <MessageList
+                        className="message-list"
+                        lockable={true}
+                        toBottomHeight={"100%"}
+                        dataSource={this.state.messages}
+                    />
+                </Grid>
+            </Grid>
         );
     }
 }
 
-export default Chat;
+export default withIOMessaging(withStyles(styles)(Chat));

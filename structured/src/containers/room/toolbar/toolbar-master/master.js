@@ -1,50 +1,147 @@
-import React, { Component } from 'react';
-import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Toolbar from "../../../../components/interface/toolbar/toolbar";
 
-class Master extends Component {
-    constructor(props) {
-        super(props);
+import Replay from "@material-ui/icons/Replay";
+import Add from "@material-ui/icons/Add";
+import Clear from "@material-ui/icons/Clear";
+import Redo from "@material-ui/icons/Redo";
+import Code from "@material-ui/icons/Code";
 
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            dropdownOpen: false
-        };
-    }
+import { styles } from "./stylesheet";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-    toggle() {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
-    }
+import {
+    ALGORITHM_BREADTH_OBSERVABLE,
+    ALGORITHM_DEPTH_OBSERVABLE
+} from "../../../../utils/constants";
+
+class Master extends React.PureComponent {
+    state = {
+        anchorEl: null
+    };
+
+    handleToggle = event => {
+        this.setState({
+            anchorEl: event.currentTarget
+        });
+    };
+
+    handleAlgorithm = value => {
+        this.setState({
+            anchorEl: null
+        });
+        this.props.algorithmBegin(value);
+    };
+
+    handleClose = () => {
+        this.setState({
+            anchorEl: null
+        });
+        this.props.algorithmCanceled();
+    };
 
     render() {
-        return (
-            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <div />
-                <div className="btn-toolbar mb-2 mb-md-0">
-                    <div className="btn-group mr-2">
-                        <Button outline color="info" disabled={this.props.disabled} onClick={() => this.props.randomGraph()}><i className="fas fa-code-branch"></i> Random graph</Button>
-                        <Button outline color="info" disabled={this.props.disabled} onClick={() => this.props.addNode()}><i className="fas fa-plus"></i> Add node</Button>
-                        <Button outline color="info" disabled={this.props.disabled} onClick={() => this.props.addEdge()}><i className="fas fa-link"></i> Add edge</Button>
-                        <Button outline disabled={this.props.disabled} onClick={() => this.props.removeNode()}><i className="fas fa-eraser"></i> Remove node</Button>
-                        <Button outline disabled={this.props.disabled} onClick={() => this.props.removeEdge()}><i className="fas fa-unlink"></i> Remove edge</Button>
-                    </div>
-                    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                        <DropdownToggle caret>
-                            Algorithms
-                        </DropdownToggle>
-                        <DropdownMenu right>
-                            <DropdownItem header>Choose an animation</DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem onClick={() => this.props.algorithmBegin('ALGORITHM_BREADTH_OBSERVABLE')} disabled={this.props.disabled}>Breadth-first search</DropdownItem>
-                            <DropdownItem onClick={() => this.props.algorithmBegin('ALGORITHM_DEPTH_OBSERVABLE')}disabled={this.props.disabled} >Depth-first search</DropdownItem>
-                            <DropdownItem onClick={() => this.props.algorithmCanceled()}>Cancel</DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                </div>
-            </div>
-        );
-    };
-};
+        const { classes } = this.props;
 
-export default Master;
+        return (
+            <Toolbar>
+                <Grid container justify="flex-end">
+                    <Button
+                        size="small"
+                        color="primary"
+                        disabled={this.props.disabled}
+                        onClick={() => this.props.randomGraph()}
+                    >
+                        <Replay fontSize="small" className={classes.icon} />{" "}
+                        Random graph
+                    </Button>
+                    <Button
+                        size="small"
+                        color="primary"
+                        disabled={this.props.disabled}
+                        onClick={() => this.props.addNode()}
+                    >
+                        <Add fontSize="small" className={classes.icon} /> Add
+                        node
+                    </Button>
+                    <Button
+                        size="small"
+                        color="primary"
+                        disabled={this.props.disabled}
+                        onClick={() => this.props.removeNode()}
+                    >
+                        <Clear fontSize="small" className={classes.icon} />{" "}
+                        Remove node
+                    </Button>
+                    <Button
+                        size="small"
+                        color="primary"
+                        disabled={this.props.disabled}
+                        onClick={() => this.props.addEdge()}
+                    >
+                        <Redo fontSize="small" className={classes.icon} /> Add
+                        edge
+                    </Button>
+                    <Button
+                        size="small"
+                        color="primary"
+                        disabled={this.props.disabled}
+                        onClick={() => this.props.removeEdge()}
+                    >
+                        <Clear fontSize="small" className={classes.icon} />{" "}
+                        Remove edge
+                    </Button>
+                    <Button
+                        size="small"
+                        color="secondary"
+                        aria-controls="algorithm-menu"
+                        aria-haspopup="true"
+                        onClick={this.handleToggle}
+                    >
+                        <Code
+                            color="secondary"
+                            fontSize="small"
+                            className={classes.icon}
+                        />{" "}
+                        Algorithms
+                    </Button>
+                    <Menu
+                        id="algorithm-menu"
+                        anchorEl={this.state.anchorEl}
+                        keepMounted
+                        open={Boolean(this.state.anchorEl)}
+                        onClose={this.handleClose}
+                    >
+                        <MenuItem
+                            disabled={this.props.disabled}
+                            onClick={() =>
+                                this.handleAlgorithm(
+                                    ALGORITHM_BREADTH_OBSERVABLE
+                                )
+                            }
+                        >
+                            Breadth-first search
+                        </MenuItem>
+                        <MenuItem
+                            disabled={this.props.disabled}
+                            onClick={() =>
+                                this.handleAlgorithm(ALGORITHM_DEPTH_OBSERVABLE)
+                            }
+                        >
+                            Depth-first search
+                        </MenuItem>
+                        <MenuItem onClick={() => this.handleClose()}>
+                            Cancel
+                        </MenuItem>
+                    </Menu>
+                </Grid>
+            </Toolbar>
+        );
+    }
+}
+
+export default withStyles(styles)(Master);

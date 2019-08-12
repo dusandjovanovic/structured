@@ -1,16 +1,20 @@
-import React from 'react';
-import {graphFactory} from "../../utils/graph-module/graph.module";
-import randomData from "../../utils/graph-module/graph.random";
+import React from "react";
+import { graphFactory } from "../../utils/graph-module/graphModule";
+import randomData from "../../utils/graph-module/graphRandom";
 
-const GRAPH_MANAGED_REMOVE_NODE = 'GRAPH_MANAGED_REMOVE_NODE';
-const GRAPH_MANAGED_ADD_EDGE = 'GRAPH_MANAGED_ADD_EDGE';
-const GRAPH_MANAGED_REMOVE_EDGE = 'GRAPH_MANAGED_REMOVE_EDGE';
-const GRAPH_MANAGED_ALGORITHM = 'GRAPH_MANAGED_ALGORITHM';
-const GRAPH_MANAGED_COMPETE = 'GRAPH_MANAGED_COMPETE';
+import {
+    GRAPH_MANAGED_ADD_EDGE,
+    GRAPH_MANAGED_REMOVE_EDGE,
+    GRAPH_MANAGED_REMOVE_NODE,
+    GRAPH_MANAGED_ALGORITHM,
+    GRAPH_MANAGED_COMPETE
+} from "../../utils/constants";
 
-function withGraph(WrappedComponent) {
+/* eslint react/display-name: 0 */
+
+const withGraph = WrappedComponent => {
     return class extends React.Component {
-        graph = new graphFactory();
+        graph = graphFactory();
 
         state = {
             graph: null,
@@ -62,7 +66,7 @@ function withGraph(WrappedComponent) {
         graphManagedRemoveNode = () => {
             this.setState({
                 graphManaged: true,
-                graphOperation: GRAPH_MANAGED_REMOVE_NODE,
+                graphOperation: GRAPH_MANAGED_REMOVE_NODE
             });
             this.graphNodesSignificant();
         };
@@ -78,7 +82,7 @@ function withGraph(WrappedComponent) {
         graphManagedRemoveEdge = () => {
             this.setState({
                 graphManaged: true,
-                graphOperation: GRAPH_MANAGED_REMOVE_EDGE,
+                graphOperation: GRAPH_MANAGED_REMOVE_EDGE
             });
             this.graphNodesSignificant();
         };
@@ -98,42 +102,42 @@ function withGraph(WrappedComponent) {
         graphManagedCompete = () => {
             this.setState({
                 graphManaged: true,
-                graphOperation: GRAPH_MANAGED_COMPETE,
+                graphOperation: GRAPH_MANAGED_COMPETE
             });
             this.graphNodesSignificant();
         };
 
-        graphNodeSelected = (node) => {
+        graphNodeSelected = node => {
             this.setState({
                 nodeSelected: node
             });
         };
 
-        graphNodeRoot = (node) => {
+        graphNodeRoot = node => {
             this.setState({
                 nodeRoot: node
             });
         };
 
-        graphNodeHighlighted = (nodesHighlighted) => {
+        graphNodeHighlighted = nodesHighlighted => {
             this.setState({
                 nodesHighlighted: nodesHighlighted
             });
         };
 
-        graphNodesAdjacent = (nodesAdjacent) => {
+        graphNodesAdjacent = nodesAdjacent => {
             this.setState({
                 nodesAdjacent: nodesAdjacent
             });
         };
 
-        graphNodeFocused = (node) => {
+        graphNodeFocused = node => {
             this.setState({
                 nodeFocused: node
             });
         };
 
-        handlerNodeSelected = (node) => {
+        handlerNodeSelected = node => {
             if (this.state.graphManaged) {
                 if (this.state.graphOperation === GRAPH_MANAGED_ALGORITHM)
                     return;
@@ -163,28 +167,25 @@ function withGraph(WrappedComponent) {
                     default:
                         return;
                 }
-            }
-            else if (!this.state.nodeSelected) {
+            } else if (!this.state.nodeSelected) {
                 this.graphNodeSelected(node);
                 this.graphNodeRoot(node.key);
                 this.graphNodesAdjacent(node.outEdges);
                 this.graphNodeFocused(null);
-            }
-            else {
+            } else {
                 this.graphNodeSelected(null);
                 this.graphNodesAdjacent([]);
                 this.graphNodeFocused(null);
             }
         };
 
-        handlerNodeFocused = (node) => {
+        handlerNodeFocused = node => {
             if (!this.state.graphManaged && !this.state.nodeSelected)
                 this.graphNodeFocused(node);
         };
 
         handlerNodeLostFocus = () => {
-            if (!this.state.graphManaged)
-                this.graphNodeFocused(null);
+            if (!this.state.graphManaged) this.graphNodeFocused(null);
         };
 
         handlerViewport = () => {
@@ -202,9 +203,9 @@ function withGraph(WrappedComponent) {
             this.graphManagedEnded();
         };
 
-        initiateGraph = (graph) => {
+        initiateGraph = graph => {
             if (graph) {
-                this.graph = new graphFactory();
+                this.graph = graphFactory();
                 graph.nodes.map(node => {
                     return this.graph.addVertex(node.key);
                 });
@@ -235,20 +236,20 @@ function withGraph(WrappedComponent) {
             this.graphAnimated();
         };
 
-        addReceivedNode = (node) => {
+        addReceivedNode = node => {
             this.graph.addVertex(node);
             this.managedEnded();
             this.graphAnimated();
         };
 
-        removeNode = (node) => {
+        removeNode = node => {
             this.graph.removeVertex(node);
             this.props.removeNodeIO(node);
             this.managedEnded();
             this.graphAnimated();
         };
 
-        removeReceivedNode = (node) => {
+        removeReceivedNode = node => {
             this.graph.removeVertex(node);
             this.managedEnded();
             this.graphAnimated();
@@ -320,11 +321,11 @@ function withGraph(WrappedComponent) {
                 graphManagedAlgorithm: this.graphManagedAlgorithm,
                 graphManagedAlgorithmEnded: this.graphManagedAlgorithmEnded,
                 graphManagedCompete: this.graphManagedCompete,
-                graphNodeRoot: this.graphNodeRoot,
+                graphNodeRoot: this.graphNodeRoot
             };
-            return <WrappedComponent {...proxyPropagate} {...this.props} />
+            return <WrappedComponent {...proxyPropagate} {...this.props} />;
         }
-    }
-}
+    };
+};
 
 export default withGraph;

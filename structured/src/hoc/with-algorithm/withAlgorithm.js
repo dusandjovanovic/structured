@@ -1,11 +1,12 @@
-import React from 'react';
-import { interval } from 'rxjs';
-import { takeWhile } from 'rxjs/operators';
+import React from "react";
+import { interval } from "rxjs";
+import { takeWhile } from "rxjs/operators";
 
-const ALGORITHM_BREADTH = 'ALGORITHM_BREADTH_OBSERVABLE';
-const ALGORITHM_DEPTH = 'ALGORITHM_DEPTH_OBSERVABLE';
+import { ALGORITHM_BREADTH } from "../../utils/constants";
 
-function withAlgorithm (WrappedComponent) {
+/* eslint react/display-name: 0 */
+
+const withAlgorithm = WrappedComponent => {
     return class extends React.Component {
         state = {
             algorithm: false,
@@ -20,32 +21,49 @@ function withAlgorithm (WrappedComponent) {
 
         componentDidMount = () => {
             if (this.props.username !== this.props.data.createdBy) {
-                this.props.socket.on(this.props.room.name + ' algorithm end', received => {
-                    this.algorithmEnded();
-                });
+                this.props.socket.on(
+                    this.props.room.name + " algorithm end",
+                    received => {
+                        this.algorithmEnded();
+                    }
+                );
             }
-            this.props.socket.on(this.props.room.name + ' algorithm begin', received => {
-                this.algorithmInitiate(received.agName, received.agIterations, received.root);
-            });
+            this.props.socket.on(
+                this.props.room.name + " algorithm begin",
+                received => {
+                    this.algorithmInitiate(
+                        received.agName,
+                        received.agIterations,
+                        received.root
+                    );
+                }
+            );
         };
 
         componentDidUpdate(prevProps) {
-            if (this.props.room.master && this.props.room.master !== prevProps.room.master) {
-                this.props.socket.off(this.props.room.name + ' algorithm end');
+            if (
+                this.props.room.master &&
+                this.props.room.master !== prevProps.room.master
+            ) {
+                this.props.socket.off(this.props.room.name + " algorithm end");
             }
-        };
+        }
 
         algorithmNextState = () => {
-            if (this.state.algorithmState.current < this.state.algorithmState.states.length) {
+            if (
+                this.state.algorithmState.current <
+                this.state.algorithmState.states.length
+            ) {
                 this.setState({
                     algorithmState: {
                         ...this.state.algorithmState,
                         current: this.state.algorithmState.current + 1,
-                        currentState: this.state.algorithmState.states[this.state.algorithmState.current + 1]
+                        currentState: this.state.algorithmState.states[
+                            this.state.algorithmState.current + 1
+                        ]
                     }
                 });
-            }
-            else {
+            } else {
                 this.algorithmPause();
             }
         };
@@ -56,7 +74,9 @@ function withAlgorithm (WrappedComponent) {
                     algorithmState: {
                         ...this.state.algorithmState,
                         current: this.state.algorithmState.current - 1,
-                        currentState: this.state.algorithmState.states[this.state.algorithmState.current - 1]
+                        currentState: this.state.algorithmState.states[
+                            this.state.algorithmState.current - 1
+                        ]
                     }
                 });
             }
@@ -70,7 +90,8 @@ function withAlgorithm (WrappedComponent) {
                 }
             });
             const source = interval(1000);
-            source.pipe(takeWhile(async => this.state.algorithmState.active))
+            source
+                .pipe(takeWhile(async => this.state.algorithmState.active))
                 .subscribe(async => this.algorithmNextState());
         };
 
@@ -97,43 +118,62 @@ function withAlgorithm (WrappedComponent) {
             });
         };
 
-        algorithmBegin = (algorithmType) => {
-            let algorithmIterations = this.props.graph.algorithm(this.props.nodeRoot, algorithmType);
-            this.props.algorithmBeginIO(algorithmType, algorithmIterations, this.props.nodeRoot);
+        algorithmBegin = algorithmType => {
+            let algorithmIterations = this.props.graph.algorithm(
+                this.props.nodeRoot,
+                algorithmType
+            );
+            this.props.algorithmBeginIO(
+                algorithmType,
+                algorithmIterations,
+                this.props.nodeRoot
+            );
             this.props.graphManagedAlgorithm();
-            this.setState({
-                algorithm: true,
-                algorithmType: algorithmType,
-                algorithmState: {
-                    states: algorithmIterations,
-                    currentState: algorithmIterations[0],
-                    current: 0
-                }
-            }, () => {
-                this.algorithmVisualize();
-            });
-        };
-
-        algorithmInitiate = (algorithmType, algorithmIterations, root) => {
-            if (!this.state.algorithm) {
-                this.props.notificationSystem("A room Master just started an algorithm visualization.", "success", 10, null, null);
-                this.props.graphManagedAlgorithm();
-                this.props.graphNodeRoot(root);
-                this.setState({
+            this.setState(
+                {
                     algorithm: true,
                     algorithmType: algorithmType,
                     algorithmState: {
                         states: algorithmIterations,
+                        currentState: algorithmIterations[0],
                         current: 0
                     }
-                }, () => {
+                },
+                () => {
                     this.algorithmVisualize();
-                });
+                }
+            );
+        };
+
+        algorithmInitiate = (algorithmType, algorithmIterations, root) => {
+            if (!this.state.algorithm) {
+                this.props.internalNotificationsAdd(
+                    "A room Master just started an algorithm visualization.",
+                    "success"
+                );
+                this.props.graphManagedAlgorithm();
+                this.props.graphNodeRoot(root);
+                this.setState(
+                    {
+                        algorithm: true,
+                        algorithmType: algorithmType,
+                        algorithmState: {
+                            states: algorithmIterations,
+                            current: 0
+                        }
+                    },
+                    () => {
+                        this.algorithmVisualize();
+                    }
+                );
             }
         };
 
         algorithmEnded = () => {
-            this.props.notificationSystem("Algorithm visualization ended. You are able to change the graph again.", "warning", 10, null, null);
+            this.props.internalNotificationsAdd(
+                "Algorithm visualization ended. You are able to change the graph again.",
+                "warning"
+            );
             this.props.graphManagedAlgorithmEnded();
             this.setState({
                 algorithm: false,
@@ -147,22 +187,23 @@ function withAlgorithm (WrappedComponent) {
 
         render() {
             return (
-                <WrappedComponent algorithm={this.state.algorithm}
-                                  algorithmBegin={this.algorithmBegin}
-                                  algorithmCanceled={this.algorithmCanceled}
-                                  algorithmNextState={this.algorithmNextState}
-                                  algorithmPreviousState={this.algorithmPreviousState}
-                                  algorithmVisualize={this.algorithmVisualize}
-                                  algorithmPause={this.algorithmPause}
-                                  algorithmVisualization={this.state.algorithmState}
-                                  algorithmState={this.state.algorithmState.currentState}
-                                  algorithmActive={this.state.algorithmState.active}
-                                  algorithmType={this.state.algorithmType}
-                                  {...this.props}
+                <WrappedComponent
+                    algorithm={this.state.algorithm}
+                    algorithmBegin={this.algorithmBegin}
+                    algorithmCanceled={this.algorithmCanceled}
+                    algorithmNextState={this.algorithmNextState}
+                    algorithmPreviousState={this.algorithmPreviousState}
+                    algorithmVisualize={this.algorithmVisualize}
+                    algorithmPause={this.algorithmPause}
+                    algorithmVisualization={this.state.algorithmState}
+                    algorithmState={this.state.algorithmState.currentState}
+                    algorithmActive={this.state.algorithmState.active}
+                    algorithmType={this.state.algorithmType}
+                    {...this.props}
                 />
             );
-        };
-    }
-}
+        }
+    };
+};
 
 export default withAlgorithm;

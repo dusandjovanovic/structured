@@ -1,19 +1,63 @@
-import React from 'react';
-import './statusbar.css';
+import React from "react";
+import Typography from "@material-ui/core/Typography";
 
-const statusbar = (props) => (
-    <span>
-        {props.master
-            ? <span className="pr-3 pl-1 text-danger master">You're a room master</span>
-            : <span className="pr-3 pl-1 text-info master">Room master: {props.createdBy}</span>
-        }
-        <span className="pl-3 pr-0 text-muted">All users in room: </span>
-        {props.users.map(user => (<span key={user + new Date()} className="p-1 text-muted">{user}</span>))}
-        {props.graphManaged
-            ? <span className="pr-1 pl-1 text-muted managed">You're managing the graph: <span className="text-warning">{props.graphOperation.toLowerCase()}</span></span>
-            : null
-        }
-    </span>
-);
+import { styles } from "./stylesheet";
+import withStyles from "@material-ui/core/styles/withStyles";
+import classNames from "classnames";
 
-export default statusbar;
+const statusbar = props => {
+    const { classes } = props;
+    return (
+        <footer className={classes.root}>
+            <Typography
+                variant="caption"
+                color="error"
+                className={classNames(classes.element, classes.bordered)}
+            >
+                {props.master
+                    ? "You are a room master"
+                    : "Room master:" + props.createdBy}
+            </Typography>
+            <Typography
+                variant="caption"
+                className={classNames(classes.element, classes.elementLight)}
+            >
+                All users in room:{" "}
+            </Typography>
+            {props.users.map(user => (
+                <Typography
+                    variant="caption"
+                    className={classNames(
+                        classes.element,
+                        classes.elementLight
+                    )}
+                    key={user}
+                >
+                    {user}
+                </Typography>
+            ))}
+            {props.graphManaged ? (
+                <div className={classes.managed}>
+                    <Typography
+                        variant="caption"
+                        className={classNames(
+                            classes.element,
+                            classes.elementLight
+                        )}
+                    >
+                        You are managing the graph:{" "}
+                    </Typography>
+                    <Typography
+                        variant="caption"
+                        color="error"
+                        className={classes.element}
+                    >
+                        {props.graphOperation.toLowerCase()}
+                    </Typography>
+                </div>
+            ) : null}
+        </footer>
+    );
+};
+
+export default withStyles(styles)(React.memo(statusbar));
