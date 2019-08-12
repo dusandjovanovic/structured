@@ -1,4 +1,16 @@
-import * as actionTypes from '../actions.js';
+import {
+    ROOM_INIT,
+    ROOM_END,
+    ROOM_DATA,
+    ROOM_ALL,
+    ROOM_CREATE,
+    ROOM_DELETE,
+    ROOM_JOIN,
+    ROOM_LEAVE,
+    ROOM_GRAPH,
+    ROOM_GRAPH_CHANGE,
+    ROOM_ERROR
+} from "../actions.js";
 
 const initialState = {
     rooms: [],
@@ -10,30 +22,30 @@ const initialState = {
         _id: null,
         users: []
     },
-    waiting: null,
+    waiting: false,
     error: null
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.ROOM_START:
+        case ROOM_INIT:
             return {
                 ...state,
                 waiting: true,
                 error: null
             };
-        case actionTypes.ROOM_END:
+        case ROOM_END:
             return {
                 ...state,
                 waiting: false
             };
-        case actionTypes.ROOM_ALL:
+        case ROOM_ALL:
             return {
                 ...state,
                 rooms: [...action.rooms],
                 error: null
             };
-        case actionTypes.ROOM_CREATE:
+        case ROOM_CREATE:
             return {
                 ...state,
                 room: {
@@ -42,7 +54,7 @@ const reducer = (state = initialState, action) => {
                 },
                 error: null
             };
-        case actionTypes.ROOM_DATA:
+        case ROOM_DATA:
             return {
                 ...state,
                 data: action.data,
@@ -52,7 +64,7 @@ const reducer = (state = initialState, action) => {
                 },
                 error: null
             };
-        case actionTypes.ROOM_JOIN:
+        case ROOM_JOIN:
             return {
                 ...state,
                 room: {
@@ -61,7 +73,7 @@ const reducer = (state = initialState, action) => {
                 },
                 error: null
             };
-        case actionTypes.ROOM_LEAVE:
+        case ROOM_LEAVE:
             return {
                 ...state,
                 room: {
@@ -74,7 +86,7 @@ const reducer = (state = initialState, action) => {
                 },
                 error: null
             };
-        case actionTypes.ROOM_DELETE:
+        case ROOM_DELETE:
             return {
                 ...state,
                 room: {
@@ -87,7 +99,7 @@ const reducer = (state = initialState, action) => {
                 },
                 error: null
             };
-        case actionTypes.ROOM_GRAPH:
+        case ROOM_GRAPH:
             return {
                 ...state,
                 data: {
@@ -95,7 +107,7 @@ const reducer = (state = initialState, action) => {
                     graph: action.graph
                 }
             };
-        case actionTypes.ROOM_GRAPH_CHANGE:
+        case ROOM_GRAPH_CHANGE:
             return {
                 ...state,
                 data: {
@@ -103,7 +115,7 @@ const reducer = (state = initialState, action) => {
                     graph: action.graph
                 }
             };
-        case actionTypes.ROOM_ERROR:
+        case ROOM_ERROR:
             return {
                 ...state,
                 waiting: false,

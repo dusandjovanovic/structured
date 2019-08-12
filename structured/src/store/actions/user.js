@@ -1,4 +1,3 @@
-import * as actionTypes from "../actions.js";
 import {
     axios,
     userGetDataRoute,
@@ -10,70 +9,93 @@ import {
     userFriendConfirmRoute,
     userFriendDeleteRoute
 } from "../../utils/api";
-import * as actions from "./index";
 
-export const userFetchData = (username, friends) => {
+import { internalNotificationsAdd } from "./index";
+
+import {
+    USER_FETCH_DATA,
+    USER_FETCH_HISTORY,
+    USER_FETCH_DATA_INIT,
+    USER_FETCH_DATA_END,
+    USER_FETCH_DATA_FAIL,
+    FRIENDS_FETCH_REQUESTS,
+    FRIENDS_CONFIRM_REQUEST,
+    FRIENDS_DENY_REQUEST
+} from "../actions.js";
+
+const userFetchData = friends => {
     return {
-        type: actionTypes.USER_FETCH_DATA,
-        username: username,
+        type: USER_FETCH_DATA,
         friends: friends
     };
 };
 
-export const userFetchHistory = userData => {
+const userFetchHistory = history => {
     return {
-        type: actionTypes.USER_FETCH_HISTORY,
-        history: userData
+        type: USER_FETCH_HISTORY,
+        history: history
     };
 };
 
-export const userFetchDataStart = () => {
+const userFetchDataInit = () => {
     return {
-        type: actionTypes.USER_FETCH_DATA_START
+        type: USER_FETCH_DATA_INIT
     };
 };
 
-export const userFetchDataEnd = () => {
+const userFetchDataEnd = () => {
     return {
-        type: actionTypes.USER_FETCH_DATA_END
+        type: USER_FETCH_DATA_END
     };
 };
 
-export const userFetchDataFail = error => {
+const userFetchDataFail = error => {
     return {
-        type: actionTypes.USER_FETCH_DATA_FAIL,
+        type: USER_FETCH_DATA_FAIL,
         error: error
     };
 };
 
-export const friendRequestsFetch = requests => {
+const friendFail = error => {
     return {
-        type: actionTypes.FRIENDS_FETCH_REQUESTS,
+        type: USER_FETCH_DATA_FAIL,
+        error: error
+    };
+};
+
+const friendRequestsFetch = requests => {
+    return {
+        type: FRIENDS_FETCH_REQUESTS,
         requests: requests
     };
 };
 
-export const friendFail = error => {
+const friendsConfirmRequest = requestId => {
     return {
-        type: actionTypes.USER_FETCH_DATA_FAIL,
-        error: error
+        type: FRIENDS_CONFIRM_REQUEST,
+        requestId: requestId
     };
 };
 
-export const userData = username => {
-    return dispatch => {
-        dispatch(userFetchDataStart());
+const friendsDenyRequest = requestId => {
+    return {
+        type: FRIENDS_DENY_REQUEST,
+        requestId: requestId
+    };
+};
+
+export const userData = (requests = false) => {
+    return (dispatch, getState) => {
+        dispatch(userFetchDataInit());
 
         axios
             .getInstance()
-            .get(userGetDataRoute(username))
+            .get(userGetDataRoute(getState().auth.username))
             .then(response => {
                 if (response.data.success) {
-                    let friends = [];
-                    for (let element in response.data.data.friends)
-                        friends.push(response.data.data.friends[element]);
-                    dispatch(userFetchData(username, friends));
+                    dispatch(userFetchData(response.data.data.friends));
                     dispatch(userFetchDataEnd());
+                    dispatch(friendRequests(requests));
                 } else {
                     console.log("userError:", response.data.error);
                     dispatch(userFetchDataFail(response.data.error));
@@ -86,13 +108,13 @@ export const userData = username => {
     };
 };
 
-export const userHistory = username => {
-    return dispatch => {
-        dispatch(userFetchDataStart());
+export const userHistory = () => {
+    return (dispatch, getState) => {
+        dispatch(userFetchDataInit());
 
         axios
             .getInstance()
-            .get(userGetHistoryRoute(username))
+            .get(userGetHistoryRoute(getState().auth.username))
             .then(response => {
                 if (response.data.success) {
                     dispatch(userFetchHistory(response.data.data));
@@ -111,6 +133,8 @@ export const userHistory = username => {
 
 export const userHistoryAdd = (username, score) => {
     return dispatch => {
+        dispatch(userFetchDataInit());
+
         const data = {
             score: score
         };
@@ -120,8 +144,9 @@ export const userHistoryAdd = (username, score) => {
             .put(userAddHistoryRoute(username), data)
             .then(response => {
                 if (response.data.success) {
+                    dispatch(userFetchDataEnd());
                     dispatch(
-                        actions.internalNotificationsAdd(
+                        internalNotificationsAdd(
                             "Your solution was successfully submitted. You can see it in your history on dashboard.",
                             "success"
                         )
@@ -138,23 +163,29 @@ export const userHistoryAdd = (username, score) => {
     };
 };
 
-export const friendRequests = (username, push) => {
-    return dispatch => {
+export const friendRequests = push => {
+    return (dispatch, getState) => {
+        dispatch(userFetchDataInit());
+
         axios
             .getInstance()
-            .get(userGetFriendRequestsRoute(username))
+            .get(userGetFriendRequestsRoute(getState().auth.username))
             .then(response => {
                 if (response.data.success) {
                     if (push)
-                        response.data.data.map(element => {
+                        for (
+                            let req = 0;
+                            req < response.data.data.length;
+                            req++
+                        )
                             dispatch(
-                                actions.internalNotificationsAdd(
+                                internalNotificationsAdd(
                                     "You have a new friend request from " +
-                                        element.sender,
+                                        response.data.data[req].sender,
                                     "success"
                                 )
                             );
-                        });
+                    dispatch(userFetchDataEnd());
                     dispatch(friendRequestsFetch(response.data.data));
                 } else {
                     console.log("requestsError:", response.data.msg);
@@ -170,8 +201,10 @@ export const friendRequests = (username, push) => {
 
 export const friendAdd = friendUsername => {
     return (dispatch, getState) => {
+        dispatch(userFetchDataInit());
+
         const data = {
-            sender: getState().user.username,
+            sender: getState().auth.username,
             receiver: friendUsername
         };
 
@@ -181,7 +214,7 @@ export const friendAdd = friendUsername => {
             .then(response => {
                 if (response.data.data.exists) {
                     dispatch(
-                        actions.internalNotificationsAdd(
+                        internalNotificationsAdd(
                             "You have already sent a friend request to that person. Please wait for a response.",
                             "warning"
                         )
@@ -193,7 +226,7 @@ export const friendAdd = friendUsername => {
                         .then(response => {
                             if (response.data.success)
                                 dispatch(
-                                    actions.internalNotificationsAdd(
+                                    internalNotificationsAdd(
                                         "Friend request sent to " +
                                             friendUsername +
                                             ".",
@@ -202,7 +235,7 @@ export const friendAdd = friendUsername => {
                                 );
                             else
                                 dispatch(
-                                    actions.internalNotificationsAdd(
+                                    internalNotificationsAdd(
                                         "Username does not exist. Please try again.",
                                         "warning"
                                     )
@@ -215,6 +248,7 @@ export const friendAdd = friendUsername => {
                             );
                         });
                 }
+                dispatch(userFetchDataEnd());
             })
             .catch(error => {
                 console.log("addError:", error);
@@ -224,7 +258,9 @@ export const friendAdd = friendUsername => {
 };
 
 export const friendConfirm = requestId => {
-    return (dispatch, getState) => {
+    return dispatch => {
+        dispatch(userFetchDataInit());
+
         const data = {
             id: requestId
         };
@@ -232,9 +268,9 @@ export const friendConfirm = requestId => {
         axios
             .getInstance()
             .post(userFriendConfirmRoute, data)
-            .then(response => {
-                dispatch(userData(getState().user.username));
-                dispatch(friendRequests(getState().user.username, false));
+            .then(() => {
+                dispatch(friendsConfirmRequest(requestId));
+                dispatch(userFetchDataEnd());
             })
             .catch(error => {
                 console.log("confirmError:", error);
@@ -244,13 +280,15 @@ export const friendConfirm = requestId => {
 };
 
 export const friendDelete = requestId => {
-    return (dispatch, getState) => {
+    return dispatch => {
+        dispatch(userFetchDataInit());
+
         axios
             .getInstance()
             .delete(userFriendDeleteRoute(requestId))
-            .then(response => {
-                dispatch(userData(getState().user.username));
-                dispatch(friendRequests(getState().user.username, false));
+            .then(() => {
+                dispatch(friendsDenyRequest(requestId));
+                dispatch(userFetchDataEnd());
             })
             .catch(error => {
                 console.log("deleteError:", error);

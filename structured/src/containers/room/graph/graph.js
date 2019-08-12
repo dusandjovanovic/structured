@@ -81,6 +81,7 @@ class Graph extends React.Component {
                 </g>
             );
         });
+
         let links = this.props.visualization.edges.map(link => {
             let assignClass = this.chromaticVisualization(
                 link.source,
@@ -113,7 +114,7 @@ class Graph extends React.Component {
 
         return (
             <Grid container>
-                <Grid item xs={9} className={classes.root}>
+                <Grid item xs={8} className={classes.root}>
                     <svg
                         className={classNames({
                             [classes.crosshair]: this.props.graphManaged
@@ -190,7 +191,7 @@ class Graph extends React.Component {
                         </g>
                     </svg>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                     <GraphLogger
                         nodeSelected={this.props.nodeSelected}
                         nodeCurrent={this.props.nodeCurrent}

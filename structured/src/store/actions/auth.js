@@ -8,7 +8,7 @@ import {
     AUTH_REDIRECT
 } from "../actions.js";
 
-import { friendRequests } from "./index";
+import { userData } from "./index";
 import { initAuth, readAuth, removeAuth } from "../../utils/storage";
 import { axios, authRoute, authRegisterRoute } from "../../utils/api";
 
@@ -71,6 +71,7 @@ export const authenticatePersisted = () => {
         if (local && local.access_token) {
             dispatch(authUpdateCredentials(local.access_token, local.user_id));
             dispatch(authSuccess());
+            dispatch(userData(true));
         }
     };
 };
@@ -91,7 +92,7 @@ export const authenticateLogin = (username, password, remember) => {
                 if (remember) initAuth(response.data.token, username);
                 dispatch(authUpdateCredentials(response.data.token, username));
                 dispatch(authSuccess());
-                dispatch(friendRequests(username, true));
+                dispatch(userData(true));
             })
             .catch(error => {
                 dispatch(authError(error.response.data.msg));
@@ -115,7 +116,7 @@ export const authenticateRegister = (username, password, remember) => {
                 if (remember) initAuth(response.data.token, username);
                 dispatch(authUpdateCredentials(response.data.token, username));
                 dispatch(authSuccess());
-                dispatch(friendRequests(username, true));
+                dispatch(userData(true));
             })
             .catch(error => {
                 dispatch(authError(error.response.data.msg));

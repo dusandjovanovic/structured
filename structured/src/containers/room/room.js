@@ -39,7 +39,6 @@ class Room extends React.Component {
                 received => {
                     this.props.roomLeaveExisting(
                         this.props.room.name,
-                        this.props.username,
                         true
                     );
                     this.props.notificationSystem(
@@ -63,7 +62,6 @@ class Room extends React.Component {
     deleteRoom = () => {
         this.props.roomDeleteExisting(this.props.data._id).then(response => {
             if (!this.props.learn) this.props.deleteRoomIO(this.state.roomName);
-
             this.setState({
                 redirect: true
             });
@@ -72,7 +70,7 @@ class Room extends React.Component {
 
     leaveRoom = () => {
         this.props
-            .roomLeaveExisting(this.props.room.name, this.props.username, false)
+            .roomLeaveExisting(this.props.room.name, false)
             .then(response => {
                 if (!this.props.learn)
                     if (response.newMaster)

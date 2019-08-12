@@ -22,8 +22,8 @@ export class Dashboard extends React.Component {
     };
 
     componentDidMount() {
-        this.props.userData(this.props.username);
-        this.props.userHistory(this.props.username);
+        this.props.userData();
+        this.props.userHistory();
     }
 
     handleSelectionChange = tab => {
@@ -85,12 +85,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        userData: username => dispatch(actions.userData(username)),
-        userHistory: username => dispatch(actions.userHistory(username)),
-        friendAdd: (receiver) =>
-            dispatch(actions.friendAdd(receiver)),
-        friendConfirm: (requestId) =>
-            dispatch(actions.friendConfirm((requestId)))
+        userData: () => dispatch(actions.userData()),
+        userHistory: () => dispatch(actions.userHistory()),
+        friendAdd: receiver => dispatch(actions.friendAdd(receiver)),
+        friendConfirm: requestId => dispatch(actions.friendConfirm(requestId))
     };
 };
 
