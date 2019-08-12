@@ -1,157 +1,73 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Line} from "react-chartjs-2";
-import * as actions from '../../store/actions/index';
-import DashboardCards from './dashboard-cards/dashboardCards';
-import DashboardFriends from './dashboard-friends/dashboardFriends';
-import DashboardNavbar from './dashboard-navbar/dashboardNavbar';
-import { Table, Container, Row, Breadcrumb, BreadcrumbItem, Card, CardHeader, CardBody, CardFooter,} from 'reactstrap';
-import Overlay from "../../components/user-interface/spinner-overlay/spinnerOverlay";
-import './dashboard.css';
+import React from "react";
+import Tabbed from "../../components/interface/tabbed/tabbed";
+import DashboardView from "./dashboard-view/dashboardView";
+import DashboardOverview from "./dashboard-fragments/dashboard-overview/dashboardOverview";
+import DashboardFriends from "./dashboard-fragments/dashboard-friends/dashboardFriends";
+
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
+import withErrorHandler from "../../hoc/with-error-handler/withErrorHandler";
 
-export class Dashboard extends Component {
+export class Dashboard extends React.Component {
     state = {
-        dashboard: true,
-        userData: null,
-        userDataHistory: null,
-        userDataToday: 0
+        error: {
+            hasError: false,
+            name: null,
+            description: null
+        },
+        selected: 0
     };
 
     componentDidMount() {
         this.props.userData(this.props.username);
-        this.props.userHistory(this.props.username)
-            .then(response => {
-                const localTime = new Date();
-                const rawData = [...response.data];
-                let userData = rawData.slice(Math.max(rawData.length - 15, 0));
-                let data = []; let labels = []; let today = 0;
-                rawData.map(element => {
-                    if (new Date(element.date).getDate() === localTime.getDate())
-                        today = today + 1;
-                    return true;
-                });
-                userData.map(element => {
-                    data.push(element.score);
-                    labels.push(new Date(element.date).toLocaleDateString("en-us"));
-                    return true;
-                });
-                this.setState({
-                    dashboard: true,
-                    userData: {
-                        labels: [...labels],
-                        datasets: [{label: 'scored w/ time', fill: true, lineTension: 0.1, backgroundColor: 'rgba(115, 152, 163,0.4)', borderColor: 'rgba(115, 152, 163,1)', borderCapStyle: 'butt', borderDash: [], borderDashOffset: 0.0, borderJoinStyle: 'miter', pointBorderColor: 'rgba(75,192,192,1)', pointBackgroundColor: '#fff', pointBorderWidth: 1, pointHoverRadius: 5, pointHoverBackgroundColor: 'rgba(75,192,192,1)', pointHoverBorderColor: 'rgba(220,220,220,1)', pointHoverBorderWidth: 2, pointRadius: 1, pointHitRadius: 10,
-                            data: [...data]
-                            }
-                        ],
-                        options: {
-                            legend: { display: false }
-                        }
-                    },
-                    userDataHistory: [...rawData],
-                    userDataToday: today
-                });
-            });
-    };
+        this.props.userHistory(this.props.username);
+    }
 
-    dashboardSelected = (dashboard) => {
+    handleSelectionChange = tab => {
         this.setState({
-            dashboard: dashboard
+            selected: tab
         });
     };
 
     render() {
-        let waiting = null;
-        if (this.props.waiting)
-            waiting = <Overlay />;
+        const { classes } = this.props;
+
+        let dashboardFragment = null;
+        switch (this.state.selected) {
+            case 1: {
+                dashboardFragment = (
+                    <DashboardFriends
+                        friends={this.props.friends}
+                        friendAdd={this.props.friendAdd}
+                    />
+                );
+                break;
+            }
+            default:
+                dashboardFragment = (
+                    <DashboardOverview
+                        history={this.props.history}
+                        friendsCount={this.props.friends.length}
+                        requestsCount={this.props.requests.length}
+                        competeCount={this.props.history.length}
+                    />
+                );
+        }
 
         return (
-            <Container fluid>
-                {waiting}
-                <Row>
-                    <DashboardNavbar dashboardSelected={this.dashboardSelected} />
-                    <Container fluid className="dashboardwrapper">
-                        {this.state.dashboard
-                            ? <Container fluid className="pt-3 m-auto">
-                                <Breadcrumb>
-                                    <BreadcrumbItem><div>Dashboard</div></BreadcrumbItem>
-                                    <BreadcrumbItem active>Overview</BreadcrumbItem>
-                                </Breadcrumb>
-
-                                <DashboardCards friendAdd={this.props.friendAdd}
-                                                username={this.props.username}
-                                                numRequests={this.props.requests.length}
-                                                numCompetes={this.state.userDataToday} />
-
-                                <Card className="shadow-sm mb-3">
-                                    <CardHeader>
-                                        <i className="fas fa-chart-area"> </i>
-                                        <span> Your last compete games</span>
-                                    </CardHeader>
-                                    <CardBody className="p-5">
-                                        {this.props.waiting || !this.state.userDataHistory
-                                            ? null
-                                            : <Line data={this.state.userData} options={this.state.userData.options} />
-                                        }
-                                    </CardBody>
-                                    <CardFooter>
-                                        <small className="text-muted">last updated just now</small>
-                                    </CardFooter>
-                                </Card>
-
-                                <Card className="shadow-sm mb-3">
-                                    <CardHeader>
-                                        <i className="fas fa-table"> </i>
-                                        <span> All your games</span>
-                                    </CardHeader>
-                                    <CardBody>
-                                        {this.props.waiting || !this.state.userDataHistory
-                                            ? null
-                                            : <Table striped>
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Date played</th>
-                                                    <th>Scored</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                {
-                                                    this.state.userDataHistory.map((element, index) => (
-                                                        <tr key={index}>
-                                                            <th scope="row">{index+1}</th>
-                                                            <td>{new Date(element.date).toLocaleDateString("en-us", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'})}</td>
-                                                            <td>{element.score.toFixed(2)}</td>
-                                                        </tr>
-                                                    ))
-                                                }
-                                                </tbody>
-                                            </Table>
-                                        }
-                                    </CardBody>
-                                    <CardFooter>
-                                        <small className="text-muted">last updated just now</small>
-                                    </CardFooter>
-                                </Card>
-                            </Container>
-                            : <Container fluid className="pt-3 m-auto">
-                                <Breadcrumb>
-                                    <BreadcrumbItem><div>Dashboard</div></BreadcrumbItem>
-                                    <BreadcrumbItem active>Friends</BreadcrumbItem>
-                                </Breadcrumb>
-                                {this.props.waiting
-                                    ? null
-                                    : <DashboardFriends friends={this.props.friends} />
-                                }
-                            </Container>
-                        }
-                    </Container>
-                </Row>
-            </Container>
+            <div className={classes.root}>
+                <Tabbed
+                    labels={["Overview", "Friends and requests"]}
+                    value={this.state.selected}
+                    handleSelectionChange={this.handleSelectionChange}
+                />
+                <DashboardView>{dashboardFragment}</DashboardView>
+            </div>
         );
-    };
+    }
 }
 
 const mapStateToProps = state => {
@@ -159,17 +75,22 @@ const mapStateToProps = state => {
         username: state.auth.username,
         friends: state.user.friends,
         requests: state.user.requests,
-        userData: state.user.userData,
-        waiting: state.user.waiting
-    }
+        history: state.user.history,
+        waiting: state.user.waiting,
+        error: state.user.error
+    };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        userData: (username) => dispatch(actions.userData(username)),
-        userHistory: (username) => dispatch(actions.userHistory(username)),
-        friendAdd: (sender, receiver) => dispatch(actions.friendAdd(sender, receiver))
-    }
+        userData: username => dispatch(actions.userData(username)),
+        userHistory: username => dispatch(actions.userHistory(username)),
+        friendAdd: (sender, receiver) =>
+            dispatch(actions.friendAdd(sender, receiver))
+    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (Dashboard);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withStyles(styles)(withErrorHandler(Dashboard)));

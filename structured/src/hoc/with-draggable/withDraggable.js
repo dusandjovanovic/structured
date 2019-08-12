@@ -6,7 +6,13 @@ import PropTypes from "prop-types";
 const withDraggable = WrappedComponent => {
     return class extends React.Component {
         state = {
-            dragging: false
+            dragging: false,
+            originalX: 0,
+            originalY: 0,
+            translateX: 0,
+            translateY: 0,
+            lastTranslateX: 0,
+            lastTranslateY: 0
         };
 
         componentWillUnmount() {
@@ -16,16 +22,39 @@ const withDraggable = WrappedComponent => {
 
         handleMouseDown = event => {
             event.stopPropagation();
+            const { clientX, clientY } = event;
             window.addEventListener("mousemove", this.handleMouseMove);
             window.addEventListener("mouseup", this.handleMouseUp);
             if (this.props.onDragStart) this.props.onDragStart();
 
             this.setState(() => ({
+                originalX: clientX,
+                originalY: clientY,
                 dragging: true
             }));
         };
 
-        handleMouseMove = () => {
+        handleMouseMove = event => {
+            const { clientX, clientY } = event;
+            if (!this.state.dragging) return;
+            this.setState(
+                prevState => ({
+                    translateX:
+                        clientX -
+                        prevState.originalX +
+                        prevState.lastTranslateX,
+                    translateY:
+                        clientY - prevState.originalY + prevState.lastTranslateY
+                }),
+                () => {
+                    if (this.props.onDrag) {
+                        this.props.onDrag({
+                            translateX: this.state.translateX,
+                            translateY: this.state.translateY
+                        });
+                    }
+                }
+            );
             if (!this.state.dragging && this.props.onDrag) this.props.onDrag();
         };
 
@@ -35,6 +64,10 @@ const withDraggable = WrappedComponent => {
 
             this.setState(
                 () => ({
+                    originalX: 0,
+                    originalY: 0,
+                    lastTranslateX: this.state.translateX,
+                    lastTranslateY: this.state.translateY,
                     dragging: false
                 }),
                 () => {
@@ -45,16 +78,20 @@ const withDraggable = WrappedComponent => {
 
         render() {
             return (
-                <div onMouseDown={event => this.handleMouseDown(event)}>
-                    <WrappedComponent dragging={this.state.dragging} {...this.props} />
-                </div>
+                <WrappedComponent
+                    translateX={this.state.translateX}
+                    translateY={this.state.translateY}
+                    onMouseDown={event => this.handleMouseDown(event)}
+                    dragging={this.state.dragging}
+                    {...this.props}
+                />
             );
         }
     };
 };
 
 withDraggable.propTypes = {
-    onDrag: PropTypes.func.isRequired,
+    onDrag: PropTypes.func,
     onDragStart: PropTypes.func,
     onDragEnd: PropTypes.func
 };

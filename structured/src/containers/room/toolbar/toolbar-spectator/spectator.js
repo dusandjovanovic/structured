@@ -5,8 +5,7 @@ import Toolbar from "../../../../components/interface/toolbar/toolbar";
 
 import Add from "@material-ui/icons/Add";
 import Clear from "@material-ui/icons/Clear";
-import Edit from "@material-ui/icons/Edit";
-import BorderColor from "@material-ui/icons/BorderColor";
+import Redo from "@material-ui/icons/Redo";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -18,34 +17,38 @@ const spectator = props => {
         <Toolbar>
             <Grid container justify="flex-end">
                 <Button
+                    size="small"
                     color="primary"
                     disabled={props.disabled}
                     onClick={() => props.addNode()}
                 >
-                    <Add className={classes.icon} /> Add node
+                    <Add fontSize="small" className={classes.icon} /> Add node
                 </Button>
                 <Button
-                    color="primary"
-                    disabled={props.disabled}
-                    onClick={() => props.addEdge()}
-                >
-                    <Edit className={classes.icon} /> Add edge
-                </Button>
-
-                <Button
+                    size="small"
                     color="primary"
                     disabled={props.disabled}
                     onClick={() => props.removeNode()}
                 >
-                    <Clear className={classes.icon} /> Remove node
+                    <Clear fontSize="small" className={classes.icon} /> Remove
+                    node
                 </Button>
-
                 <Button
+                    size="small"
+                    color="primary"
+                    disabled={props.disabled}
+                    onClick={() => props.addEdge()}
+                >
+                    <Redo fontSize="small" className={classes.icon} /> Add edge
+                </Button>
+                <Button
+                    size="small"
                     color="primary"
                     disabled={props.disabled}
                     onClick={() => props.removeEdge()}
                 >
-                    <BorderColor className={classes.icon} /> Remove edge
+                    <Clear fontSize="small" className={classes.icon} /> Remove
+                    edge
                 </Button>
             </Grid>
         </Toolbar>

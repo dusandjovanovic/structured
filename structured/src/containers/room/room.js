@@ -118,6 +118,7 @@ class Room extends React.Component {
                     <Grid
                         item
                         xs={this.props.competitive || this.props.learn ? 12 : 9}
+                        className={classes.whiteboard}
                     >
                         <Graph
                             visualization={this.props.visualization}

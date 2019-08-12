@@ -1,5 +1,11 @@
 import { stack } from "./stackModule";
 import { queue } from "./queueModule";
+import {
+    ALGORITHM_BREADTH,
+    ALGORITHM_DEPTH,
+    ALGORITHM_BREADTH_OBSERVABLE,
+    ALGORITHM_DEPTH_OBSERVABLE
+} from "../constants";
 
 let graph;
 let solution = [];
@@ -52,13 +58,13 @@ const observableDefragment = observableState =>
 export function algorithm(root, ALGORITHM_TYPE) {
     graph = this.getGraph();
     switch (ALGORITHM_TYPE) {
-        case "ALGORITHM_BREADTH":
+        case ALGORITHM_BREADTH:
             return breadthFirstSearch(root, graph);
-        case "ALGORITHM_DEPTH":
+        case ALGORITHM_DEPTH:
             return depthFirstSearch(root, graph);
-        case "ALGORITHM_BREADTH_OBSERVABLE":
+        case ALGORITHM_BREADTH_OBSERVABLE:
             return breadthFirstSearch(root, graph, true);
-        case "ALGORITHM_DEPTH_OBSERVABLE":
+        case ALGORITHM_DEPTH_OBSERVABLE:
             return depthFirstSearch(root, graph, true);
         default:
             return;

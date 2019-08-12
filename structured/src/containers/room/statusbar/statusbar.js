@@ -37,23 +37,24 @@ const statusbar = props => {
                 </Typography>
             ))}
             {props.graphManaged ? (
-                <Typography
-                    variant="caption"
-                    className={classNames(
-                        classes.element,
-                        classes.elementLight,
-                        classes.managed
-                    )}
-                >
-                    You are managing the graph:{" "}
+                <div className={classes.managed}>
                     <Typography
                         variant="caption"
-                        color="secondary"
+                        className={classNames(
+                            classes.element,
+                            classes.elementLight
+                        )}
+                    >
+                        You are managing the graph:{" "}
+                    </Typography>
+                    <Typography
+                        variant="caption"
+                        color="error"
                         className={classes.element}
                     >
                         {props.graphOperation.toLowerCase()}
                     </Typography>
-                </Typography>
+                </div>
             ) : null}
         </footer>
     );

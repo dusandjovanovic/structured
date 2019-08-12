@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import image from "../../../assets/images/something-went-wrong.png";
+import image from "../../../assets/images/something-went-wrong.PNG";
 
 const somethingWentWrong = props => {
     return (

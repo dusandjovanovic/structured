@@ -4,10 +4,12 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Toolbar from "../../../../components/interface/toolbar/toolbar";
 
-import Replay from "@material-ui/icons/Replay";
+import Done from "@material-ui/icons/Done";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
+
+import { COMPETE_BREADTH } from "../../../../utils/constants";
 
 const compete = props => {
     const { classes } = props;
@@ -16,8 +18,12 @@ const compete = props => {
         <Toolbar>
             <Grid container>
                 <Grid item xs={3}>
-                    <Typography variant="h5">
-                        {props.competeType === "COMPETE_BREADTH"
+                    <Typography
+                        variant="h6"
+                        color="textPrimary"
+                        className={classes.header}
+                    >
+                        {this.props.competeType === COMPETE_BREADTH
                             ? "Breadth-first search"
                             : "Depth-first search"}
                     </Typography>
@@ -25,11 +31,13 @@ const compete = props => {
                 <Grid item xs={9}>
                     <Grid container justify="flex-end">
                         <Button
+                            size="small"
                             color="primary"
                             disabled={!props.graphManaged}
                             onClick={() => props.competeEnded()}
                         >
-                            <Replay className={classes.icon} /> Submit solution
+                            <Done fontSize="small" className={classes.icon} />{" "}
+                            Submit result
                         </Button>
                     </Grid>
                 </Grid>

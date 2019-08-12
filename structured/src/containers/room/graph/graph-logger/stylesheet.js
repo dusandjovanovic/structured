@@ -2,28 +2,45 @@ import { graphColors } from "../../../../assets/stylesheet";
 
 export const styles = () => ({
     root: {
-        fontSize: "1.1rem",
+        fontSize: "1rem",
         fontFamily: "Consolas, monaco, monospace",
         float: "left",
         width: "auto",
-        padding: "0 2rem"
+        padding: "1.5rem"
     },
     holder: {
-        lineHeight: "1.6rem"
+        lineHeight: "2rem"
     },
     separator: {
         padding: "1rem"
     },
     node: {
+        fontSize: "1rem",
         background: "#33373e",
         color: "#ffffff",
-        borderRadius: "0.8rem",
+        borderRadius: "50%",
         display: "inline-block",
-        fontWeight: "bold",
-        lineLeight: "1.6rem",
-        marginRight: "10px",
+        lineHeight: "1.8rem",
+        marginLeft: "0.5rem",
         textAlign: "center",
-        width: "1.6rem"
+        width: "1.8rem",
+        height: "1.8rem",
+        border: "1px solid #dedede"
+    },
+    nodeUndefined: {
+        fontSize: "1rem",
+        color: graphColors.visited.stroke,
+        fontWeight: "lighter",
+        display: "inline-block",
+        lineHeight: "1.8rem",
+        marginLeft: "0.5rem"
+    },
+    algorithm: {
+        fontSize: "1rem",
+        color: graphColors.edge.stroke,
+        fontWeight: "lighter",
+        display: "inline-block",
+        lineHeight: "1.8rem"
     },
     selected: {
         background: graphColors.selected.fill

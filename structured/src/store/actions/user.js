@@ -63,7 +63,7 @@ export const friendFail = error => {
 export const userData = username => {
     return dispatch => {
         dispatch(userFetchDataStart());
-        
+
         axios
             .getInstance()
             .get(userGetDataRoute(username))
@@ -90,27 +90,22 @@ export const userHistory = username => {
     return dispatch => {
         dispatch(userFetchDataStart());
 
-        return new Promise(function(resolve, reject) {
-            axios
-                .getInstance()
-                .get(userGetHistoryRoute(username))
-                .then(response => {
-                    if (response.data.success) {
-                        dispatch(userFetchHistory(response.data.data.userData));
-                        dispatch(userFetchDataEnd());
-                        resolve(response.data);
-                    } else {
-                        console.log("userError:", response.data.error);
-                        dispatch(userFetchDataFail(response.data.error));
-                        reject(response.data.error);
-                    }
-                })
-                .catch(error => {
-                    console.log("userError:", error);
-                    dispatch(userFetchDataFail(error.message));
-                    reject(error.message);
-                });
-        });
+        axios
+            .getInstance()
+            .get(userGetHistoryRoute(username))
+            .then(response => {
+                if (response.data.success) {
+                    dispatch(userFetchHistory(response.data.data));
+                    dispatch(userFetchDataEnd());
+                } else {
+                    console.log("userError:", response.data.error);
+                    dispatch(userFetchDataFail(response.data.error));
+                }
+            })
+            .catch(error => {
+                console.log("userError:", error);
+                dispatch(userFetchDataFail(error.message));
+            });
     };
 };
 
