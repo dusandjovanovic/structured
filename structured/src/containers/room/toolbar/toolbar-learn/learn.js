@@ -41,12 +41,15 @@ class Learn extends React.PureComponent {
                 <Toolbar>
                     <Grid container justify="flex-end">
                         <Button
+                            size="small"
                             color="primary"
                             onClick={() => this.props.randomGraph()}
                         >
-                            <Replay className={classes.icon} /> Random graph
+                            <Replay fontSize="small" className={classes.icon} />{" "}
+                            Random graph
                         </Button>
                         <Button
+                            size="small"
                             color="secondary"
                             onClick={() =>
                                 this.handleStateChange(GRAPH_LEARN_GRAPHS)
@@ -55,6 +58,7 @@ class Learn extends React.PureComponent {
                             What are graphs
                         </Button>
                         <Button
+                            size="small"
                             color="secondary"
                             onClick={() =>
                                 this.handleStateChange(
@@ -65,6 +69,7 @@ class Learn extends React.PureComponent {
                             Graph presentations
                         </Button>
                         <Button
+                            size="small"
                             color="secondary"
                             onClick={() =>
                                 this.handleStateChange(GRAPH_LEARN_TRAVERSALS)

@@ -1,12 +1,55 @@
-import React from 'react'
-import './controlBar.css';
+import React from "react";
+import Grid from "@material-ui/core/Grid";
 
-const ControlBar = (props) => (
-    <div className="control-bar">
-        <i className="fa fa-backward control-bar__btn" onClick={() => props.goToPrevStep()}> </i>
-        <i onClick={() => props.play()} className={props.playing ? 'fa fa-pause control-bar__btn' : 'fa fa-play control-bar__btn'}> </i>
-        <i className="fa fa-forward control-bar__btn" onClick={() => props.goToNextStep()}> </i>
-    </div>
-);
+import Play from "@material-ui/icons/PlayArrow";
+import Pause from "@material-ui/icons/Pause";
+import SkipNext from "@material-ui/icons/SkipNext";
+import SkipPrevious from "@material-ui/icons/SkipPrevious";
 
-export default ControlBar
+import { styles } from "./stylesheet";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+const ControlBar = props => {
+    const { classes } = props;
+    return (
+        <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            className={classes.root}
+        >
+            <Grid item>
+                <SkipPrevious
+                    fontSize="large"
+                    className={classes.button}
+                    onClick={() => props.goToPrevStep()}
+                />
+            </Grid>
+            <Grid item>
+                {props.playing ? (
+                    <Pause
+                        fontSize="large"
+                        className={classes.button}
+                        onClick={() => props.play()}
+                    />
+                ) : (
+                    <Play
+                        fontSize="large"
+                        className={classes.button}
+                        onClick={() => props.play()}
+                    />
+                )}
+            </Grid>
+            <Grid item>
+                <SkipNext
+                    fontSize="large"
+                    className={classes.button}
+                    onClick={() => props.goToNextStep()}
+                />
+            </Grid>
+        </Grid>
+    );
+};
+
+export default withStyles(styles)(React.memo(ControlBar));

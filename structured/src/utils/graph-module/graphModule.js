@@ -1,6 +1,6 @@
 import { algorithm } from "./graphAlgorithms";
 import * as adapter from "./graphAdapter";
-import _ from "underscore";
+import { random } from "lodash";
 
 export const graphFactory = () => {
     let graph = {};
@@ -25,10 +25,10 @@ export const graphFactory = () => {
             }
         },
         addVertexRandom: () => {
-            let random = _.random(0, 99);
-            while (graphProto.contains(random)) random = _.random(0, 99);
-            graphProto.addVertex(random);
-            return random;
+            let randomNum = random(0, 99);
+            while (graphProto.contains(randomNum)) randomNum = random(0, 99);
+            graphProto.addVertex(randomNum);
+            return randomNum;
         },
         removeVertex: node => {
             if (graphProto.contains(node)) {

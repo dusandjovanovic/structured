@@ -1,7 +1,7 @@
 export const styles = theme => ({
     appBar: {
         backgroundColor: theme.palette.background.paper,
-        height: "64px",
+        height: "54px",
         top: "64px",
         left: 0,
         padding: "1rem",

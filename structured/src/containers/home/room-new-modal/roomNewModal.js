@@ -29,7 +29,7 @@ class RoomNewModal extends React.Component {
             name: null,
             description: null
         },
-        selectedMaxUsers: 1,
+        selectedMaxUsers: 8,
         selectedRoomType: ROOM_TYPE_LEARN
     };
 
@@ -108,10 +108,10 @@ class RoomNewModal extends React.Component {
                                 <Slider
                                     aria-labelledby="discrete-slider"
                                     className={classes.inputsGroup}
-                                    defaultValue={5}
+                                    defaultValue={this.state.selectedMaxUsers}
                                     getAriaValueText={value => value}
                                     name="Slider"
-                                    valueLabelDisplay="auto"
+                                    valueLabelDisplay="on"
                                     step={1}
                                     marks
                                     min={1}

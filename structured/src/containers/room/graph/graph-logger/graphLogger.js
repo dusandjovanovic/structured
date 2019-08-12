@@ -13,116 +13,129 @@ import {
 } from "../../../../utils/constants";
 
 const graphLogger = props => {
-    
     const { classes } = props;
 
     return (
-        <Grid container className={classes.root}>
+        <Grid container direction="column" spacing={3} className={classes.root}>
             <GraphNode
-                text="Selected:"
-                show={props.nodeSelected && props.nodeSelected.key}
+                text="selectedNode"
                 node={props.nodeSelected ? props.nodeSelected.key : null}
                 holderClass={classNames(classes.holder, classes.selectedText)}
                 nodeClass={classNames(classes.node, classes.selected)}
+                nodeUndefined={classes.nodeUndefined}
             />
 
             <GraphNodeList
-                text="Adjacent:"
+                text="adjacentNodes"
                 nodes={props.nodesAdjacent}
                 holderClass={classNames(classes.holder, classes.primaryText)}
                 nodeClass={classNames(classes.node, classes.adjacent)}
+                nodeUndefined={classes.nodeUndefined}
             />
 
             <GraphNode
-                show
-                text="Root:"
+                text="rootNode"
                 node={props.nodeRoot}
-                holderClass={classNames(classes.holder, classes.primaryAltText)}
+                holderClass={classNames(classes.holder, classes.primaryText)}
                 nodeClass={classes.node}
+                nodeUndefined={classes.nodeUndefined}
             />
 
             <GraphNodeList
-                text="Highlighted:"
+                text="highlightedNodes"
                 nodes={props.nodesHighlighted}
-                holderClass={classNames(classes.holder, classes.primaryAltText)}
+                holderClass={classNames(classes.holder, classes.primaryText)}
                 nodeClass={classNames(classes.node, classes.watched)}
+                nodeUndefined={classes.nodeUndefined}
             />
 
             {props.algorithmState ? (
-                <div>
-                    <hr className={classes.separator} />
+                <React.Fragment>
+                    <Grid item xs={12} className={props.holderClass}>
+                        <span className={classes.algorithm}>
+                            ALGORITHM VARIABLES
+                        </span>
+                    </Grid>
 
                     <GraphNode
-                        text="Current:"
-                        show={
+                        text="currentNode"
+                        node={
                             props.algorithmState &&
                             props.algorithmState.tempVertex
+                                ? props.algorithmState.tempVertex
+                                : null
                         }
-                        node={props.algorithmState.tempVertex}
                         holderClass={classNames(
                             classes.holder,
                             classes.primaryText
                         )}
                         nodeClass={classNames(classes.node, classes.selected)}
+                        nodeUndefined={classes.nodeUndefined}
                     />
 
                     <GraphNode
-                        text="Unvisited:"
-                        show={
+                        text="univistedNodes"
+                        node={
                             props.algorithmState &&
                             props.algorithmState.unvisitedVertex
+                                ? props.algorithmState.unvisitedVertex
+                                : null
                         }
-                        node={props.algorithmState.unvisitedVertex}
                         holderClass={classNames(
                             classes.holder,
                             classes.primaryText
                         )}
                         nodeClass={classes.node}
+                        nodeUndefined={classes.nodeUndefined}
                     />
 
                     <GraphNodeList
-                        text="Visited:"
+                        text="visitedNodes"
                         nodes={props.algorithmState.visited}
                         holderClass={classNames(
                             classes.holder,
-                            classes.primaryAltText
+                            classes.primaryText
                         )}
                         nodeClass={classes.node}
+                        nodeUndefined={classes.nodeUndefined}
                     />
 
                     <GraphNodeList
-                        text="Traversed:"
+                        text="traversedNodes"
                         nodes={props.algorithmState.solution}
                         holderClass={classNames(
                             classes.holder,
-                            classes.primaryAltText
+                            classes.primaryText
                         )}
                         nodeClass={classNames(classes.node, classes.watched)}
+                        nodeUndefined={classes.nodeUndefined}
                     />
-                </div>
+                </React.Fragment>
             ) : null}
             {props.algorithmState &&
             props.algorithmType === ALGORITHM_BREADTH_OBSERVABLE ? (
                 <GraphNodeList
-                    text="Queue:"
+                    text="queue"
                     nodes={props.algorithmState.structure}
                     holderClass={classNames(
                         classes.holder,
-                        classes.primaryAltText
+                        classes.primaryText
                     )}
                     nodeClass={classes.node}
+                    nodeUndefined={classes.nodeUndefined}
                 />
             ) : null}
             {props.algorithmState &&
             props.algorithmType === ALGORITHM_DEPTH_OBSERVABLE ? (
                 <GraphNodeList
-                    text="Stack:"
+                    text="stack"
                     nodes={props.algorithmState.structure}
                     holderClass={classNames(
                         classes.holder,
-                        classes.primaryAltText
+                        classes.primaryText
                     )}
                     nodeClass={classes.node}
+                    nodeUndefined={classes.nodeUndefined}
                 />
             ) : null}
         </Grid>

@@ -5,7 +5,7 @@ export const styles = () => ({
         border: "1px solid #d1d1d1"
     },
     crosshair: {
-        cursors: "crosshair"
+        cursor: "crosshair"
     },
     node: {
         "& circle": {

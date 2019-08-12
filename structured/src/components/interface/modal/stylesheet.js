@@ -3,14 +3,14 @@ export const styles = theme => ({
         margin: "auto"
     },
     modal: {
-        marginTop: theme.spacing.unit * 6
+        marginTop: "2rem"
     },
     paper: {
         margin: "auto",
         width: "70%",
         backgroundColor: "#ffffff",
         boxShadow: theme.shadows[5],
-        padding: theme.spacing.unit * 2
+        padding: "1rem"
     },
     content: {
         margin: "1rem"

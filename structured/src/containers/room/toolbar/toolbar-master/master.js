@@ -8,8 +8,8 @@ import Toolbar from "../../../../components/interface/toolbar/toolbar";
 import Replay from "@material-ui/icons/Replay";
 import Add from "@material-ui/icons/Add";
 import Clear from "@material-ui/icons/Clear";
-import Edit from "@material-ui/icons/Edit";
-import BorderColor from "@material-ui/icons/BorderColor";
+import Redo from "@material-ui/icons/Redo";
+import Code from "@material-ui/icons/Code";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -51,49 +51,62 @@ class Master extends React.PureComponent {
             <Toolbar>
                 <Grid container justify="flex-end">
                     <Button
+                        size="small"
                         color="primary"
                         disabled={this.props.disabled}
                         onClick={() => this.props.randomGraph()}
                     >
-                        <Replay className={classes.icon} /> Random graph
+                        <Replay fontSize="small" className={classes.icon} />{" "}
+                        Random graph
                     </Button>
                     <Button
+                        size="small"
                         color="primary"
                         disabled={this.props.disabled}
                         onClick={() => this.props.addNode()}
                     >
-                        <Add className={classes.icon} /> Add node
+                        <Add fontSize="small" className={classes.icon} /> Add
+                        node
                     </Button>
                     <Button
-                        color="primary"
-                        disabled={this.props.disabled}
-                        onClick={() => this.props.addEdge()}
-                    >
-                        <Edit className={classes.icon} /> Add edge
-                    </Button>
-
-                    <Button
+                        size="small"
                         color="primary"
                         disabled={this.props.disabled}
                         onClick={() => this.props.removeNode()}
                     >
-                        <Clear className={classes.icon} /> Remove node
+                        <Clear fontSize="small" className={classes.icon} />{" "}
+                        Remove node
                     </Button>
-
                     <Button
+                        size="small"
+                        color="primary"
+                        disabled={this.props.disabled}
+                        onClick={() => this.props.addEdge()}
+                    >
+                        <Redo fontSize="small" className={classes.icon} /> Add
+                        edge
+                    </Button>
+                    <Button
+                        size="small"
                         color="primary"
                         disabled={this.props.disabled}
                         onClick={() => this.props.removeEdge()}
                     >
-                        <BorderColor className={classes.icon} /> Remove edge
+                        <Clear fontSize="small" className={classes.icon} />{" "}
+                        Remove edge
                     </Button>
                     <Button
+                        size="small"
                         color="secondary"
-                        variant="outlined"
                         aria-controls="algorithm-menu"
                         aria-haspopup="true"
                         onClick={this.handleToggle}
                     >
+                        <Code
+                            color="secondary"
+                            fontSize="small"
+                            className={classes.icon}
+                        />{" "}
                         Algorithms
                     </Button>
                     <Menu
@@ -121,11 +134,8 @@ class Master extends React.PureComponent {
                         >
                             Depth-first search
                         </MenuItem>
-                        <MenuItem
-                            disabled={this.props.disabled}
-                            onClick={() => this.handleClose()}
-                        >
-                            Cancel algorithm
+                        <MenuItem onClick={() => this.handleClose()}>
+                            Cancel
                         </MenuItem>
                     </Menu>
                 </Grid>

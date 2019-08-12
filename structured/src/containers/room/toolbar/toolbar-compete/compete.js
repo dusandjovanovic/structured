@@ -7,9 +7,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Toolbar from "../../../../components/interface/toolbar/toolbar";
 
 import Replay from "@material-ui/icons/Replay";
+import SkipNext from "@material-ui/icons/SkipNext";
+import Done from "@material-ui/icons/Done";
+import Code from "@material-ui/icons/Code";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
+
+import { COMPETE_BREADTH } from "../../../../utils/constants";
 
 class Compete extends React.PureComponent {
     state = {
@@ -35,8 +40,12 @@ class Compete extends React.PureComponent {
             <Toolbar>
                 <Grid container>
                     <Grid item xs={3}>
-                        <Typography variant="h5">
-                            {this.props.competeType === "COMPETE_BREADTH"
+                        <Typography
+                            variant="h6"
+                            color="textPrimary"
+                            className={classes.header}
+                        >
+                            {this.props.competeType === COMPETE_BREADTH
                                 ? "Breadth-first search"
                                 : "Depth-first search"}
                         </Typography>
@@ -44,13 +53,19 @@ class Compete extends React.PureComponent {
                     <Grid item xs={9}>
                         <Grid container justify="flex-end">
                             <Button
+                                size="small"
                                 color="primary"
                                 disabled={this.props.graphManaged}
                                 onClick={() => this.props.randomGraph()}
                             >
-                                <Replay className={classes.icon} /> Random graph
+                                <Replay
+                                    fontSize="small"
+                                    className={classes.icon}
+                                />{" "}
+                                Random graph
                             </Button>
                             <Button
+                                size="small"
                                 color="primary"
                                 disabled={
                                     this.props.graphManaged ||
@@ -58,15 +73,42 @@ class Compete extends React.PureComponent {
                                 }
                                 onClick={() => this.props.competeBegin()}
                             >
-                                <Replay className={classes.icon} /> Begin
+                                <SkipNext
+                                    fontSize="small"
+                                    className={classes.icon}
+                                />{" "}
+                                Begin compete
                             </Button>
                             <Button
+                                size="small"
                                 color="primary"
                                 disabled={!this.props.graphManaged}
                                 onClick={() => this.props.competeEnded()}
                             >
-                                <Replay className={classes.icon} /> Submit
-                                result
+                                <Done
+                                    fontSize="small"
+                                    className={classes.icon}
+                                />{" "}
+                                Submit result
+                            </Button>
+                            <Button
+                                size="small"
+                                color="secondary"
+                                aria-controls="algorithm-menu"
+                                aria-haspopup="true"
+                                disabled={this.props.graphManaged}
+                                onClick={this.handleToggle}
+                            >
+                                <Code
+                                    fontSize="small"
+                                    color={
+                                        this.props.graphManaged
+                                            ? "disabled"
+                                            : "secondary"
+                                    }
+                                    className={classes.icon}
+                                />{" "}
+                                Algorithm
                             </Button>
                             <Menu
                                 id="algorithm-menu"
@@ -82,7 +124,7 @@ class Compete extends React.PureComponent {
                                         this.handleClose();
                                     }}
                                 >
-                                    Breadth-first search
+                                    Breadth-first search (default)
                                 </MenuItem>
                                 <MenuItem
                                     onClick={() => {
@@ -91,12 +133,6 @@ class Compete extends React.PureComponent {
                                     }}
                                 >
                                     Depth-first search
-                                </MenuItem>
-                                <MenuItem
-                                    disabled={this.props.disabled}
-                                    onClick={() => this.handleClose()}
-                                >
-                                    Cancel algorithm
                                 </MenuItem>
                             </Menu>
                         </Grid>

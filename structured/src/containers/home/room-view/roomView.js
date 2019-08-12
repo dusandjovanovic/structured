@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import RoomCard from "./room-card/roomCard";
-import SomethingWentWrong from "../../../components/user-interface/something-went-wrong/somethingWentWrong";
+import SomethingWentWrong from "../../../components/interface/something-went-wrong/somethingWentWrong";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
