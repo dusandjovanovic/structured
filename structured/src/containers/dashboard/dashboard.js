@@ -41,7 +41,9 @@ export class Dashboard extends React.Component {
                 dashboardFragment = (
                     <DashboardFriends
                         friends={this.props.friends}
+                        requests={this.props.requests}
                         friendAdd={this.props.friendAdd}
+                        friendConfirm={this.props.friendConfirm}
                     />
                 );
                 break;
@@ -60,7 +62,7 @@ export class Dashboard extends React.Component {
         return (
             <div className={classes.root}>
                 <Tabbed
-                    labels={["Overview", "Friends and requests"]}
+                    labels={["Overview", "Friends and Requests"]}
                     value={this.state.selected}
                     handleSelectionChange={this.handleSelectionChange}
                 />
@@ -85,8 +87,10 @@ const mapDispatchToProps = dispatch => {
     return {
         userData: username => dispatch(actions.userData(username)),
         userHistory: username => dispatch(actions.userHistory(username)),
-        friendAdd: (sender, receiver) =>
-            dispatch(actions.friendAdd(sender, receiver))
+        friendAdd: (receiver) =>
+            dispatch(actions.friendAdd(receiver)),
+        friendConfirm: (requestId) =>
+            dispatch(actions.friendConfirm((requestId)))
     };
 };
 

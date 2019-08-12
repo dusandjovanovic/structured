@@ -20,5 +20,8 @@ export const styles = theme => ({
         [theme.breakpoints.down("md")]: {
             flexDirection: "column"
         }
+    },
+    textField: {
+        marginRight: "1rem"
     }
 });

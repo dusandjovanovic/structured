@@ -179,10 +179,10 @@ export const friendRequests = (username, push) => {
     };
 };
 
-export const friendAdd = (username, friendUsername) => {
-    return dispatch => {
+export const friendAdd = friendUsername => {
+    return (dispatch, getState) => {
         const data = {
-            sender: username,
+            sender: getState().user.username,
             receiver: friendUsername
         };
 
@@ -199,6 +199,7 @@ export const friendAdd = (username, friendUsername) => {
                     );
                 } else {
                     axios
+                        .getInstance()
                         .post(userFriendAddRoute, data)
                         .then(response => {
                             if (response.data.success)
@@ -233,8 +234,8 @@ export const friendAdd = (username, friendUsername) => {
     };
 };
 
-export const friendConfirm = (requestId, username) => {
-    return dispatch => {
+export const friendConfirm = requestId => {
+    return (dispatch, getState) => {
         const data = {
             id: requestId
         };
@@ -243,8 +244,8 @@ export const friendConfirm = (requestId, username) => {
             .getInstance()
             .post(userFriendConfirmRoute, data)
             .then(response => {
-                dispatch(userData(username));
-                dispatch(friendRequests(username, false));
+                dispatch(userData(getState().user.username));
+                dispatch(friendRequests(getState().user.username, false));
             })
             .catch(error => {
                 console.log("confirmError:", error);
@@ -253,14 +254,14 @@ export const friendConfirm = (requestId, username) => {
     };
 };
 
-export const friendDelete = (requestId, username) => {
-    return dispatch => {
+export const friendDelete = requestId => {
+    return (dispatch, getState) => {
         axios
             .getInstance()
             .delete(userFriendDeleteRoute(requestId))
             .then(response => {
-                dispatch(userData(username));
-                dispatch(friendRequests(username, false));
+                dispatch(userData(getState().user.username));
+                dispatch(friendRequests(getState().user.username, false));
             })
             .catch(error => {
                 console.log("deleteError:", error);

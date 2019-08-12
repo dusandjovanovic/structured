@@ -37,8 +37,8 @@ class DashboardOverview extends React.PureComponent {
                     <CardSimple
                         type="dashboard"
                         title="Learn graphs"
-                        content="#"
-                        details="Head home and choose start a learn mode"
+                        content="..."
+                        details="Head /home and initiate a learn mode"
                     />
                 </div>
                 <div className={classes.container}>
