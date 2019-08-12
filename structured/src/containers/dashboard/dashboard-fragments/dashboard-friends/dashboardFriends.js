@@ -7,6 +7,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import ImageIcon from "@material-ui/icons/Image";
+import PeopleIcon from "@material-ui/icons/People";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
 
@@ -71,20 +72,19 @@ class DashboardFriends extends React.PureComponent {
                                     button
                                     key={element}
                                     onClick={() =>
-                                        this.props.friendConfirm(
-                                            element.requestId
-                                        )
+                                        this.props.friendConfirm(element["_id"])
                                     }
                                 >
                                     <ListItemAvatar>
                                         <Avatar>
-                                            <CheckCircleIcon color="secondary" />
+                                            <PeopleIcon />
                                         </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
-                                        primary={element}
-                                        secondary="Click here to accept this request"
+                                        primary={element.sender}
+                                        secondary={element.time}
                                     />
+                                    <CheckCircleIcon color="secondary" />
                                 </ListItem>
                             ))}
                         </List>
