@@ -1,7 +1,7 @@
 export const styles = () => ({
     root: {
         marginTop: "118px",
-        marginBottom: "36px",
+        height: "calc(100% - 34px)",
         padding: "0",
         width: "100%"
     },

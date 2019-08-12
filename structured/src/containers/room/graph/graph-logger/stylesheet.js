@@ -3,7 +3,8 @@ import { graphColors } from "../../../../assets/stylesheet";
 export const styles = () => ({
     root: {
         fontSize: "1rem",
-        fontFamily: "Consolas, monaco, monospace",
+        fontFamily:
+            "source-code-pro, Menlo, Monaco, Consolas, 'Courier New, monospace",
         float: "left",
         width: "auto",
         padding: "1.5rem"

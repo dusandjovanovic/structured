@@ -3,8 +3,9 @@ export const styles = () => ({
         maxWidth: "700px",
         animationName: "fadeIn",
         animationDuration: "1s",
-        fontFamily: "Consolas, monospace",
-        fontSize: "1.3rem",
+        fontFamily:
+            "source-code-pro, Menlo, Monaco, Consolas, 'Courier New, monospace",
+        fontSize: "1.1rem",
         background: "#ffffff",
         opacity: 0.9,
         border: "1px solid #152434",
@@ -16,7 +17,7 @@ export const styles = () => ({
         left: "5%"
     },
     syntax: {
-        padding: "1.5rem 1.5rem 0.5rem 1.5rem"
+        padding: "0.5rem 1.5rem 0.5rem 1.5rem"
     },
     "@keyframes fadeIn": {
         from: { opacity: 0 },
