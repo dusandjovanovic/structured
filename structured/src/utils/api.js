@@ -2,7 +2,7 @@ import base from "axios";
 
 export const backendRoot = "http://localhost:2999";
 
-export const authRoute = "/api/auth/login";
+export const authLoginRoute = "/api/auth/login";
 export const authRegisterRoute = "/api/auth/register";
 
 export const roomCreateNewRoute = "/api/rooms";

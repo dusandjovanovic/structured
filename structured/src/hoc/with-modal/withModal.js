@@ -1,6 +1,5 @@
 import React from "react";
 import Modal from "@material-ui/core/Modal";
-import { compose } from "redux";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -8,7 +7,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 /* eslint react/display-name: 0 */
 
 const withModal = WrappedComponent => {
-    return class extends React.Component {
+    class ProxyClass extends React.Component {
         render() {
             const { classes } = this.props;
 
@@ -20,15 +19,14 @@ const withModal = WrappedComponent => {
                     open={this.props.open}
                 >
                     <div className={classes.container}>
-                        <WrappedComponent {...this.props} />
+                        <WrappedComponent {...this.props} classes={null} />
                     </div>
                 </Modal>
             );
         }
-    };
+    }
+
+    return withStyles(styles)(ProxyClass);
 };
 
-export default compose(
-    withStyles(styles),
-    withModal
-);
+export default withModal;

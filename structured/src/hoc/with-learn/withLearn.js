@@ -22,7 +22,7 @@ const withLearn = WrappedComponent => {
                                 <Typography variant="h6">
                                     What are graphs?
                                 </Typography>
-                                <Typography variant="paragraph">
+                                <Typography variant="body1">
                                     In computer science, a graph is an{" "}
                                     <strong>abstract data type</strong> that is
                                     meant to implement the undirected graph and
@@ -52,7 +52,7 @@ const withLearn = WrappedComponent => {
                             </Grid>
                             <hr />
                             <Grid container direction="column">
-                                <Typography variant="paragraph">
+                                <Typography variant="body1">
                                     The basic operations provided by a graph
                                     data structure G usually include:
                                 </Typography>
@@ -107,7 +107,7 @@ const withLearn = WrappedComponent => {
                                 <Typography variant="h6">
                                     Adjacency list
                                 </Typography>
-                                <Typography variant="paragraph">
+                                <Typography variant="body1">
                                     Vertices are stored as records or objects,
                                     and every vertex stores a list of adjacent
                                     vertices. This data structure allows the
@@ -122,7 +122,7 @@ const withLearn = WrappedComponent => {
                                 <Typography variant="h6">
                                     Incidence matrix
                                 </Typography>
-                                <Typography variant="paragraph">
+                                <Typography variant="body1">
                                     A two-dimensional Boolean matrix, in which
                                     the rows represent the vertices and columns
                                     represent the edges. The entries indicate
@@ -148,7 +148,7 @@ const withLearn = WrappedComponent => {
                                 <Typography variant="h6">
                                     Breadth-first search
                                 </Typography>
-                                <Typography variant="paragraph">
+                                <Typography variant="body1">
                                     A depth-first search (DFS) is an algorithm
                                     for <em>traversing a finite graph</em>. DFS
                                     visits the child vertices before visiting
@@ -212,7 +212,7 @@ const withLearn = WrappedComponent => {
                                 <Typography variant="h6">
                                     Depth-first search
                                 </Typography>
-                                <Typography variant="paragraph">
+                                <Typography variant="body1">
                                     A breadth-first search (BFS) is another
                                     technique for traversing a finite graph. BFS
                                     visits the neighbor vertices before visiting

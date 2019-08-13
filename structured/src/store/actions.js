@@ -23,6 +23,7 @@ export const FRIENDS_FAIL = "FRIENDS_FAIL";
 
 export const ROOM_ALL = "ROOM_ALL";
 export const ROOM_CREATE = "ROOM_CREATE";
+export const ROOM_ADD = "ROOM_ADD";
 export const ROOM_JOIN = "ROOM_JOIN";
 export const ROOM_LEAVE = "ROOM_LEAVE";
 export const ROOM_ERROR = "ROOM_ERROR";

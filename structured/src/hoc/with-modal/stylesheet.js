@@ -4,7 +4,6 @@ export const styles = () => ({
         height: "auto",
         margin: "auto",
         backgroundColor: "#ffffff",
-        borderRadius: "0.5rem",
         boxShadow: "0px 0px 20px rgba(122,122,122,0.4)"
     },
     modal: {

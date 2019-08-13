@@ -6,12 +6,12 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
-import ImageIcon from "@material-ui/icons/Image";
-import PeopleIcon from "@material-ui/icons/People";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
 
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import PeopleIcon from "@material-ui/icons/People";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -54,7 +54,7 @@ class DashboardFriends extends React.PureComponent {
                                 <ListItem button key={element}>
                                     <ListItemAvatar>
                                         <Avatar>
-                                            <ImageIcon />
+                                            <PeopleIcon />
                                         </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
@@ -77,7 +77,7 @@ class DashboardFriends extends React.PureComponent {
                                 >
                                     <ListItemAvatar>
                                         <Avatar>
-                                            <PeopleIcon />
+                                            <PersonAddIcon />
                                         </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
@@ -98,7 +98,7 @@ class DashboardFriends extends React.PureComponent {
 DashboardFriends.propTypes = {
     classes: PropTypes.object.isRequired,
     friends: PropTypes.arrayOf(PropTypes.string).isRequired,
-    requests: PropTypes.arrayOf(PropTypes.string).isRequired,
+    requests: PropTypes.arrayOf(PropTypes.object).isRequired,
     friendAdd: PropTypes.func.isRequired,
     friendConfirm: PropTypes.func.isRequired
 };
