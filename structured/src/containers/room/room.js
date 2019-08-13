@@ -57,7 +57,7 @@ class Room extends React.Component {
     }
 
     deleteRoom = () => {
-        this.props.roomDeleteExisting().then(response => {
+        this.props.roomDeleteExisting().then(() => {
             if (!this.props.learn) this.props.deleteRoomIO(this.state.roomName);
             this.setState({
                 redirect: true

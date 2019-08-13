@@ -215,6 +215,7 @@ export const roomLeaveExisting = roomDeleted => {
             roomName: getState().room.name,
             username: getState().auth.username
         };
+        let response;
 
         if (roomDeleted) {
             dispatch(roomDelete());
@@ -222,7 +223,7 @@ export const roomLeaveExisting = roomDeleted => {
             dispatch(roomEnd());
         } else {
             try {
-                const response = await axios
+                response = await axios
                     .getInstance()
                     .post(roomLeaveRoute, payload);
 
@@ -237,6 +238,8 @@ export const roomLeaveExisting = roomDeleted => {
                 dispatch(roomError(error));
             }
         }
+
+        return response;
     };
 };
 
