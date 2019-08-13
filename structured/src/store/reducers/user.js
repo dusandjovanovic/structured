@@ -1,9 +1,9 @@
 import {
     USER_FETCH_DATA,
     USER_FETCH_HISTORY,
-    USER_FETCH_DATA_INIT,
-    USER_FETCH_DATA_END,
-    USER_FETCH_DATA_FAIL,
+    USER_INIT,
+    USER_END,
+    USER_ERROR,
     FRIENDS_FETCH_REQUESTS,
     FRIENDS_CONFIRM_REQUEST,
     FRIENDS_DENY_REQUEST
@@ -19,6 +19,22 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case USER_INIT:
+            return {
+                ...state,
+                waiting: true
+            };
+        case USER_END:
+            return {
+                ...state,
+                waiting: false
+            };
+        case USER_ERROR:
+            return {
+                ...state,
+                error: action.error,
+                waiting: false
+            };
         case USER_FETCH_DATA:
             return {
                 ...state,
@@ -29,29 +45,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 history: [...action.history]
             };
-        case USER_FETCH_DATA_INIT:
-            return {
-                ...state,
-                waiting: true
-            };
-        case USER_FETCH_DATA_END:
-            return {
-                ...state,
-                waiting: false
-            };
-        case USER_FETCH_DATA_FAIL:
-            return {
-                ...state,
-                error: action.error,
-                waiting: false
-            };
+
         case FRIENDS_FETCH_REQUESTS:
             return {
                 ...state,
                 requests: [...action.requests]
             };
         case FRIENDS_CONFIRM_REQUEST: {
-            let sender = "";
+            let sender;
             for (let iter = 0; iter < state.requests.length; iter++)
                 if (state.requests[iter]["_id"] === action.requestId)
                     sender = state.requests[iter].sender;

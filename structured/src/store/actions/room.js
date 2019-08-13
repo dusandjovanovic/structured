@@ -156,7 +156,6 @@ export const roomGetData = name => {
 export const roomCreateNew = (name, maxUsers, roomType) => {
     return async (dispatch, getState) => {
         dispatch(roomInitiate());
-
         const payload = {
             name: name,
             maxUsers: maxUsers,
@@ -180,15 +179,12 @@ export const roomCreateNew = (name, maxUsers, roomType) => {
         } catch (error) {
             dispatch(roomError(error));
         }
-
-        return;
     };
 };
 
 export const roomJoinExisting = name => {
     return async (dispatch, getState) => {
         dispatch(roomInitiate());
-
         const payload = {
             roomName: name,
             username: getState().auth.username
@@ -209,15 +205,12 @@ export const roomJoinExisting = name => {
         } catch (error) {
             dispatch(roomError(error));
         }
-
-        return;
     };
 };
 
 export const roomLeaveExisting = roomDeleted => {
     return async (dispatch, getState) => {
         dispatch(roomInitiate());
-
         const payload = {
             roomName: getState().room.name,
             username: getState().auth.username
@@ -234,6 +227,7 @@ export const roomLeaveExisting = roomDeleted => {
                     .post(roomLeaveRoute, payload);
 
                 if (response.data.success) {
+                    await dispatch(roomGetAll());
                     dispatch(roomLeave(getState().auth.username));
                     dispatch(roomEnd());
                 } else {
@@ -243,15 +237,12 @@ export const roomLeaveExisting = roomDeleted => {
                 dispatch(roomError(error));
             }
         }
-
-        return;
     };
 };
 
 export const roomDeleteExisting = () => {
     return async (dispatch, getState) => {
         dispatch(roomInitiate());
-
         const roomId = getState().room["_id"];
         const username = getState().auth.username;
 
@@ -261,6 +252,7 @@ export const roomDeleteExisting = () => {
                 .delete(roomDeleteRoute(roomId));
 
             if (response.data.success) {
+                await dispatch(roomGetAll());
                 dispatch(roomDelete());
                 dispatch(roomLeave(username));
                 dispatch(roomEnd());
@@ -270,8 +262,6 @@ export const roomDeleteExisting = () => {
         } catch (error) {
             dispatch(roomError(error));
         }
-
-        return;
     };
 };
 
@@ -298,7 +288,6 @@ export const roomGetGraph = name => {
 export const roomChangeGraph = (name, graph) => {
     return async dispatch => {
         let response;
-
         const payload = {
             graph: graph
         };
