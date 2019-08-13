@@ -79,7 +79,6 @@ export const authenticatePersisted = () => {
 export const authenticateLogin = (username, password, remember) => {
     return async dispatch => {
         dispatch(authInitiate());
-
         const payload = {
             username: username,
             password: password
@@ -103,7 +102,6 @@ export const authenticateLogin = (username, password, remember) => {
 export const authenticateRegister = (username, password, remember) => {
     return async dispatch => {
         dispatch(authInitiate());
-
         const payload = {
             username: username,
             password: password

@@ -91,14 +91,7 @@ const reducer = (state = initialState, action) => {
                 data: {
                     _id: null,
                     users: []
-                },
-                rooms: state.rooms.map(element =>
-                    element["_id"] === state.data["_id"]
-                        ? {
-                              ...element
-                          }
-                        : element
-                )
+                }
             };
         case ROOM_DELETE:
             return {

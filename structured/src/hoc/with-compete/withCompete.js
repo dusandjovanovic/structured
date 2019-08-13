@@ -143,7 +143,7 @@ const withCompete = WrappedComponent => {
                             ? 100 / this.state.graph.length
                             : 0;
             this.props.competeEndedIO(scored);
-            this.props.userHistoryAdd(this.props.username, scored);
+            this.props.userHistoryAdd(scored);
             this.props.graphManagedEnded();
             if (!this.props.master) this.props.getGraphIO();
         };

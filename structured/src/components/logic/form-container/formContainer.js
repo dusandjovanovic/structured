@@ -170,13 +170,21 @@ class FormContainer extends React.Component {
     };
 
     validateForm = () => {
+        let inputs = {};
         let validForm = true;
-        for (let key in this.state.inputs)
+        for (let key in this.state.inputs) {
             if (
                 this.state.inputs.hasOwnProperty(key) &&
                 !this.state.inputs[key].media
-            )
+            ) {
                 validForm = this.state.inputs[key].valid && validForm;
+                inputs[key] = {
+                    ...this.state.inputs[key],
+                    touched: true
+                };
+            }
+        }
+        this.setState({ inputs });
         return validForm;
     };
 
