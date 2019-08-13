@@ -18,7 +18,7 @@ import {
 
 class Learn extends React.PureComponent {
     state = {
-        learn: null
+        learn: false
     };
 
     handleStateChange = value => {
@@ -29,7 +29,7 @@ class Learn extends React.PureComponent {
 
     handleDialogClose = () => {
         this.setState({
-            learn: null
+            learn: false
         });
     };
 
@@ -82,7 +82,7 @@ class Learn extends React.PureComponent {
                 <Dialog
                     onClose={this.handleDialogClose}
                     aria-labelledby="graph-dialog"
-                    open={this.state.learn}
+                    open={!!this.state.learn}
                     maxWidth="md"
                 >
                     <DialogContent>

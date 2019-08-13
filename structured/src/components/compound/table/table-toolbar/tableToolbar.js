@@ -7,13 +7,13 @@ import IconButton from "@material-ui/core/IconButton";
 import PropTypes from "prop-types";
 
 import withStyles from "@material-ui/core/styles/withStyles";
-import {styles} from "./stylesheet";
+import { styles } from "./stylesheet";
 
 const tableToolbar = props => {
-    const {classes, numSelected, title, action} = props;
+    const { classes, numSelected, title, action } = props;
     let toolbarClasses = `${classes.root} ${
         numSelected > 0 ? classes.highlight : undefined
-        }`;
+    }`;
     return (
         <Toolbar className={toolbarClasses}>
             <div className={classes.titleContainer}>
@@ -22,17 +22,21 @@ const tableToolbar = props => {
                         {numSelected} selected
                     </Typography>
                 ) : (
-                    <Typography variant="h6" id="tableTitle" className={classes.title}>
+                    <Typography
+                        variant="h6"
+                        id="tableTitle"
+                        className={classes.title}
+                    >
                         {title}
                     </Typography>
                 )}
             </div>
-            <div className={classes.spacer}/>
+            <div className={classes.spacer} />
             <div className={classes.actions}>
                 {numSelected > 0 ? (
-                    <Tooltip title="Delete">
-                        <IconButton aria-label="Delete" onClick={() => action()}>
-                            <InfoIcon/>
+                    <Tooltip title="Info">
+                        <IconButton aria-label="Info" onClick={() => action()}>
+                            <InfoIcon />
                         </IconButton>
                     </Tooltip>
                 ) : (

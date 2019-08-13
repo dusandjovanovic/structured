@@ -34,14 +34,14 @@ class Home extends React.Component {
     }
 
     enterRoom = name => {
-        this.props.roomJoinExisting(name, this.props.username);
+        this.props.roomJoinExisting(name);
         this.setState({
             redirect: true
         });
     };
 
     createAndEnterRoom = (name, maxUsers, roomType) => {
-        this.props.roomCreateNew(name, maxUsers, roomType, this.props.username);
+        this.props.roomCreateNew(name, maxUsers, roomType);
         this.setState({
             redirect: true
         });
@@ -110,7 +110,6 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.auth.username,
         room: state.room.room,
         rooms: state.room.rooms,
         data: state.room.data,
@@ -122,10 +121,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         roomGetAll: mode => dispatch(actions.roomGetAll(mode)),
-        roomJoinExisting: (name, username) =>
-            dispatch(actions.roomJoinExisting(name, username)),
-        roomCreateNew: (name, maxUsers, roomType, username) =>
-            dispatch(actions.roomCreateNew(name, maxUsers, roomType, username))
+        roomJoinExisting: name => dispatch(actions.roomJoinExisting(name)),
+        roomCreateNew: (name, maxUsers, roomType) =>
+            dispatch(actions.roomCreateNew(name, maxUsers, roomType))
     };
 };
 

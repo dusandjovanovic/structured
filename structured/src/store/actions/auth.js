@@ -10,7 +10,7 @@ import {
 
 import { userData } from "./index";
 import { initAuth, readAuth, removeAuth } from "../../utils/storage";
-import { axios, authRoute, authRegisterRoute } from "../../utils/api";
+import { axios, authLoginRoute, authRegisterRoute } from "../../utils/api";
 
 const authUpdateCredentials = (token, username) => {
     return {
@@ -40,6 +40,13 @@ const authSuccess = () => {
     };
 };
 
+const authLogout = () => {
+    removeAuth();
+    return {
+        type: AUTH_LOGOUT
+    };
+};
+
 const authError = error => {
     return {
         type: AUTH_ERROR,
@@ -58,13 +65,6 @@ export const authRedirect = redirectPath => {
     };
 };
 
-const authLogout = () => {
-    removeAuth();
-    return {
-        type: AUTH_LOGOUT
-    };
-};
-
 export const authenticatePersisted = () => {
     return dispatch => {
         let local = readAuth();
@@ -77,50 +77,50 @@ export const authenticatePersisted = () => {
 };
 
 export const authenticateLogin = (username, password, remember) => {
-    return dispatch => {
+    return async dispatch => {
         dispatch(authInitiate());
 
-        let payload = {
+        const payload = {
             username: username,
             password: password
         };
 
-        axios
-            .getInstance()
-            .post(authRoute, payload)
-            .then(response => {
-                if (remember) initAuth(response.data.token, username);
-                dispatch(authUpdateCredentials(response.data.token, username));
-                dispatch(authSuccess());
-                dispatch(userData(true));
-            })
-            .catch(error => {
-                dispatch(authError(error.response.data.msg));
-            });
+        try {
+            const response = await axios
+                .getInstance()
+                .post(authLoginRoute, payload);
+
+            if (remember) initAuth(response.data.token, username);
+            dispatch(authUpdateCredentials(response.data.token, username));
+            dispatch(authSuccess());
+            dispatch(userData(true));
+        } catch (error) {
+            dispatch(authError(error.response.data.msg));
+        }
     };
 };
 
 export const authenticateRegister = (username, password, remember) => {
-    return dispatch => {
+    return async dispatch => {
         dispatch(authInitiate());
 
-        let payload = {
+        const payload = {
             username: username,
             password: password
         };
 
-        axios
-            .getInstance()
-            .post(authRegisterRoute, payload)
-            .then(response => {
-                if (remember) initAuth(response.data.token, username);
-                dispatch(authUpdateCredentials(response.data.token, username));
-                dispatch(authSuccess());
-                dispatch(userData(true));
-            })
-            .catch(error => {
-                dispatch(authError(error.response.data.msg));
-            });
+        try {
+            const response = await axios
+                .getInstance()
+                .post(authRegisterRoute, payload);
+
+            if (remember) initAuth(response.data.token, username);
+            dispatch(authUpdateCredentials(response.data.token, username));
+            dispatch(authSuccess());
+            dispatch(userData(true));
+        } catch (error) {
+            dispatch(authError(error.response.data.msg));
+        }
     };
 };
 

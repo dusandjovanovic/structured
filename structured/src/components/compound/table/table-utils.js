@@ -9,7 +9,9 @@ export function stableSort(array, cmp) {
 }
 
 export function getSorting(order, orderBy) {
-    return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
+    return order === "desc"
+        ? (a, b) => desc(a, b, orderBy)
+        : (a, b) => -desc(a, b, orderBy);
 }
 
 function desc(a, b, orderBy) {

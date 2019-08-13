@@ -5,14 +5,14 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 
 /* eslint react/display-name: 0 */
 
-const withMaterial = (Component) => {
+const withMaterial = Component => {
     return class extends React.Component {
         theme = createMuiTheme({
             palette: {
                 primary: {
-                    light: "#49515f",
-                    main: "#282c34",
-                    dark: "#121417"
+                    light: "#52565c",
+                    main: "#3d4148",
+                    dark: "#202329"
                 },
                 secondary: {
                     light: "#ff1e68",
@@ -20,26 +20,26 @@ const withMaterial = (Component) => {
                     dark: "#991545"
                 },
                 ternary: {
-                    light: '#f0f4c3',
-                    main: '#e6ee9c',
-                    dark: '#dce775'
+                    light: "#f0f4c3",
+                    main: "#e6ee9c",
+                    dark: "#dce775"
                 }
             },
             typography: {
                 useNextVariants: true,
                 fontFamily: '"Segoe UI", "Helvetica", "Arial", sans-serif'
-            },
+            }
         });
 
         render() {
             return (
                 <MuiThemeProvider theme={this.theme}>
-                    <CssBaseline/>
+                    <CssBaseline />
                     <Component {...this.props} />
                 </MuiThemeProvider>
             );
         }
     };
-}
+};
 
 export default withMaterial;

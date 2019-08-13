@@ -37,10 +37,7 @@ class Room extends React.Component {
             this.props.socket.on(
                 this.props.room.name + " delete room",
                 received => {
-                    this.props.roomLeaveExisting(
-                        this.props.room.name,
-                        true
-                    );
+                    this.props.roomLeaveExisting(true);
                     this.props.notificationSystem(
                         "The room has been deleted.",
                         "error",
@@ -60,7 +57,7 @@ class Room extends React.Component {
     }
 
     deleteRoom = () => {
-        this.props.roomDeleteExisting(this.props.data._id).then(response => {
+        this.props.roomDeleteExisting().then(response => {
             if (!this.props.learn) this.props.deleteRoomIO(this.state.roomName);
             this.setState({
                 redirect: true
@@ -69,25 +66,23 @@ class Room extends React.Component {
     };
 
     leaveRoom = () => {
-        this.props
-            .roomLeaveExisting(this.props.room.name, false)
-            .then(response => {
-                if (!this.props.learn)
-                    if (response.newMaster)
-                        this.props.masterChangedIO(
-                            this.state.roomName,
-                            response.newMaster
-                        );
-                    else
-                        this.props.joinLeaveRoomIO(
-                            this.state.roomName,
-                            response.msg
-                        );
+        this.props.roomLeaveExisting(false).then(response => {
+            if (!this.props.learn)
+                if (response.newMaster)
+                    this.props.masterChangedIO(
+                        this.state.roomName,
+                        response.newMaster
+                    );
+                else
+                    this.props.joinLeaveRoomIO(
+                        this.state.roomName,
+                        response.msg
+                    );
 
-                this.setState({
-                    redirect: true
-                });
+            this.setState({
+                redirect: true
             });
+        });
 
         return "unloading";
     };

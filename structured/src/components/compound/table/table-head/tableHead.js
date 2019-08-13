@@ -27,7 +27,9 @@ class tableHead extends React.Component {
                 <TableRow>
                     <TableCell padding="checkbox">
                         <Checkbox
-                            indeterminate={numSelected > 0 && numSelected < rowCount}
+                            indeterminate={
+                                numSelected > 0 && numSelected < rowCount
+                            }
                             checked={numSelected === rowCount}
                             onChange={onSelectAllClick}
                             color="primary"
@@ -41,7 +43,9 @@ class tableHead extends React.Component {
                         >
                             <Tooltip
                                 title="Sort"
-                                placement={row.numeric ? "bottom-end" : "bottom-start"}
+                                placement={
+                                    row.numeric ? "bottom-end" : "bottom-start"
+                                }
                                 enterDelay={300}
                             >
                                 <TableSortLabel

@@ -16,6 +16,7 @@ import {
     ROOM_DATA,
     ROOM_ALL,
     ROOM_CREATE,
+    ROOM_ADD,
     ROOM_DELETE,
     ROOM_JOIN,
     ROOM_LEAVE,
@@ -28,6 +29,13 @@ const roomCreate = name => {
     return {
         type: ROOM_CREATE,
         name: name
+    };
+};
+
+const roomAdd = room => {
+    return {
+        type: ROOM_ADD,
+        room: room
     };
 };
 
@@ -44,9 +52,10 @@ const roomJoin = name => {
     };
 };
 
-const roomLeave = () => {
+const roomLeave = username => {
     return {
-        type: ROOM_LEAVE
+        type: ROOM_LEAVE,
+        username: username
     };
 };
 
@@ -99,242 +108,215 @@ const roomError = error => {
 };
 
 export const roomGetAll = mode => {
-    return dispatch => {
-        dispatch(roomInitiate());
+    return async dispatch => {
+        let response;
 
-        axios
-            .getInstance()
-            .get(roomGetAllRoute(mode))
-            .then(response => {
-                if (response.data.success) {
-                    dispatch(roomAll(response.data.data));
-                    dispatch(roomEnd());
-                } else {
-                    console.log("roomError:", response.data.msg);
-                    dispatch(roomError(response.data.msg));
-                }
-            })
-            .catch(error => {
-                console.log("roomError:", error);
-                dispatch(roomError(error));
-            });
+        try {
+            response = await axios.getInstance().get(roomGetAllRoute(mode));
+
+            if (response.data.success) {
+                dispatch(roomAll(response.data.data));
+            } else {
+                dispatch(roomError(response.data.msg));
+            }
+        } catch (error) {
+            dispatch(roomError(error));
+        }
+
+        return response;
     };
 };
 
 export const roomGetData = name => {
-    return (dispatch, getState) => {
-        dispatch(roomInitiate());
+    return async (dispatch, getState) => {
+        let response;
 
-        axios
-            .getInstance()
-            .get(roomGetDataRoute(name))
-            .then(response => {
-                if (response.data.success) {
-                    dispatch(
-                        roomData(
-                            response.data.data,
-                            getState().auth.username ===
-                                response.data.data.createdBy
-                        )
-                    );
-                } else {
-                    console.log("roomError:", response.data.msg);
-                    dispatch(roomError(response.data.msg));
-                }
-            })
-            .catch(error => {
-                console.log("roomError:", error);
-                dispatch(roomError(error));
-            });
+        try {
+            response = await axios.getInstance().get(roomGetDataRoute(name));
+
+            if (response.data.success) {
+                dispatch(
+                    roomData(
+                        response.data.data,
+                        getState().auth.username ===
+                            response.data.data.createdBy
+                    )
+                );
+            } else {
+                dispatch(roomError(response.data.msg));
+            }
+        } catch (error) {
+            dispatch(roomError(error));
+        }
+
+        return response;
     };
 };
 
 export const roomCreateNew = (name, maxUsers, roomType) => {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         dispatch(roomInitiate());
 
-        const data = {
+        const payload = {
             name: name,
             maxUsers: maxUsers,
             roomType: roomType,
             createdBy: getState().auth.username
         };
 
-        axios
-            .getInstance()
-            .post(roomCreateNewRoute, data)
-            .then(response => {
-                if (response.data.success) {
-                    dispatch(roomCreate(name));
-                    dispatch(roomGetData(name));
-                    dispatch(roomGetAll("all"));
-                } else {
-                    console.log("roomCreateError:", response.data.msg);
-                    dispatch(roomError(response.data.msg));
-                }
-            })
-            .catch(error => {
-                console.log("roomCreateError:", error);
-                dispatch(roomError(error));
-            });
+        try {
+            const response = await axios
+                .getInstance()
+                .post(roomCreateNewRoute, payload);
+
+            if (response.data.success) {
+                const roomData = await dispatch(roomGetData(name));
+                dispatch(roomAdd(roomData.data.data));
+                dispatch(roomCreate(roomData.data.data.name));
+                dispatch(roomEnd());
+            } else {
+                dispatch(roomError(response.data.msg));
+            }
+        } catch (error) {
+            dispatch(roomError(error));
+        }
+
+        return;
     };
 };
 
 export const roomJoinExisting = name => {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         dispatch(roomInitiate());
 
-        const data = {
+        const payload = {
             roomName: name,
             username: getState().auth.username
         };
 
-        return new Promise(function(resolve, reject) {
-            axios
+        try {
+            const response = await axios
                 .getInstance()
-                .post(roomJoinRoute, data)
-                .then(response => {
-                    if (response.data.success) {
-                        dispatch(roomGetData(name));
-                        dispatch(roomJoin(name));
-                        dispatch(roomGetAll("all"));
-                        resolve(response.data);
-                    } else {
-                        console.log("roomJoinError:", response.data.msg);
-                        dispatch(roomError(response.data.msg));
-                        reject(response.data.msg);
-                    }
-                })
-                .catch(error => {
-                    console.log("roomJoinError:", error);
-                    dispatch(roomError(error));
-                    reject(error.message);
-                });
-        });
+                .post(roomJoinRoute, payload);
+
+            if (response.data.success) {
+                const roomData = await dispatch(roomGetData(name));
+                dispatch(roomJoin(roomData.data.data.name));
+                dispatch(roomEnd());
+            } else {
+                dispatch(roomError(response.data.msg));
+            }
+        } catch (error) {
+            dispatch(roomError(error));
+        }
+
+        return;
     };
 };
 
-export const roomLeaveExisting = (name, roomDeleted) => {
-    return (dispatch, getState) => {
+export const roomLeaveExisting = roomDeleted => {
+    return async (dispatch, getState) => {
         dispatch(roomInitiate());
 
-        const data = {
-            roomName: name,
+        const payload = {
+            roomName: getState().room.name,
             username: getState().auth.username
         };
 
         if (roomDeleted) {
-            dispatch(roomLeave());
-            dispatch(roomGetAll("all"));
-        } else
-            return new Promise(function(resolve, reject) {
-                axios
+            dispatch(roomDelete());
+            dispatch(roomLeave(getState().auth.username));
+            dispatch(roomEnd());
+        } else {
+            try {
+                const response = await axios
                     .getInstance()
-                    .post(roomLeaveRoute, data)
-                    .then(response => {
-                        if (response.data.success) {
-                            dispatch(roomLeave());
-                            dispatch(roomGetAll("all"));
-                            resolve(response.data);
-                        } else {
-                            console.log("roomLeaveError:", response.data.msg);
-                            dispatch(roomError(response.data.msg));
-                            reject(response.data.msg);
-                        }
-                    })
-                    .catch(error => {
-                        console.log("roomLeaveError:", error);
-                        dispatch(roomError(error));
-                        reject(error.message);
-                    });
-            });
+                    .post(roomLeaveRoute, payload);
+
+                if (response.data.success) {
+                    dispatch(roomLeave(getState().auth.username));
+                    dispatch(roomEnd());
+                } else {
+                    dispatch(roomError(response.data.msg));
+                }
+            } catch (error) {
+                dispatch(roomError(error));
+            }
+        }
+
+        return;
     };
 };
 
-export const roomDeleteExisting = roomId => {
-    return dispatch => {
+export const roomDeleteExisting = () => {
+    return async (dispatch, getState) => {
         dispatch(roomInitiate());
 
-        return new Promise(function(resolve, reject) {
-            axios
+        const roomId = getState().room["_id"];
+        const username = getState().auth.username;
+
+        try {
+            const response = await axios
                 .getInstance()
-                .delete(roomDeleteRoute(roomId))
-                .then(response => {
-                    if (response.data.success) {
-                        dispatch(roomDelete());
-                        dispatch(roomGetAll("all"));
-                        resolve(response.data);
-                    } else {
-                        console.log("roomDeleteError:", response.data.msg);
-                        dispatch(roomError(response.data.msg));
-                        reject(response.data.msg);
-                    }
-                })
-                .catch(error => {
-                    console.log("deleteError:", error);
-                    dispatch(roomError(error));
-                    reject(error.message);
-                });
-        });
+                .delete(roomDeleteRoute(roomId));
+
+            if (response.data.success) {
+                dispatch(roomDelete());
+                dispatch(roomLeave(username));
+                dispatch(roomEnd());
+            } else {
+                dispatch(roomError(response.data.msg));
+            }
+        } catch (error) {
+            dispatch(roomError(error));
+        }
+
+        return;
     };
 };
 
 export const roomGetGraph = name => {
-    return dispatch => {
-        dispatch(roomInitiate());
+    return async dispatch => {
+        let response;
 
-        return new Promise(function(resolve, reject) {
-            axios
-                .getInstance()
-                .get(roomGetGraphRoute(name))
-                .then(response => {
-                    if (response.data.success) {
-                        dispatch(roomGraph(response.data.data));
-                        dispatch(roomEnd());
-                        resolve(response.data);
-                    } else {
-                        console.log("roomError:", response.data.msg);
-                        dispatch(roomError(response.data.msg));
-                        reject(response.data.msg);
-                    }
-                })
-                .catch(error => {
-                    console.log("roomError:", error);
-                    dispatch(roomError(error));
-                    reject(error.message);
-                });
-        });
+        try {
+            response = await axios.getInstance().get(roomGetGraphRoute(name));
+
+            if (response.data.success) {
+                dispatch(roomGraph(response.data.data));
+            } else {
+                dispatch(roomError(response.data.msg));
+            }
+        } catch (error) {
+            dispatch(roomError(error));
+        }
+
+        return response;
     };
 };
 
 export const roomChangeGraph = (name, graph) => {
-    return dispatch => {
-        dispatch(roomInitiate());
+    return async dispatch => {
+        let response;
 
-        let data = {
+        const payload = {
             graph: graph
         };
 
-        return new Promise(function(resolve, reject) {
-            axios
+        try {
+            response = await axios
                 .getInstance()
-                .put(roomChangeGraphRoute(name), data)
-                .then(response => {
-                    if (response.data.success) {
-                        dispatch(roomGraphChange(graph));
-                        dispatch(roomEnd());
-                        resolve(response.data);
-                    } else {
-                        console.log("roomError:", response.data.msg);
-                        dispatch(roomError(response.data.msg));
-                        reject(response.data.msg);
-                    }
-                })
-                .catch(error => {
-                    console.log("roomError:", error);
-                    dispatch(roomError(error));
-                    reject(error.message);
-                });
-        });
+                .put(roomChangeGraphRoute(name), payload);
+
+            if (response.data.success) {
+                dispatch(roomGraphChange(graph));
+            } else {
+                dispatch(roomError(response.data.msg));
+            }
+        } catch (error) {
+            dispatch(roomError(error));
+        }
+
+        return response;
     };
 };

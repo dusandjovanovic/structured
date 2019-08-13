@@ -142,7 +142,6 @@ const withCompete = WrappedComponent => {
                         this.state.graph[index]
                             ? 100 / this.state.graph.length
                             : 0;
-            console.log(this.state.graph, this.props.nodesHighlighted);
             this.props.competeEndedIO(scored);
             this.props.userHistoryAdd(this.props.username, scored);
             this.props.graphManagedEnded();

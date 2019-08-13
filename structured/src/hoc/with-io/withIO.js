@@ -9,12 +9,6 @@ const withIO = WrappedComponent => {
         constructor(props) {
             super(props);
             this.socket = this.props.io("http://localhost:2998/graph");
-            this.socket.on("connect", () => {
-                console.log(this.props.username, "WebSocket opened");
-            });
-            this.socket.on("disconnect", () => {
-                console.log(this.props.username, "WebSocket closed");
-            });
         }
 
         componentWillUnmount() {
