@@ -1,6 +1,7 @@
 import React from "react";
 import { graphFactory } from "../../utils/graph-module/graphModule";
 import randomData from "../../utils/graph-module/graphRandom";
+import PropTypes from "prop-types";
 
 import {
     GRAPH_MANAGED_ADD_EDGE,
@@ -10,10 +11,8 @@ import {
     GRAPH_MANAGED_COMPETE
 } from "../../utils/constants";
 
-/* eslint react/display-name: 0 */
-
 const withGraph = WrappedComponent => {
-    return class extends React.Component {
+    const withGraph = class extends React.Component {
         graph = graphFactory();
 
         state = {
@@ -326,6 +325,40 @@ const withGraph = WrappedComponent => {
             return <WrappedComponent {...proxyPropagate} {...this.props} />;
         }
     };
+
+    withGraph.displayName = "withGraph";
+
+    withGraph.propTypes = {
+        username: PropTypes.string.isRequired,
+        data: PropTypes.object.isRequired,
+        room: PropTypes.object.isRequired,
+        error: PropTypes.string,
+        roomLeaveExisting: PropTypes.func.isRequired,
+        roomDeleteExisting: PropTypes.func.isRequired,
+        roomGetGraph: PropTypes.func.isRequired,
+        roomChangeGraph: PropTypes.func.isRequired,
+        roomGetData: PropTypes.func.isRequired,
+        userHistoryAdd: PropTypes.func.isRequired,
+        internalNotificationsAdd: PropTypes.func.isRequired,
+
+        addNodeIO: PropTypes.func,
+        addEdgeIO: PropTypes.func,
+        removeNodeIO: PropTypes.func,
+        removeEdgeIO: PropTypes.func,
+        addGraphIO: PropTypes.func,
+        getGraphIO: PropTypes.func,
+        changeGraphIO: PropTypes.func,
+        competeBeginIO: PropTypes.func,
+        competeEndedIO: PropTypes.func,
+        algorithmBeginIO: PropTypes.func,
+        algorithmEndedIO: PropTypes.func,
+        joinLeaveRoomIO: PropTypes.func,
+        deleteRoomIO: PropTypes.func,
+        masterChangedIO: PropTypes.func,
+        socket: PropTypes.object
+    };
+
+    return withGraph;
 };
 
 export default withGraph;

@@ -4,6 +4,7 @@ import Graph from "./graph/graph";
 import Chat from "./chat/chat";
 import Statusbar from "./statusbar/statusbar";
 import AlgorithmCore from "./algorithm/core/algorithm";
+import PropTypes from "prop-types";
 
 import withAlgorithm from "../../hoc/with-algorithm/withAlgorithm";
 import withPlayground from "../../hoc/with-playground/withPlayground";
@@ -13,7 +14,7 @@ import withIO from "../../hoc/with-io/withIO";
 import withCompete from "../../hoc/with-compete/withCompete";
 import withLearn from "../../hoc/with-learn/withLearn";
 
-import { Redirect, withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
 import withErrorHandler from "../../hoc/with-error-handler/withErrorHandler";
@@ -38,7 +39,7 @@ class Room extends React.Component {
                 this.props.room.name + " delete room",
                 received => {
                     this.props.roomLeaveExisting(true);
-                    this.props.notificationSystem(
+                    this.props.internalNotificationsAdd(
                         "The room has been deleted.",
                         "error",
                         5,
@@ -177,26 +178,103 @@ class Room extends React.Component {
     }
 }
 
-export const RoomPlayground = withRouter(
-    withRedux(
-        withIO(
-            withGraph(
-                withAlgorithm(
-                    withPlayground(withStyles(styles)(withErrorHandler(Room)))
-                )
+Room.propTypes = {
+    classes: PropTypes.object.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ]).isRequired,
+    addEdge: PropTypes.func,
+    addEdgeIO: PropTypes.func,
+    addGraphIO: PropTypes.func,
+    addNode: PropTypes.func,
+    addNodeIO: PropTypes.func,
+    addReceivedEdge: PropTypes.func,
+    addReceivedNode: PropTypes.func,
+    algorithm: PropTypes.bool,
+    algorithmActive: PropTypes.bool,
+    algorithmBegin: PropTypes.func,
+    algorithmBeginIO: PropTypes.func,
+    algorithmCanceled: PropTypes.func,
+    algorithmEndedIO: PropTypes.func,
+    algorithmNextState: PropTypes.func,
+    algorithmPause: PropTypes.func,
+    algorithmPreviousState: PropTypes.func,
+    algorithmState: PropTypes.object,
+    algorithmType: PropTypes.string,
+    algorithmVisualization: PropTypes.object,
+    algorithmVisualize: PropTypes.func,
+    changeGraphIO: PropTypes.func,
+    competitive: PropTypes.bool,
+    competeBeginIO: PropTypes.func,
+    competeEndedIO: PropTypes.func,
+    data: PropTypes.object,
+    deleteRoomIO: PropTypes.func,
+    error: PropTypes.string,
+    getGraphIO: PropTypes.func,
+    graph: PropTypes.object,
+    graphAnimated: PropTypes.bool,
+    graphAnimatedEnded: PropTypes.func,
+    graphManaged: PropTypes.bool,
+    graphManagedAddEdge: PropTypes.func,
+    graphManagedAlgorithm: PropTypes.func,
+    graphManagedAlgorithmEnded: PropTypes.func,
+    graphManagedCompete: PropTypes.func,
+    graphManagedEnded: PropTypes.func,
+    graphManagedRemoveEdge: PropTypes.func,
+    graphManagedRemoveNode: PropTypes.func,
+    graphNodeRoot: PropTypes.func,
+    graphOperation: PropTypes.string,
+    handlerNodeFocused: PropTypes.func,
+    handlerNodeLostFocus: PropTypes.func,
+    handlerNodeSelected: PropTypes.func,
+    handlerViewport: PropTypes.func,
+    initiateGraph: PropTypes.func,
+    internalNotificationsAdd: PropTypes.func,
+    io: PropTypes.func,
+    joinLeaveRoomIO: PropTypes.func,
+    learn: PropTypes.bool,
+    masterChangedIO: PropTypes.func,
+    nodeCurrent: PropTypes.string,
+    nodeFocused: PropTypes.object,
+    nodeRoot: PropTypes.string,
+    nodeSelected: PropTypes.object,
+    nodesAdjacent: PropTypes.arrayOf(PropTypes.string),
+    nodesHighlighted: PropTypes.arrayOf(PropTypes.string),
+    randomGraph: PropTypes.func,
+    randomGraphOffline: PropTypes.func,
+    removeEdge: PropTypes.func,
+    removeEdgeIO: PropTypes.func,
+    removeNode: PropTypes.func,
+    removeNodeIO: PropTypes.func,
+    removeReceivedEdge: PropTypes.func,
+    removeReceivedNode: PropTypes.func,
+    room: PropTypes.object,
+    roomChangeGraph: PropTypes.func,
+    roomDeleteExisting: PropTypes.func,
+    roomGetData: PropTypes.func,
+    roomGetGraph: PropTypes.func,
+    roomLeaveExisting: PropTypes.func,
+    socket: PropTypes.object,
+    userHistoryAdd: PropTypes.func,
+    username: PropTypes.string,
+    visualization: PropTypes.object
+};
+
+export const RoomPlayground = withRedux(
+    withIO(
+        withGraph(
+            withAlgorithm(
+                withPlayground(withStyles(styles)(withErrorHandler(Room)))
             )
         )
     )
 );
 
-export const RoomCompete = withRouter(
-    withRedux(
-        withIO(
-            withGraph(withCompete(withStyles(styles)(withErrorHandler(Room))))
-        )
-    )
+export const RoomCompete = withRedux(
+    withIO(withGraph(withCompete(withStyles(styles)(withErrorHandler(Room)))))
 );
 
-export const RoomLearn = withRouter(
-    withRedux(withGraph(withLearn(withStyles(styles)(withErrorHandler(Room)))))
+export const RoomLearn = withRedux(
+    withGraph(withLearn(withStyles(styles)(withErrorHandler(Room))))
 );

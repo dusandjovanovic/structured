@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Toolbar from "../../../../components/interface/toolbar/toolbar";
+import PropTypes from "prop-types";
 
 import Replay from "@material-ui/icons/Replay";
 import Add from "@material-ui/icons/Add";
@@ -143,5 +144,17 @@ class Master extends React.PureComponent {
         );
     }
 }
+
+Master.propTypes = {
+    classes: PropTypes.object.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    randomGraph: PropTypes.func.isRequired,
+    addNode: PropTypes.func.isRequired,
+    addEdge: PropTypes.func.isRequired,
+    removeNode: PropTypes.func.isRequired,
+    removeEdge: PropTypes.func.isRequired,
+    algorithmBegin: PropTypes.func.isRequired,
+    algorithmCanceled: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(Master);

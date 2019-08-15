@@ -13,33 +13,6 @@ import {
 } from "../../../../assets/stylesheet";
 
 export const styles = () => ({
-    "@keyframes animate": {
-        from: {
-            opacity: 0,
-            transform: "translate3d(0, -3000px, 0)"
-        },
-        "0%": {
-            opacity: 0,
-            transform: "translate3d(0, -3000px, 0)"
-        },
-        "60%": {
-            opacity: 1,
-            transform: "translate3d(0, 10px, 0)"
-        },
-        "75%": {
-            transform: "translate3d(0, -10px, 0)"
-        },
-        "90%": {
-            transform: "translate3d(0, 5px, 0)"
-        },
-        to: {
-            transform: "translate3d(0, 0, 0)"
-        }
-    },
-    holder: {
-        animationName: "$animate",
-        animationDuration: "1.5s"
-    },
     root: {
         position: "relative",
         padding: "1rem 1rem",
@@ -49,10 +22,10 @@ export const styles = () => ({
         borderRadius: "2px",
         boxShadow:
             "0 12px 20px -10px rgba(255, 255, 255, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 255, 255, 0.2)",
-        "&:first-child": {
-            marginTop: "1.5rem"
+        '&:first-child': {
+            marginTop: "1rem"
         },
-        "&:last-child": {
+        '&:last-child': {
             marginBottom: "1.5rem"
         }
     },

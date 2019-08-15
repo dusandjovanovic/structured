@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import { Input, MessageList } from "react-chat-elements";
 import withIOMessaging from "../../../hoc/with-io-messaging/withIOMessaging";
 import "react-chat-elements/dist/main.css";
+import PropTypes from "prop-types";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -85,5 +86,13 @@ class Chat extends React.PureComponent {
         );
     }
 }
+
+Chat.propTypes = {
+    classes: PropTypes.object.isRequired,
+    username: PropTypes.string.isRequired,
+    room: PropTypes.string.isRequired,
+    socket: PropTypes.object.isRequired,
+    messageSendIO: PropTypes.func.isRequired
+};
 
 export default withIOMessaging(withStyles(styles)(Chat));

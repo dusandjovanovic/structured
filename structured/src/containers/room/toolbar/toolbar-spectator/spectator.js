@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Toolbar from "../../../../components/interface/toolbar/toolbar";
+import PropTypes from "prop-types";
 
 import Add from "@material-ui/icons/Add";
 import Clear from "@material-ui/icons/Clear";
@@ -53,6 +54,15 @@ const spectator = props => {
             </Grid>
         </Toolbar>
     );
+};
+
+spectator.propTypes = {
+    classes: PropTypes.object.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    addNode: PropTypes.func.isRequired,
+    addEdge: PropTypes.func.isRequired,
+    removeNode: PropTypes.func.isRequired,
+    removeEdge: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(React.memo(spectator));

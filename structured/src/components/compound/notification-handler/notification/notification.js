@@ -1,5 +1,6 @@
 import React from "react";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
+import Grow from "@material-ui/core/Grow";
 import IconButton from "@material-ui/core/IconButton";
 import Done from "@material-ui/icons/Done";
 import Error from "@material-ui/icons/Error";
@@ -34,29 +35,31 @@ const notification = props => {
 
     return (
         <div className={classes.holder}>
-            <SnackbarContent
-                aria-describedby="notification"
-                message={
-                    <div>
-                        {snackIcon}
-                        {message}
-                    </div>
-                }
-                action={
-                    <IconButton
-                        onClick={() => onClose(props.id)}
-                        key="close"
-                        aria-label="close"
-                        color="inherit"
-                    >
-                        <Close className={classes.close} />
-                    </IconButton>
-                }
-                classes={{
-                    root: classes.root + " " + classes[variant],
-                    message: classes.container + " " + classes.message
-                }}
-            />
+            <Grow in>
+                <SnackbarContent
+                    aria-describedby="notification"
+                    message={
+                        <div>
+                            {snackIcon}
+                            {message}
+                        </div>
+                    }
+                    action={
+                        <IconButton
+                            onClick={() => onClose(props.id)}
+                            key="close"
+                            aria-label="close"
+                            color="inherit"
+                        >
+                            <Close className={classes.close} />
+                        </IconButton>
+                    }
+                    classes={{
+                        root: classes.root + " " + classes[variant],
+                        message: classes.container + " " + classes.message
+                    }}
+                />
+            </Grow>
         </div>
     );
 };

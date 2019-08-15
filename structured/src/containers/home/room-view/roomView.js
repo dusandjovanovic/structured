@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import RoomCard from "./room-card/roomCard";
 import SomethingWentWrong from "../../../components/interface/something-went-wrong/somethingWentWrong";
+import PropTypes from "prop-types";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -32,5 +33,11 @@ const roomView = props => (
         )}
     </Grid>
 );
+
+roomView.propTypes = {
+    classes: PropTypes.object.isRequired,
+    rooms: PropTypes.arrayOf(PropTypes.object),
+    enterRoom: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(React.memo(roomView));

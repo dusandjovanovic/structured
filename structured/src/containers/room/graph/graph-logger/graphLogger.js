@@ -2,6 +2,7 @@ import React from "react";
 import GraphNode from "./graph-node/graphNode";
 import GraphNodeList from "./graph-node-list/graphNodeList";
 import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -51,7 +52,7 @@ const graphLogger = props => {
 
             {props.algorithmState ? (
                 <React.Fragment>
-                    <Grid item xs={12} className={props.holderClass}>
+                    <Grid item xs={12}>
                         <span className={classes.algorithm}>
                             ALGORITHM VARIABLES
                         </span>
@@ -140,6 +141,18 @@ const graphLogger = props => {
             ) : null}
         </Grid>
     );
+};
+
+graphLogger.propTypes = {
+    classes: PropTypes.object.isRequired,
+    algorithm: PropTypes.bool,
+    algorithmState: PropTypes.object,
+    algorithmType: PropTypes.string,
+    nodeCurrent: PropTypes.string,
+    nodeRoot: PropTypes.string,
+    nodeSelected: PropTypes.object,
+    nodesAdjacent: PropTypes.arrayOf(PropTypes.string),
+    nodesHighlighted: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default withStyles(styles)(React.memo(graphLogger));

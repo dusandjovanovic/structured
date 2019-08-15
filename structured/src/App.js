@@ -3,8 +3,10 @@ import AppFrame from "./containers/frame/frame";
 import BoundaryError from "./components/interface/boundary-error/boundaryError";
 import BoundaryLoading from "./components/interface/boundary-loading/boundaryLoading";
 import NotificationHandler from "./components/compound/notification-handler/notificationHandler";
+import withMaterial from "./hoc/with-material/withMaterial";
+import PropTypes from "prop-types";
 
-import { Route, Redirect, Switch, withRouter } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { authenticatePersisted } from "./store/actions/index";
@@ -72,8 +74,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        authenticated: state.auth.authenticated,
-        requests: state.user.requests
+        authenticated: state.auth.authenticated
     };
 };
 
@@ -83,7 +84,12 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default withRouter(
+App.propTypes = {
+    authenticated: PropTypes.bool,
+    authenticatePersisted: PropTypes.func
+};
+
+export default withMaterial(
     connect(
         mapStateToProps,
         mapDispatchToProps

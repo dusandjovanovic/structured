@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Toolbar from "../../../../components/interface/toolbar/toolbar";
+import PropTypes from "prop-types";
 
 import Replay from "@material-ui/icons/Replay";
 import SkipNext from "@material-ui/icons/SkipNext";
@@ -142,5 +143,17 @@ class Compete extends React.PureComponent {
         );
     }
 }
+
+Compete.propTypes = {
+    classes: PropTypes.object.isRequired,
+    graphExists: PropTypes.bool.isRequired,
+    graphManaged: PropTypes.bool.isRequired,
+    competeBreadth: PropTypes.func.isRequired,
+    competeDepth: PropTypes.func.isRequired,
+    competeEnded: PropTypes.func.isRequired,
+    competeBegin: PropTypes.func.isRequired,
+    randomGraph: PropTypes.func.isRequired,
+    competeType: PropTypes.string.isRequired
+};
 
 export default withStyles(styles)(Compete);

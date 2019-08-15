@@ -3,8 +3,9 @@ import Grid from "@material-ui/core/Grid";
 import RoomNew from "./room-new/roomNew";
 import RoomNewModal from "./room-new-modal/roomNewModal";
 import RoomView from "./room-view/roomView";
+import PropTypes from "prop-types";
 
-import { Redirect, withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
@@ -127,9 +128,19 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(withStyles(styles)(withErrorHandler(Home)))
-);
+Home.propTypes = {
+    classes: PropTypes.object.isRequired,
+    room: PropTypes.object.isRequired,
+    rooms: PropTypes.arrayOf(PropTypes.object).isRequired,
+    data: PropTypes.object.isRequired,
+    waiting: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+    roomGetAll: PropTypes.func.isRequired,
+    roomJoinExisting: PropTypes.func.isRequired,
+    roomCreateNew: PropTypes.func.isRequired
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withStyles(styles)(withErrorHandler(Home)));

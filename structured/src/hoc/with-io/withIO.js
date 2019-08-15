@@ -1,9 +1,8 @@
 import React from "react";
-
-/* eslint react/display-name: 0 */
+import PropTypes from "prop-types";
 
 const withIO = WrappedComponent => {
-    return class extends React.Component {
+    const withIO = class extends React.Component {
         socket = null;
 
         constructor(props) {
@@ -153,6 +152,25 @@ const withIO = WrappedComponent => {
             );
         }
     };
+
+    withIO.displayName = "withIO";
+
+    withIO.propTypes = {
+        io: PropTypes.func.isRequired,
+        username: PropTypes.string.isRequired,
+        data: PropTypes.object.isRequired,
+        room: PropTypes.object.isRequired,
+        error: PropTypes.string,
+        roomLeaveExisting: PropTypes.func.isRequired,
+        roomDeleteExisting: PropTypes.func.isRequired,
+        roomGetGraph: PropTypes.func.isRequired,
+        roomChangeGraph: PropTypes.func.isRequired,
+        roomGetData: PropTypes.func.isRequired,
+        userHistoryAdd: PropTypes.func.isRequired,
+        internalNotificationsAdd: PropTypes.func.isRequired
+    };
+
+    return withIO;
 };
 
 export default withIO;

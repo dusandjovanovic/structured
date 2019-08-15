@@ -3,6 +3,7 @@ import Tabbed from "../../components/interface/tabbed/tabbed";
 import DashboardView from "./dashboard-view/dashboardView";
 import DashboardOverview from "./dashboard-fragments/dashboard-overview/dashboardOverview";
 import DashboardFriends from "./dashboard-fragments/dashboard-friends/dashboardFriends";
+import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
@@ -90,6 +91,20 @@ const mapDispatchToProps = dispatch => {
         friendAdd: receiver => dispatch(actions.friendAdd(receiver)),
         friendConfirm: requestId => dispatch(actions.friendConfirm(requestId))
     };
+};
+
+Dashboard.propTypes = {
+    classes: PropTypes.object.isRequired,
+    username: PropTypes.string.isRequired,
+    friends: PropTypes.arrayOf(PropTypes.string).isRequired,
+    requests: PropTypes.arrayOf(PropTypes.object).isRequired,
+    history: PropTypes.arrayOf(PropTypes.object).isRequired,
+    waiting: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+    userData: PropTypes.func.isRequired,
+    userHistory: PropTypes.func.isRequired,
+    friendAdd: PropTypes.func.isRequired,
+    friendConfirm: PropTypes.func.isRequired
 };
 
 export default connect(

@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Toolbar from "../../../../components/interface/toolbar/toolbar";
+import PropTypes from "prop-types";
 
 import Done from "@material-ui/icons/Done";
 
@@ -44,6 +45,12 @@ const compete = props => {
             </Grid>
         </Toolbar>
     );
+};
+
+compete.propTypes = {
+    classes: PropTypes.object.isRequired,
+    graphManaged: PropTypes.bool.isRequired,
+    competeEnded: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(React.memo(compete));

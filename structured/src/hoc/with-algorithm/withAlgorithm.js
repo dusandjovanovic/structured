@@ -1,13 +1,12 @@
 import React from "react";
 import { interval } from "rxjs";
 import { takeWhile } from "rxjs/operators";
+import PropTypes from "prop-types";
 
 import { ALGORITHM_BREADTH } from "../../utils/constants";
 
-/* eslint react/display-name: 0 */
-
 const withAlgorithm = WrappedComponent => {
-    return class extends React.Component {
+    const withAlgorithm = class extends React.Component {
         state = {
             algorithm: false,
             algorithmType: ALGORITHM_BREADTH,
@@ -23,7 +22,7 @@ const withAlgorithm = WrappedComponent => {
             if (this.props.username !== this.props.data.createdBy) {
                 this.props.socket.on(
                     this.props.room.name + " algorithm end",
-                    received => {
+                    () => {
                         this.algorithmEnded();
                     }
                 );
@@ -91,8 +90,8 @@ const withAlgorithm = WrappedComponent => {
             });
             const source = interval(1000);
             source
-                .pipe(takeWhile(async => this.state.algorithmState.active))
-                .subscribe(async => this.algorithmNextState());
+                .pipe(takeWhile(() => this.state.algorithmState.active))
+                .subscribe(() => this.algorithmNextState());
         };
 
         algorithmPause = () => {
@@ -204,6 +203,76 @@ const withAlgorithm = WrappedComponent => {
             );
         }
     };
+
+    withAlgorithm.displayName = "withAlgorithm";
+
+    withAlgorithm.propTypes = {
+        username: PropTypes.string.isRequired,
+        data: PropTypes.object.isRequired,
+        room: PropTypes.object.isRequired,
+        error: PropTypes.string,
+        roomLeaveExisting: PropTypes.func.isRequired,
+        roomDeleteExisting: PropTypes.func.isRequired,
+        roomGetGraph: PropTypes.func.isRequired,
+        roomChangeGraph: PropTypes.func.isRequired,
+        roomGetData: PropTypes.func.isRequired,
+        userHistoryAdd: PropTypes.func.isRequired,
+        internalNotificationsAdd: PropTypes.func.isRequired,
+
+        addNodeIO: PropTypes.func,
+        addEdgeIO: PropTypes.func,
+        removeNodeIO: PropTypes.func,
+        removeEdgeIO: PropTypes.func,
+        addGraphIO: PropTypes.func,
+        getGraphIO: PropTypes.func,
+        changeGraphIO: PropTypes.func,
+        competeBeginIO: PropTypes.func,
+        competeEndedIO: PropTypes.func,
+        algorithmBeginIO: PropTypes.func,
+        algorithmEndedIO: PropTypes.func,
+        joinLeaveRoomIO: PropTypes.func,
+        deleteRoomIO: PropTypes.func,
+        masterChangedIO: PropTypes.func,
+        socket: PropTypes.object,
+
+        graph: PropTypes.object.isRequired,
+        visualization: PropTypes.object.isRequired,
+        initiateGraph: PropTypes.func.isRequired,
+        randomGraph: PropTypes.func.isRequired,
+        randomGraphOffline: PropTypes.func.isRequired,
+        addNode: PropTypes.func.isRequired,
+        addReceivedNode: PropTypes.func.isRequired,
+        removeNode: PropTypes.func.isRequired,
+        removeReceivedNode: PropTypes.func.isRequired,
+        addEdge: PropTypes.func.isRequired,
+        addReceivedEdge: PropTypes.func.isRequired,
+        removeEdge: PropTypes.func.isRequired,
+        removeReceivedEdge: PropTypes.func.isRequired,
+        nodeSelected: PropTypes.object.isRequired,
+        nodeFocused: PropTypes.object.isRequired,
+        nodeCurrent: PropTypes.string.isRequired,
+        nodesHighlighted: PropTypes.arrayOf(PropTypes.string),
+        nodesAdjacent: PropTypes.arrayOf(PropTypes.string),
+        nodeRoot: PropTypes.string.isRequired,
+        handlerNodeSelected: PropTypes.func.isRequired,
+        handlerNodeFocused: PropTypes.func.isRequired,
+        handlerNodeLostFocus: PropTypes.func.isRequired,
+        handlerViewport: PropTypes.func.isRequired,
+        graphManaged: PropTypes.bool.isRequired,
+        graphAnimated: PropTypes.bool.isRequired,
+        graphOperation: PropTypes.string.isRequired,
+        graphManagedEnded: PropTypes.func.isRequired,
+        graphAnimatedEnded: PropTypes.func.isRequired,
+        graphManagedAddEdge: PropTypes.func.isRequired,
+        graphManagedRemoveNode: PropTypes.func.isRequired,
+        graphManagedRemoveEdge: PropTypes.func.isRequired,
+        graphManagedAlgorithm: PropTypes.func.isRequired,
+        graphManagedAlgorithmEnded: PropTypes.func.isRequired,
+        graphManagedCompete: PropTypes.func.isRequired,
+        graphNodeRoot: PropTypes.func.isRequired
+    };
+
+    return withAlgorithm;
 };
 
 export default withAlgorithm;

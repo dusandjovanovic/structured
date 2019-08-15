@@ -2,6 +2,7 @@ import React from "react";
 import GraphLogger from "./graph-logger/graphLogger";
 import Grid from "@material-ui/core/Grid";
 import * as d3 from "d3";
+import PropTypes from "prop-types";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -37,7 +38,7 @@ class Graph extends React.Component {
         });
     }
 
-    componentDidUpdate(prevProps, prevState, nextProps) {
+    componentDidUpdate(prevProps) {
         if (this.props.graphAnimated !== prevProps.graphAnimated) {
             // d3's force function has side-effects and
             // mutates the nodes and links array directly
@@ -248,5 +249,34 @@ class Graph extends React.Component {
         return assign;
     };
 }
+
+Graph.propTypes = {
+    addEdge: PropTypes.func,
+    algorithm: PropTypes.bool,
+    algorithmState: PropTypes.object,
+    algorithmType: PropTypes.string,
+    classes: PropTypes.object.isRequired,
+    graphAnimated: PropTypes.bool,
+    graphAnimatedEnded: PropTypes.func,
+    graphManaged: PropTypes.bool,
+    handlerNodeFocused: PropTypes.func,
+    handlerNodeLostFocus: PropTypes.func,
+    handlerNodeSelected: PropTypes.func,
+    handlerViewport: PropTypes.func,
+    height: PropTypes.number.isRequired,
+    managedAddEdge: PropTypes.func,
+    managedRemoveEdge: PropTypes.func,
+    managedRemoveNode: PropTypes.func,
+    nodeCurrent: PropTypes.string,
+    nodeFocused: PropTypes.object,
+    nodeRoot: PropTypes.string,
+    nodeSelected: PropTypes.object,
+    nodesAdjacent: PropTypes.arrayOf(PropTypes.string),
+    nodesHighlighted: PropTypes.arrayOf(PropTypes.string),
+    removeEdge: PropTypes.func,
+    removeNode: PropTypes.func,
+    visualization: PropTypes.object,
+    width: PropTypes.number
+};
 
 export default withStyles(styles)(Graph);
