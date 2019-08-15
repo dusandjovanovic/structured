@@ -4,18 +4,21 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import PropTypes from "prop-types";
 
-import {styles} from "./stylesheet";
+import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const tabbed = props => {
-    const {classes} = props;
+    const { classes } = props;
 
     return (
-        <AppBar className={classes.appBar}>
+        <AppBar position="static" className={classes.appBar}>
             <Tabs
                 value={props.value}
                 onChange={(event, value) => props.handleSelectionChange(value)}
-                classes={{indicator: classes.tabsIndicator}}
+                classes={{
+                    indicator: classes.tabsIndicator,
+                    flexContainer: classes.container
+                }}
             >
                 {props.labels.map(label => (
                     <Tab

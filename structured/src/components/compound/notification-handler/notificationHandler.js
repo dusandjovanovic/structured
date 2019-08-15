@@ -2,15 +2,15 @@ import React from "react";
 import Notification from "./notification/notification";
 import PropTypes from "prop-types";
 
-import { styles } from "./stylesheet";
+import {styles} from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-import { internalNotificationsRemove } from "../../../store/actions/index";
-import { connect } from "react-redux";
+import {internalNotificationsRemove} from "../../../store/actions/index";
+import {connect} from "react-redux";
 
-class NotificationHandler extends React.PureComponent {
+class NotificationHandler extends React.Component {
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
 
         return (
             <div className={classes.root}>
@@ -36,8 +36,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        internalNotificationsRemove: id =>
-            dispatch(internalNotificationsRemove(id))
+        internalNotificationsRemove: id => dispatch(internalNotificationsRemove(id))
     };
 };
 

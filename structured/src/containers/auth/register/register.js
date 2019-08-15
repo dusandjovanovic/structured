@@ -1,4 +1,5 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
 import Fab from "@material-ui/core/Fab";
 import Button from "@material-ui/core/Button";
 import HowToReg from "@material-ui/icons/HowToReg";
@@ -176,7 +177,7 @@ class Register extends React.Component {
                                     color="primary"
                                     className={classes.button}
                                 >
-                                    Sign in
+                                    Register now
                                 </Button>
                             </form>
                         );
@@ -184,12 +185,15 @@ class Register extends React.Component {
                 </FormContainer>
 
                 <div className={classes.borderline}>
-                    <div className={classes.borderlineContent}>
+                    <Typography
+                        variant="button"
+                        className={classes.borderlineContent}
+                    >
                         Already have an account?
-                    </div>
+                    </Typography>
                     <Button
-                        color="secondary"
                         size="small"
+                        color="secondary"
                         className={classes.buttonBottom}
                         classes={{ text: classes.override }}
                         onClick={this.props.onStateChangeHandler}

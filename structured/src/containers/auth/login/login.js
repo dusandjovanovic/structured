@@ -1,4 +1,5 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
 import FormContainer from "../../../components/logic/form-container/formContainer";
 import { formElements } from "../../../assets/constants/containers/auth/login";
 import Fab from "@material-ui/core/Fab";
@@ -152,9 +153,12 @@ class Login extends React.Component {
                 </FormContainer>
 
                 <div className={classes.borderline}>
-                    <div className={classes.borderlineContent}>
+                    <Typography
+                        variant="button"
+                        className={classes.borderlineContent}
+                    >
                         Don&apos;t have an account already?
-                    </div>
+                    </Typography>
                     <Button
                         size="small"
                         variant="text"

@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import ControlBar from "./control-bar/controlBar";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import withDraggable from "../../../../hoc/with-draggable/withDraggable";
+import PropTypes from "prop-types";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -90,5 +91,19 @@ class Algorithm extends React.Component {
         );
     }
 }
+
+Algorithm.propTypes = {
+    classes: PropTypes.object.isRequired,
+    algorithmActive: PropTypes.bool,
+    algorithmPreviousState: PropTypes.func.isRequired,
+    algorithmNextState: PropTypes.func.isRequired,
+    algorithmType: PropTypes.string.isRequired,
+    algorithmVisualize: PropTypes.func.isRequired,
+    algorithmPause: PropTypes.func.isRequired,
+    algorithmState: PropTypes.object,
+    onMouseDown: PropTypes.func.isRequired,
+    translateX: PropTypes.number,
+    translateY: PropTypes.number
+};
 
 export default withDraggable(withStyles(styles)(Algorithm));

@@ -2,8 +2,6 @@ import React from "react";
 import Header from "../../components/compound/header/header";
 import PropTypes from "prop-types";
 
-import withMaterial from "../../hoc/with-material/withMaterial";
-
 class Frame extends React.Component {
     render() {
         return (
@@ -22,4 +20,4 @@ Frame.propTypes = {
     ]).isRequired
 };
 
-export default withMaterial(Frame);
+export default Frame;

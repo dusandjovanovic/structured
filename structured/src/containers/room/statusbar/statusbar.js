@@ -1,5 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -58,6 +59,15 @@ const statusbar = props => {
             ) : null}
         </footer>
     );
+};
+
+statusbar.propTypes = {
+    classes: PropTypes.object.isRequired,
+    master: PropTypes.bool.isRequired,
+    graphManaged: PropTypes.bool.isRequired,
+    graphOperation: PropTypes.string,
+    users: PropTypes.arrayOf(PropTypes.string).isRequired,
+    createdBy: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(React.memo(statusbar));

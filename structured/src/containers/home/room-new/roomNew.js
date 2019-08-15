@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -39,5 +40,10 @@ const RoomNew = props => (
         </Grid>
     </Grid>
 );
+
+RoomNew.propTypes = {
+    classes: PropTypes.object.isRequired,
+    handleNewRoomOpen: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(React.memo(RoomNew));

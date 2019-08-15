@@ -1,5 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
 
 const graphNodeList = props => {
     return (
@@ -16,6 +17,15 @@ const graphNodeList = props => {
             )}
         </Grid>
     );
+};
+
+graphNodeList.propTypes = {
+    text: PropTypes.string,
+    node: PropTypes.string,
+    nodes: PropTypes.arrayOf(PropTypes.string),
+    holderClass: PropTypes.string,
+    nodeClass: PropTypes.string,
+    nodeUndefined: PropTypes.string
 };
 
 export default React.memo(graphNodeList);

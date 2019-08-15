@@ -1,5 +1,5 @@
 import React from "react";
-import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -26,17 +26,16 @@ const withMaterial = Component => {
                 }
             },
             typography: {
-                useNextVariants: true,
                 fontFamily: '"Segoe UI", "Helvetica", "Arial", sans-serif'
             }
         });
 
         render() {
             return (
-                <MuiThemeProvider theme={this.theme}>
+                <ThemeProvider theme={this.theme}>
                     <CssBaseline />
-                    <Component {...this.props} />
-                </MuiThemeProvider>
+                    <Component />
+                </ThemeProvider>
             );
         }
     };

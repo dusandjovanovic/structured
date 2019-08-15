@@ -1,16 +1,16 @@
 export const styles = theme => ({
     appBar: {
         height: "54px",
-        top: "64px",
-        left: 0,
-        padding: "1rem",
+        width: "100%",
         display: "flex",
-        flexDirection: "row",
-        justifyContent: "left",
-        alignItems: "center",
-        zIndex: 999,
-        opacity: 1,
-        transition: "opacity 0.25s ease-in-out"
+        justifyContent: "center",
+        position: "fixed",
+        top: "64px",
+        zIndex: 1
+    },
+    container: {
+        width: "100%",
+        overflow: "auto"
     },
     tabsIndicator: {
         backgroundColor: theme.palette.ternary.main
@@ -18,7 +18,7 @@ export const styles = theme => ({
     tabRoot: {
         textTransform: "initial",
         fontWeight: theme.typography.fontWeightRegular,
-        marginRight: "1rem",
+        marginRight: theme.spacing(2),
         "&:hover": {
             color: theme.palette.ternary.light,
             opacity: 1
@@ -29,6 +29,6 @@ export const styles = theme => ({
     },
     tabSelected: {},
     typography: {
-        padding: "1rem"
+        padding: theme.spacing(3)
     }
 });

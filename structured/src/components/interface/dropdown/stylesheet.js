@@ -1,40 +1,28 @@
-import {primaryBoxShadow} from "../../../assets/stylesheet";
+import { primaryBoxShadow, shallowShadow } from "../../../assets/stylesheet";
 
-export const styles = (theme) => ({
+export const styles = theme => ({
     popperClose: {
         pointerEvents: "none"
     },
     popperResponsive: {
         zIndex: "1200",
-        [theme.breakpoints.down("sm")]: {
-            zIndex: "1640",
-            position: "static",
-            float: "none",
-            width: "auto",
-            marginTop: "0",
-            backgroundColor: "transparent",
-            border: "0",
-            boxShadow: "none",
-            color: "black"
-        }
+        maxHeight: "80%",
+        overflowY: "auto",
+        ...shallowShadow
     },
     dropdown: {
-        borderRadius: "3px",
-        border: "0",
-        boxShadow: "0 2px 5px 0 rgba(0, 0, 0, 0.26)",
-        top: "100%",
-        zIndex: "1000",
-        minWidth: "30rem",
-        maxWidth: "40rem",
-        padding: "5px 0",
-        margin: "2px 0 0",
-        fontSize: "14px",
+        position: "realtive",
+        zIndex: "1201",
+        height: "100%",
+        borderRadius: "0.2rem",
+        width: "35rem",
+        padding: "0.5rem 0",
+        fontSize: "1.2rem",
         textAlign: "left",
         listStyle: "none",
         backgroundColor: "#fff",
-        backgroundClip: "padding-box",
         [theme.breakpoints.down("sm")]: {
-            minWidth: "20rem"
+            width: "80vw"
         }
     },
     menuList: {
@@ -48,7 +36,9 @@ export const styles = (theme) => ({
         borderRadius: "2px",
         position: "relative",
         transition: "all 150ms linear",
-        display: "block",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
         fontWeight: "400",
         color: "#333",
         "&:hover": {
@@ -74,20 +64,20 @@ export const styles = (theme) => ({
         borderRadius: "50%"
     },
     dropdownHeader: {
-        display: "block",
-        padding: "0.1875rem 1.25rem",
-        fontSize: "0.75rem",
-        lineHeight: "1.428571",
-        color: "#777",
-        fontWeight: "inherit",
-        marginTop: "10px",
-        "&:hover,&:focus": {
-            backgroundColor: "transparent",
-            cursor: "auto"
-        }
+        height: "auto",
+        fontSize: "1rem",
+        padding: "1rem",
+        margin: "0 5px",
+        borderRadius: "2px",
+        position: "relative",
+        transition: "all 150ms linear",
+        fontWeight: "400",
+        color: "#9e9e9e"
     },
     label: {
+        width: "100%",
         height: "auto",
-        wordWrap: "break-word"
+        overflowWrap: "break-word",
+        whiteSpace: "normal"
     }
 });
