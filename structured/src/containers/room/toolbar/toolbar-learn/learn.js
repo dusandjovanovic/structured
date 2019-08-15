@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Toolbar from "../../../../components/interface/toolbar/toolbar";
+import PropTypes from "prop-types";
 
 import Replay from "@material-ui/icons/Replay";
 
@@ -77,6 +78,12 @@ class Learn extends React.PureComponent {
                         >
                             Graph traversals
                         </Button>
+                        <Button size="small" color="secondary" onClick={null}>
+                            Leave room
+                        </Button>
+                        <Button size="small" color="secondary" onClick={null}>
+                            Delete room
+                        </Button>
                     </Grid>
                 </Toolbar>
                 <Dialog
@@ -93,4 +100,11 @@ class Learn extends React.PureComponent {
         );
     }
 }
+
+Learn.propTypes = {
+    classes: PropTypes.object.isRequired,
+    graphLearn: PropTypes.func.isRequired,
+    randomGraph: PropTypes.func.isRequired
+};
+
 export default withStyles(styles)(Learn);

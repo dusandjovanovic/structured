@@ -51,6 +51,9 @@ const spectator = props => {
                     <Clear fontSize="small" className={classes.icon} /> Remove
                     edge
                 </Button>
+                <Button size="small" color="secondary" onClick={null}>
+                    Leave room
+                </Button>
             </Grid>
         </Toolbar>
     );
@@ -62,7 +65,8 @@ spectator.propTypes = {
     addNode: PropTypes.func.isRequired,
     addEdge: PropTypes.func.isRequired,
     removeNode: PropTypes.func.isRequired,
-    removeEdge: PropTypes.func.isRequired
+    removeEdge: PropTypes.func.isRequired,
+    leaveRoomIOInit: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(React.memo(spectator));

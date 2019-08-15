@@ -130,6 +130,8 @@ const withPlayground = WrappedComponent => {
                                 algorithmBegin={this.props.algorithmBegin}
                                 algorithmCanceled={this.props.algorithmCanceled}
                                 disabled={this.props.algorithm}
+                                leaveRoomIOInit={this.props.leaveRoomIOInit}
+                                deleteRoomIOInit={this.props.deleteRoomIOInit}
                             />
                         </WrappedComponent>
                     ) : (
@@ -140,6 +142,7 @@ const withPlayground = WrappedComponent => {
                                 addEdge={this.props.graphManagedAddEdge}
                                 removeEdge={this.props.graphManagedRemoveEdge}
                                 disabled={this.props.algorithm}
+                                leaveRoomIOInit={this.props.leaveRoomIOInit}
                             />
                         </WrappedComponent>
                     )}
@@ -178,6 +181,9 @@ const withPlayground = WrappedComponent => {
         deleteRoomIO: PropTypes.func,
         masterChangedIO: PropTypes.func,
         socket: PropTypes.object,
+        rediret: PropTypes.bool.isRequired,
+        leaveRoomIOInit: PropTypes.func.isRequired,
+        deleteRoomIOInit: PropTypes.func.isRequired,
 
         graph: PropTypes.object.isRequired,
         visualization: PropTypes.object.isRequired,
@@ -192,19 +198,19 @@ const withPlayground = WrappedComponent => {
         addReceivedEdge: PropTypes.func.isRequired,
         removeEdge: PropTypes.func.isRequired,
         removeReceivedEdge: PropTypes.func.isRequired,
-        nodeSelected: PropTypes.object.isRequired,
-        nodeFocused: PropTypes.object.isRequired,
-        nodeCurrent: PropTypes.string.isRequired,
+        nodeSelected: PropTypes.object,
+        nodeFocused: PropTypes.object,
+        nodeCurrent: PropTypes.string,
         nodesHighlighted: PropTypes.arrayOf(PropTypes.string),
         nodesAdjacent: PropTypes.arrayOf(PropTypes.string),
-        nodeRoot: PropTypes.string.isRequired,
+        nodeRoot: PropTypes.string,
         handlerNodeSelected: PropTypes.func.isRequired,
         handlerNodeFocused: PropTypes.func.isRequired,
         handlerNodeLostFocus: PropTypes.func.isRequired,
         handlerViewport: PropTypes.func.isRequired,
         graphManaged: PropTypes.bool.isRequired,
         graphAnimated: PropTypes.bool.isRequired,
-        graphOperation: PropTypes.string.isRequired,
+        graphOperation: PropTypes.string,
         graphManagedEnded: PropTypes.func.isRequired,
         graphAnimatedEnded: PropTypes.func.isRequired,
         graphManagedAddEdge: PropTypes.func.isRequired,
@@ -222,8 +228,8 @@ const withPlayground = WrappedComponent => {
         algorithmPreviousState: PropTypes.func.isRequired,
         algorithmVisualize: PropTypes.func.isRequired,
         algorithmPause: PropTypes.func.isRequired,
-        algorithmVisualization: PropTypes.func.isRequired,
-        algorithmState: PropTypes.object,
+        algorithmVisualization: PropTypes.object.isRequired,
+        algorithmState: PropTypes.object.isRequired,
         algorithmActive: PropTypes.bool.isRequired,
         algorithmType: PropTypes.string.isRequired
     };

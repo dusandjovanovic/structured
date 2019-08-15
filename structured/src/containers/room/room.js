@@ -21,8 +21,6 @@ import withErrorHandler from "../../hoc/with-error-handler/withErrorHandler";
 
 class Room extends React.Component {
     state = {
-        redirect: false,
-        roomName: null,
         error: {
             hasError: false,
             name: null,
@@ -30,74 +28,12 @@ class Room extends React.Component {
         }
     };
 
-    componentDidMount() {
-        window.addEventListener("beforeunload", this.leaveRoom);
-        this.setState({ roomName: this.props.room.name });
-
-        if (!this.props.learn)
-            this.props.socket.on(
-                this.props.room.name + " delete room",
-                received => {
-                    this.props.roomLeaveExisting(true);
-                    this.props.internalNotificationsAdd(
-                        "The room has been deleted.",
-                        "error",
-                        5,
-                        null,
-                        null
-                    );
-                    this.setState({
-                        redirect: true
-                    });
-                }
-            );
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("beforeunload", this.leaveRoom);
-    }
-
-    deleteRoom = () => {
-        this.props.roomDeleteExisting().then(() => {
-            if (!this.props.learn) this.props.deleteRoomIO(this.state.roomName);
-            this.setState({
-                redirect: true
-            });
-        });
-    };
-
-    leaveRoom = () => {
-        this.props.roomLeaveExisting(false).then(response => {
-            if (!this.props.learn)
-                if (response.newMaster)
-                    this.props.masterChangedIO(
-                        this.state.roomName,
-                        response.newMaster
-                    );
-                else
-                    this.props.joinLeaveRoomIO(
-                        this.state.roomName,
-                        response.msg
-                    );
-
-            this.setState({
-                redirect: true
-            });
-        });
-
-        return "unloading";
-    };
-
     render() {
         const { classes } = this.props;
 
-        let redirect = null;
-        if (this.state.redirect && !this.props.error)
-            redirect = <Redirect to="/" />;
-
         return (
             <Grid container className={classes.root} direction="column">
-                {redirect}
+                {this.props.redirect ? <Redirect to="/" /> : null}
                 <Grid container>{this.props.children}</Grid>
                 <Grid container>
                     {this.props.competitive || this.props.learn ? null : (
@@ -184,6 +120,7 @@ Room.propTypes = {
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node
     ]).isRequired,
+    redirect: PropTypes.bool.isRequired,
     addEdge: PropTypes.func,
     addEdgeIO: PropTypes.func,
     addGraphIO: PropTypes.func,

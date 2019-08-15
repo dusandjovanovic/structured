@@ -355,7 +355,10 @@ const withGraph = WrappedComponent => {
         joinLeaveRoomIO: PropTypes.func,
         deleteRoomIO: PropTypes.func,
         masterChangedIO: PropTypes.func,
-        socket: PropTypes.object
+        socket: PropTypes.object,
+        rediret: PropTypes.bool,
+        leaveRoomIOInit: PropTypes.func,
+        deleteRoomIOInit: PropTypes.func
     };
 
     return withGraph;

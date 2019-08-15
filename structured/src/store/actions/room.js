@@ -212,7 +212,7 @@ export const roomLeaveExisting = roomDeleted => {
     return async (dispatch, getState) => {
         dispatch(roomInitiate());
         const payload = {
-            roomName: getState().room.name,
+            roomName: getState().room.data.name,
             username: getState().auth.username
         };
         let response;
@@ -228,9 +228,9 @@ export const roomLeaveExisting = roomDeleted => {
                     .post(roomLeaveRoute, payload);
 
                 if (response.data.success) {
-                    await dispatch(roomGetAll());
                     dispatch(roomLeave(getState().auth.username));
                     dispatch(roomEnd());
+                    dispatch(roomGetAll());
                 } else {
                     dispatch(roomError(response.data.msg));
                 }
@@ -246,7 +246,7 @@ export const roomLeaveExisting = roomDeleted => {
 export const roomDeleteExisting = () => {
     return async (dispatch, getState) => {
         dispatch(roomInitiate());
-        const roomId = getState().room["_id"];
+        const roomId = getState().room.data["_id"];
         const username = getState().auth.username;
 
         try {
@@ -255,10 +255,10 @@ export const roomDeleteExisting = () => {
                 .delete(roomDeleteRoute(roomId));
 
             if (response.data.success) {
-                await dispatch(roomGetAll());
                 dispatch(roomDelete());
                 dispatch(roomLeave(username));
                 dispatch(roomEnd());
+                dispatch(roomGetAll());
             } else {
                 dispatch(roomError(response.data.msg));
             }

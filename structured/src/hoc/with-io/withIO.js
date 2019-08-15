@@ -8,10 +8,30 @@ const withIO = WrappedComponent => {
         constructor(props) {
             super(props);
             this.socket = this.props.io("http://localhost:2998/graph");
+            this.state = {
+                redirect: false
+            };
+        }
+
+        componentDidMount() {
+            window.addEventListener("beforeunload", this.leaveRoom);
+            this.setState({ roomName: this.props.room.name });
+
+            this.socket.on(this.props.room.name + " delete room", () => {
+                this.props.roomLeaveExisting(true);
+                this.props.internalNotificationsAdd(
+                    "The room has been deleted.",
+                    "error"
+                );
+                this.setState({
+                    redirect: true
+                });
+            });
         }
 
         componentWillUnmount() {
             this.socket.close();
+            window.removeEventListener("beforeunload", this.leaveRoom);
         }
 
         addNodeIO = node => {
@@ -122,6 +142,39 @@ const withIO = WrappedComponent => {
             });
         };
 
+        deleteRoomIOInit = async () => {
+            let roomName = this.props.room.name;
+            await this.props.roomDeleteExisting();
+            this.deleteRoomIO(roomName);
+            this.setState({
+                redirect: true
+            });
+        };
+
+        leaveRoomIOInit = async () => {
+            try {
+                const response = await this.props.roomLeaveExisting(false);
+                if (response.data.newMaster)
+                    this.masterChangedIO(
+                        this.props.room.name,
+                        response.data.newMaster
+                    );
+                else
+                    this.joinLeaveRoomIO(
+                        this.props.room.name,
+                        response.data.msg
+                    );
+
+                this.setState({
+                    redirect: true
+                });
+
+                return "unloading";
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
         masterChangedIO = (room, master) => {
             this.socket.emit("master changed", {
                 room: room,
@@ -145,8 +198,11 @@ const withIO = WrappedComponent => {
                     algorithmEndedIO={this.algorithmEndedIO}
                     joinLeaveRoomIO={this.joinLeaveRoomIO}
                     deleteRoomIO={this.deleteRoomIO}
+                    leaveRoomIOInit={this.leaveRoomIOInit}
+                    deleteRoomIOInit={this.deleteRoomIOInit}
                     masterChangedIO={this.masterChangedIO}
                     socket={this.socket}
+                    redirect={this.state.redirect}
                     {...this.props}
                 />
             );

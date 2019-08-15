@@ -187,6 +187,8 @@ const withCompete = WrappedComponent => {
                                     this.props.visualization.nodes.length > 0
                                 }
                                 competeType={this.state.competeType}
+                                leaveRoomIOInit={this.props.leaveRoomIOInit}
+                                deleteRoomIOInit={this.props.deleteRoomIOInit}
                             />
                         </WrappedComponent>
                     ) : (
@@ -195,6 +197,7 @@ const withCompete = WrappedComponent => {
                                 competeEnded={this.competeEnded}
                                 graphManaged={this.props.graphManaged}
                                 competeType={this.state.competeType}
+                                leaveRoomIOInit={this.props.leaveRoomIOInit}
                             />
                         </WrappedComponent>
                     )}
@@ -233,6 +236,9 @@ const withCompete = WrappedComponent => {
         deleteRoomIO: PropTypes.func,
         masterChangedIO: PropTypes.func,
         socket: PropTypes.object,
+        rediret: PropTypes.bool.isRequired,
+        leaveRoomIOInit: PropTypes.func.isRequired,
+        deleteRoomIOInit: PropTypes.func.isRequired,
 
         graph: PropTypes.object.isRequired,
         visualization: PropTypes.object.isRequired,
@@ -247,19 +253,19 @@ const withCompete = WrappedComponent => {
         addReceivedEdge: PropTypes.func.isRequired,
         removeEdge: PropTypes.func.isRequired,
         removeReceivedEdge: PropTypes.func.isRequired,
-        nodeSelected: PropTypes.object.isRequired,
-        nodeFocused: PropTypes.object.isRequired,
-        nodeCurrent: PropTypes.string.isRequired,
+        nodeSelected: PropTypes.object,
+        nodeFocused: PropTypes.object,
+        nodeCurrent: PropTypes.string,
         nodesHighlighted: PropTypes.arrayOf(PropTypes.string),
         nodesAdjacent: PropTypes.arrayOf(PropTypes.string),
-        nodeRoot: PropTypes.string.isRequired,
+        nodeRoot: PropTypes.string,
         handlerNodeSelected: PropTypes.func.isRequired,
         handlerNodeFocused: PropTypes.func.isRequired,
         handlerNodeLostFocus: PropTypes.func.isRequired,
         handlerViewport: PropTypes.func.isRequired,
         graphManaged: PropTypes.bool.isRequired,
         graphAnimated: PropTypes.bool.isRequired,
-        graphOperation: PropTypes.string.isRequired,
+        graphOperation: PropTypes.string,
         graphManagedEnded: PropTypes.func.isRequired,
         graphAnimatedEnded: PropTypes.func.isRequired,
         graphManagedAddEdge: PropTypes.func.isRequired,
