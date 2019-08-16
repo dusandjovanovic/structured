@@ -8,7 +8,7 @@ import {
     roomChangeGraphRoute,
     roomDeleteRoute,
     roomCreateNewRoute
-} from "../../utils/api";
+} from "../../utils/constantsAPI";
 
 import {
     ROOM_INIT,
