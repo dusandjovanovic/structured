@@ -1,11 +1,11 @@
 export const styles = () => ({
     root: {
-        maxWidth: "700px",
+        maxWidth: "620px",
         animationName: "$fadeIn",
         animationDuration: "1s",
         fontFamily:
-            "source-code-pro, Menlo, Monaco, Consolas, 'Courier New, monospace",
-        fontSize: "1.1rem",
+            "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
+        fontSize: "1.25rem",
         background: "#ffffff",
         opacity: 0.9,
         border: "1px solid #152434",

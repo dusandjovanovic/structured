@@ -22,7 +22,7 @@ const ControlBar = props => {
         >
             <Grid item>
                 <SkipPrevious
-                    fontSize="large"
+                    fontSize="medium"
                     className={classes.button}
                     onClick={() => props.goToPrevStep()}
                 />
@@ -44,7 +44,7 @@ const ControlBar = props => {
             </Grid>
             <Grid item>
                 <SkipNext
-                    fontSize="large"
+                    fontSize="medium"
                     className={classes.button}
                     onClick={() => props.goToNextStep()}
                 />

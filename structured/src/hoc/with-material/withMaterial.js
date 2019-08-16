@@ -24,7 +24,8 @@ const withMaterial = Component => {
                 }
             },
             typography: {
-                fontFamily: '"Segoe UI", "Helvetica", "Arial", sans-serif'
+                fontFamily:
+                    "-apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif"
             }
         });
 

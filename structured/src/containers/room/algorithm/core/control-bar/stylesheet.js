@@ -7,7 +7,7 @@ export const styles = () => ({
     },
     button: {
         display: "inline-block",
-        margin: "0 1.5rem",
+        margin: "0 0.75rem",
         color: "#ccc",
         cursor: "pointer",
         "&:hover": {
