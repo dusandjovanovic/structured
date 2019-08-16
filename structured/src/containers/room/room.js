@@ -29,7 +29,7 @@ class Room extends React.Component {
     };
 
     componentWillUnmount() {
-        if (this.props.room && this.props.room.roomName)
+        if (this.props.room.name)
             this.props.leaveRoomIOInit();
     }
 
@@ -94,11 +94,13 @@ class Room extends React.Component {
                         />
                     </Grid>
                     <Statusbar
-                        users={this.props.data.users}
-                        master={this.props.room.master}
+                        users={this.props.data.users || []}
+                        master={this.props.room.master || false}
                         graphManaged={this.props.graphManaged}
                         graphOperation={this.props.graphOperation}
-                        createdBy={this.props.data.createdBy}
+                        createdBy={
+                            this.props.data.createdBy || "Exiting room.."
+                        }
                     />
                 </Grid>
                 {this.props.algorithm ? (

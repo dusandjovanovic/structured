@@ -181,7 +181,7 @@ const withPlayground = WrappedComponent => {
         deleteRoomIO: PropTypes.func,
         masterChangedIO: PropTypes.func,
         socket: PropTypes.object,
-        rediret: PropTypes.bool.isRequired,
+        redirect: PropTypes.bool.isRequired,
         leaveRoomIOInit: PropTypes.func.isRequired,
         deleteRoomIOInit: PropTypes.func.isRequired,
 
@@ -229,7 +229,7 @@ const withPlayground = WrappedComponent => {
         algorithmVisualize: PropTypes.func.isRequired,
         algorithmPause: PropTypes.func.isRequired,
         algorithmVisualization: PropTypes.object.isRequired,
-        algorithmState: PropTypes.object.isRequired,
+        algorithmState: PropTypes.object,
         algorithmActive: PropTypes.bool.isRequired,
         algorithmType: PropTypes.string.isRequired
     };

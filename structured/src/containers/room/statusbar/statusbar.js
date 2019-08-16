@@ -63,7 +63,7 @@ const statusbar = props => {
 
 statusbar.propTypes = {
     classes: PropTypes.object.isRequired,
-    master: PropTypes.bool,
+    master: PropTypes.bool.isRequired,
     graphOperation: PropTypes.string,
     graphManaged: PropTypes.bool.isRequired,
     users: PropTypes.arrayOf(PropTypes.string).isRequired,

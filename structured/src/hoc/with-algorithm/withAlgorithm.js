@@ -234,7 +234,7 @@ const withAlgorithm = WrappedComponent => {
         deleteRoomIO: PropTypes.func,
         masterChangedIO: PropTypes.func,
         socket: PropTypes.object,
-        rediret: PropTypes.bool.isRequired,
+        redirect: PropTypes.bool.isRequired,
         leaveRoomIOInit: PropTypes.func.isRequired,
         deleteRoomIOInit: PropTypes.func.isRequired,
 
@@ -263,7 +263,7 @@ const withAlgorithm = WrappedComponent => {
         handlerViewport: PropTypes.func.isRequired,
         graphManaged: PropTypes.bool.isRequired,
         graphAnimated: PropTypes.bool.isRequired,
-        graphOperation: PropTypes.string.isRequired,
+        graphOperation: PropTypes.string,
         graphManagedEnded: PropTypes.func.isRequired,
         graphAnimatedEnded: PropTypes.func.isRequired,
         graphManagedAddEdge: PropTypes.func.isRequired,
