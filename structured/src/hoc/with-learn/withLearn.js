@@ -289,6 +289,8 @@ const withLearn = WrappedComponent => {
                 <WrappedComponent
                     learn
                     redirect={this.state.redirect}
+                    leaveRoomIOInit={this.leaveRoomIOInit}
+                    deleteRoomIOInit={this.deleteRoomIOInit}
                     {...this.props}
                 >
                     <Learn

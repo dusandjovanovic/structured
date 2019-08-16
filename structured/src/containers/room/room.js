@@ -28,6 +28,11 @@ class Room extends React.Component {
         }
     };
 
+    componentWillUnmount() {
+        if (this.props.room && this.props.room.roomName)
+            this.props.leaveRoomIOInit();
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -147,6 +152,7 @@ Room.propTypes = {
     competeEndedIO: PropTypes.func,
     data: PropTypes.object,
     deleteRoomIO: PropTypes.func,
+    deleteRoomIOInit: PropTypes.func,
     error: PropTypes.string,
     getGraphIO: PropTypes.func,
     graph: PropTypes.object,
@@ -171,6 +177,7 @@ Room.propTypes = {
     io: PropTypes.func,
     joinLeaveRoomIO: PropTypes.func,
     learn: PropTypes.bool,
+    leaveRoomIOInit: PropTypes.func,
     masterChangedIO: PropTypes.func,
     nodeCurrent: PropTypes.string,
     nodeFocused: PropTypes.object,
