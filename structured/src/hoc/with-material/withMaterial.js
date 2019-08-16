@@ -3,10 +3,8 @@ import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-/* eslint react/display-name: 0 */
-
 const withMaterial = Component => {
-    return class extends React.Component {
+    class WithMaterial extends React.Component {
         theme = createMuiTheme({
             palette: {
                 primary: {
@@ -38,7 +36,9 @@ const withMaterial = Component => {
                 </ThemeProvider>
             );
         }
-    };
+    }
+
+    return WithMaterial;
 };
 
 export default withMaterial;

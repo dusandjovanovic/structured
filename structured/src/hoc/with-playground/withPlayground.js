@@ -1,11 +1,10 @@
 import React from "react";
 import Master from "../../containers/room/toolbar/toolbar-master/master";
 import Spectator from "../../containers/room/toolbar/toolbar-spectator/spectator";
-import Wrapper from "../wrapper/wrapper";
 import PropTypes from "prop-types";
 
 const withPlayground = WrappedComponent => {
-    const withPlayground = class extends React.Component {
+    class WithPlayground extends React.Component {
         componentDidMount() {
             if (this.props.username !== this.props.data.createdBy) {
                 this.props.getGraphIO();
@@ -118,7 +117,7 @@ const withPlayground = WrappedComponent => {
 
         render() {
             return (
-                <Wrapper>
+                <React.Fragment>
                     {this.props.room.master ? (
                         <WrappedComponent {...this.props}>
                             <Master
@@ -146,14 +145,12 @@ const withPlayground = WrappedComponent => {
                             />
                         </WrappedComponent>
                     )}
-                </Wrapper>
+                </React.Fragment>
             );
         }
-    };
+    }
 
-    withPlayground.displayName = "withPlayground";
-
-    withPlayground.propTypes = {
+    WithPlayground.propTypes = {
         username: PropTypes.string.isRequired,
         data: PropTypes.object.isRequired,
         room: PropTypes.object.isRequired,
@@ -234,7 +231,7 @@ const withPlayground = WrappedComponent => {
         algorithmType: PropTypes.string.isRequired
     };
 
-    return withPlayground;
+    return WithPlayground;
 };
 
 export default withPlayground;

@@ -1,13 +1,15 @@
 import React from "react";
+import socketio from "socket.io-client";
 import PropTypes from "prop-types";
 
 const withIO = WrappedComponent => {
-    const withIO = class extends React.Component {
+    class WIthIO extends React.Component {
         socket = null;
+        io = socketio;
 
         constructor(props) {
             super(props);
-            this.socket = this.props.io("http://localhost:2998/graph");
+            this.socket = this.io("http://localhost:2998/graph");
             this.state = {
                 redirect: false
             };
@@ -185,6 +187,7 @@ const withIO = WrappedComponent => {
         render() {
             return (
                 <WrappedComponent
+                    io={this.io}
                     addNodeIO={this.addNodeIO}
                     addEdgeIO={this.addEdgeIO}
                     removeNodeIO={this.removeNodeIO}
@@ -207,12 +210,9 @@ const withIO = WrappedComponent => {
                 />
             );
         }
-    };
+    }
 
-    withIO.displayName = "withIO";
-
-    withIO.propTypes = {
-        io: PropTypes.func.isRequired,
+    WIthIO.propTypes = {
         username: PropTypes.string.isRequired,
         data: PropTypes.object.isRequired,
         room: PropTypes.object.isRequired,
@@ -226,7 +226,7 @@ const withIO = WrappedComponent => {
         internalNotificationsAdd: PropTypes.func.isRequired
     };
 
-    return withIO;
+    return WIthIO;
 };
 
 export default withIO;

@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { ALGORITHM_BREADTH } from "../../utils/constants";
 
 const withAlgorithm = WrappedComponent => {
-    const withAlgorithm = class extends React.Component {
+    class WithAlgorithm extends React.Component {
         state = {
             algorithm: false,
             algorithmType: ALGORITHM_BREADTH,
@@ -202,11 +202,9 @@ const withAlgorithm = WrappedComponent => {
                 />
             );
         }
-    };
+    }
 
-    withAlgorithm.displayName = "withAlgorithm";
-
-    withAlgorithm.propTypes = {
+    WithAlgorithm.propTypes = {
         username: PropTypes.string.isRequired,
         data: PropTypes.object.isRequired,
         room: PropTypes.object.isRequired,
@@ -275,7 +273,7 @@ const withAlgorithm = WrappedComponent => {
         graphNodeRoot: PropTypes.func.isRequired
     };
 
-    return withAlgorithm;
+    return WithAlgorithm;
 };
 
 export default withAlgorithm;

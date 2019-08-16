@@ -11,7 +11,7 @@ import {
 } from "../../utils/constants";
 
 const withLearn = WrappedComponent => {
-    const withLearn = class extends React.Component {
+    class WithLearn extends React.Component {
         constructor(props) {
             super(props);
             this.state = {
@@ -302,11 +302,9 @@ const withLearn = WrappedComponent => {
                 </WrappedComponent>
             );
         }
-    };
+    }
 
-    withLearn.displayName = "withLearn";
-
-    withLearn.propTypes = {
+    WithLearn.propTypes = {
         username: PropTypes.string.isRequired,
         data: PropTypes.object.isRequired,
         room: PropTypes.object.isRequired,
@@ -356,7 +354,7 @@ const withLearn = WrappedComponent => {
         graphNodeRoot: PropTypes.func.isRequired
     };
 
-    return withLearn;
+    return WithLearn;
 };
 
 export default withLearn;

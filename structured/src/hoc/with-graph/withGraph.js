@@ -12,7 +12,7 @@ import {
 } from "../../utils/constants";
 
 const withGraph = WrappedComponent => {
-    const withGraph = class extends React.Component {
+    class WithGraph extends React.Component {
         graph = graphFactory();
 
         state = {
@@ -324,11 +324,9 @@ const withGraph = WrappedComponent => {
             };
             return <WrappedComponent {...proxyPropagate} {...this.props} />;
         }
-    };
+    }
 
-    withGraph.displayName = "withGraph";
-
-    withGraph.propTypes = {
+    WithGraph.propTypes = {
         username: PropTypes.string.isRequired,
         data: PropTypes.object.isRequired,
         room: PropTypes.object.isRequired,
@@ -361,7 +359,7 @@ const withGraph = WrappedComponent => {
         deleteRoomIOInit: PropTypes.func
     };
 
-    return withGraph;
+    return WithGraph;
 };
 
 export default withGraph;

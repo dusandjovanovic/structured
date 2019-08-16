@@ -1,13 +1,12 @@
 import React from "react";
 import Compete from "../../containers/room/toolbar/toolbar-compete/compete";
 import CompeteSpectator from "../../containers/room/toolbar/toolbar-compete/competeSpectator";
-import Wrapper from "../wrapper/wrapper";
 import PropTypes from "prop-types";
 
 import { COMPETE_BREADTH, COMPETE_DEPTH } from "../../utils/constants";
 
 const withCompete = WrappedComponent => {
-    const withCompete = class extends React.Component {
+    class WithCompete extends React.Component {
         state = {
             competeType: COMPETE_BREADTH,
             graph: []
@@ -105,7 +104,7 @@ const withCompete = WrappedComponent => {
             this.props.graphManagedCompete();
             this.props
                 .roomChangeGraph(this.props.room.name, graphTraversed)
-                .then(response => {
+                .then(() => {
                     this.props.competeBeginIO(
                         this.state.competeType,
                         this.props.nodeRoot
@@ -172,7 +171,7 @@ const withCompete = WrappedComponent => {
 
         render() {
             return (
-                <Wrapper>
+                <React.Fragment>
                     {this.props.room.master ? (
                         <WrappedComponent competitive {...this.props}>
                             <Compete
@@ -201,14 +200,12 @@ const withCompete = WrappedComponent => {
                             />
                         </WrappedComponent>
                     )}
-                </Wrapper>
+                </React.Fragment>
             );
         }
-    };
+    }
 
-    withCompete.displayName = "withGraph";
-
-    withCompete.propTypes = {
+    WithCompete.propTypes = {
         username: PropTypes.string.isRequired,
         data: PropTypes.object.isRequired,
         room: PropTypes.object.isRequired,
@@ -274,10 +271,11 @@ const withCompete = WrappedComponent => {
         graphManagedAlgorithm: PropTypes.func.isRequired,
         graphManagedAlgorithmEnded: PropTypes.func.isRequired,
         graphManagedCompete: PropTypes.func.isRequired,
-        graphNodeRoot: PropTypes.func.isRequired
+        graphNodeRoot: PropTypes.func.isRequired,
+        master: PropTypes.bool.isRequired
     };
 
-    return withCompete;
+    return WithCompete;
 };
 
 export default withCompete;

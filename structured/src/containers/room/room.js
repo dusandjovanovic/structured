@@ -6,18 +6,28 @@ import Statusbar from "./statusbar/statusbar";
 import AlgorithmCore from "./algorithm/core/algorithm";
 import PropTypes from "prop-types";
 
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import withAlgorithm from "../../hoc/with-algorithm/withAlgorithm";
 import withPlayground from "../../hoc/with-playground/withPlayground";
-import withRedux from "../../hoc/with-redux/withRedux";
 import withGraph from "../../hoc/with-graph/withGraph";
 import withIO from "../../hoc/with-io/withIO";
 import withCompete from "../../hoc/with-compete/withCompete";
 import withLearn from "../../hoc/with-learn/withLearn";
+import withErrorHandler from "../../hoc/with-error-handler/withErrorHandler";
 
-import { Redirect } from "react-router-dom";
+import {
+    roomLeaveExisting,
+    roomDeleteExisting,
+    roomGetGraph,
+    roomChangeGraph,
+    roomGetData,
+    userHistoryAdd,
+    internalNotificationsAdd
+} from "../../store/actions/index";
+
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
-import withErrorHandler from "../../hoc/with-error-handler/withErrorHandler";
 
 class Room extends React.Component {
     state = {
@@ -29,8 +39,7 @@ class Room extends React.Component {
     };
 
     componentWillUnmount() {
-        if (this.props.room.name)
-            this.props.leaveRoomIOInit();
+        if (this.props.room.name) this.props.leaveRoomIOInit();
     }
 
     render() {
@@ -207,7 +216,34 @@ Room.propTypes = {
     visualization: PropTypes.object
 };
 
-export const RoomPlayground = withRedux(
+const mapStateToProps = state => {
+    return {
+        username: state.auth.username,
+        data: state.room.data,
+        room: state.room.room,
+        error: state.room.error
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        roomLeaveExisting: roomDeleted =>
+            dispatch(roomLeaveExisting(roomDeleted)),
+        roomDeleteExisting: () => dispatch(roomDeleteExisting()),
+        roomGetGraph: name => dispatch(roomGetGraph(name)),
+        roomChangeGraph: (name, graph) =>
+            dispatch(roomChangeGraph(name, graph)),
+        roomGetData: name => dispatch(roomGetData(name)),
+        userHistoryAdd: score => dispatch(userHistoryAdd(score)),
+        internalNotificationsAdd: (message, variant) =>
+            dispatch(internalNotificationsAdd(message, variant))
+    };
+};
+
+export const RoomPlayground = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(
     withIO(
         withGraph(
             withAlgorithm(
@@ -217,10 +253,12 @@ export const RoomPlayground = withRedux(
     )
 );
 
-export const RoomCompete = withRedux(
-    withIO(withGraph(withCompete(withStyles(styles)(withErrorHandler(Room)))))
-);
+export const RoomCompete = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withIO(withGraph(withCompete(withStyles(styles)(withErrorHandler(Room))))));
 
-export const RoomLearn = withRedux(
-    withGraph(withLearn(withStyles(styles)(withErrorHandler(Room))))
-);
+export const RoomLearn = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withGraph(withLearn(withStyles(styles)(withErrorHandler(Room)))));

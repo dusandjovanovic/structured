@@ -1,10 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-/* eslint react/display-name: 0 */
-
 const withDraggable = WrappedComponent => {
-    return class extends React.Component {
+    class WithDraggable extends React.Component {
         state = {
             dragging: false,
             originalX: 0,
@@ -87,13 +85,15 @@ const withDraggable = WrappedComponent => {
                 />
             );
         }
-    };
-};
+    }
 
-withDraggable.propTypes = {
-    onDrag: PropTypes.func,
-    onDragStart: PropTypes.func,
-    onDragEnd: PropTypes.func
+    WithDraggable.propTypes = {
+        onDrag: PropTypes.func,
+        onDragStart: PropTypes.func,
+        onDragEnd: PropTypes.func
+    };
+
+    return WithDraggable;
 };
 
 export default withDraggable;
