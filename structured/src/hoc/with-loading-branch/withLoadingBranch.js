@@ -2,17 +2,14 @@ import React from "react";
 import ProgressIndicator from "../../components/building-blocks/progress-indicator/progressIndicator";
 import Typography from "@material-ui/core/Typography";
 
-/* eslint react/display-name: 0 */
-
 const withLoadingBranch = WrappedComponent => {
     return class extends WrappedComponent {
-
         render() {
             return (
                 <React.Fragment>
                     {this.props.waiting ? (
-                        <div style={{marginTop: "64px", paddingTop: "1rem"}}>
-                            <ProgressIndicator/>
+                        <div style={{ marginTop: "64px", paddingTop: "1rem" }}>
+                            <ProgressIndicator />
                             <Typography
                                 variant="h5"
                                 style={{
@@ -31,7 +28,8 @@ const withLoadingBranch = WrappedComponent => {
                                     color: "#7b7b7b"
                                 }}
                             >
-                                The page will load as soon as the response comes..
+                                The page will load as soon as the response
+                                comes..
                             </Typography>
                         </div>
                     ) : (

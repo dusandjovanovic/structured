@@ -1,8 +1,6 @@
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {internalNotificationsAdd} from "../../store/actions/index";
-
-/* eslint react/display-name: 0 */
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { internalNotificationsAdd } from "../../store/actions/index";
 
 const withErrorHandler = WrappedComponent => {
     return class extends WrappedComponent {
@@ -15,7 +13,10 @@ const withErrorHandler = WrappedComponent => {
                     }
                 });
 
-            if (this.state.error.hasError && this.state.error !== prevState.error)
+            if (
+                this.state.error.hasError &&
+                this.state.error !== prevState.error
+            )
                 this.props.internalNotificationsAdd(
                     this.state.error.description,
                     "warning",
@@ -23,7 +24,11 @@ const withErrorHandler = WrappedComponent => {
                 );
 
             if (this.auxiliaryComponentDidUpdate)
-                this.auxiliaryComponentDidUpdate(prevProps, prevState, snapshot);
+                this.auxiliaryComponentDidUpdate(
+                    prevProps,
+                    prevState,
+                    snapshot
+                );
         }
 
         render() {
@@ -40,6 +45,9 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default compose(
-    connect(null, mapDispatchToProps),
+    connect(
+        null,
+        mapDispatchToProps
+    ),
     withErrorHandler
 );

@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { ALGORITHM_BREADTH } from "../../utils/constants";
 
 const withAlgorithm = WrappedComponent => {
-    const withAlgorithm = class extends React.Component {
+    class WithAlgorithm extends React.Component {
         state = {
             algorithm: false,
             algorithmType: ALGORITHM_BREADTH,
@@ -202,11 +202,9 @@ const withAlgorithm = WrappedComponent => {
                 />
             );
         }
-    };
+    }
 
-    withAlgorithm.displayName = "withAlgorithm";
-
-    withAlgorithm.propTypes = {
+    WithAlgorithm.propTypes = {
         username: PropTypes.string.isRequired,
         data: PropTypes.object.isRequired,
         room: PropTypes.object.isRequired,
@@ -234,6 +232,9 @@ const withAlgorithm = WrappedComponent => {
         deleteRoomIO: PropTypes.func,
         masterChangedIO: PropTypes.func,
         socket: PropTypes.object,
+        redirect: PropTypes.bool.isRequired,
+        leaveRoomIOInit: PropTypes.func.isRequired,
+        deleteRoomIOInit: PropTypes.func.isRequired,
 
         graph: PropTypes.object.isRequired,
         visualization: PropTypes.object.isRequired,
@@ -248,19 +249,19 @@ const withAlgorithm = WrappedComponent => {
         addReceivedEdge: PropTypes.func.isRequired,
         removeEdge: PropTypes.func.isRequired,
         removeReceivedEdge: PropTypes.func.isRequired,
-        nodeSelected: PropTypes.object.isRequired,
-        nodeFocused: PropTypes.object.isRequired,
-        nodeCurrent: PropTypes.string.isRequired,
+        nodeSelected: PropTypes.object,
+        nodeFocused: PropTypes.object,
+        nodeCurrent: PropTypes.string,
         nodesHighlighted: PropTypes.arrayOf(PropTypes.string),
         nodesAdjacent: PropTypes.arrayOf(PropTypes.string),
-        nodeRoot: PropTypes.string.isRequired,
+        nodeRoot: PropTypes.string,
         handlerNodeSelected: PropTypes.func.isRequired,
         handlerNodeFocused: PropTypes.func.isRequired,
         handlerNodeLostFocus: PropTypes.func.isRequired,
         handlerViewport: PropTypes.func.isRequired,
         graphManaged: PropTypes.bool.isRequired,
         graphAnimated: PropTypes.bool.isRequired,
-        graphOperation: PropTypes.string.isRequired,
+        graphOperation: PropTypes.string,
         graphManagedEnded: PropTypes.func.isRequired,
         graphAnimatedEnded: PropTypes.func.isRequired,
         graphManagedAddEdge: PropTypes.func.isRequired,
@@ -272,7 +273,7 @@ const withAlgorithm = WrappedComponent => {
         graphNodeRoot: PropTypes.func.isRequired
     };
 
-    return withAlgorithm;
+    return WithAlgorithm;
 };
 
 export default withAlgorithm;

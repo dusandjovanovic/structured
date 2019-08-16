@@ -24,7 +24,7 @@ const compete = props => {
                         color="textPrimary"
                         className={classes.header}
                     >
-                        {this.props.competeType === COMPETE_BREADTH
+                        {props.competeType === COMPETE_BREADTH
                             ? "Breadth-first search"
                             : "Depth-first search"}
                     </Typography>
@@ -40,6 +40,13 @@ const compete = props => {
                             <Done fontSize="small" className={classes.icon} />{" "}
                             Submit result
                         </Button>
+                        <Button
+                            size="small"
+                            color="primary"
+                            onClick={() => props.leaveRoomIOInit()}
+                        >
+                            Leave room
+                        </Button>
                     </Grid>
                 </Grid>
             </Grid>
@@ -50,7 +57,9 @@ const compete = props => {
 compete.propTypes = {
     classes: PropTypes.object.isRequired,
     graphManaged: PropTypes.bool.isRequired,
-    competeEnded: PropTypes.func.isRequired
+    competeEnded: PropTypes.func.isRequired,
+    competeType: PropTypes.string.isRequired,
+    leaveRoomIOInit: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(React.memo(compete));

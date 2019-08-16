@@ -12,8 +12,5 @@ export const styles = theme => ({
         zIndex: 999,
         opacity: 1,
         transition: "opacity 0.25s ease-in-out"
-    },
-    appBarTransparent: {
-        opacity: 0.9
     }
 });

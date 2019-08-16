@@ -139,6 +139,20 @@ class Master extends React.PureComponent {
                             Cancel
                         </MenuItem>
                     </Menu>
+                    <Button
+                        size="small"
+                        color="primary"
+                        onClick={() => this.props.leaveRoomIOInit()}
+                    >
+                        Leave room
+                    </Button>
+                    <Button
+                        size="small"
+                        color="primary"
+                        onClick={() => this.props.deleteRoomIOInit()}
+                    >
+                        Delete room
+                    </Button>
                 </Grid>
             </Toolbar>
         );
@@ -154,7 +168,9 @@ Master.propTypes = {
     removeNode: PropTypes.func.isRequired,
     removeEdge: PropTypes.func.isRequired,
     algorithmBegin: PropTypes.func.isRequired,
-    algorithmCanceled: PropTypes.func.isRequired
+    algorithmCanceled: PropTypes.func.isRequired,
+    leaveRoomIOInit: PropTypes.func.isRequired,
+    deleteRoomIOInit: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Master);

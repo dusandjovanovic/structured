@@ -136,6 +136,20 @@ class Compete extends React.PureComponent {
                                     Depth-first search
                                 </MenuItem>
                             </Menu>
+                            <Button
+                                size="small"
+                                color="primary"
+                                onClick={() => this.props.leaveRoomIOInit()}
+                            >
+                                Leave room
+                            </Button>
+                            <Button
+                                size="small"
+                                color="primary"
+                                onClick={() => this.props.deleteRoomIOInit()}
+                            >
+                                Delete room
+                            </Button>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -153,7 +167,9 @@ Compete.propTypes = {
     competeEnded: PropTypes.func.isRequired,
     competeBegin: PropTypes.func.isRequired,
     randomGraph: PropTypes.func.isRequired,
-    competeType: PropTypes.string.isRequired
+    competeType: PropTypes.string.isRequired,
+    leaveRoomIOInit: PropTypes.func.isRequired,
+    deleteRoomIOInit: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Compete);

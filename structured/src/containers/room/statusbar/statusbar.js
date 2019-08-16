@@ -64,8 +64,8 @@ const statusbar = props => {
 statusbar.propTypes = {
     classes: PropTypes.object.isRequired,
     master: PropTypes.bool.isRequired,
-    graphManaged: PropTypes.bool.isRequired,
     graphOperation: PropTypes.string,
+    graphManaged: PropTypes.bool.isRequired,
     users: PropTypes.arrayOf(PropTypes.string).isRequired,
     createdBy: PropTypes.string.isRequired
 };

@@ -1,19 +1,12 @@
 import React from "react";
-import {Redirect} from "react-router";
-
-/* eslint react/display-name: 0 */
+import { Redirect } from "react-router";
 
 const withRedirection = WrappedComponent => {
     return class extends WrappedComponent {
-
         render() {
-            const {redirect, redirectPath} = this.state.context;
+            const { redirect, redirectPath } = this.state.context;
 
-            return redirect ? (
-                <Redirect to={redirectPath}/>
-            ) : (
-                super.render()
-            );
+            return redirect ? <Redirect to={redirectPath} /> : super.render();
         }
     };
 };

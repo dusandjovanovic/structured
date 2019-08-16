@@ -1,13 +1,12 @@
 import React from "react";
 import Modal from "@material-ui/core/Modal";
+import PropTypes from "prop-types";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-/* eslint react/display-name: 0 */
-
 const withModal = WrappedComponent => {
-    class ProxyClass extends React.Component {
+    class WithModal extends React.Component {
         render() {
             const { classes } = this.props;
 
@@ -26,7 +25,12 @@ const withModal = WrappedComponent => {
         }
     }
 
-    return withStyles(styles)(ProxyClass);
+    WithModal.propTypes = {
+        classes: PropTypes.object.isRequired,
+        open: PropTypes.bool.isRequired
+    };
+
+    return withStyles(styles)(WithModal);
 };
 
 export default withModal;

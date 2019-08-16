@@ -7,10 +7,8 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-/* eslint react/display-name: 0 */
-
-const withNavigation = (WrappedComponent) => {
-    return class extends React.Component {
+const withNavigation = WrappedComponent => {
+    class WithNavigation extends React.Component {
         state = {
             value: "/"
         };
@@ -22,7 +20,7 @@ const withNavigation = (WrappedComponent) => {
             this.props.history.push(value);
         };
 
-        componentDidUpdate(prevProps, prevState, snapshot) {
+        componentDidUpdate() {
             this.initiateByPath(this.props.history.location.pathname);
         }
 
@@ -65,12 +63,14 @@ const withNavigation = (WrappedComponent) => {
                 />
             );
         }
-    };
-}
+    }
 
-withNavigation.propTypes = {
-    authenticated: PropTypes.bool.isRequired,
-    history: PropTypes.object.isRequired
+    WithNavigation.propTypes = {
+        authenticated: PropTypes.bool.isRequired,
+        history: PropTypes.object.isRequired
+    };
+
+    return WithNavigation;
 };
 
 const mapStateToProps = state => {

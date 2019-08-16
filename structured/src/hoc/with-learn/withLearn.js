@@ -11,7 +11,34 @@ import {
 } from "../../utils/constants";
 
 const withLearn = WrappedComponent => {
-    const withLearn = class extends React.Component {
+    class WithLearn extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                redirect: false
+            };
+        }
+
+        deleteRoomIOInit = async () => {
+            try {
+                await this.props.roomDeleteExisting();
+                this.setState({
+                    redirect: true
+                });
+            } catch (error) {}
+        };
+
+        leaveRoomIOInit = async () => {
+            try {
+                await this.props.roomLeaveExisting(false);
+                this.setState({
+                    redirect: true
+                });
+
+                return "unloading";
+            } catch (error) {}
+        };
+
         graphLearn = segment => {
             switch (segment) {
                 case GRAPH_LEARN_GRAPHS: {
@@ -259,19 +286,25 @@ const withLearn = WrappedComponent => {
 
         render() {
             return (
-                <WrappedComponent learn {...this.props}>
+                <WrappedComponent
+                    learn
+                    redirect={this.state.redirect}
+                    leaveRoomIOInit={this.leaveRoomIOInit}
+                    deleteRoomIOInit={this.deleteRoomIOInit}
+                    {...this.props}
+                >
                     <Learn
                         randomGraph={this.props.randomGraphOffline}
                         graphLearn={this.graphLearn}
+                        leaveRoomIOInit={this.leaveRoomIOInit}
+                        deleteRoomIOInit={this.deleteRoomIOInit}
                     />
                 </WrappedComponent>
             );
         }
-    };
+    }
 
-    withLearn.displayName = "withLearn";
-
-    withLearn.propTypes = {
+    WithLearn.propTypes = {
         username: PropTypes.string.isRequired,
         data: PropTypes.object.isRequired,
         room: PropTypes.object.isRequired,
@@ -297,19 +330,19 @@ const withLearn = WrappedComponent => {
         addReceivedEdge: PropTypes.func.isRequired,
         removeEdge: PropTypes.func.isRequired,
         removeReceivedEdge: PropTypes.func.isRequired,
-        nodeSelected: PropTypes.object.isRequired,
-        nodeFocused: PropTypes.object.isRequired,
-        nodeCurrent: PropTypes.string.isRequired,
+        nodeSelected: PropTypes.object,
+        nodeFocused: PropTypes.object,
+        nodeCurrent: PropTypes.string,
         nodesHighlighted: PropTypes.arrayOf(PropTypes.string),
         nodesAdjacent: PropTypes.arrayOf(PropTypes.string),
-        nodeRoot: PropTypes.string.isRequired,
+        nodeRoot: PropTypes.string,
         handlerNodeSelected: PropTypes.func.isRequired,
         handlerNodeFocused: PropTypes.func.isRequired,
         handlerNodeLostFocus: PropTypes.func.isRequired,
         handlerViewport: PropTypes.func.isRequired,
         graphManaged: PropTypes.bool.isRequired,
         graphAnimated: PropTypes.bool.isRequired,
-        graphOperation: PropTypes.string.isRequired,
+        graphOperation: PropTypes.string,
         graphManagedEnded: PropTypes.func.isRequired,
         graphAnimatedEnded: PropTypes.func.isRequired,
         graphManagedAddEdge: PropTypes.func.isRequired,
@@ -321,7 +354,7 @@ const withLearn = WrappedComponent => {
         graphNodeRoot: PropTypes.func.isRequired
     };
 
-    return withLearn;
+    return WithLearn;
 };
 
 export default withLearn;

@@ -1,13 +1,12 @@
 import React from "react";
 import Compete from "../../containers/room/toolbar/toolbar-compete/compete";
 import CompeteSpectator from "../../containers/room/toolbar/toolbar-compete/competeSpectator";
-import Wrapper from "../wrapper/wrapper";
 import PropTypes from "prop-types";
 
 import { COMPETE_BREADTH, COMPETE_DEPTH } from "../../utils/constants";
 
 const withCompete = WrappedComponent => {
-    const withCompete = class extends React.Component {
+    class WithCompete extends React.Component {
         state = {
             competeType: COMPETE_BREADTH,
             graph: []
@@ -105,7 +104,7 @@ const withCompete = WrappedComponent => {
             this.props.graphManagedCompete();
             this.props
                 .roomChangeGraph(this.props.room.name, graphTraversed)
-                .then(response => {
+                .then(() => {
                     this.props.competeBeginIO(
                         this.state.competeType,
                         this.props.nodeRoot
@@ -172,7 +171,7 @@ const withCompete = WrappedComponent => {
 
         render() {
             return (
-                <Wrapper>
+                <React.Fragment>
                     {this.props.room.master ? (
                         <WrappedComponent competitive {...this.props}>
                             <Compete
@@ -187,6 +186,8 @@ const withCompete = WrappedComponent => {
                                     this.props.visualization.nodes.length > 0
                                 }
                                 competeType={this.state.competeType}
+                                leaveRoomIOInit={this.props.leaveRoomIOInit}
+                                deleteRoomIOInit={this.props.deleteRoomIOInit}
                             />
                         </WrappedComponent>
                     ) : (
@@ -195,17 +196,16 @@ const withCompete = WrappedComponent => {
                                 competeEnded={this.competeEnded}
                                 graphManaged={this.props.graphManaged}
                                 competeType={this.state.competeType}
+                                leaveRoomIOInit={this.props.leaveRoomIOInit}
                             />
                         </WrappedComponent>
                     )}
-                </Wrapper>
+                </React.Fragment>
             );
         }
-    };
+    }
 
-    withCompete.displayName = "withGraph";
-
-    withCompete.propTypes = {
+    WithCompete.propTypes = {
         username: PropTypes.string.isRequired,
         data: PropTypes.object.isRequired,
         room: PropTypes.object.isRequired,
@@ -233,6 +233,9 @@ const withCompete = WrappedComponent => {
         deleteRoomIO: PropTypes.func,
         masterChangedIO: PropTypes.func,
         socket: PropTypes.object,
+        rediret: PropTypes.bool.isRequired,
+        leaveRoomIOInit: PropTypes.func.isRequired,
+        deleteRoomIOInit: PropTypes.func.isRequired,
 
         graph: PropTypes.object.isRequired,
         visualization: PropTypes.object.isRequired,
@@ -247,19 +250,19 @@ const withCompete = WrappedComponent => {
         addReceivedEdge: PropTypes.func.isRequired,
         removeEdge: PropTypes.func.isRequired,
         removeReceivedEdge: PropTypes.func.isRequired,
-        nodeSelected: PropTypes.object.isRequired,
-        nodeFocused: PropTypes.object.isRequired,
-        nodeCurrent: PropTypes.string.isRequired,
+        nodeSelected: PropTypes.object,
+        nodeFocused: PropTypes.object,
+        nodeCurrent: PropTypes.string,
         nodesHighlighted: PropTypes.arrayOf(PropTypes.string),
         nodesAdjacent: PropTypes.arrayOf(PropTypes.string),
-        nodeRoot: PropTypes.string.isRequired,
+        nodeRoot: PropTypes.string,
         handlerNodeSelected: PropTypes.func.isRequired,
         handlerNodeFocused: PropTypes.func.isRequired,
         handlerNodeLostFocus: PropTypes.func.isRequired,
         handlerViewport: PropTypes.func.isRequired,
         graphManaged: PropTypes.bool.isRequired,
         graphAnimated: PropTypes.bool.isRequired,
-        graphOperation: PropTypes.string.isRequired,
+        graphOperation: PropTypes.string,
         graphManagedEnded: PropTypes.func.isRequired,
         graphAnimatedEnded: PropTypes.func.isRequired,
         graphManagedAddEdge: PropTypes.func.isRequired,
@@ -268,10 +271,11 @@ const withCompete = WrappedComponent => {
         graphManagedAlgorithm: PropTypes.func.isRequired,
         graphManagedAlgorithmEnded: PropTypes.func.isRequired,
         graphManagedCompete: PropTypes.func.isRequired,
-        graphNodeRoot: PropTypes.func.isRequired
+        graphNodeRoot: PropTypes.func.isRequired,
+        master: PropTypes.bool.isRequired
     };
 
-    return withCompete;
+    return WithCompete;
 };
 
 export default withCompete;

@@ -1,9 +1,8 @@
 import React from "react";
-
-/* eslint react/display-name: 0 */
+import PropTypes from "prop-types";
 
 const withIOMessaging = WrappedComponent => {
-    return class extends React.Component {
+    class WithIOMessaging extends React.Component {
         socket = null;
 
         constructor(props) {
@@ -32,7 +31,13 @@ const withIOMessaging = WrappedComponent => {
                 />
             );
         }
+    }
+
+    WithIOMessaging.propTypes = {
+        io: PropTypes.func.isRequired
     };
+
+    return WithIOMessaging;
 };
 
 export default withIOMessaging;

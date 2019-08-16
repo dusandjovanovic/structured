@@ -1,14 +1,22 @@
 import React from "react";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import PropTypes from "prop-types";
 
-import "./stylesheet.css";
+import { styles } from "./stylesheet";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-const boundaryLoading = () => (
-    <div className="sk-folding-cube">
-        <div className="sk-cube1 sk-cube"/>
-        <div className="sk-cube2 sk-cube"/>
-        <div className="sk-cube4 sk-cube"/>
-        <div className="sk-cube3 sk-cube"/>
-    </div>
-);
+const boundaryLoading = props => {
+    const { classes } = props;
 
-export default React.memo(boundaryLoading);
+    return (
+        <div className={classes.root}>
+            <CircularProgress color="secondary" size={60} />
+        </div>
+    );
+};
+
+boundaryLoading.propTypes = {
+    classes: PropTypes.object.isRequired
+};
+
+export default React.memo(withStyles(styles)(boundaryLoading));

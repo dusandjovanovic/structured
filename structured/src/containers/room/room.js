@@ -6,23 +6,31 @@ import Statusbar from "./statusbar/statusbar";
 import AlgorithmCore from "./algorithm/core/algorithm";
 import PropTypes from "prop-types";
 
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import withAlgorithm from "../../hoc/with-algorithm/withAlgorithm";
 import withPlayground from "../../hoc/with-playground/withPlayground";
-import withRedux from "../../hoc/with-redux/withRedux";
 import withGraph from "../../hoc/with-graph/withGraph";
 import withIO from "../../hoc/with-io/withIO";
 import withCompete from "../../hoc/with-compete/withCompete";
 import withLearn from "../../hoc/with-learn/withLearn";
+import withErrorHandler from "../../hoc/with-error-handler/withErrorHandler";
 
-import { Redirect } from "react-router-dom";
+import {
+    roomLeaveExisting,
+    roomDeleteExisting,
+    roomGetGraph,
+    roomChangeGraph,
+    roomGetData,
+    userHistoryAdd,
+    internalNotificationsAdd
+} from "../../store/actions/index";
+
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
-import withErrorHandler from "../../hoc/with-error-handler/withErrorHandler";
 
 class Room extends React.Component {
     state = {
-        redirect: false,
-        roomName: null,
         error: {
             hasError: false,
             name: null,
@@ -30,74 +38,16 @@ class Room extends React.Component {
         }
     };
 
-    componentDidMount() {
-        window.addEventListener("beforeunload", this.leaveRoom);
-        this.setState({ roomName: this.props.room.name });
-
-        if (!this.props.learn)
-            this.props.socket.on(
-                this.props.room.name + " delete room",
-                received => {
-                    this.props.roomLeaveExisting(true);
-                    this.props.internalNotificationsAdd(
-                        "The room has been deleted.",
-                        "error",
-                        5,
-                        null,
-                        null
-                    );
-                    this.setState({
-                        redirect: true
-                    });
-                }
-            );
-    }
-
     componentWillUnmount() {
-        window.removeEventListener("beforeunload", this.leaveRoom);
+        if (this.props.room.name) this.props.leaveRoomIOInit();
     }
-
-    deleteRoom = () => {
-        this.props.roomDeleteExisting().then(() => {
-            if (!this.props.learn) this.props.deleteRoomIO(this.state.roomName);
-            this.setState({
-                redirect: true
-            });
-        });
-    };
-
-    leaveRoom = () => {
-        this.props.roomLeaveExisting(false).then(response => {
-            if (!this.props.learn)
-                if (response.newMaster)
-                    this.props.masterChangedIO(
-                        this.state.roomName,
-                        response.newMaster
-                    );
-                else
-                    this.props.joinLeaveRoomIO(
-                        this.state.roomName,
-                        response.msg
-                    );
-
-            this.setState({
-                redirect: true
-            });
-        });
-
-        return "unloading";
-    };
 
     render() {
         const { classes } = this.props;
 
-        let redirect = null;
-        if (this.state.redirect && !this.props.error)
-            redirect = <Redirect to="/" />;
-
         return (
             <Grid container className={classes.root} direction="column">
-                {redirect}
+                {this.props.redirect ? <Redirect to="/" /> : null}
                 <Grid container>{this.props.children}</Grid>
                 <Grid container>
                     {this.props.competitive || this.props.learn ? null : (
@@ -153,11 +103,13 @@ class Room extends React.Component {
                         />
                     </Grid>
                     <Statusbar
-                        users={this.props.data.users}
-                        master={this.props.room.master}
+                        users={this.props.data.users || []}
+                        master={this.props.room.master || false}
                         graphManaged={this.props.graphManaged}
                         graphOperation={this.props.graphOperation}
-                        createdBy={this.props.data.createdBy}
+                        createdBy={
+                            this.props.data.createdBy || "Exiting room.."
+                        }
                     />
                 </Grid>
                 {this.props.algorithm ? (
@@ -184,6 +136,7 @@ Room.propTypes = {
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node
     ]).isRequired,
+    redirect: PropTypes.bool.isRequired,
     addEdge: PropTypes.func,
     addEdgeIO: PropTypes.func,
     addGraphIO: PropTypes.func,
@@ -210,6 +163,7 @@ Room.propTypes = {
     competeEndedIO: PropTypes.func,
     data: PropTypes.object,
     deleteRoomIO: PropTypes.func,
+    deleteRoomIOInit: PropTypes.func,
     error: PropTypes.string,
     getGraphIO: PropTypes.func,
     graph: PropTypes.object,
@@ -234,6 +188,7 @@ Room.propTypes = {
     io: PropTypes.func,
     joinLeaveRoomIO: PropTypes.func,
     learn: PropTypes.bool,
+    leaveRoomIOInit: PropTypes.func,
     masterChangedIO: PropTypes.func,
     nodeCurrent: PropTypes.string,
     nodeFocused: PropTypes.object,
@@ -261,7 +216,34 @@ Room.propTypes = {
     visualization: PropTypes.object
 };
 
-export const RoomPlayground = withRedux(
+const mapStateToProps = state => {
+    return {
+        username: state.auth.username,
+        data: state.room.data,
+        room: state.room.room,
+        error: state.room.error
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        roomLeaveExisting: roomDeleted =>
+            dispatch(roomLeaveExisting(roomDeleted)),
+        roomDeleteExisting: () => dispatch(roomDeleteExisting()),
+        roomGetGraph: name => dispatch(roomGetGraph(name)),
+        roomChangeGraph: (name, graph) =>
+            dispatch(roomChangeGraph(name, graph)),
+        roomGetData: name => dispatch(roomGetData(name)),
+        userHistoryAdd: score => dispatch(userHistoryAdd(score)),
+        internalNotificationsAdd: (message, variant) =>
+            dispatch(internalNotificationsAdd(message, variant))
+    };
+};
+
+export const RoomPlayground = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(
     withIO(
         withGraph(
             withAlgorithm(
@@ -271,10 +253,12 @@ export const RoomPlayground = withRedux(
     )
 );
 
-export const RoomCompete = withRedux(
-    withIO(withGraph(withCompete(withStyles(styles)(withErrorHandler(Room)))))
-);
+export const RoomCompete = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withIO(withGraph(withCompete(withStyles(styles)(withErrorHandler(Room))))));
 
-export const RoomLearn = withRedux(
-    withGraph(withLearn(withStyles(styles)(withErrorHandler(Room))))
-);
+export const RoomLearn = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withGraph(withLearn(withStyles(styles)(withErrorHandler(Room)))));
