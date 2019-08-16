@@ -16,8 +16,7 @@ const withIO = WrappedComponent => {
         }
 
         componentDidMount() {
-            window.addEventListener("beforeunload", this.leaveRoom);
-            this.setState({ roomName: this.props.room.name });
+            window.addEventListener("beforeunload", this.leaveRoomIOInit);
 
             this.socket.on(this.props.room.name + " delete room", () => {
                 this.props.roomLeaveExisting(true);
@@ -33,7 +32,7 @@ const withIO = WrappedComponent => {
 
         componentWillUnmount() {
             this.socket.close();
-            window.removeEventListener("beforeunload", this.leaveRoom);
+            window.removeEventListener("beforeunload", this.leaveRoomIOInit);
         }
 
         addNodeIO = node => {
@@ -146,7 +145,7 @@ const withIO = WrappedComponent => {
 
         deleteRoomIOInit = async () => {
             try {
-                let roomName = this.props.room.name;
+                const roomName = this.props.room.name;
                 await this.props.roomDeleteExisting();
                 this.deleteRoomIO(roomName);
                 this.setState({
@@ -157,17 +156,11 @@ const withIO = WrappedComponent => {
 
         leaveRoomIOInit = async () => {
             try {
+                const roomName = this.props.room.name;
                 const response = await this.props.roomLeaveExisting(false);
                 if (response.data.newMaster)
-                    this.masterChangedIO(
-                        this.props.room.name,
-                        response.data.newMaster
-                    );
-                else
-                    this.joinLeaveRoomIO(
-                        this.props.room.name,
-                        response.data.msg
-                    );
+                    this.masterChangedIO(roomName, response.data.newMaster);
+                else this.joinLeaveRoomIO(roomName, response.data.msg);
 
                 this.setState({
                     redirect: true

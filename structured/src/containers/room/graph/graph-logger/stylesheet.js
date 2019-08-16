@@ -4,13 +4,14 @@ export const styles = () => ({
     root: {
         fontSize: "1rem",
         fontFamily:
-            "source-code-pro, Menlo, Monaco, Consolas, 'Courier New, monospace",
+            "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
         float: "left",
         width: "auto",
         padding: "1.5rem"
     },
     holder: {
-        lineHeight: "2rem"
+        height: "1.8rem",
+        lineHeight: "1.8rem"
     },
     separator: {
         padding: "1rem"
@@ -26,7 +27,7 @@ export const styles = () => ({
         textAlign: "center",
         width: "1.8rem",
         height: "1.8rem",
-        border: "1px solid #dedede"
+        boxShadow: "0px 1px 2px rgba(69,69,69,0.25)"
     },
     nodeUndefined: {
         fontSize: "1rem",

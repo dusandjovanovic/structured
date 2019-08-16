@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import isEqual from "lodash/isEqual";
-import { funcValidateEmail } from "../../../utils/functions/validation-instance";
+import { funcValidateEmail } from "../../../utils/functions/validationFunctions";
 
 class FormContainer extends React.Component {
     state = {

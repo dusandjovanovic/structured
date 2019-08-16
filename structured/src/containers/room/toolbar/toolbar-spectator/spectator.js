@@ -51,7 +51,11 @@ const spectator = props => {
                     <Clear fontSize="small" className={classes.icon} /> Remove
                     edge
                 </Button>
-                <Button size="small" color="secondary" onClick={null}>
+                <Button
+                    size="small"
+                    color="secondary"
+                    onClick={() => props.leaveRoomIOInit()}
+                >
                     Leave room
                 </Button>
             </Grid>

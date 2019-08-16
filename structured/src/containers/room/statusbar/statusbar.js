@@ -17,7 +17,7 @@ const statusbar = props => {
             >
                 {props.master
                     ? "You are a room master"
-                    : "Room master:" + props.createdBy}
+                    : "Room master is " + props.createdBy}
             </Typography>
             <Typography
                 variant="caption"

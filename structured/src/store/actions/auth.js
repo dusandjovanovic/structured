@@ -10,7 +10,7 @@ import {
 
 import { userData } from "./index";
 import { initAuth, readAuth, removeAuth } from "../../utils/storage";
-import { axios, authLoginRoute, authRegisterRoute } from "../../utils/api";
+import { axios, authLoginRoute, authRegisterRoute } from "../../utils/constantsAPI";
 
 const authUpdateCredentials = (token, username) => {
     return {

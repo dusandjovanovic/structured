@@ -8,7 +8,7 @@ import {
     userFriendAddRoute,
     userFriendConfirmRoute,
     userFriendDeleteRoute
-} from "../../utils/api";
+} from "../../utils/constantsAPI";
 
 import { internalNotificationsAdd } from "./index";
 
