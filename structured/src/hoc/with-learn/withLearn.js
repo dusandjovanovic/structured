@@ -12,6 +12,33 @@ import {
 
 const withLearn = WrappedComponent => {
     const withLearn = class extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                redirect: false
+            };
+        }
+
+        deleteRoomIOInit = async () => {
+            try {
+                await this.props.roomDeleteExisting();
+                this.setState({
+                    redirect: true
+                });
+            } catch (error) {}
+        };
+
+        leaveRoomIOInit = async () => {
+            try {
+                await this.props.roomLeaveExisting(false);
+                this.setState({
+                    redirect: true
+                });
+
+                return "unloading";
+            } catch (error) {}
+        };
+
         graphLearn = segment => {
             switch (segment) {
                 case GRAPH_LEARN_GRAPHS: {
@@ -259,10 +286,16 @@ const withLearn = WrappedComponent => {
 
         render() {
             return (
-                <WrappedComponent learn {...this.props}>
+                <WrappedComponent
+                    learn
+                    redirect={this.state.redirect}
+                    {...this.props}
+                >
                     <Learn
                         randomGraph={this.props.randomGraphOffline}
                         graphLearn={this.graphLearn}
+                        leaveRoomIOInit={this.leaveRoomIOInit}
+                        deleteRoomIOInit={this.deleteRoomIOInit}
                     />
                 </WrappedComponent>
             );

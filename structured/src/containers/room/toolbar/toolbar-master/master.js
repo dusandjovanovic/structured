@@ -141,14 +141,14 @@ class Master extends React.PureComponent {
                     </Menu>
                     <Button
                         size="small"
-                        color="secondary"
+                        color="primary"
                         onClick={() => this.props.leaveRoomIOInit()}
                     >
                         Leave room
                     </Button>
                     <Button
                         size="small"
-                        color="secondary"
+                        color="primary"
                         onClick={() => this.props.deleteRoomIOInit()}
                     >
                         Delete room

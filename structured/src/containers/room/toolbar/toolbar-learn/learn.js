@@ -78,10 +78,18 @@ class Learn extends React.PureComponent {
                         >
                             Graph traversals
                         </Button>
-                        <Button size="small" color="secondary" onClick={null}>
+                        <Button
+                            size="small"
+                            color="primary"
+                            onClick={() => this.props.leaveRoomIOInit()}
+                        >
                             Leave room
                         </Button>
-                        <Button size="small" color="secondary" onClick={null}>
+                        <Button
+                            size="small"
+                            color="primary"
+                            onClick={() => this.props.deleteRoomIOInit()}
+                        >
                             Delete room
                         </Button>
                     </Grid>
@@ -104,7 +112,9 @@ class Learn extends React.PureComponent {
 Learn.propTypes = {
     classes: PropTypes.object.isRequired,
     graphLearn: PropTypes.func.isRequired,
-    randomGraph: PropTypes.func.isRequired
+    randomGraph: PropTypes.func.isRequired,
+    leaveRoomIOInit: PropTypes.func.isRequired,
+    deleteRoomIOInit: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Learn);

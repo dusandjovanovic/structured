@@ -143,12 +143,14 @@ const withIO = WrappedComponent => {
         };
 
         deleteRoomIOInit = async () => {
-            let roomName = this.props.room.name;
-            await this.props.roomDeleteExisting();
-            this.deleteRoomIO(roomName);
-            this.setState({
-                redirect: true
-            });
+            try {
+                let roomName = this.props.room.name;
+                await this.props.roomDeleteExisting();
+                this.deleteRoomIO(roomName);
+                this.setState({
+                    redirect: true
+                });
+            } catch (error) {}
         };
 
         leaveRoomIOInit = async () => {
@@ -170,9 +172,7 @@ const withIO = WrappedComponent => {
                 });
 
                 return "unloading";
-            } catch (error) {
-                console.log(error);
-            }
+            } catch (error) {}
         };
 
         masterChangedIO = (room, master) => {

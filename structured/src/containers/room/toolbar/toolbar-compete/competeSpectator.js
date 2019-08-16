@@ -42,7 +42,7 @@ const compete = props => {
                         </Button>
                         <Button
                             size="small"
-                            color="secondary"
+                            color="primary"
                             onClick={() => props.leaveRoomIOInit()}
                         >
                             Leave room
