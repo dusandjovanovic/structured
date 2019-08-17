@@ -166,7 +166,7 @@ export const roomCreateNew = (name, maxUsers, roomType) => {
         try {
             const response = await axios
                 .getInstance()
-                .post(roomCreateNewRoute, payload);
+                .post(roomCreateNewRoute, payload, {"Content-Type": "application/x-www-form-urlencoded"});
 
             if (response.data.success) {
                 const roomData = await dispatch(roomGetData(name));
@@ -193,7 +193,7 @@ export const roomJoinExisting = name => {
         try {
             const response = await axios
                 .getInstance()
-                .post(roomJoinRoute, payload);
+                .post(roomJoinRoute, payload,  {"Content-Type": "application/x-www-form-urlencoded"});
 
             if (response.data.success) {
                 const roomData = await dispatch(roomGetData(name));
@@ -225,7 +225,7 @@ export const roomLeaveExisting = roomDeleted => {
             try {
                 response = await axios
                     .getInstance()
-                    .post(roomLeaveRoute, payload);
+                    .post(roomLeaveRoute, payload, {"Content-Type": "application/x-www-form-urlencoded"});
 
                 if (response.data.success) {
                     dispatch(roomLeave(getState().auth.username));
@@ -298,7 +298,7 @@ export const roomChangeGraph = (name, graph) => {
         try {
             response = await axios
                 .getInstance()
-                .put(roomChangeGraphRoute(name), payload);
+                .put(roomChangeGraphRoute(name), payload, {"Content-Type": "application/x-www-form-urlencoded"});
 
             if (response.data.success) {
                 dispatch(roomGraphChange(graph));

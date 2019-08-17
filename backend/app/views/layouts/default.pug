@@ -1,0 +1,13 @@
+doctype html
+html(lang="en")
+  include ../includes/head.pug
+  body
+    include ../includes/header.pug
+    .container
+      .page-header
+        block page-header
+      .messages
+        include ../includes/messages.pug
+      block main
+      .content
+        block content

@@ -130,7 +130,7 @@ export const userHistoryAdd = score => {
         try {
             const response = await axios
                 .getInstance()
-                .put(userAddHistoryRoute(getState().auth.username), payload);
+                .put(userAddHistoryRoute(getState().auth.username), payload, {"Content-Type": "application/x-www-form-urlencoded"});
 
             if (response.data.success) {
                 dispatch(userEnd());
@@ -190,7 +190,7 @@ export const friendAdd = friendUsername => {
         try {
             const response = await axios
                 .getInstance()
-                .post(userFriendCheckRoute, payload);
+                .post(userFriendCheckRoute, payload, {"Content-Type": "application/x-www-form-urlencoded"});
 
             if (response.data.data.exists) {
                 dispatch(
@@ -204,7 +204,7 @@ export const friendAdd = friendUsername => {
                 try {
                     const responsePost = await axios
                         .getInstance()
-                        .post(userFriendAddRoute, payload);
+                        .post(userFriendAddRoute, payload, {"Content-Type": "application/x-www-form-urlencoded"});
 
                     if (responsePost.data.success)
                         dispatch(
@@ -235,12 +235,12 @@ export const friendAdd = friendUsername => {
 export const friendConfirm = requestId => {
     return async dispatch => {
         dispatch(userInit());
-        const data = {
+        const payload = {
             id: requestId
         };
 
         try {
-            await axios.getInstance().post(userFriendConfirmRoute, data);
+            await axios.getInstance().post(userFriendConfirmRoute, payload, {"Content-Type": "application/x-www-form-urlencoded"});
 
             dispatch(friendsConfirmRequest(requestId));
             dispatch(userEnd());

@@ -87,14 +87,14 @@ export const authenticateLogin = (username, password, remember) => {
         try {
             const response = await axios
                 .getInstance()
-                .post(authLoginRoute, payload);
+                .post(authLoginRoute, payload, {"Content-Type": "application/x-www-form-urlencoded"});
 
-            if (remember) initAuth(response.data.token, username);
-            dispatch(authUpdateCredentials(response.data.token, username));
+            if (remember) initAuth(response.data.user.username);
+            dispatch(authUpdateCredentials(response.data.user.username));
             dispatch(authSuccess());
             dispatch(userData(true));
         } catch (error) {
-            dispatch(authError(error.response.data.msg));
+            dispatch(authError(error.response.data.message));
         }
     };
 };
@@ -110,14 +110,14 @@ export const authenticateRegister = (username, password, remember) => {
         try {
             const response = await axios
                 .getInstance()
-                .post(authRegisterRoute, payload);
+                .post(authRegisterRoute, payload, {"Content-Type": "application/x-www-form-urlencoded"});
 
             if (remember) initAuth(response.data.token, username);
             dispatch(authUpdateCredentials(response.data.token, username));
             dispatch(authSuccess());
             dispatch(userData(true));
         } catch (error) {
-            dispatch(authError(error.response.data.msg));
+            dispatch(authError(error.response.data.message));
         }
     };
 };
