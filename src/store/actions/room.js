@@ -234,9 +234,9 @@ export const roomLeaveExisting = roomDeleted => {
 					});
 
 				if (response.data.success) {
-					dispatch(roomLeave(getState().auth.username));
+                    dispatch(roomLeave(getState().auth.username));
+                    dispatch(roomAll(response.data.rooms));
 					dispatch(roomEnd());
-					dispatch(roomGetAll());
 				} else {
 					dispatch(roomError(response.data.message));
 				}
@@ -262,9 +262,9 @@ export const roomDeleteExisting = () => {
 
 			if (response.data.success) {
 				dispatch(roomDelete());
-				dispatch(roomLeave(username));
+                dispatch(roomLeave(username));
+                dispatch(roomAll(response.data.rooms));
 				dispatch(roomEnd());
-				dispatch(roomGetAll());
 			} else {
 				dispatch(roomError(response.data.message));
 			}

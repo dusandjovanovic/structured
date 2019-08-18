@@ -154,6 +154,9 @@ module.exports = function(app, passport) {
 	app.use(function(error, request, response, next) {
 		if (error.message && ~error.message.indexOf("not found")) {
 			return next();
+		} else if (error.errmsg) {
+			console.error(error.errmsg);
+			response.status(420).send({ message: error.errmsg });
 		} else if (error.errors && error.errors.length) {
 			console.error(error);
 			response

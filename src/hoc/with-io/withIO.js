@@ -161,7 +161,7 @@ const withIO = WrappedComponent => {
 				const response = await this.props.roomLeaveExisting(false);
 				if (response.data.newMaster)
 					this.masterChangedIO(roomName, response.data.newMaster);
-				else this.joinLeaveRoomIO(roomName, response.data.msg);
+				else this.joinLeaveRoomIO(roomName, response.data.message);
 
 				this.setState({
 					redirect: true

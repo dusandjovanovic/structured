@@ -1,9 +1,5 @@
 {
-	"extends": [
-		"eslint:recommended",
-		"plugin:react/recommended",
-		"plugin:prettier/recommended"
-	],
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
 	"plugins": ["react"],
 	"env": {
 		"browser": true,
@@ -22,13 +18,7 @@
 		"sourceType": "module"
 	},
 	"rules": {
-		"prettier/prettier": [
-			"error",
-			{
-				"singleQuote": false
-			}
-		],
 		"no-console": "off",
-		"indent": ["4", "tab", { "SwitchCase": 1 }]
+		"indent": [0]
 	}
 }
