@@ -93,9 +93,13 @@ module.exports = function(app, passport) {
 	);
 
 	// if (process.env.NODE_ENV !== "test") {
-	// 	app.use(csrf());
+	// 	app.use(
+	// 		csrf({
+	// 			cookie: true
+	// 		})
+	// 	);
 	// 	app.use(function(req, res, next) {
-	// 		res.locals.csrf_token = req.csrfToken();
+	// 		res.cookie("XSRF-TOKEN", req.csrfToken());
 	// 		next();
 	// 	});
 	// }
