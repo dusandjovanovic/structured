@@ -85,7 +85,12 @@ module.exports = function(app, passport) {
 	app.use(flash());
 
 	app.use(helpers(pkg.name));
-	app.use(cors());
+	app.use(
+		cors({
+			origin: "http://localhost:3000",
+			credentials: true
+		})
+	);
 
 	// if (process.env.NODE_ENV !== "test") {
 	// 	app.use(csrf());

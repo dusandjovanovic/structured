@@ -179,25 +179,32 @@ exports.postLeave = function(request, response, next) {
 							if (error) return next(error);
 							else {
 								let newMaster = null;
-								if (room.createdBy === username)
+								if (room.createdBy === username) {
 									newMaster = room.users[0];
-								Room.update(
-									{ name: roomName },
-									{
-										createdBy: newMaster
-									},
-									function(error) {
-										if (error) return next(error);
-										else
-											response.json({
-												success: true,
-												message:
-													username +
-													" has left the room.",
-												newMaster: newMaster
-											});
-									}
-								);
+									Room.update(
+										{ name: roomName },
+										{
+											createdBy: newMaster
+										},
+										function(error) {
+											if (error) return next(error);
+											else
+												response.json({
+													success: true,
+													message:
+														username +
+														" has left the room.",
+													newMaster: newMaster
+												});
+										}
+									);
+								} else
+									response.json({
+										success: true,
+										message:
+											username + " has left the room.",
+										newMaster: null
+									});
 							}
 						}
 					);

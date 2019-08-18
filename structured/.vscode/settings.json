@@ -1,0 +1,8 @@
+{
+    "editor.formatOnSave": true,
+	"editor.tabSize": 4,
+	"prettier.eslintIntegration": true,
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 4,
+	"prettier.semi": true
+}
