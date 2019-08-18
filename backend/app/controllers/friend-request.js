@@ -1,10 +1,36 @@
 const FriendRequest = require("../models/friend-request");
 const User = require("../models/user");
 
+const { validationResult, body, param } = require("express-validator");
+
+exports.validate = method => {
+	switch (method) {
+		case "/api/friend-request/username/get": {
+			return [param("username").exists()];
+		}
+		case "/api/friend-request/check/post": {
+			return [body("sender").exists(), body("receiver").exists()];
+		}
+		case "/api/friend-request/add/post": {
+			return [body("sender").exists(), body("receiver").exists()];
+		}
+		case "/api/friend-request/confirm/post": {
+			return [body("id").exists()];
+		}
+		case "/api/friend-request/id/delete": {
+			return [param("id").exists()];
+		}
+		default: {
+			return [];
+		}
+	}
+};
+
 exports.get = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { username } = request.params;
-	if (!username)
-		return next({ message: "Username key is required in params." });
 
 	FriendRequest.find({ receiver: username }, function(error, requests) {
 		if (error) return next(error);
@@ -17,11 +43,10 @@ exports.get = function(request, response, next) {
 };
 
 exports.postCheck = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { sender, receiver } = request.body;
-	if (!sender || !receiver)
-		return next({
-			message: "Usernames for seder/receiver users are required."
-		});
 
 	User.findOne({ username: sender, friends: receiver }, function(
 		error,
@@ -54,11 +79,10 @@ exports.postCheck = function(request, response, next) {
 };
 
 exports.postAdd = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { sender, receiver } = request.body;
-	if (!sender || !receiver)
-		return next({
-			message: "Usernames for seder/receiver users are required."
-		});
 
 	User.findOne({ username: sender, friends: receiver }, function(
 		error,
@@ -112,11 +136,10 @@ exports.postAdd = function(request, response, next) {
 };
 
 exports.postConfirm = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { id } = request.body;
-	if (!id)
-		return next({
-			message: "Id key is required in body."
-		});
 
 	FriendRequest.findById(id, function(error, request) {
 		if (error) return next(error);
@@ -156,8 +179,10 @@ exports.postConfirm = function(request, response, next) {
 };
 
 exports.delete = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { id } = request.params;
-	if (!id) return next({ message: "Id key is required in params." });
 
 	FriendRequest.deleteOne({ _id: id }, function(error) {
 		if (error) return next(error);
