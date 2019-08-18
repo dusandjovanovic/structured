@@ -97,14 +97,11 @@ exports.register = function(request, response, next) {
 
 	const { username, password } = request.body;
 
-	User.register(new User({ username: username }), password, function(
-		error,
-		user
-	) {
+	User.register(new User({ username: username }), password, function(error) {
 		if (error) {
 			response.status(500).send(error);
 		} else {
-			global.passport.authenticate("local", function(error, user, info) {
+			global.passport.authenticate("local", function(error, user) {
 				if (error) return next(error);
 				else if (!user) return next({ message: "User not present." });
 				request.login(user, function(error) {
@@ -123,7 +120,7 @@ exports.login = function(request, response, next) {
 	const validation = validationResult(request);
 	if (!validation.isEmpty()) return next({ errors: validation.array() });
 
-	global.passport.authenticate("local", function(error, user, info) {
+	global.passport.authenticate("local", function(error, user) {
 		if (error) return next(error);
 		else if (!user) return next();
 		request.login(user, function(error) {

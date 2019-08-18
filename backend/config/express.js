@@ -5,7 +5,6 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override");
-const csrf = require("csurf");
 const helmet = require("helmet");
 const cors = require("cors");
 
@@ -91,16 +90,4 @@ module.exports = function(app, passport) {
 			credentials: true
 		})
 	);
-
-	// if (process.env.NODE_ENV !== "test") {
-	// 	app.use(
-	// 		csrf({
-	// 			cookie: true
-	// 		})
-	// 	);
-	// 	app.use(function(req, res, next) {
-	// 		res.cookie("XSRF-TOKEN", req.csrfToken());
-	// 		next();
-	// 	});
-	// }
 };

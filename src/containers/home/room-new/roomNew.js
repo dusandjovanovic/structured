@@ -8,42 +8,44 @@ import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const RoomNew = props => (
-    <Grid
-        container
-        spacing={2}
-        direction="column"
-        className={props.classes.root}
-    >
-        <Grid item xs={12}>
-            <Typography variant="h4">Create your own room</Typography>
-        </Grid>
-        <Grid item xs={12}>
-            <Typography variant="h5">
-                A new room your friends could join. Everyone can see your
-                actions and messages.
-            </Typography>
-        </Grid>
-        <Grid item xs={12}>
-            <Typography variant="subtitle1">
-                By creating a new room you are a room Master, others who join
-                are spectators and can see everything you do.
-            </Typography>
-        </Grid>
-        <Grid item xs={12}>
-            <Button
-                color="primary"
-                size="large"
-                onClick={props.handleNewRoomOpen}
-            >
-                Create new room
-            </Button>
-        </Grid>
-    </Grid>
+	<Grid
+		container
+		spacing={2}
+		direction="column"
+		className={props.classes.root}
+	>
+		<Grid item xs={12}>
+			<Typography variant="h4" color="primary">
+				Create your own room
+			</Typography>
+		</Grid>
+		<Grid item xs={12}>
+			<Typography variant="h5" color="primary">
+				A new room your friends could join. Everyone can see your
+				actions and messages.
+			</Typography>
+		</Grid>
+		<Grid item xs={12}>
+			<Typography variant="subtitle1" color="secondary">
+				By creating a new room you are a room Master, others who join
+				are spectators and can see everything you do.
+			</Typography>
+		</Grid>
+		<Grid item xs={12}>
+			<Button
+				color="primary"
+				size="large"
+				onClick={props.handleNewRoomOpen}
+			>
+				Create new room
+			</Button>
+		</Grid>
+	</Grid>
 );
 
 RoomNew.propTypes = {
-    classes: PropTypes.object.isRequired,
-    handleNewRoomOpen: PropTypes.func.isRequired
+	classes: PropTypes.object.isRequired,
+	handleNewRoomOpen: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(React.memo(RoomNew));

@@ -42,15 +42,14 @@
 		"winston": "~3.2.1"
 	},
 	"devDependencies": {
-		"babel-eslint": "~10.0.1",
+		"babel-eslint": "^10.0.2",
 		"babel-tape-runner": "~3.0.0",
 		"eslint": "~5.16.0",
 		"eslint-config-prettier": "^4.3.0",
-		"eslint-plugin-prettier": "~3.1.0",
 		"nodemon": "1.19.0",
-		"npm-check-updates": "~3.1.9",
+		"npm-check-updates": "^3.1.21",
 		"prettier": "~1.17.1",
-		"supertest": "*",
-		"tape": "~4.10.1"
+		"supertest": "^4.0.2",
+		"tape": "^4.10.2"
 	}
 }

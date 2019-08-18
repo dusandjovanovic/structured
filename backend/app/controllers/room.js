@@ -133,6 +133,7 @@ exports.postCreate = function(request, response, next) {
 			}
 		},
 		function(error) {
+			console.log(error);
 			if (error) return next(error);
 			else
 				response.json({
@@ -161,7 +162,7 @@ exports.postJoin = function(request, response, next) {
 				return next({
 					message: "Room is full. You cannot join at this time."
 				});
-			else
+			else if (room.users.indexOf(username) === -1)
 				Room.update(
 					{ name: roomName },
 					{
@@ -177,6 +178,11 @@ exports.postJoin = function(request, response, next) {
 							});
 					}
 				);
+			else
+				response.json({
+					success: true,
+					message: username + " has joined the room again."
+				});
 		}
 	});
 };
@@ -202,12 +208,17 @@ exports.postLeave = function(request, response, next) {
 					Room.deleteOne({ name: roomName }, function(error) {
 						if (error) return next(error);
 						else
-							response.json({
-								success: true,
-								message:
-									username +
-									" has deleted the room. You will now leave.",
-								newMaster: null
+							Room.find(function(error, rooms) {
+								if (error) return next(error);
+								else
+									response.json({
+										success: true,
+										message:
+											username +
+											" has deleted the room. You will now leave.",
+										newMaster: null,
+										rooms: rooms
+									});
 							});
 					});
 				} else
@@ -231,21 +242,36 @@ exports.postLeave = function(request, response, next) {
 										function(error) {
 											if (error) return next(error);
 											else
-												response.json({
-													success: true,
-													message:
-														username +
-														" has left the room.",
-													newMaster: newMaster
+												Room.find(function(
+													error,
+													rooms
+												) {
+													if (error)
+														return next(error);
+													else
+														response.json({
+															success: true,
+															message:
+																username +
+																" has left the room.",
+															newMaster: newMaster,
+															rooms: rooms
+														});
 												});
 										}
 									);
 								} else
-									response.json({
-										success: true,
-										message:
-											username + " has left the room.",
-										newMaster: null
+									Room.find(function(error, rooms) {
+										if (error) return next(error);
+										else
+											response.json({
+												success: true,
+												message:
+													username +
+													" has left the room.",
+												newMaster: null,
+												rooms: rooms
+											});
 									});
 							}
 						}
@@ -267,10 +293,16 @@ exports.delete = function(request, response, next) {
 
 	Room.deleteOne({ _id: id }, function(error) {
 		if (error) return next(error);
-		else
-			response.json({
-				success: true,
-				message: "Room deleted successfully."
+		else {
+			Room.find(function(error, rooms) {
+				if (error) return next(error);
+				else
+					response.json({
+						success: true,
+						message: "Room deleted successfully.",
+						rooms: rooms
+					});
 			});
+		}
 	});
 };
