@@ -16,25 +16,23 @@ const RoomNew = props => (
 	>
 		<Grid item xs={12}>
 			<Typography variant="h4" color="primary">
-				Create your own room
+				Hi {props.username}
+			</Typography>
+            <Typography variant="h5" color="primary">
+				Join existing rooms or create a new one
 			</Typography>
 		</Grid>
 		<Grid item xs={12}>
-			<Typography variant="h5" color="primary">
-				A new room your friends could join. Everyone can see your
-				actions and messages.
-			</Typography>
-		</Grid>
-		<Grid item xs={12}>
-			<Typography variant="subtitle1" color="secondary">
+			<Typography variant="button" color="secondary">
 				By creating a new room you are a room Master, others who join
 				are spectators and can see everything you do.
 			</Typography>
 		</Grid>
 		<Grid item xs={12}>
 			<Button
-				color="primary"
+				color="secondary"
 				size="large"
+                variant="outlined"
 				onClick={props.handleNewRoomOpen}
 			>
 				Create new room
@@ -45,7 +43,8 @@ const RoomNew = props => (
 
 RoomNew.propTypes = {
 	classes: PropTypes.object.isRequired,
-	handleNewRoomOpen: PropTypes.func.isRequired
+    handleNewRoomOpen: PropTypes.func.isRequired,
+    username: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(React.memo(RoomNew));

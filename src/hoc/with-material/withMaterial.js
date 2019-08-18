@@ -9,7 +9,7 @@ const withMaterial = Component => {
             palette: {
                 primary: {
                     light: "#52565c",
-                    main: "#3d4148",
+                    main: "#3d4250",
                     dark: "#202329"
                 },
                 secondary: {
