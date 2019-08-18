@@ -1,8 +1,48 @@
 const Room = require("../models/room");
+const { validationResult, body, param } = require("express-validator");
+
+exports.validate = method => {
+	switch (method) {
+		case "/api/room/mode/get": {
+			return [param("mode").exists()];
+		}
+		case "/api/room/get/name/get": {
+			return [param("name").exists()];
+		}
+		case "/api/room/graph/name/get": {
+			return [param("name").exists()];
+		}
+		case "/api/room/graph/name/put": {
+			return [param("name").exists(), body("graph").exists()];
+		}
+		case "/api/room/create/post": {
+			return [
+				body("name").exists(),
+				body("roomType").exists(),
+				body("createdBy").exists(),
+				body("maxUsers").exists()
+			];
+		}
+		case "/api/room/join/post": {
+			return [body("username").exists(), body("roomName").exists()];
+		}
+		case "/api/room/leave/post": {
+			return [body("username").exists(), body("roomName").exists()];
+		}
+		case "/api/room/id/delete": {
+			return [param("id").exists()];
+		}
+		default: {
+			return [];
+		}
+	}
+};
 
 exports.get = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { mode } = request.params;
-	if (!mode) return next({ message: "Mode key is required in params." });
 
 	if (mode == "all")
 		Room.find(function(error, rooms) {
@@ -25,8 +65,10 @@ exports.get = function(request, response, next) {
 };
 
 exports.getRoomByName = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { name } = request.params;
-	if (!name) return next({ message: "Name key is required in params." });
 
 	Room.findOne({ name: name }, function(error, room) {
 		if (error) return next(error);
@@ -39,8 +81,10 @@ exports.getRoomByName = function(request, response, next) {
 };
 
 exports.getGraphByName = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { name } = request.params;
-	if (!name) return next({ message: "Name key is required in params." });
 
 	Room.findOne({ name: name }, function(error, room) {
 		if (error) return next(error);
@@ -53,13 +97,11 @@ exports.getGraphByName = function(request, response, next) {
 };
 
 exports.putGraph = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { name } = request.params;
 	const { graph } = request.body;
-	if (!name || !graph)
-		return next({
-			message:
-				"Name key is required in params. Graph key is required in body."
-		});
 
 	Room.update({ name: name }, { $set: { graph: graph } }, function(error) {
 		if (error) return next(error);
@@ -72,12 +114,10 @@ exports.putGraph = function(request, response, next) {
 };
 
 exports.postCreate = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { name, maxUsers, createdBy, roomType } = request.body;
-	if (!name || !maxUsers || !createdBy || !roomType)
-		return next({
-			message:
-				"Name, maxUsers, createdBy and roomType are required in body."
-		});
 
 	Room.create(
 		{
@@ -105,9 +145,10 @@ exports.postCreate = function(request, response, next) {
 };
 
 exports.postJoin = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { roomName, username } = request.body;
-	if (!roomName || !username)
-		return next({ message: "RoomName and username are required in body." });
 
 	Room.findOne({ name: roomName }, function(error, room) {
 		if (error) return next(error);
@@ -141,9 +182,10 @@ exports.postJoin = function(request, response, next) {
 };
 
 exports.postLeave = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { roomName, username } = request.body;
-	if (!roomName || !username)
-		return next({ message: "RoomName and username are required in body." });
 
 	Room.findOne({ name: roomName }, function(error, room) {
 		if (error) return next(error);
@@ -218,8 +260,10 @@ exports.postLeave = function(request, response, next) {
 };
 
 exports.delete = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { id } = request.params;
-	if (!id) return next({ message: "Id key is required in params." });
 
 	Room.deleteOne({ _id: id }, function(error) {
 		if (error) return next(error);

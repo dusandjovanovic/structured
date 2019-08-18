@@ -1,8 +1,25 @@
 const Graph = require("../models/graph");
+const { validationResult, body, param } = require("express-validator");
+
+exports.validate = method => {
+	switch (method) {
+		case "/api/graph/get": {
+			return [param("id").exists()];
+		}
+		case "/api/graph/post": {
+			return [body("graph").exists()];
+		}
+		default: {
+			return [];
+		}
+	}
+};
 
 exports.get = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { id } = request.params;
-	if (!id) return next({ message: "Id key is required in params." });
 
 	Graph.findOne({ _id: id }, function(error, graph) {
 		if (error) return next(error);
@@ -19,8 +36,10 @@ exports.get = function(request, response, next) {
 };
 
 exports.post = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { graph } = request.body;
-	if (!graph) return next({ message: "Graph key is required in body." });
 
 	Graph.create(
 		{

@@ -1,9 +1,34 @@
 const User = require("../models/user");
+const { validationResult, body, param } = require("express-validator");
+
+exports.validate = method => {
+	switch (method) {
+		case "/authenticate/api/register/post": {
+			return [body("username").exists(), body("password").exists()];
+		}
+		case "/authenticate/api/login/post": {
+			return [body("username").exists(), body("password").exists()];
+		}
+		case "/api/user/username/get": {
+			return [param("username").exists()];
+		}
+		case "/api/user/username/history/get": {
+			return [param("username").exists()];
+		}
+		case "/api/user/username/history/post": {
+			return [param("username").exists(), body("score").exists()];
+		}
+		default: {
+			return [];
+		}
+	}
+};
 
 exports.get = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { username } = request.params;
-	if (!username)
-		return next({ message: "Username key is required in params" });
 
 	User.findOne({ username: username }, function(error, user) {
 		if (error) return next(error);
@@ -20,9 +45,10 @@ exports.get = function(request, response, next) {
 };
 
 exports.getHistory = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { username } = request.params;
-	if (!username)
-		return next({ message: "Username key is required in params" });
 
 	User.findOne({ username: username }, function(error, user) {
 		if (error) return next(error);
@@ -39,10 +65,11 @@ exports.getHistory = function(request, response, next) {
 };
 
 exports.putHistory = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { username } = request.params;
 	const { score } = request.body;
-	if (!username)
-		return next({ message: "Username key is required in params" });
 
 	User.update(
 		{ username: username },
@@ -65,9 +92,10 @@ exports.putHistory = function(request, response, next) {
 };
 
 exports.register = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
+
 	const { username, password } = request.body;
-	if (!username || !password)
-		return next({ message: "Username/password key is required in params" });
 
 	User.register(new User({ username: username }), password, function(
 		error,
@@ -92,9 +120,8 @@ exports.register = function(request, response, next) {
 };
 
 exports.login = function(request, response, next) {
-	const { username, password } = request.body;
-	if (!username || !password)
-		return next({ message: "Username/password key is required in params" });
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ errors: validation.array() });
 
 	global.passport.authenticate("local", function(error, user, info) {
 		if (error) return next(error);
