@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { backendIOMessaging } from "../../utils/constantsAPI";
 
 const withIOMessaging = WrappedComponent => {
     class WithIOMessaging extends React.Component {
@@ -7,7 +8,7 @@ const withIOMessaging = WrappedComponent => {
 
         constructor(props) {
             super(props);
-            this.socket = this.props.io("http://localhost:2998/chat");
+            this.socket = this.props.io(backendIOMessaging);
         }
 
         componentWillUnmount() {

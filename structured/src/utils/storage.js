@@ -1,9 +1,8 @@
-export const initAuth = (access_token, user_id) => {
+export const initAuth = (user_id) => {
     try {
         localStorage.setItem(
             "auth",
-            JSON.stringify({
-                access_token,
+            JSON.stringify({ 
                 user_id
             })
         );
