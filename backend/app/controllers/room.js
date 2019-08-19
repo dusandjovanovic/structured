@@ -4,33 +4,77 @@ const { validationResult, body, param } = require("express-validator");
 exports.validate = method => {
 	switch (method) {
 		case "/api/room/mode/get": {
-			return [param("mode").exists()];
+			return [
+				param("mode")
+					.exists()
+					.isString()
+					.isIn(["all", "learn", "practice", "compete"])
+			];
 		}
 		case "/api/room/get/name/get": {
-			return [param("name").exists()];
+			return [
+				param("name")
+					.exists()
+					.isString()
+			];
 		}
 		case "/api/room/graph/name/get": {
-			return [param("name").exists()];
+			return [
+				param("name")
+					.exists()
+					.isString()
+			];
 		}
 		case "/api/room/graph/name/put": {
-			return [param("name").exists(), body("graph").exists()];
+			return [
+				param("name")
+					.exists()
+					.isString(),
+				body("graph").exists()
+			];
 		}
 		case "/api/room/create/post": {
 			return [
-				body("name").exists(),
-				body("roomType").exists(),
-				body("createdBy").exists(),
-				body("maxUsers").exists()
+				body("name")
+					.exists()
+					.isString(),
+				body("roomType")
+					.exists()
+					.isString(),
+				body("createdBy")
+					.exists()
+					.isString(),
+				body("maxUsers")
+					.exists()
+					.isInt()
 			];
 		}
 		case "/api/room/join/post": {
-			return [body("username").exists(), body("roomName").exists()];
+			return [
+				body("username")
+					.exists()
+					.isString(),
+				body("roomName")
+					.exists()
+					.isString()
+			];
 		}
 		case "/api/room/leave/post": {
-			return [body("username").exists(), body("roomName").exists()];
+			return [
+				body("username")
+					.exists()
+					.isString(),
+				body("roomName")
+					.exists()
+					.isString()
+			];
 		}
 		case "/api/room/id/delete": {
-			return [param("id").exists()];
+			return [
+				param("id")
+					.exists()
+					.isString()
+			];
 		}
 		default: {
 			return [];
@@ -133,7 +177,6 @@ exports.postCreate = function(request, response, next) {
 			}
 		},
 		function(error) {
-			console.log(error);
 			if (error) return next(error);
 			else
 				response.json({
@@ -201,8 +244,7 @@ exports.postLeave = function(request, response, next) {
 			});
 		else {
 			if (room.users.includes(username)) {
-				const index = room.users.indexOf(username);
-				room.users.splice(index, 1);
+				const users = room.users.filter(user => user !== username);
 				const currentUsers = room.currentUsers - 1;
 				if (currentUsers === 0) {
 					Room.deleteOne({ name: roomName }, function(error) {
@@ -221,61 +263,34 @@ exports.postLeave = function(request, response, next) {
 									});
 							});
 					});
-				} else
+				} else {
+					const newMaster =
+						room.createdBy === username ? users[0] : null;
 					Room.update(
 						{ name: roomName },
 						{
+							createdBy: newMaster || room.createdBy,
 							currentUsers: currentUsers,
-							users: room.users
+							users: users
 						},
 						function(error) {
 							if (error) return next(error);
-							else {
-								let newMaster = null;
-								if (room.createdBy === username) {
-									newMaster = room.users[0];
-									Room.update(
-										{ name: roomName },
-										{
-											createdBy: newMaster
-										},
-										function(error) {
-											if (error) return next(error);
-											else
-												Room.find(function(
-													error,
-													rooms
-												) {
-													if (error)
-														return next(error);
-													else
-														response.json({
-															success: true,
-															message:
-																username +
-																" has left the room.",
-															newMaster: newMaster,
-															rooms: rooms
-														});
-												});
-										}
-									);
-								} else
-									Room.find(function(error, rooms) {
-										if (error) return next(error);
-										else
-											response.json({
-												success: true,
-												message:
-													username +
-													" has left the room.",
-												newMaster: null,
-												rooms: rooms
-											});
-									});
-							}
+							else
+								Room.find(function(error, rooms) {
+									if (error) return next(error);
+									else
+										response.json({
+											success: true,
+											message:
+												username +
+												" has left the room.",
+											newMaster: newMaster,
+											rooms: rooms
+										});
+								});
 						}
 					);
+				}
 			} else
 				return next({
 					message:

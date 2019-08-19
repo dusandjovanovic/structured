@@ -23,10 +23,6 @@ exports.get = function(request, response, next) {
 
 	Graph.findOne({ _id: id }, function(error, graph) {
 		if (error) return next(error);
-		else if (!user)
-			return next({
-				message: "User with username provided does not exist."
-			});
 		else
 			response.json({
 				success: true,

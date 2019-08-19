@@ -222,8 +222,8 @@ export const roomLeaveExisting = roomDeleted => {
 		let response;
 
 		if (roomDeleted) {
-			dispatch(roomDelete());
 			dispatch(roomLeave(getState().auth.username));
+			dispatch(roomDelete());
 			dispatch(roomEnd());
 		} else {
 			try {
@@ -261,8 +261,8 @@ export const roomDeleteExisting = () => {
 				.delete(roomDeleteRoute(roomId));
 
 			if (response.data.success) {
+				dispatch(roomLeave(username));
 				dispatch(roomDelete());
-                dispatch(roomLeave(username));
                 dispatch(roomAll(response.data.rooms));
 				dispatch(roomEnd());
 			} else {
