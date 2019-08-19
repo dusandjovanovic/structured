@@ -36,4 +36,17 @@ const RoomSchema = new mongoose.Schema({
 	graph: GraphSchema
 });
 
+RoomSchema.statics = {
+	isRoomById(id) {
+		return this.findById(id, function(error, room) {
+			if (error || !room) return false;
+		});
+	},
+	isRoomByName(name) {
+		return this.findOne({ name: name }, function(error, room) {
+			if (error || !room) return false;
+		});
+	}
+};
+
 module.exports = mongoose.model("RoomSchema", RoomSchema);
