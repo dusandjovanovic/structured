@@ -1,9 +1,7 @@
 "use strict";
 
-const mongoose = require("mongoose");
 const local = require("./passport/local");
-
-const User = mongoose.model("User");
+const User = require("../app/models/user");
 
 module.exports = function(passport) {
 	passport.use(User.createStrategy());
