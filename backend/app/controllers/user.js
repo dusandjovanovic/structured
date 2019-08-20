@@ -101,13 +101,9 @@ exports.register = function(request, response, next) {
 		if (error) {
 			response.status(500).send(error);
 		} else {
-			global.passport.authenticate("local", function(error, user) {
+			global.passport.authenticate("local", function(error, user, info) {
 				if (error) return next(error);
-				else if (!user)
-					return next({
-						message:
-							"User with the username provided does not exist."
-					});
+				else if (!user) return next(info);
 				request.login(user, function(error) {
 					if (error) return next(error);
 					response.json({
@@ -124,12 +120,9 @@ exports.login = function(request, response, next) {
 	const validation = validationResult(request);
 	if (!validation.isEmpty()) return next({ errors: validation.array() });
 
-	global.passport.authenticate("local", function(error, user) {
+	global.passport.authenticate("local", function(error, user, info) {
 		if (error) return next(error);
-		else if (!user)
-			return next({
-				message: "User with the username provided does not exist."
-			});
+		else if (!user) return next(info);
 		request.login(user, function(error) {
 			if (error) return next(error);
 			response.json({

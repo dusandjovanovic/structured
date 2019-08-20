@@ -91,13 +91,13 @@ class Home extends React.Component {
 				/>
 				<Grid container justify="center" alignItems="center">
 					<Grid item md={8} xs={10}>
-						<RoomNew 
-                            username={this.props.username}
-                            handleNewRoomOpen={this.handleNewRoomOpen} 
-                        />
+						<RoomNew
+							username={this.props.username}
+							handleNewRoomOpen={this.handleNewRoomOpen}
+						/>
 					</Grid>
 					<Grid item md={8} xs={10}>
-						<hr />
+						<hr className={classes.horizontalLine} />
 					</Grid>
 					<Grid item xs={10}>
 						<RoomView
@@ -114,7 +114,7 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-        username: state.auth.username,
+		username: state.auth.username,
 		room: state.room.room,
 		rooms: state.room.rooms,
 		data: state.room.data,
@@ -133,8 +133,8 @@ const mapDispatchToProps = dispatch => {
 };
 
 Home.propTypes = {
-    classes: PropTypes.object.isRequired,
-    username: PropTypes.string.isRequired,
+	classes: PropTypes.object.isRequired,
+	username: PropTypes.string.isRequired,
 	room: PropTypes.object.isRequired,
 	rooms: PropTypes.arrayOf(PropTypes.object).isRequired,
 	data: PropTypes.object.isRequired,

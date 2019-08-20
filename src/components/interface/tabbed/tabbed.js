@@ -8,38 +8,38 @@ import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const tabbed = props => {
-    const { classes } = props;
+	const { classes } = props;
 
-    return (
-        <AppBar position="static" className={classes.appBar}>
-            <Tabs
-                value={props.value}
-                onChange={(event, value) => props.handleSelectionChange(value)}
-                classes={{
-                    indicator: classes.tabsIndicator,
-                    flexContainer: classes.container
-                }}
-            >
-                {props.labels.map(label => (
-                    <Tab
-                        key={label}
-                        label={label}
-                        classes={{
-                            root: classes.tabRoot,
-                            selected: classes.tabSelected
-                        }}
-                    />
-                ))}
-            </Tabs>
-        </AppBar>
-    );
+	return (
+		<AppBar position="static" className={classes.appBar}>
+			<Tabs
+				value={props.value}
+				onChange={(event, value) => props.handleSelectionChange(value)}
+				classes={{
+					indicator: classes.tabsIndicator,
+					flexContainer: classes.container
+				}}
+			>
+				{props.labels.map(label => (
+					<Tab
+						key={label}
+						label={label}
+						classes={{
+							root: classes.tabRoot,
+							selected: classes.tabSelected
+						}}
+					/>
+				))}
+			</Tabs>
+		</AppBar>
+	);
 };
 
 tabbed.propTypes = {
-    classes: PropTypes.object.isRequired,
-    labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-    value: PropTypes.number.isRequired,
-    handleSelectionChange: PropTypes.func.isRequired
+	classes: PropTypes.object.isRequired,
+	labels: PropTypes.arrayOf(PropTypes.string).isRequired,
+	value: PropTypes.number.isRequired,
+	handleSelectionChange: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(React.memo(tabbed));

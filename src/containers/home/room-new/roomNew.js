@@ -15,10 +15,10 @@ const RoomNew = props => (
 		className={props.classes.root}
 	>
 		<Grid item xs={12}>
-			<Typography variant="h4" color="primary">
+			<Typography variant="h4" color="primary" gutterBottom>
 				Hi {props.username}
 			</Typography>
-            <Typography variant="h5" color="primary">
+			<Typography variant="h5" color="primary">
 				Join existing rooms or create a new one
 			</Typography>
 		</Grid>
@@ -30,9 +30,9 @@ const RoomNew = props => (
 		</Grid>
 		<Grid item xs={12}>
 			<Button
-				color="secondary"
+				color="primary"
 				size="large"
-                variant="outlined"
+				variant="contained"
 				onClick={props.handleNewRoomOpen}
 			>
 				Create new room
@@ -43,8 +43,8 @@ const RoomNew = props => (
 
 RoomNew.propTypes = {
 	classes: PropTypes.object.isRequired,
-    handleNewRoomOpen: PropTypes.func.isRequired,
-    username: PropTypes.string.isRequired
+	handleNewRoomOpen: PropTypes.func.isRequired,
+	username: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(React.memo(RoomNew));

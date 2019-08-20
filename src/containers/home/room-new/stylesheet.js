@@ -1,5 +1,5 @@
-export const styles = () => ({
-    root: {
-        marginBottom: "4rem"
-    }
+export const styles = theme => ({
+	root: {
+		marginBottom: theme.spacing(8)
+	}
 });
