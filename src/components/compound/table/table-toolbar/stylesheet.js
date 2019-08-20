@@ -25,7 +25,7 @@ export const styles = theme => ({
 		flex: "0 0 auto"
 	},
 	title: {
-		padding: theme.spacing(2, 0),
+		padding: theme.spacing(0, 2),
 		fontWeight: "normal"
 	}
 });

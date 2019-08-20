@@ -11,7 +11,7 @@ const card = props => {
 
 	return (
 		<Paper className={classes.container}>
-			<Typography variant="h5" className={classes.title}>
+			<Typography variant="h6" className={classes.title}>
 				{props.title}
 			</Typography>
 			<div className={classes.children}>{props.children}</div>
