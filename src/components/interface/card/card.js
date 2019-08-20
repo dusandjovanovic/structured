@@ -14,7 +14,6 @@ const card = props => {
 			<Typography variant="h5" className={classes.title}>
 				{props.title}
 			</Typography>
-			<hr className={classes.horizontalLine} />
 			<div className={classes.children}>{props.children}</div>
 		</Paper>
 	);

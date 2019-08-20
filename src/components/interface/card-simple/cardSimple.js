@@ -47,14 +47,8 @@ const cardSimple = props => {
 	}
 	return (
 		<Card className={classes.card}>
-			<CardContent>
-				<Grid
-					container
-					direction="row"
-					justify="center"
-					spacing={2}
-					className={classes.content}
-				>
+			<CardContent className={classes.content}>
+				<Grid container direction="row" justify="center" spacing={2}>
 					<Grid item xs={3}>
 						<div className={classes.icon}>{icon}</div>
 					</Grid>
@@ -74,7 +68,9 @@ const cardSimple = props => {
 				</Grid>
 			</CardContent>
 			<CardActions className={classes.actions}>
-				<Typography variant="body2">{props.details}</Typography>
+				<Typography variant="body2" className={classes.details}>
+					{props.details}
+				</Typography>
 			</CardActions>
 		</Card>
 	);

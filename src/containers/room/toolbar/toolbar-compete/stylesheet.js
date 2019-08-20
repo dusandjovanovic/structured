@@ -1,8 +1,8 @@
-export const styles = () => ({
-    icon: {
-        marginRight: "0.5rem"
-    },
-    header: {
-        fontWeight: 400
-    }
+export const styles = theme => ({
+	icon: {
+		marginRight: theme.spacing(1)
+	},
+	header: {
+		fontWeight: "normal"
+	}
 });
