@@ -1,4 +1,5 @@
 import React from "react";
+import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import FormContainer from "../../../components/logic/form-container/formContainer";
 import { formElements } from "../../../assets/constants/containers/auth/login";
@@ -17,169 +18,197 @@ import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 class Login extends React.Component {
-    state = {
-        context: {
-            remember: false
-        },
-        error: {
-            hasError: false,
-            name: null,
-            description: null
-        }
-    };
+	state = {
+		context: {
+			remember: false
+		},
+		error: {
+			hasError: false,
+			name: null,
+			description: null
+		}
+	};
 
-    rememberMeHandler = event => {
-        this.setState({
-            context: {
-                remember: event.target.checked
-            }
-        });
-    };
+	rememberMeHandler = event => {
+		this.setState({
+			context: {
+				remember: event.target.checked
+			}
+		});
+	};
 
-    submitHandler = data => {
-        this.props.authenticate(
-            data.username.value,
-            data.password.value,
-            this.state.context.remember
-        );
-    };
+	submitHandler = data => {
+		this.props.authenticate(
+			data.username.value,
+			data.password.value,
+			this.state.context.remember
+		);
+	};
 
-    errorHandler = value => {
-        this.setState({
-            error: {
-                ...value
-            }
-        });
-    };
+	errorHandler = value => {
+		this.setState({
+			error: {
+				...value
+			}
+		});
+	};
 
-    render() {
-        const { classes } = this.props;
+	render() {
+		const { classes } = this.props;
 
-        return (
-            <div className={classes.content}>
-                <Fab
-                    color="secondary"
-                    aria-label="Edit"
-                    className={classes.buttonHeadline}
-                >
-                    <People />
-                </Fab>
+		return (
+			<Grid
+				container
+				justify="center"
+				direction="column"
+				className={classes.root}
+			>
+				<Grid container className={classes.spaced}>
+					<Grid item xs={12}>
+						<Fab color="secondary" aria-label="Edit">
+							<People />
+						</Fab>
+					</Grid>
+				</Grid>
 
-                <hr className={classes.horizontalLine} />
+				<hr className={classes.horizontalLine} />
 
-                <FormContainer
-                    formElements={formElements}
-                    errorHandler={this.errorHandler}
-                    submitHandler={this.submitHandler}
-                    className={classes.inputs}
-                >
-                    {({ inputs, inputChangedHandler, submitHandler }) => {
-                        return (
-                            <form
-                                className={classes.inputs}
-                                onSubmit={submitHandler}
-                            >
-                                <TextField
-                                    key={inputs.username.id}
-                                    className={classes.textField}
-                                    fullWidth={true}
-                                    margin="normal"
-                                    required
-                                    type={inputs.username.config.type}
-                                    label={inputs.username.config.label}
-                                    placeholder={
-                                        inputs.username.config.placeholder
-                                    }
-                                    error={
-                                        inputs.username.touched &&
-                                        !inputs.username.valid
-                                    }
-                                    onChange={event =>
-                                        inputChangedHandler(
-                                            event,
-                                            inputs.username.id
-                                        )
-                                    }
-                                />
+				<FormContainer
+					formElements={formElements}
+					errorHandler={this.errorHandler}
+					submitHandler={this.submitHandler}
+					className={classes.inputs}
+				>
+					{({ inputs, inputChangedHandler, submitHandler }) => {
+						return (
+							<form
+								className={classes.inputs}
+								onSubmit={submitHandler}
+							>
+								<Grid
+									container
+									justify="center"
+									direction="column"
+									spacing={1}
+								>
+									<Grid item xs={12}>
+										<TextField
+											key={inputs.username.id}
+											fullWidth={true}
+											margin="normal"
+											required
+											type={inputs.username.config.type}
+											label={inputs.username.config.label}
+											placeholder={
+												inputs.username.config
+													.placeholder
+											}
+											error={
+												inputs.username.touched &&
+												!inputs.username.valid
+											}
+											onChange={event =>
+												inputChangedHandler(
+													event,
+													inputs.username.id
+												)
+											}
+										/>
+									</Grid>
 
-                                <TextField
-                                    key={inputs.password.id}
-                                    className={classes.textField}
-                                    fullWidth={true}
-                                    margin="normal"
-                                    required
-                                    type={inputs.password.config.type}
-                                    label={inputs.password.config.label}
-                                    placeholder={
-                                        inputs.password.config.placeholder
-                                    }
-                                    error={
-                                        inputs.password.touched &&
-                                        !inputs.password.valid
-                                    }
-                                    onChange={event =>
-                                        inputChangedHandler(
-                                            event,
-                                            inputs.password.id
-                                        )
-                                    }
-                                />
+									<Grid item>
+										<TextField
+											key={inputs.password.id}
+											fullWidth={true}
+											margin="normal"
+											required
+											type={inputs.password.config.type}
+											label={inputs.password.config.label}
+											placeholder={
+												inputs.password.config
+													.placeholder
+											}
+											error={
+												inputs.password.touched &&
+												!inputs.password.valid
+											}
+											onChange={event =>
+												inputChangedHandler(
+													event,
+													inputs.password.id
+												)
+											}
+										/>
+									</Grid>
 
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            checked={
-                                                this.state.context.remember
-                                            }
-                                            onChange={this.rememberMeHandler}
-                                            value="checkedB"
-                                            color="primary"
-                                        />
-                                    }
-                                    label="Remember me"
-                                />
+									<Grid item>
+										<FormControlLabel
+											control={
+												<Checkbox
+													checked={
+														this.state.context
+															.remember
+													}
+													onChange={
+														this.rememberMeHandler
+													}
+													value="checkedB"
+													color="primary"
+												/>
+											}
+											label="Remember me"
+										/>
+									</Grid>
 
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                >
-                                    Sign in
-                                </Button>
-                            </form>
-                        );
-                    }}
-                </FormContainer>
+									<Grid item xs={12}>
+										<Button
+											type="submit"
+											variant="contained"
+											color="primary"
+										>
+											Sign in
+										</Button>
+									</Grid>
+								</Grid>
+							</form>
+						);
+					}}
+				</FormContainer>
 
-                <div className={classes.borderline}>
-                    <Typography
-                        variant="button"
-                        className={classes.borderlineContent}
-                    >
-                        Don&apos;t have an account already?
-                    </Typography>
-                    <Button
-                        size="small"
-                        variant="text"
-                        className={classes.buttonBottom}
-                        classes={{ text: classes.override }}
-                        onClick={this.props.onStateChangeHandler}
-                    >
-                        Sign up for an account
-                    </Button>
-                </div>
-            </div>
-        );
-    }
+				<Grid
+					container
+					direction="column"
+					className={classes.borderline}
+				>
+					<Grid item>
+						<Typography
+							variant="button"
+							className={classes.highlighted}
+						>
+							Don&apos;t have an account already?
+						</Typography>
+					</Grid>
+					<Grid item>
+						<Button
+							variant="text"
+							classes={{ text: classes.override }}
+							onClick={this.props.onStateChangeHandler}
+						>
+							Sign up for an account
+						</Button>
+					</Grid>
+				</Grid>
+			</Grid>
+		);
+	}
 }
 
 Login.propTypes = {
-    classes: PropTypes.object.isRequired,
-    waiting: PropTypes.bool.isRequired,
-    error: PropTypes.string,
-    authenticate: PropTypes.func.isRequired,
-    onStateChangeHandler: PropTypes.func.isRequired
+	classes: PropTypes.object.isRequired,
+	waiting: PropTypes.bool.isRequired,
+	error: PropTypes.string,
+	authenticate: PropTypes.func.isRequired,
+	onStateChangeHandler: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(withErrorHandler(withLoading(Login)));

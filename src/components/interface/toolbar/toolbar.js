@@ -6,21 +6,21 @@ import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const toolbar = props => {
-    const { classes } = props;
+	const { classes } = props;
 
-    return (
-        <AppBar position="fixed" className={classes.appBar}>
-            {props.children}
-        </AppBar>
-    );
+	return (
+		<AppBar position="fixed" className={classes.appBar}>
+			{props.children}
+		</AppBar>
+	);
 };
 
 toolbar.propTypes = {
-    classes: PropTypes.object.isRequired,
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node
-    ]).isRequired
+	classes: PropTypes.object.isRequired,
+	children: PropTypes.oneOfType([
+		PropTypes.arrayOf(PropTypes.node),
+		PropTypes.node
+	]).isRequired
 };
 
 export default withStyles(styles)(toolbar);

@@ -1,7 +1,7 @@
-export const styles = () => ({
-    root: {
-        marginTop: "64px",
-        padding: "2rem 0",
-        width: "100%"
-    }
+export const styles = theme => ({
+	root: {
+		marginTop: "64px",
+		padding: theme.spacing(4, 0),
+		width: "100%"
+	}
 });

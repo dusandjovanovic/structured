@@ -1,6 +1,6 @@
 {
-    "compilerOptions": {
-        "target": "es6"
-    },
-    "exclude": []
+	"compilerOptions": {
+		"target": "es6"
+	},
+	"exclude": []
 }

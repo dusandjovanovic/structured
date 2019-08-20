@@ -14,84 +14,84 @@ import { authenticatePersisted } from "./store/actions/index";
 import { RoomPlayground, RoomCompete, RoomLearn } from "./containers/room/room";
 const Home = React.lazy(() => import("./containers/home/home"));
 const Homescreen = React.lazy(() =>
-    import("./containers/homescreen/homescreen")
+	import("./containers/homescreen/homescreen")
 );
 const Auth = React.lazy(() => import("./containers/auth/auth"));
 const Dashboard = React.lazy(() => import("./containers/dashboard/dashboard"));
 
 class App extends React.Component {
-    componentDidMount() {
-        this.props.authenticatePersisted();
-    }
+	componentDidMount() {
+		this.props.authenticatePersisted();
+	}
 
-    render() {
-        return (
-            <BoundaryError>
-                <AppFrame>
-                    <NotificationHandler />
-                    {!this.props.authenticated ? (
-                        <React.Suspense fallback={<BoundaryLoading />}>
-                            <Switch>
-                                <Route path="/auth" exact>
-                                    <Auth />
-                                </Route>
-                                <Route path="/" exact>
-                                    <Homescreen />
-                                </Route>
-                                <Redirect to="/" />
-                            </Switch>
-                        </React.Suspense>
-                    ) : (
-                        <React.Suspense fallback={<BoundaryLoading />}>
-                            <Switch>
-                                <Route path="/auth" exact>
-                                    <Auth />
-                                </Route>
-                                <Route path="/dashboard" exact>
-                                    <Dashboard />
-                                </Route>
-                                <Route path="/room" exact>
-                                    <RoomPlayground />
-                                </Route>
-                                <Route path="/compete" exact>
-                                    <RoomCompete />
-                                </Route>
-                                <Route path="/learn" exact>
-                                    <RoomLearn />
-                                </Route>
-                                <Route path="/" exact>
-                                    <Home />
-                                </Route>
-                                <Redirect to="/" />
-                            </Switch>
-                        </React.Suspense>
-                    )}
-                </AppFrame>
-            </BoundaryError>
-        );
-    }
+	render() {
+		return (
+			<BoundaryError>
+				<AppFrame>
+					<NotificationHandler />
+					{!this.props.authenticated ? (
+						<React.Suspense fallback={<BoundaryLoading />}>
+							<Switch>
+								<Route path="/auth" exact>
+									<Auth />
+								</Route>
+								<Route path="/" exact>
+									<Homescreen />
+								</Route>
+								<Redirect to="/" />
+							</Switch>
+						</React.Suspense>
+					) : (
+						<React.Suspense fallback={<BoundaryLoading />}>
+							<Switch>
+								<Route path="/auth" exact>
+									<Auth />
+								</Route>
+								<Route path="/dashboard" exact>
+									<Dashboard />
+								</Route>
+								<Route path="/room" exact>
+									<RoomPlayground />
+								</Route>
+								<Route path="/compete" exact>
+									<RoomCompete />
+								</Route>
+								<Route path="/learn" exact>
+									<RoomLearn />
+								</Route>
+								<Route path="/" exact>
+									<Home />
+								</Route>
+								<Redirect to="/" />
+							</Switch>
+						</React.Suspense>
+					)}
+				</AppFrame>
+			</BoundaryError>
+		);
+	}
 }
 
 const mapStateToProps = state => {
-    return {
-        authenticated: state.auth.authenticated
-    };
+	return {
+		authenticated: state.auth.authenticated
+	};
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-        authenticatePersisted: () => dispatch(authenticatePersisted())
-    };
+	return {
+		authenticatePersisted: () => dispatch(authenticatePersisted())
+	};
 };
 
 App.propTypes = {
-    authenticated: PropTypes.bool,
-    authenticatePersisted: PropTypes.func
+	authenticated: PropTypes.bool,
+	authenticatePersisted: PropTypes.func
 };
 
 export default withMaterial(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(App)
+	connect(
+		mapStateToProps,
+		mapDispatchToProps
+	)(App)
 );
