@@ -2,6 +2,7 @@ import { graphColors } from "../../../../assets/stylesheet";
 
 export const styles = theme => ({
 	root: {
+		width: "100%",
 		fontSize: "1rem",
 		fontFamily:
 			"source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
