@@ -1,4 +1,5 @@
 const Room = require("../models/room");
+const User = require("../models/user");
 const { validationResult, body, param } = require("express-validator");
 
 exports.validate = method => {
@@ -16,6 +17,11 @@ exports.validate = method => {
 				param("name")
 					.exists()
 					.isString()
+					.custom(async value => {
+						return (await Room.isRoomByName(value))
+							? Promise.resolve()
+							: Promise.reject();
+					})
 			];
 		}
 		case "/api/room/graph/name/get": {
@@ -23,13 +29,23 @@ exports.validate = method => {
 				param("name")
 					.exists()
 					.isString()
+					.custom(async value => {
+						return (await Room.isRoomByName(value))
+							? Promise.resolve()
+							: Promise.reject();
+					})
 			];
 		}
 		case "/api/room/graph/name/put": {
 			return [
 				param("name")
 					.exists()
-					.isString(),
+					.isString()
+					.custom(async value => {
+						return (await Room.isRoomByName(value))
+							? Promise.resolve()
+							: Promise.reject();
+					}),
 				body("graph").exists()
 			];
 		}
@@ -43,7 +59,12 @@ exports.validate = method => {
 					.isString(),
 				body("createdBy")
 					.exists()
-					.isString(),
+					.isString()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					}),
 				body("maxUsers")
 					.exists()
 					.isInt()
@@ -53,20 +74,40 @@ exports.validate = method => {
 			return [
 				body("username")
 					.exists()
-					.isString(),
+					.isString()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					}),
 				body("roomName")
 					.exists()
 					.isString()
+					.custom(async value => {
+						return (await Room.isRoomByName(value))
+							? Promise.resolve()
+							: Promise.reject();
+					})
 			];
 		}
 		case "/api/room/leave/post": {
 			return [
 				body("username")
 					.exists()
-					.isString(),
+					.isString()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					}),
 				body("roomName")
 					.exists()
 					.isString()
+					.custom(async value => {
+						return (await Room.isRoomByName(value))
+							? Promise.resolve()
+							: Promise.reject();
+					})
 			];
 		}
 		case "/api/room/id/delete": {
@@ -74,6 +115,7 @@ exports.validate = method => {
 				param("id")
 					.exists()
 					.isString()
+					.isMongoId()
 			];
 		}
 		default: {

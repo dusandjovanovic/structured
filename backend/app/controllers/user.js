@@ -7,16 +7,50 @@ exports.validate = method => {
 			return [body("username").exists(), body("password").exists()];
 		}
 		case "/authenticate/api/login/post": {
-			return [body("username").exists(), body("password").exists()];
+			return [
+				body("username")
+					.exists()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					}),
+				body("password").exists()
+			];
 		}
 		case "/api/user/username/get": {
-			return [param("username").exists()];
+			return [
+				param("username")
+					.exists()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					})
+			];
 		}
 		case "/api/user/username/history/get": {
-			return [param("username").exists()];
+			return [
+				param("username")
+					.exists()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					})
+			];
 		}
 		case "/api/user/username/history/post": {
-			return [param("username").exists(), body("score").exists()];
+			return [
+				param("username")
+					.exists()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					}),
+				body("score").exists()
+			];
 		}
 		default: {
 			return [];
