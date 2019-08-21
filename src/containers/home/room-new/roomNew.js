@@ -23,7 +23,7 @@ const RoomNew = props => (
 			</Grow>
 			<Grow in timeout={1500}>
 				<Typography variant="h5" color="primary">
-					Join existing rooms or create a new one
+					Join existing rooms or create a new one..
 				</Typography>
 			</Grow>
 		</Grid>
@@ -40,7 +40,7 @@ const RoomNew = props => (
 				<Button
 					color="primary"
 					size="large"
-					variant="contained"
+					variant="outlined"
 					onClick={props.handleNewRoomOpen}
 				>
 					Create new room
