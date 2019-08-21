@@ -1,11 +1,16 @@
-import { cardShadow, cardShadowHover } from "../../../../assets/stylesheet";
+import {
+	primaryBoxShadow,
+	primaryBoxShadowHover,
+	transition
+} from "../../../../assets/stylesheet";
 
 export const styles = theme => ({
 	card: {
 		flex: "1",
 		borderRadius: "0.25rem",
-		...cardShadow,
-		...cardShadowHover
+		...transition,
+		...primaryBoxShadow,
+		...primaryBoxShadowHover
 	},
 	media: {
 		paddingTop: "52%"

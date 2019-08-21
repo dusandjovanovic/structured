@@ -80,6 +80,13 @@ export const primaryBoxShadow = {
 		"0 12px 20px -10px rgba(188, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(188, 188, 212, 0.2)"
 };
 
+export const primaryBoxShadowHover = {
+	"&:hover": {
+		boxShadow:
+			"0 16px 24px -10px rgba(188, 188, 212, 0.33), 0 6px 22px 0px rgba(0, 0, 0, 0.33), 0 9px 10px -5px rgba(188, 188, 212, 0.33)"
+	}
+};
+
 export const darkBoxShadow = {
 	boxShadow:
 		"0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(33, 33, 33, 0.46)"
