@@ -47,7 +47,7 @@ export const styles = theme => ({
 	title: {
 		lineHeight: "64px",
 		fontSize: "1.4rem",
-		fontWeight: "350",
+		fontWeight: "normal",
 		borderRadius: "3px",
 		textTransform: "none",
 		color: "inherit",

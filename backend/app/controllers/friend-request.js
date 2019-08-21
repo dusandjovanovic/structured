@@ -6,19 +6,65 @@ const { validationResult, body, param } = require("express-validator");
 exports.validate = method => {
 	switch (method) {
 		case "/api/friend-request/username/get": {
-			return [param("username").exists()];
+			return [
+				param("username")
+					.exists()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					})
+			];
 		}
 		case "/api/friend-request/check/post": {
-			return [body("sender").exists(), body("receiver").exists()];
+			return [
+				body("sender")
+					.exists()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					}),
+				body("receiver")
+					.exists()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					})
+			];
 		}
 		case "/api/friend-request/add/post": {
-			return [body("sender").exists(), body("receiver").exists()];
+			return [
+				body("sender")
+					.exists()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					}),
+				body("receiver")
+					.exists()
+					.custom(async value => {
+						return (await User.isUserByUsername(value))
+							? Promise.resolve()
+							: Promise.reject();
+					})
+			];
 		}
 		case "/api/friend-request/confirm/post": {
-			return [body("id").exists()];
+			return [
+				body("id")
+					.exists()
+					.isMongoId()
+			];
 		}
 		case "/api/friend-request/id/delete": {
-			return [param("id").exists()];
+			return [
+				param("id")
+					.exists()
+					.isMongoId()
+			];
 		}
 		default: {
 			return [];

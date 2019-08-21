@@ -27,6 +27,19 @@ const UserSchema = new mongoose.Schema({
 	]
 });
 
+UserSchema.statics = {
+	isUserById(id) {
+		return this.findById(id, function(error, user) {
+			if (error || !user) return false;
+		});
+	},
+	isUserByUsername(username) {
+		return this.findOne({ username: username }, function(error, user) {
+			if (error || !user) return false;
+		});
+	}
+};
+
 UserSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("User", UserSchema);

@@ -11,15 +11,16 @@ const roomView = props => {
 	const { classes } = props;
 
 	return (
-		<Grid container justify="center" className={classes.root}>
+		<Grid container justify="center" className={classes.root} spacing={1}>
 			{props.rooms.length > 0 ? (
 				props.rooms.map(room => {
 					return (
-						<Grid item key={room["_id"]} md={4} xs={12}>
+						<Grid item key={room["_id"]} lg={3} md={4} xs={12}>
 							<RoomCard
 								type={room.roomType}
 								name={room.name}
 								time={room.time}
+								users={room.users}
 								currentUsers={room.currentUsers}
 								maxUsers={room.maxUsers}
 								enterRoom={props.enterRoom}

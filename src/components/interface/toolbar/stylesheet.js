@@ -4,7 +4,7 @@ export const styles = theme => ({
 		height: "54px",
 		top: "64px",
 		left: 0,
-		padding: "1rem",
+		padding: theme.spacing(2),
 		display: "flex",
 		flexDirection: "row",
 		justifyContent: "left",

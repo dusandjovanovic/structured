@@ -4,7 +4,11 @@ const { validationResult, body, param } = require("express-validator");
 exports.validate = method => {
 	switch (method) {
 		case "/api/graph/get": {
-			return [param("id").exists()];
+			return [
+				param("id")
+					.exists()
+					.isMongoId()
+			];
 		}
 		case "/api/graph/post": {
 			return [body("graph").exists()];
