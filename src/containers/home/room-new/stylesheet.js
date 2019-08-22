@@ -4,5 +4,8 @@ export const styles = theme => ({
 	},
 	normalizedText: {
 		fontWeight: "normal"
+	},
+	lightenedText: {
+		fontWeight: "lighter"
 	}
 });
