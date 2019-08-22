@@ -11,7 +11,7 @@ const roomView = props => {
 	const { classes } = props;
 
 	return (
-		<Grid container justify="center" className={classes.root} spacing={1}>
+		<Grid container justify="center" className={classes.root} spacing={2}>
 			{props.rooms.length > 0 ? (
 				props.rooms.map(room => {
 					return (

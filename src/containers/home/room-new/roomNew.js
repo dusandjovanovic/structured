@@ -22,25 +22,26 @@ const RoomNew = props => (
 				</Typography>
 			</Grow>
 			<Grow in timeout={1500}>
-				<Typography variant="h5" color="primary">
-					Join existing rooms or create a new one..
-				</Typography>
-			</Grow>
-		</Grid>
-		<Grid item xs={12}>
-			<Grow in timeout={1500}>
-				<Typography variant="button" color="secondary">
-					By creating a new room you are a room Master, others who
-					join are spectators and can see everything you do.
-				</Typography>
+				<Grid item xs={12}>
+					<Typography variant="h6" color="primary">
+						Join existing rooms or create a new one..
+					</Typography>
+					<Typography
+						variant="h6"
+						color="secondary"
+						className={props.classes.normalizedText}
+					>
+						By creating a new room you are a room Master, others who
+						join are spectators and can see everything you do
+					</Typography>
+				</Grid>
 			</Grow>
 		</Grid>
 		<Grid item xs={12}>
 			<Grow in timeout={1500}>
 				<Button
-					color="primary"
-					size="large"
-					variant="outlined"
+					color="secondary"
+					variant="contained"
 					onClick={props.handleNewRoomOpen}
 				>
 					Create new room

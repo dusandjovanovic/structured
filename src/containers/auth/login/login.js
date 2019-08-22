@@ -9,6 +9,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import People from "@material-ui/icons/People";
+import Divider from "@material-ui/core/Divider";
 import PropTypes from "prop-types";
 
 import withErrorHandler from "../../../hoc/with-error-handler/withErrorHandler";
@@ -71,7 +72,9 @@ class Login extends React.Component {
 					</Grid>
 				</Grid>
 
-				<hr className={classes.horizontalLine} />
+				<Grid item xs={12}>
+					<Divider variant="middle" className={classes.divider} />
+				</Grid>
 
 				<FormContainer
 					formElements={formElements}

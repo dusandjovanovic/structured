@@ -57,13 +57,6 @@ const roomCard = props => {
 					{prettyDescription(props.type)}
 				</Typography>
 				<Divider variant="middle" light className={classes.divider} />
-				<Typography
-					variant="subtitle2"
-					color="textSecondary"
-					gutterBottom
-				>
-					In the room now:
-				</Typography>
 				{props.users.map(user => (
 					<Chip
 						color="primary"

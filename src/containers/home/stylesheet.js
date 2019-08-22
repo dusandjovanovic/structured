@@ -1,3 +1,5 @@
+import { horizontalDivider } from "../../assets/stylesheet";
+
 export const styles = theme => ({
 	root: {
 		marginTop: "64px",
@@ -10,5 +12,6 @@ export const styles = theme => ({
 		border: 0,
 		backgroundImage:
 			"linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0))"
-	}
+	},
+	...horizontalDivider(theme)
 });

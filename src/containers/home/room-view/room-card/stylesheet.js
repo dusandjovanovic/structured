@@ -1,7 +1,8 @@
 import {
 	primaryBoxShadow,
 	primaryBoxShadowHover,
-	transition
+	transition,
+	horizontalDivider
 } from "../../../../assets/stylesheet";
 
 export const styles = theme => ({
@@ -20,10 +21,6 @@ export const styles = theme => ({
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "flex-start"
-	},
-	divider: {
-		width: "100%",
-		margin: theme.spacing(2, 0.25)
 	},
 	actions: {
 		padding: theme.spacing(1.5),
@@ -58,5 +55,6 @@ export const styles = theme => ({
 	},
 	borderlineText: {
 		marginBottom: theme.spacing(1)
-	}
+	},
+	...horizontalDivider(theme)
 });
