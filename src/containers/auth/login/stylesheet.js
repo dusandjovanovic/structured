@@ -1,4 +1,4 @@
-import { shallowShadow } from "../../../assets/stylesheet";
+import { shallowShadow, horizontalDivider } from "../../../assets/stylesheet";
 
 export const styles = theme => ({
 	root: {
@@ -33,14 +33,8 @@ export const styles = theme => ({
 		padding: theme.spacing(4),
 		backgroundColor: theme.palette.primary.main
 	},
-	horizontalLine: {
-		width: "90%",
-		height: "1px",
-		border: 0,
-		backgroundImage:
-			"linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))"
-	},
 	override: {
 		color: theme.palette.ternary.main
-	}
+	},
+	...horizontalDivider(theme)
 });

@@ -9,6 +9,7 @@ import { formElements } from "../../../assets/constants/containers/auth/register
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import Divider from "@material-ui/core/Divider";
 import PropTypes from "prop-types";
 
 import withErrorHandler from "../../../hoc/with-error-handler/withErrorHandler";
@@ -82,7 +83,9 @@ class Register extends React.Component {
 					</Grid>
 				</Grid>
 
-				<hr className={classes.horizontalLine} />
+				<Grid item xs={12}>
+					<Divider variant="middle" className={classes.divider} />
+				</Grid>
 
 				<FormContainer
 					formElements={formElements}

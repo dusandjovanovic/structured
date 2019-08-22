@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import RoomNew from "./room-new/roomNew";
 import RoomNewModal from "./room-new-modal/roomNewModal";
 import RoomView from "./room-view/roomView";
+import Divider from "@material-ui/core/Divider";
 import PropTypes from "prop-types";
 
 import { Redirect } from "react-router-dom";
@@ -96,10 +97,10 @@ class Home extends React.Component {
 							handleNewRoomOpen={this.handleNewRoomOpen}
 						/>
 					</Grid>
-					<Grid item md={8} xs={10}>
-						<hr className={classes.horizontalLine} />
-					</Grid>
 					<Grid item xs={10}>
+						<Divider variant="middle" className={classes.divider} />
+					</Grid>
+					<Grid item xs={12}>
 						<RoomView
 							enterRoom={name => this.enterRoom(name)}
 							rooms={this.props.rooms}

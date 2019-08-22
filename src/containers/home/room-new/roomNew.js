@@ -1,5 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grow from "@material-ui/core/Grow";
@@ -17,30 +18,42 @@ const RoomNew = props => (
 	>
 		<Grid item xs={12}>
 			<Grow in timeout={1000}>
-				<Typography variant="h4" color="primary" gutterBottom>
-					Hi {props.username}
-				</Typography>
+				<Box mb={2}>
+					<Typography
+						variant="h4"
+						color="primary"
+						className={props.classes.lightenedText}
+					>
+						Hello {props.username},
+					</Typography>
+					<Typography
+						variant="h5"
+						color="primary"
+						className={props.classes.lightenedText}
+					>
+						Join existing rooms or create a new one..
+					</Typography>
+				</Box>
 			</Grow>
-			<Grow in timeout={1500}>
-				<Typography variant="h5" color="primary">
-					Join existing rooms or create a new one..
-				</Typography>
-			</Grow>
+
+			<Grid item xs={12}>
+				<Grow in timeout={1250}>
+					<Typography
+						variant="h6"
+						color="secondary"
+						className={props.classes.normalizedText}
+					>
+						By creating a new room you are a room master, others who
+						join are spectators and can see everything you do
+					</Typography>
+				</Grow>
+			</Grid>
 		</Grid>
 		<Grid item xs={12}>
-			<Grow in timeout={1500}>
-				<Typography variant="button" color="secondary">
-					By creating a new room you are a room Master, others who
-					join are spectators and can see everything you do.
-				</Typography>
-			</Grow>
-		</Grid>
-		<Grid item xs={12}>
-			<Grow in timeout={1500}>
+			<Grow in timeout={1250}>
 				<Button
-					color="primary"
-					size="large"
-					variant="outlined"
+					color="secondary"
+					variant="contained"
 					onClick={props.handleNewRoomOpen}
 				>
 					Create new room
