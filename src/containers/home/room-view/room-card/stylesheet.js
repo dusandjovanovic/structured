@@ -29,7 +29,7 @@ export const styles = theme => ({
 		justifyContent: "flex-end"
 	},
 	chip: {
-		margin: theme.spacing(0.5)
+		margin: theme.spacing(0.25)
 	},
 	icon: {
 		marginLeft: theme.spacing(0.5)

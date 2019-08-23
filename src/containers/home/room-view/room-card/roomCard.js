@@ -57,19 +57,21 @@ const roomCard = props => {
 					{prettyDescription(props.type)}
 				</Typography>
 				<Divider variant="middle" light className={classes.divider} />
-				{props.users.map(user => (
-					<Chip
-						color="primary"
-						key={user}
-						label={user}
-						className={classes.chip}
-						avatar={
-							<Avatar>
-								<FaceIcon />
-							</Avatar>
-						}
-					/>
-				))}
+				<div className={classes.chipWrapper}>
+					{props.users.map(user => (
+						<Chip
+							color="primary"
+							key={user}
+							label={user}
+							className={classes.chip}
+							avatar={
+								<Avatar>
+									<FaceIcon />
+								</Avatar>
+							}
+						/>
+					))}
+				</div>
 			</CardContent>
 			<CardActions
 				className={classes.actions}
