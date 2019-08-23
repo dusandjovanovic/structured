@@ -21,6 +21,7 @@ const RoomNew = props => (
 				<Box mb={2}>
 					<Typography
 						variant="h4"
+						color="secondary"
 						className={props.classes.lightenedText}
 					>
 						Hello {props.username},
@@ -37,12 +38,11 @@ const RoomNew = props => (
 			<Grid item xs={12}>
 				<Grow in timeout={1250}>
 					<Typography
-						variant="subtitle1"
-						color="secondary"
+						variant="h6"
 						className={props.classes.normalizedText}
 					>
-						By creating a new room you are a room master, others who
-						join are spectators and can see everything you do.
+						By creating a new room you become a master, others who
+						join are spectators.
 					</Typography>
 				</Grow>
 			</Grid>
@@ -50,8 +50,9 @@ const RoomNew = props => (
 		<Grid item xs={12}>
 			<Grow in timeout={1250}>
 				<Button
+					size="large"
 					color="secondary"
-					variant="contained"
+					variant="outlined"
 					onClick={props.handleNewRoomOpen}
 				>
 					Create new room

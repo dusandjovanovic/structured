@@ -13,8 +13,9 @@ const withCompete = WrappedComponent => {
 		};
 
 		componentDidMount() {
+			this.props.initiateGraph(this.props.data.graph);
+
 			if (this.props.username !== this.props.data.createdBy) {
-				this.props.initiateGraph(this.props.data.graph);
 				this.props.socket.on(
 					this.props.room.name + " graph change",
 					received => {
