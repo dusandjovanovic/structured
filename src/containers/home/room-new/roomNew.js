@@ -39,12 +39,12 @@ const RoomNew = props => (
 			<Grid item xs={12}>
 				<Grow in timeout={1250}>
 					<Typography
-						variant="h6"
+						variant="subtitle1"
 						color="secondary"
 						className={props.classes.normalizedText}
 					>
 						By creating a new room you are a room master, others who
-						join are spectators and can see everything you do
+						join are spectators and can see everything you do.
 					</Typography>
 				</Grow>
 			</Grid>

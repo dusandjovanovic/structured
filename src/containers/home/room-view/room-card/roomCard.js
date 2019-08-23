@@ -10,7 +10,7 @@ import Chip from "@material-ui/core/Chip";
 import Avatar from "@material-ui/core/Avatar";
 import FaceIcon from "@material-ui/icons/Face";
 import ChevronRightIcon from "@material-ui/icons/ArrowForwardIos";
-import RoomBackground from "../../../../assets/images/room-background-alt.png";
+import RoomBackground from "../../../../assets/images/room-background.jpg";
 import PropTypes from "prop-types";
 
 import { styles } from "./stylesheet";
