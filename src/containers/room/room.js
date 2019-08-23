@@ -230,9 +230,8 @@ const mapDispatchToProps = dispatch => {
 		roomLeaveExisting: roomDeleted =>
 			dispatch(roomLeaveExisting(roomDeleted)),
 		roomDeleteExisting: () => dispatch(roomDeleteExisting()),
-		roomGetGraph: name => dispatch(roomGetGraph(name)),
-		roomChangeGraph: (name, graph) =>
-			dispatch(roomChangeGraph(name, graph)),
+		roomGetGraph: () => dispatch(roomGetGraph()),
+		roomChangeGraph: graph => dispatch(roomChangeGraph(graph)),
 		roomGetData: name => dispatch(roomGetData(name)),
 		userHistoryAdd: score => dispatch(userHistoryAdd(score)),
 		internalNotificationsAdd: (message, variant) =>

@@ -5,20 +5,28 @@ export const styles = theme => ({
 		width: "100%",
 		height: "34px",
 		lineHeight: "34px",
-		backgroundColor: theme.palette.primary.light
+		backgroundColor: theme.palette.primary.dark
 	},
 	element: {
-		padding: theme.spacing(0, 1)
+		padding: theme.spacing(0, 0.5)
 	},
 	elementLight: {
-		color: "#cecece"
+		color: "#dedede"
+	},
+	elementHighlighted: {
+		color: theme.palette.ternary.light
 	},
 	bordered: {
-		borderRight: "1px solid #767676",
+		borderRight: "1px solid #969696",
 		padding: theme.spacing(0, 2),
 		marginRight: theme.spacing(2)
 	},
 	managed: {
-		float: "right"
+		float: "right",
+		marginRight: theme.spacing(0.5)
+	},
+	elementManaged: {
+		textTransform: "uppercase",
+		fontWeight: "bold"
 	}
 });

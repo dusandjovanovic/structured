@@ -14,7 +14,7 @@ export const styles = theme => ({
 		...primaryBoxShadowHover
 	},
 	media: {
-		paddingTop: "52%"
+		paddingTop: "56%"
 	},
 	content: {
 		padding: theme.spacing(2),
@@ -23,13 +23,13 @@ export const styles = theme => ({
 		alignItems: "flex-start"
 	},
 	actions: {
-		padding: theme.spacing(1.5),
+		padding: theme.spacing(1.25),
 		display: "flex",
 		flexDirection: "row",
 		justifyContent: "flex-end"
 	},
 	chip: {
-		margin: theme.spacing(0.5)
+		margin: theme.spacing(0.25)
 	},
 	icon: {
 		marginLeft: theme.spacing(0.5)

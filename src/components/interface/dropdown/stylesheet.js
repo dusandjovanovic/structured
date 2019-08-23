@@ -11,11 +11,11 @@ export const styles = theme => ({
 		...shallowShadow
 	},
 	dropdown: {
-		position: "realtive",
+		position: "relative",
 		zIndex: "1201",
 		height: "100%",
 		borderRadius: "0.25rem",
-		width: "35rem",
+		width: "30rem",
 		padding: theme.spacing(1, 0),
 		textAlign: "left",
 		listStyle: "none",
@@ -35,7 +35,7 @@ export const styles = theme => ({
 		flexDirection: "column",
 		alignItems: "flex-start",
 		"&:hover": {
-			backgroundColor: theme.palette.primary.main,
+			backgroundColor: theme.palette.primary.light,
 			color: "#FFFFFF",
 			...primaryBoxShadow
 		}

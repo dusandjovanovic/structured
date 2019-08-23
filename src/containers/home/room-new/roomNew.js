@@ -21,14 +21,12 @@ const RoomNew = props => (
 				<Box mb={2}>
 					<Typography
 						variant="h4"
-						color="primary"
 						className={props.classes.lightenedText}
 					>
 						Hello {props.username},
 					</Typography>
 					<Typography
 						variant="h5"
-						color="primary"
 						className={props.classes.lightenedText}
 					>
 						Join existing rooms or create a new one..
@@ -39,12 +37,12 @@ const RoomNew = props => (
 			<Grid item xs={12}>
 				<Grow in timeout={1250}>
 					<Typography
-						variant="h6"
+						variant="subtitle1"
 						color="secondary"
 						className={props.classes.normalizedText}
 					>
 						By creating a new room you are a room master, others who
-						join are spectators and can see everything you do
+						join are spectators and can see everything you do.
 					</Typography>
 				</Grow>
 			</Grid>

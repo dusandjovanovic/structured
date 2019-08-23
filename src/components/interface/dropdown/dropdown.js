@@ -92,7 +92,7 @@ class Dropdown extends React.Component {
 											className={classes.dropdownHeader}
 										>
 											<Typography
-												variant="subtitle1"
+												variant="body2"
 												color="textSecondary"
 												className={classes.label}
 											>
@@ -125,7 +125,7 @@ class Dropdown extends React.Component {
 														}
 													>
 														<Typography
-															variant="subtitle1"
+															variant="body2"
 															classes={{
 																root:
 																	classes.label

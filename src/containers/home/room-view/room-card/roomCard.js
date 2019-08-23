@@ -10,7 +10,8 @@ import Chip from "@material-ui/core/Chip";
 import Avatar from "@material-ui/core/Avatar";
 import FaceIcon from "@material-ui/icons/Face";
 import ChevronRightIcon from "@material-ui/icons/ArrowForwardIos";
-import RoomBackground from "../../../../assets/images/room-background-alt.png";
+import RoomBackground from "../../../../assets/images/room-background.jpg";
+import RoomBackgroundAlt from "../../../../assets/images/room-background-alt.jpg";
 import PropTypes from "prop-types";
 
 import { styles } from "./stylesheet";
@@ -39,9 +40,16 @@ const roomCard = props => {
 		});
 	};
 
+	const imageByType = type => {
+		return type === "practice" ? RoomBackground : RoomBackgroundAlt;
+	};
+
 	return (
 		<Card className={classes.card}>
-			<CardMedia className={classes.media} image={RoomBackground} />
+			<CardMedia
+				className={classes.media}
+				image={imageByType(props.type)}
+			/>
 			<CardContent className={classes.content}>
 				<Typography variant="h5" color="primary">
 					{props.name}
@@ -57,19 +65,21 @@ const roomCard = props => {
 					{prettyDescription(props.type)}
 				</Typography>
 				<Divider variant="middle" light className={classes.divider} />
-				{props.users.map(user => (
-					<Chip
-						color="primary"
-						key={user}
-						label={user}
-						className={classes.chip}
-						avatar={
-							<Avatar>
-								<FaceIcon />
-							</Avatar>
-						}
-					/>
-				))}
+				<div className={classes.chipWrapper}>
+					{props.users.map(user => (
+						<Chip
+							color="primary"
+							key={user}
+							label={user}
+							className={classes.chip}
+							avatar={
+								<Avatar>
+									<FaceIcon />
+								</Avatar>
+							}
+						/>
+					))}
+				</div>
 			</CardContent>
 			<CardActions
 				className={classes.actions}

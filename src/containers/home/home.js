@@ -119,8 +119,8 @@ const mapStateToProps = state => {
 		room: state.room.room,
 		rooms: state.room.rooms,
 		data: state.room.data,
-		waiting: state.room.waiting || state.user.waiting,
-		error: state.room.error || state.user.error
+		waiting: state.room.waiting,
+		error: state.room.error
 	};
 };
 
