@@ -234,8 +234,8 @@ export const roomLeaveExisting = roomDeleted => {
 					});
 
 				if (response.data.success) {
-                    dispatch(roomLeave(getState().auth.username));
-                    dispatch(roomAll(response.data.rooms));
+					dispatch(roomLeave(getState().auth.username));
+					dispatch(roomAll(response.data.rooms));
 					dispatch(roomEnd());
 				} else {
 					dispatch(roomError(response.data.message));
@@ -263,7 +263,7 @@ export const roomDeleteExisting = () => {
 			if (response.data.success) {
 				dispatch(roomLeave(username));
 				dispatch(roomDelete());
-                dispatch(roomAll(response.data.rooms));
+				dispatch(roomAll(response.data.rooms));
 				dispatch(roomEnd());
 			} else {
 				dispatch(roomError(response.data.message));
@@ -274,12 +274,15 @@ export const roomDeleteExisting = () => {
 	};
 };
 
-export const roomGetGraph = name => {
-	return async dispatch => {
+export const roomGetGraph = () => {
+	return async (dispatch, getState) => {
+		const roomName = getState().room.data.name;
 		let response;
 
 		try {
-			response = await axios.getInstance().get(roomGetGraphRoute(name));
+			response = await axios
+				.getInstance()
+				.get(roomGetGraphRoute(roomName));
 
 			if (response.data.success) {
 				dispatch(roomGraph(response.data.data));
@@ -294,8 +297,9 @@ export const roomGetGraph = name => {
 	};
 };
 
-export const roomChangeGraph = (name, graph) => {
-	return async dispatch => {
+export const roomChangeGraph = graph => {
+	return async (dispatch, getState) => {
+		const roomName = getState().room.data.name;
 		let response;
 		const payload = {
 			graph: graph
@@ -304,7 +308,7 @@ export const roomChangeGraph = (name, graph) => {
 		try {
 			response = await axios
 				.getInstance()
-				.put(roomChangeGraphRoute(name), payload, {
+				.put(roomChangeGraphRoute(roomName), payload, {
 					"Content-Type": "application/x-www-form-urlencoded"
 				});
 

@@ -22,7 +22,7 @@ const withIO = WrappedComponent => {
 			this.socket.on(this.props.room.name + " delete room", () => {
 				this.props.roomLeaveExisting(true);
 				this.props.internalNotificationsAdd(
-					"The room has been deleted.",
+					"The room has been deleted and you had to leave.",
 					"danger"
 				);
 				this.setState({

@@ -220,6 +220,7 @@ const withGraph = WrappedComponent => {
 		randomGraph = () => {
 			let randomGraph = randomData();
 			this.initiateGraph(randomGraph);
+			this.props.roomChangeGraph(this.graph.visualization);
 			this.props.changeGraphIO(randomGraph);
 		};
 
@@ -230,6 +231,7 @@ const withGraph = WrappedComponent => {
 
 		addNode = () => {
 			let node = this.graph.addVertexRandom();
+			this.props.roomChangeGraph(this.graph.visualization);
 			this.props.addNodeIO(node);
 			this.managedEnded();
 			this.graphAnimated();
@@ -243,6 +245,7 @@ const withGraph = WrappedComponent => {
 
 		removeNode = node => {
 			this.graph.removeVertex(node);
+			this.props.roomChangeGraph(this.graph.visualization);
 			this.props.removeNodeIO(node);
 			this.managedEnded();
 			this.graphAnimated();
@@ -256,6 +259,7 @@ const withGraph = WrappedComponent => {
 
 		addEdge = (source, target) => {
 			this.graph.addEdge(source, target);
+			this.props.roomChangeGraph(this.graph.visualization);
 			this.props.addEdgeIO(source, target);
 			this.managedEnded();
 			this.graphAnimated();
@@ -269,6 +273,7 @@ const withGraph = WrappedComponent => {
 
 		removeEdge = (source, target) => {
 			this.graph.removeEdge(source, target);
+			this.props.roomChangeGraph(this.graph.visualization);
 			this.props.removeEdgeIO(source, target);
 			this.managedEnded();
 			this.graphAnimated();
