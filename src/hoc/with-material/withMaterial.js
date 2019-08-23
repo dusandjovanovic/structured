@@ -8,19 +8,19 @@ const withMaterial = Component => {
 		theme = createMuiTheme({
 			palette: {
 				primary: {
-					light: "#70a6bc",
-					main: "#40778c",
-					dark: "#064b5f"
+					light: "#718792",
+					main: "#455a64",
+					dark: "#1c313a"
 				},
 				secondary: {
-					light: "#fa5788",
-					main: "#c2185b",
-					dark: "#8c0032"
+					light: "#62ebff",
+					main: "#00b8d4",
+					dark: "#0088a3"
 				},
 				ternary: {
-					light: "#ffff6b",
-					main: "#fdd835",
-					dark: "#c6a700"
+					light: "#76ffff",
+					main: "#18ffff",
+					dark: "#00cbcc"
 				}
 			},
 			typography: {
