@@ -9,10 +9,10 @@
 		"node": ">=10.x"
 	},
 	"scripts": {
-		"start": "cross-env NODE_ENV=development nodemon server.js",
+		"local": "cross-env NODE_ENV=development nodemon server.js",
+		"start": "pm2-runtime start ecosystem.config.js --env production",
 		"test": "cross-env NODE_ENV=test babel-tape-runner test/test-*.js",
-		"pretest": "eslint .",
-		"prod": "pm2-runtime start ecosystem.config.js --env production"
+		"pretest": "eslint ."
 	},
 	"dependencies": {
 		"body-parser": "~1.19.0",

@@ -26,7 +26,7 @@ fs.readdirSync(models)
 	.forEach(file => require(join(models, file)));
 
 require("./config/passport")(passport);
-require("./config/express")(app, passport);
+require("./config/express")(app, passport, connection);
 require("./config/routes")(app, passport);
 require("./config/socketio");
 

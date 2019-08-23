@@ -1,0 +1,35 @@
+# [START runtime]
+runtime: nodejs10
+# [END runtime]
+
+# [START handlers]
+
+handlers:
+    - url: "/service-worker.js"
+      secure: always
+      static_files: build/service-worker.js
+      upload: build/service-worker.js
+      mime_type: application/javascript
+
+    - url: /(precache-manifest.*)$
+      secure: always
+      mime_type: application/javascript
+      static_files: build/\1
+      upload: build/(precache-manifest.*)$
+
+    - url: /(.*\.js)$
+      secure: always
+      static_files: build/\1
+      upload: build/.*\.js$
+      mime_type: application/javascript
+
+    - url: /(.*\.(css|map|png|jpg|svg|ico|json|txt|woff))$
+      secure: always
+      static_files: build/\1
+      upload: build/.*\.(css|map|png|jpg|svg|ico|json|txt|woff)$
+
+    - url: "/(.*)"
+      secure: always
+      static_files: build/index.html
+      upload: build/index.html
+# [END handlers]

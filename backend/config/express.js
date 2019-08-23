@@ -17,7 +17,7 @@ const pkg = require("../package.json");
 
 const env = process.env.NODE_ENV || "development";
 
-module.exports = function(app, passport) {
+module.exports = function(app, passport, connection) {
 	app.use(helmet());
 	app.use(compression());
 	app.use(express.static(config.root + "/public"));
@@ -70,8 +70,7 @@ module.exports = function(app, passport) {
 			resave: false,
 			saveUninitialized: false,
 			store: new mongoStore({
-				url: config.db,
-				collection: "sessions"
+				mongooseConnection: connection
 			}),
 			cookie: {
 				maxAge: 1000 * 60 * 60 * 24 * 7
@@ -86,7 +85,10 @@ module.exports = function(app, passport) {
 	app.use(helpers(pkg.name));
 	app.use(
 		cors({
-			origin: "http://localhost:3000",
+			origin: function(origin, callback) {
+				return callback(null, true);
+			},
+			optionsSuccessStatus: 200,
 			credentials: true
 		})
 	);
