@@ -1,8 +1,8 @@
-export const primaryColor = "#282c34";
-export const warningColor = "#ffa21a";
+export const primaryColor = "#40778c";
+export const warningColor = "#de6f33";
 export const dangerColor = "#f55a4e";
 export const successColor = "#5cb860";
-export const infoColor = "#00d3ee";
+export const infoColor = "#33d1d6";
 
 export const graphColors = {
 	node: {

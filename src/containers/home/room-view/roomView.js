@@ -12,12 +12,12 @@ const roomView = props => {
 	const { classes } = props;
 
 	return (
-		<Grid container justify="center" className={classes.root} spacing={2}>
+		<Grid container justify="center" className={classes.root} spacing={4}>
 			{props.rooms.length > 0 ? (
 				props.rooms.map((room, index) => {
 					return (
 						<Grow key={room["_id"]} in timeout={500 + index * 500}>
-							<Grid item lg={3} md={4} xs={12}>
+							<Grid item lg={4} md={6} xs={12}>
 								<RoomCard
 									type={room.roomType}
 									name={room.name}

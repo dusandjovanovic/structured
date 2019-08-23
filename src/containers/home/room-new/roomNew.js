@@ -21,14 +21,12 @@ const RoomNew = props => (
 				<Box mb={2}>
 					<Typography
 						variant="h4"
-						color="primary"
 						className={props.classes.lightenedText}
 					>
 						Hello {props.username},
 					</Typography>
 					<Typography
 						variant="h5"
-						color="primary"
 						className={props.classes.lightenedText}
 					>
 						Join existing rooms or create a new one..
