@@ -7,14 +7,13 @@ const withPlayground = WrappedComponent => {
 	class WithPlayground extends React.Component {
 		componentDidMount() {
 			this.props.initiateGraph(this.props.data.graph);
+			this.props.initWebsocketIO();
 
 			if (this.props.username !== this.props.data.createdBy) {
-				this.props.socket.on(
-					this.props.room.name + " graph change",
-					received => {
-						this.props.initiateGraph(received.graph);
-					}
-				);
+				this.props.socket.on("graphChange", received => {
+					console.log(received);
+					this.props.initiateGraph(received.graph);
+				});
 			} else if (this.props.username === this.props.data.createdBy) {
 				this.props.socket.on(this.props.username, () => {
 					if (this.props.graphOperation === "GRAPH_MANAGED_ALGORITHM")
@@ -26,64 +25,43 @@ const withPlayground = WrappedComponent => {
 				});
 			}
 
-			this.props.socket.on(
-				this.props.room.name + " master changed",
-				received => {
-					this.props.roomGetData(
-						this.props.room.name,
-						this.props.username
-					);
-					this.props.internalNotificationsAdd(
-						received.msg,
-						"warning"
-					);
-				}
-			);
+			this.props.socket.on("masterChanged", received => {
+				this.props.roomGetData(
+					this.props.room.name,
+					this.props.username
+				);
+				this.props.internalNotificationsAdd(received.msg, "warning");
+			});
 
-			this.props.socket.on(
-				this.props.room.name + " join and leave room",
-				received => {
-					this.props.roomGetData(
-						this.props.room.name,
-						this.props.username
-					);
-					this.props.internalNotificationsAdd(received.msg, "info");
-				}
-			);
+			this.props.socket.on("joinLeaveRoom", received => {
+				this.props.roomGetData(
+					this.props.room.name,
+					this.props.username
+				);
+				this.props.internalNotificationsAdd(received.msg, "info");
+			});
 
-			this.props.socket.on(
-				this.props.room.name + " add node",
-				received => {
-					this.props.addReceivedNode(received.node);
-				}
-			);
+			this.props.socket.on("addNode", received => {
+				this.props.addReceivedNode(received.node);
+			});
 
-			this.props.socket.on(
-				this.props.room.name + " remove node",
-				received => {
-					this.props.removeReceivedNode(received.node);
-				}
-			);
+			this.props.socket.on("removeNode", received => {
+				this.props.removeReceivedNode(received.node);
+			});
 
-			this.props.socket.on(
-				this.props.room.name + " add edge",
-				received => {
-					this.props.addReceivedEdge(
-						received.edge.source,
-						received.edge.target
-					);
-				}
-			);
+			this.props.socket.on("addEdge", received => {
+				this.props.addReceivedEdge(
+					received.edge.source,
+					received.edge.target
+				);
+			});
 
-			this.props.socket.on(
-				this.props.room.name + " remove edge",
-				received => {
-					this.props.removeReceivedEdge(
-						received.edge.source,
-						received.edge.target
-					);
-				}
-			);
+			this.props.socket.on("removeEdge", received => {
+				this.props.removeReceivedEdge(
+					received.edge.source,
+					received.edge.target
+				);
+			});
 
 			this.props.joinRoomIO(
 				this.props.username,
@@ -109,8 +87,8 @@ const withPlayground = WrappedComponent => {
 							this.props.nodeRoot
 						);
 				});
-				this.props.socket.off(this.props.room.name + " graph change");
-				this.props.socket.off(this.props.room.name + " delete room");
+				this.props.socket.off("graphChange");
+				this.props.socket.off("deleteRoom");
 			}
 		}
 
@@ -162,6 +140,7 @@ const withPlayground = WrappedComponent => {
 		userHistoryAdd: PropTypes.func.isRequired,
 		internalNotificationsAdd: PropTypes.func.isRequired,
 
+		initWebsocketIO: PropTypes.func,
 		addNodeIO: PropTypes.func,
 		addEdgeIO: PropTypes.func,
 		removeNodeIO: PropTypes.func,

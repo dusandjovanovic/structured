@@ -344,6 +344,7 @@ const withGraph = WrappedComponent => {
 		userHistoryAdd: PropTypes.func.isRequired,
 		internalNotificationsAdd: PropTypes.func.isRequired,
 
+		initWebsocketIO: PropTypes.func,
 		addNodeIO: PropTypes.func,
 		addEdgeIO: PropTypes.func,
 		removeNodeIO: PropTypes.func,
