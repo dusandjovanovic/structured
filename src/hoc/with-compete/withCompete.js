@@ -63,6 +63,11 @@ const withCompete = WrappedComponent => {
 				}
 			);
 
+			this.props.joinRoomIO(
+				this.props.username,
+				this.props.data.createdBy
+			);
+
 			this.props.joinLeaveRoomIO(
 				this.props.room.name,
 				this.props.username + " joined the room."
@@ -74,12 +79,6 @@ const withCompete = WrappedComponent => {
 				this.props.room.master &&
 				this.props.room.master !== prevProps.room.master
 			) {
-				this.props.socket.on(this.props.username, received => {
-					this.props.addGraphIO(
-						received.username,
-						this.props.visualization
-					);
-				});
 				this.props.socket.off(this.props.room.name + " graph change");
 				this.props.socket.off(this.props.room.name + " delete room");
 			}
@@ -135,7 +134,11 @@ const withCompete = WrappedComponent => {
 			this.props.competeEndedIO(scored);
 			this.props.userHistoryAdd(scored);
 			this.props.graphManagedEnded();
-			if (!this.props.master) this.props.getGraphIO();
+			this.props.roomGetGraph();
+			this.props.joinRoomIO(
+				this.props.username,
+				this.props.data.createdBy
+			);
 		};
 
 		competeEndedByFriend = (username, score) => {
@@ -214,13 +217,12 @@ const withCompete = WrappedComponent => {
 		addEdgeIO: PropTypes.func,
 		removeNodeIO: PropTypes.func,
 		removeEdgeIO: PropTypes.func,
-		addGraphIO: PropTypes.func,
-		getGraphIO: PropTypes.func,
 		changeGraphIO: PropTypes.func,
 		competeBeginIO: PropTypes.func,
 		competeEndedIO: PropTypes.func,
 		algorithmBeginIO: PropTypes.func,
 		algorithmEndedIO: PropTypes.func,
+		joinRoomIO: PropTypes.func,
 		joinLeaveRoomIO: PropTypes.func,
 		deleteRoomIO: PropTypes.func,
 		masterChangedIO: PropTypes.func,

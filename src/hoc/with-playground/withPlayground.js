@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const withPlayground = WrappedComponent => {
 	class WithPlayground extends React.Component {
 		componentDidMount() {
-            this.props.initiateGraph(this.props.data.graph);
+			this.props.initiateGraph(this.props.data.graph);
 
 			if (this.props.username !== this.props.data.createdBy) {
 				this.props.socket.on(
@@ -16,7 +16,7 @@ const withPlayground = WrappedComponent => {
 					}
 				);
 			} else if (this.props.username === this.props.data.createdBy) {
-				this.props.socket.on(this.props.data.createdBy, () => {
+				this.props.socket.on(this.props.username, () => {
 					if (this.props.graphOperation === "GRAPH_MANAGED_ALGORITHM")
 						this.props.algorithmBeginIO(
 							this.props.algorithmType,
@@ -85,6 +85,11 @@ const withPlayground = WrappedComponent => {
 				}
 			);
 
+			this.props.joinRoomIO(
+				this.props.username,
+				this.props.data.createdBy
+			);
+
 			this.props.joinLeaveRoomIO(
 				this.props.room.name,
 				this.props.username + " has just joined the room."
@@ -96,11 +101,7 @@ const withPlayground = WrappedComponent => {
 				this.props.room.master &&
 				this.props.room.master !== prevProps.room.master
 			) {
-				this.props.socket.on(this.props.username, received => {
-					this.props.addGraphIO(
-						received.username,
-						this.props.visualization
-					);
+				this.props.socket.on(this.props.username, () => {
 					if (this.props.graphOperation === "GRAPH_MANAGED_ALGORITHM")
 						this.props.algorithmBeginIO(
 							this.props.algorithmType,
@@ -165,13 +166,12 @@ const withPlayground = WrappedComponent => {
 		addEdgeIO: PropTypes.func,
 		removeNodeIO: PropTypes.func,
 		removeEdgeIO: PropTypes.func,
-		addGraphIO: PropTypes.func,
-		getGraphIO: PropTypes.func,
 		changeGraphIO: PropTypes.func,
 		competeBeginIO: PropTypes.func,
 		competeEndedIO: PropTypes.func,
 		algorithmBeginIO: PropTypes.func,
 		algorithmEndedIO: PropTypes.func,
+		joinRoomIO: PropTypes.func,
 		joinLeaveRoomIO: PropTypes.func,
 		deleteRoomIO: PropTypes.func,
 		masterChangedIO: PropTypes.func,
