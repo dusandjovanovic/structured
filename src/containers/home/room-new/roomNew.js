@@ -22,13 +22,14 @@ const RoomNew = props => (
 					<Typography
 						variant="h4"
 						color="secondary"
-						className={props.classes.lightenedText}
+						className={props.classes.normalizedText}
 					>
 						Hello {props.username},
 					</Typography>
 					<Typography
 						variant="h5"
-						className={props.classes.lightenedText}
+						color="textSecondary"
+						className={props.classes.normalizedText}
 					>
 						Join existing rooms or create a new one..
 					</Typography>
@@ -39,7 +40,7 @@ const RoomNew = props => (
 				<Grow in timeout={1250}>
 					<Typography
 						variant="h6"
-						className={props.classes.normalizedText}
+						className={props.classes.lightenedText}
 					>
 						By creating a new room you become a master, others who
 						join are spectators.
@@ -52,7 +53,7 @@ const RoomNew = props => (
 				<Button
 					size="large"
 					color="secondary"
-					variant="outlined"
+					variant="contained"
 					onClick={props.handleNewRoomOpen}
 				>
 					Create new room

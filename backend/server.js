@@ -8,7 +8,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const config = require("./config");
-const io = require("./config/socketio");
 
 const models = join(__dirname, "app/models");
 const port = process.env.PORT || 8080;
@@ -37,9 +36,8 @@ connection
 
 function listen() {
 	if (app.get("env") === "test") return;
-	const server = app.listen(port);
-	io.listen(server);
-	console.log("Running on port " + port);
+	app.listen(port);
+	console.info("Running on port " + port);
 }
 
 function connect() {
