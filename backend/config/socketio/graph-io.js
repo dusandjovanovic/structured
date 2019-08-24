@@ -2,84 +2,82 @@ module.exports = function(io) {
 	const graph = io.of("/graph");
 
 	graph.on("connection", client => {
-		client.on("get graph", rcv => {
-			graph.emit(rcv.masterName, { username: rcv.username });
+		client.on("graph change", from => {
+			graph.emit(from.room + " graph change", { graph: from.graph });
 		});
 
-		client.on("graph", rcv => {
-			graph.emit(rcv.username, { graph: rcv.graph });
-		});
-
-		client.on("graph change", rcv => {
-			graph.emit(rcv.room + " graph change", { graph: rcv.graph });
-		});
-
-		client.on("add node", rcv => {
-			graph.emit(rcv.room + " add node", {
-				sender: rcv.sender,
-				node: rcv.node
+		client.on("add node", from => {
+			graph.emit(from.room + " add node", {
+				sender: from.sender,
+				node: from.node
 			});
 		});
 
-		client.on("remove node", rcv => {
-			graph.emit(rcv.room + " remove node", {
-				sender: rcv.sender,
-				node: rcv.node
+		client.on("remove node", from => {
+			graph.emit(from.room + " remove node", {
+				sender: from.sender,
+				node: from.node
 			});
 		});
 
-		client.on("add edge", rcv => {
-			graph.emit(rcv.room + " add edge", {
-				sender: rcv.sender,
-				edge: rcv.edge
+		client.on("add edge", from => {
+			graph.emit(from.room + " add edge", {
+				sender: from.sender,
+				edge: from.edge
 			});
 		});
 
-		client.on("remove edge", rcv => {
-			graph.emit(rcv.room + " remove edge", {
-				sender: rcv.sender,
-				edge: rcv.edge
+		client.on("remove edge", from => {
+			graph.emit(from.room + " remove edge", {
+				sender: from.sender,
+				edge: from.edge
 			});
 		});
 
-		client.on("compete begin", rcv => {
-			graph.emit(rcv.room + " compete begin", {
-				agName: rcv.agName,
-				root: rcv.root
+		client.on("compete begin", from => {
+			graph.emit(from.room + " compete begin", {
+				agName: from.agName,
+				root: from.root
 			});
 		});
 
-		client.on("compete end", rcv => {
-			graph.emit(rcv.room + " compete end", {
-				user: rcv.user,
-				score: rcv.score
+		client.on("compete end", from => {
+			graph.emit(from.room + " compete end", {
+				user: from.user,
+				score: from.score
 			});
 		});
 
-		client.on("algorithm begin", rcv => {
-			graph.emit(rcv.room + " algorithm begin", {
-				agName: rcv.agName,
-				agIterations: rcv.agIterations,
-				root: rcv.root
+		client.on("algorithm begin", from => {
+			graph.emit(from.room + " algorithm begin", {
+				agName: from.agName,
+				agIterations: from.agIterations,
+				root: from.root
 			});
 		});
 
-		client.on("algorithm end", rcv => {
-			graph.emit(rcv.room + " algorithm end");
+		client.on("algorithm end", from => {
+			graph.emit(from.room + " algorithm end");
 		});
 
-		client.on("master changed", rcv => {
-			graph.emit(rcv.room + " master changed", {
-				msg: "Master left. New master is " + rcv.master + "."
+		client.on("master changed", from => {
+			graph.emit(from.room + " master changed", {
+				msg: "Master left. New master is " + from.master + "."
 			});
 		});
 
-		client.on("join and leave room", rcv => {
-			graph.emit(rcv.room + " join and leave room", { msg: rcv.msg });
+		client.on("join", from => {
+			graph.emit(from.master, { username: from.username });
 		});
 
-		client.on("delete room", rcv => {
-			graph.emit(rcv.room + " delete room");
+		client.on("join and leave room", from => {
+			graph.emit(from.room + " join and leave room", {
+				msg: from.msg
+			});
+		});
+
+		client.on("delete room", from => {
+			graph.emit(from.room + " delete room");
 		});
 	});
 };

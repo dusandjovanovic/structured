@@ -74,16 +74,6 @@ const withIO = WrappedComponent => {
 			});
 		};
 
-		addGraphIO = (receiver, graph) => {
-			if (graph) {
-				this.socket.emit("graph", {
-					room: this.props.room.name,
-					username: receiver,
-					graph: graph
-				});
-			}
-		};
-
 		changeGraphIO = graph => {
 			if (graph) {
 				this.socket.emit("graph change", {
@@ -91,13 +81,6 @@ const withIO = WrappedComponent => {
 					graph: graph
 				});
 			}
-		};
-
-		getGraphIO = () => {
-			this.socket.emit("get graph", {
-				username: this.props.username,
-				masterName: this.props.data.createdBy
-			});
 		};
 
 		competeBeginIO = (algorithmName, rootNode) => {
@@ -128,6 +111,13 @@ const withIO = WrappedComponent => {
 		algorithmEndedIO = () => {
 			this.socket.emit("algorithm end", {
 				room: this.props.room.name
+			});
+		};
+
+		joinRoomIO = (username, master) => {
+			this.socket.emit("join", {
+				username: username,
+				master: master
 			});
 		};
 
@@ -186,13 +176,12 @@ const withIO = WrappedComponent => {
 					addEdgeIO={this.addEdgeIO}
 					removeNodeIO={this.removeNodeIO}
 					removeEdgeIO={this.removeEdgeIO}
-					addGraphIO={this.addGraphIO}
-					getGraphIO={this.getGraphIO}
 					changeGraphIO={this.changeGraphIO}
 					competeBeginIO={this.competeBeginIO}
 					competeEndedIO={this.competeEndedIO}
 					algorithmBeginIO={this.algorithmBeginIO}
 					algorithmEndedIO={this.algorithmEndedIO}
+					joinRoomIO={this.joinRoomIO}
 					joinLeaveRoomIO={this.joinLeaveRoomIO}
 					deleteRoomIO={this.deleteRoomIO}
 					leaveRoomIOInit={this.leaveRoomIOInit}

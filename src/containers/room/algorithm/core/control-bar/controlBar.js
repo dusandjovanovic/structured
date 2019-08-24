@@ -11,54 +11,52 @@ import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const ControlBar = props => {
-    const { classes } = props;
-    return (
-        <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-            className={classes.root}
-        >
-            <Grid item>
-                <SkipPrevious
-                    fontSize="medium"
-                    className={classes.button}
-                    onClick={() => props.goToPrevStep()}
-                />
-            </Grid>
-            <Grid item>
-                {props.playing ? (
-                    <Pause
-                        fontSize="large"
-                        className={classes.button}
-                        onClick={() => props.play()}
-                    />
-                ) : (
-                    <Play
-                        fontSize="large"
-                        className={classes.button}
-                        onClick={() => props.play()}
-                    />
-                )}
-            </Grid>
-            <Grid item>
-                <SkipNext
-                    fontSize="medium"
-                    className={classes.button}
-                    onClick={() => props.goToNextStep()}
-                />
-            </Grid>
-        </Grid>
-    );
+	const { classes } = props;
+	return (
+		<Grid
+			container
+			direction="row"
+			justify="center"
+			alignItems="center"
+			className={classes.root}
+		>
+			<Grid item>
+				<SkipPrevious
+					className={classes.button}
+					onClick={() => props.goToPrevStep()}
+				/>
+			</Grid>
+			<Grid item>
+				{props.playing ? (
+					<Pause
+						fontSize="large"
+						className={classes.button}
+						onClick={() => props.play()}
+					/>
+				) : (
+					<Play
+						fontSize="large"
+						className={classes.button}
+						onClick={() => props.play()}
+					/>
+				)}
+			</Grid>
+			<Grid item>
+				<SkipNext
+					className={classes.button}
+					onClick={() => props.goToNextStep()}
+				/>
+			</Grid>
+		</Grid>
+	);
 };
 
 ControlBar.propTypes = {
-    classes: PropTypes.object.isRequired,
-    play: PropTypes.func.isRequired,
-    goToNextStep: PropTypes.func.isRequired,
-    goToPrevStep: PropTypes.func.isRequired,
-    playing: PropTypes.bool
+	classes: PropTypes.object.isRequired,
+	play: PropTypes.func.isRequired,
+	goToNextStep: PropTypes.func.isRequired,
+	goToPrevStep: PropTypes.func.isRequired,
+	playing: PropTypes.bool
 };
 
 export default withStyles(styles)(React.memo(ControlBar));
