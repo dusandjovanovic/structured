@@ -14,54 +14,37 @@ const withCompete = WrappedComponent => {
 
 		componentDidMount() {
 			this.props.initiateGraph(this.props.data.graph);
+			this.props.initWebsocketIO();
 
 			if (this.props.username !== this.props.data.createdBy) {
-				this.props.socket.on(
-					this.props.room.name + " graph change",
-					received => {
-						this.props.initiateGraph(received.graph);
-					}
-				);
+				this.props.socket.on("graphChange", received => {
+					this.props.initiateGraph(received.graph);
+				});
 			}
 
-			this.props.socket.on(
-				this.props.room.name + " master changed",
-				received => {
-					this.props.roomGetData(
-						this.props.room.name,
-						this.props.username
-					);
-					this.props.internalNotificationsAdd(
-						received.msg,
-						"warning"
-					);
-				}
-			);
+			this.props.socket.on("masterChanged", received => {
+				this.props.roomGetData(
+					this.props.room.name,
+					this.props.username
+				);
+				this.props.internalNotificationsAdd(received.msg, "warning");
+			});
 
-			this.props.socket.on(
-				this.props.room.name + " join and leave room",
-				received => {
-					this.props.roomGetData(
-						this.props.room.name,
-						this.props.username
-					);
-					this.props.internalNotificationsAdd(received.msg, "info");
-				}
-			);
+			this.props.socket.on("joinLeaveRoom", received => {
+				this.props.roomGetData(
+					this.props.room.name,
+					this.props.username
+				);
+				this.props.internalNotificationsAdd(received.msg, "info");
+			});
 
-			this.props.socket.on(
-				this.props.room.name + " compete begin",
-				received => {
-					this.competeInitiate(received.agName, received.root);
-				}
-			);
+			this.props.socket.on("competeBegin", received => {
+				this.competeInitiate(received.agName, received.root);
+			});
 
-			this.props.socket.on(
-				this.props.room.name + " compete end",
-				received => {
-					this.competeEndedByFriend(received.user, received.score);
-				}
-			);
+			this.props.socket.on("competeEnd", received => {
+				this.competeEndedByFriend(received.user, received.score);
+			});
 
 			this.props.joinRoomIO(
 				this.props.username,
@@ -70,7 +53,7 @@ const withCompete = WrappedComponent => {
 
 			this.props.joinLeaveRoomIO(
 				this.props.room.name,
-				this.props.username + " joined the room."
+				this.props.username + " has just joined the room."
 			);
 		}
 
@@ -79,8 +62,8 @@ const withCompete = WrappedComponent => {
 				this.props.room.master &&
 				this.props.room.master !== prevProps.room.master
 			) {
-				this.props.socket.off(this.props.room.name + " graph change");
-				this.props.socket.off(this.props.room.name + " delete room");
+				this.props.socket.off("graphChange");
+				this.props.socket.off("deleteRoom");
 			}
 		}
 
@@ -213,6 +196,7 @@ const withCompete = WrappedComponent => {
 		userHistoryAdd: PropTypes.func.isRequired,
 		internalNotificationsAdd: PropTypes.func.isRequired,
 
+		initWebsocketIO: PropTypes.func,
 		addNodeIO: PropTypes.func,
 		addEdgeIO: PropTypes.func,
 		removeNodeIO: PropTypes.func,

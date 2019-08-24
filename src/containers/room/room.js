@@ -53,7 +53,7 @@ class Room extends React.Component {
 					{this.props.competitive || this.props.learn ? null : (
 						<Grid item xs={3}>
 							<Chat
-								room={this.props.room.name}
+								room={this.props.room.name || ""}
 								username={this.props.username}
 								io={this.props.io}
 							/>
@@ -141,6 +141,7 @@ Room.propTypes = {
 	addEdgeIO: PropTypes.func,
 	addGraphIO: PropTypes.func,
 	addNode: PropTypes.func,
+	initWebsocketIO: PropTypes.func,
 	addNodeIO: PropTypes.func,
 	addReceivedEdge: PropTypes.func,
 	addReceivedNode: PropTypes.func,

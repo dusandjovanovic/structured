@@ -1,83 +1,91 @@
 module.exports = function(io) {
 	const graph = io.of("/graph");
 
-	graph.on("connection", client => {
-		client.on("graph change", from => {
-			graph.emit(from.room + " graph change", { graph: from.graph });
+	graph.on("connection", socket => {
+		socket.on("initWebsocket", from => {
+			socket.join(from.room);
 		});
 
-		client.on("add node", from => {
-			graph.emit(from.room + " add node", {
+		socket.on("graphChange", from => {
+			socket.broadcast
+				.to(from.room)
+				.emit("graphChange", { graph: from.graph });
+		});
+
+		socket.on("addNode", from => {
+			socket.broadcast.to(from.room).emit("addNode", {
 				sender: from.sender,
 				node: from.node
 			});
 		});
 
-		client.on("remove node", from => {
-			graph.emit(from.room + " remove node", {
+		socket.on("removeNode", from => {
+			socket.broadcast.to(from.room).emit("removeNode", {
 				sender: from.sender,
 				node: from.node
 			});
 		});
 
-		client.on("add edge", from => {
-			graph.emit(from.room + " add edge", {
+		socket.on("addEdge", from => {
+			socket.broadcast.to(from.room).emit("addEdge", {
 				sender: from.sender,
 				edge: from.edge
 			});
 		});
 
-		client.on("remove edge", from => {
-			graph.emit(from.room + " remove edge", {
+		socket.on("removeEdge", from => {
+			socket.broadcast.to(from.room).emit("removeEdge", {
 				sender: from.sender,
 				edge: from.edge
 			});
 		});
 
-		client.on("compete begin", from => {
-			graph.emit(from.room + " compete begin", {
+		socket.on("competeBegin", from => {
+			socket.broadcast.to(from.room).emit("competeBegin", {
 				agName: from.agName,
 				root: from.root
 			});
 		});
 
-		client.on("compete end", from => {
-			graph.emit(from.room + " compete end", {
+		socket.on("competeEnd", from => {
+			socket.broadcast.to(from.room).emit("competeEnd", {
 				user: from.user,
 				score: from.score
 			});
 		});
 
-		client.on("algorithm begin", from => {
-			graph.emit(from.room + " algorithm begin", {
+		socket.on("algorithmBegin", from => {
+			socket.broadcast.to(from.room).emit("algorithmBegin", {
 				agName: from.agName,
 				agIterations: from.agIterations,
 				root: from.root
 			});
 		});
 
-		client.on("algorithm end", from => {
-			graph.emit(from.room + " algorithm end");
+		socket.on("algorithmEnd", from => {
+			socket.broadcast.to(from.room).emit("algorithmEnd");
 		});
 
-		client.on("master changed", from => {
-			graph.emit(from.room + " master changed", {
+		socket.on("masterChanged", from => {
+			socket.broadcast.to(from.room).emit("masterChanged", {
 				msg: "Master left. New master is " + from.master + "."
 			});
 		});
 
-		client.on("join", from => {
-			graph.emit(from.master, { username: from.username });
+		socket.on("joinRoom", from => {
+			socket.broadcast
+				.to(from.room)
+				.emit(from.master, { username: from.username });
 		});
 
-		client.on("join and leave room", from => {
-			graph.emit(from.room + " join and leave room", {
+		socket.on("joinLeaveRoom", from => {
+			socket.broadcast.to(from.room).emit("joinLeaveRoom", {
 				msg: from.msg
 			});
 		});
 
-		client.on("delete room", from => {
-			graph.emit(from.room + " delete room");
+		socket.on("deleteRoom", from => {
+			socket.broadcast.to(from.room).emit("deleteRoom");
 		});
 	});
 };

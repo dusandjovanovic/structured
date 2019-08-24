@@ -20,10 +20,20 @@ class Chat extends React.PureComponent {
 	}
 
 	componentDidMount() {
-		this.props.socket.on(this.props.room, message =>
+		this.props.initWebsocketIO(this.props.room);
+		this.props.socket.on("newMessage", message =>
 			this.messageReceived(message)
 		);
 	}
+
+	messageSend = () => {
+		const message = this.inputRef.current.input.value;
+		this.props.messageSendIO(message, this.props.room, this.props.username);
+		this.messageReceived({
+			sender: this.props.username,
+			msg: message
+		});
+	};
 
 	messageReceived = message => {
 		let position = "right";
@@ -59,16 +69,7 @@ class Chat extends React.PureComponent {
 							margin: "0.75rem"
 						}}
 						rightButtons={
-							<Button
-								color="primary"
-								onClick={() =>
-									this.props.messageSendIO(
-										this.inputRef.current.input.value,
-										this.props.room,
-										this.props.username
-									)
-								}
-							>
+							<Button color="primary" onClick={this.messageSend}>
 								Message
 							</Button>
 						}
@@ -90,8 +91,9 @@ class Chat extends React.PureComponent {
 Chat.propTypes = {
 	classes: PropTypes.object.isRequired,
 	username: PropTypes.string.isRequired,
-	room: PropTypes.string.isRequired,
+	room: PropTypes.string,
 	socket: PropTypes.object.isRequired,
+	initWebsocketIO: PropTypes.func.isRequired,
 	messageSendIO: PropTypes.func.isRequired
 };
 
