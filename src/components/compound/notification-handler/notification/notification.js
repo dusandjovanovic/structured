@@ -12,64 +12,64 @@ import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const notification = props => {
-    const { classes, message, variant, onClose } = props;
+	const { classes, message, variant, onClose } = props;
 
-    let snackIcon = null;
-    switch (variant) {
-        case "info":
-            snackIcon = <Notifications className={classes.icon} />;
-            break;
-        case "success":
-            snackIcon = <Done className={classes.icon} />;
-            break;
-        case "warning":
-            snackIcon = <Error className={classes.icon} />;
-            break;
-        case "danger":
-            snackIcon = <Error className={classes.icon} />;
-            break;
-        default:
-            snackIcon = null;
-            break;
-    }
+	let snackIcon = null;
+	switch (variant) {
+		case "info":
+			snackIcon = <Notifications className={classes.icon} />;
+			break;
+		case "success":
+			snackIcon = <Done className={classes.icon} />;
+			break;
+		case "warning":
+			snackIcon = <Error className={classes.icon} />;
+			break;
+		case "danger":
+			snackIcon = <Error className={classes.icon} />;
+			break;
+		default:
+			snackIcon = null;
+			break;
+	}
 
-    return (
-        <div className={classes.holder}>
-            <Grow in>
-                <SnackbarContent
-                    aria-describedby="notification"
-                    message={
-                        <div>
-                            {snackIcon}
-                            {message}
-                        </div>
-                    }
-                    action={
-                        <IconButton
-                            onClick={() => onClose(props.id)}
-                            key="close"
-                            aria-label="close"
-                            color="inherit"
-                        >
-                            <Close className={classes.close} />
-                        </IconButton>
-                    }
-                    classes={{
-                        root: classes.root + " " + classes[variant],
-                        message: classes.container + " " + classes.message
-                    }}
-                />
-            </Grow>
-        </div>
-    );
+	return (
+		<div className={classes.holder}>
+			<Grow in>
+				<SnackbarContent
+					aria-describedby="notification"
+					message={
+						<div>
+							{snackIcon}
+							{message}
+						</div>
+					}
+					action={
+						<IconButton
+							onClick={() => onClose(props.id)}
+							key="close"
+							aria-label="close"
+							color="inherit"
+						>
+							<Close className={classes.close} />
+						</IconButton>
+					}
+					classes={{
+						root: classes.root + " " + classes[variant],
+						message: classes.container + " " + classes.message
+					}}
+				/>
+			</Grow>
+		</div>
+	);
 };
 
 notification.propTypes = {
-    classes: PropTypes.object.isRequired,
-    id: PropTypes.number.isRequired,
-    message: PropTypes.node.isRequired,
-    variant: PropTypes.oneOf(["info", "success", "warning", "danger"]),
-    onClose: PropTypes.func
+	classes: PropTypes.object.isRequired,
+	id: PropTypes.number.isRequired,
+	message: PropTypes.node.isRequired,
+	variant: PropTypes.oneOf(["info", "success", "warning", "danger"]),
+	onClose: PropTypes.func
 };
 
 export default withStyles(styles)(React.memo(notification));
