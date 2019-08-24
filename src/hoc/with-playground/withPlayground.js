@@ -26,18 +26,12 @@ const withPlayground = WrappedComponent => {
 			}
 
 			this.props.socket.on("masterChanged", received => {
-				this.props.roomGetData(
-					this.props.room.name,
-					this.props.username
-				);
+				this.props.roomGetData(this.props.room.name, false);
 				this.props.internalNotificationsAdd(received.msg, "warning");
 			});
 
 			this.props.socket.on("joinLeaveRoom", received => {
-				this.props.roomGetData(
-					this.props.room.name,
-					this.props.username
-				);
+				this.props.roomGetData(this.props.room.name, false);
 				this.props.internalNotificationsAdd(received.msg, "info");
 			});
 

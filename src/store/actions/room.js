@@ -71,11 +71,12 @@ const roomEnd = () => {
 	};
 };
 
-const roomData = (data, master) => {
+const roomData = (data, master, overwriteGraph) => {
 	return {
 		type: ROOM_DATA,
 		master: master,
-		data: data
+		data: data,
+		overwriteGraph: overwriteGraph
 	};
 };
 
@@ -127,7 +128,7 @@ export const roomGetAll = (mode = "all") => {
 	};
 };
 
-export const roomGetData = name => {
+export const roomGetData = (name, overwriteGraph = true) => {
 	return async (dispatch, getState) => {
 		let response;
 
@@ -139,7 +140,8 @@ export const roomGetData = name => {
 					roomData(
 						response.data.data,
 						getState().auth.username ===
-							response.data.data.createdBy
+							response.data.data.createdBy,
+						overwriteGraph
 					)
 				);
 			} else {

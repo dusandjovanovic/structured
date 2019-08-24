@@ -68,7 +68,13 @@ const reducer = (state = initialState, action) => {
 		case ROOM_DATA:
 			return {
 				...state,
-				data: action.data,
+				data: {
+					...state.data,
+					...action.data,
+					graph: action.overwriteGraph
+						? action.data.graph
+						: state.data.graph
+				},
 				room: {
 					...state.room,
 					master: action.master

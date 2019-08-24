@@ -17,16 +17,10 @@ export const styles = theme => ({
 	root: {
 		position: "relative",
 		padding: theme.spacing(2),
-		margin: theme.spacing(0, 2),
+		margin: theme.spacing(2.5),
 		lineHeight: "2rem",
 		fontSize: "1rem",
 		borderRadius: "2px",
-		"&:first-child": {
-			marginTop: theme.spacing(2)
-		},
-		"&:last-child": {
-			marginBottom: theme.spacing(4)
-		},
 		...boxShadow
 	},
 	info: {

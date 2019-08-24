@@ -7,16 +7,7 @@ exports.validate = method => {
 			return [body("username").exists(), body("password").exists()];
 		}
 		case "/authenticate/api/login/post": {
-			return [
-				body("username")
-					.exists()
-					.custom(async value => {
-						return (await User.isUserByUsername(value))
-							? Promise.resolve()
-							: Promise.reject();
-					}),
-				body("password").exists()
-			];
+			return [body("username").exists(), body("password").exists()];
 		}
 		case "/api/user/username/get": {
 			return [

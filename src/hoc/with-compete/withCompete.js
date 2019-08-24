@@ -25,7 +25,7 @@ const withCompete = WrappedComponent => {
 			this.props.socket.on("masterChanged", received => {
 				this.props.roomGetData(
 					this.props.room.name,
-					this.props.username
+					false
 				);
 				this.props.internalNotificationsAdd(received.msg, "warning");
 			});
@@ -33,7 +33,7 @@ const withCompete = WrappedComponent => {
 			this.props.socket.on("joinLeaveRoom", received => {
 				this.props.roomGetData(
 					this.props.room.name,
-					this.props.username
+					false
 				);
 				this.props.internalNotificationsAdd(received.msg, "info");
 			});
