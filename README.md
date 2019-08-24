@@ -52,7 +52,7 @@ Runs server with production process manager suitable for production environment.
 ```
 ![alt text][screenshot_intro]
 
-[screenshot_compete]: documents/images/screenshot_intro.png
+[screenshot_intro]: documents/images/screenshot_intro.png
 
 ![alt text][screenshot_playground]
 
