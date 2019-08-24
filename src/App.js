@@ -11,13 +11,13 @@ import { connect } from "react-redux";
 
 import { authenticatePersisted } from "./store/actions/index";
 
-import { RoomPlayground, RoomCompete, RoomLearn } from "./containers/room/room";
-const Home = React.lazy(() => import("./containers/home/home"));
-const Homescreen = React.lazy(() =>
-	import("./containers/homescreen/homescreen")
-);
+const Homescreen = React.lazy(() => import("./containers/homescreen/homescreen"));
 const Auth = React.lazy(() => import("./containers/auth/auth"));
+const Home = React.lazy(() => import("./containers/home/home"));
 const Dashboard = React.lazy(() => import("./containers/dashboard/dashboard"));
+const RoomPlayground = React.lazy(() => import("./containers/room/room").then(module => ({ default: module.RoomPlayground })));
+const RoomCompete = React.lazy(() => import("./containers/room/room").then(module => ({ default: module.RoomCompete })));
+const RoomLearn = React.lazy(() => import("./containers/room/room").then(module => ({ default: module.RoomLearn })));
 
 class App extends React.Component {
 	componentDidMount() {

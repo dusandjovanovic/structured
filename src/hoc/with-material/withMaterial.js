@@ -22,10 +22,6 @@ const withMaterial = Component => {
 					main: "#18ffff",
 					dark: "#00cbcc"
 				}
-			},
-			typography: {
-				fontFamily:
-					"-apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif"
 			}
 		});
 
