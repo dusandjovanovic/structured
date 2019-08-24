@@ -50,19 +50,18 @@ Runs server with production process manager suitable for production environment.
     test/
     ...
 ```
+![alt text][screenshot_intro]
+
+[screenshot_compete]: documents/images/screenshot_intro.png
 
 ![alt text][screenshot_playground]
 
-[screenshot_playground]: documents/images/screenshot_playground.jpg
+[screenshot_playground]: documents/images/screenshot_playground.png
 
 ![alt text][screenshot_algorithm]
 
-[screenshot_algorithm]: documents/images/screenshot_algorithm.jpg
-
-![alt text][screenshot_compete]
-
-[screenshot_compete]: documents/images/screenshot_compete.jpg
+[screenshot_algorithm]: documents/images/screenshot_algorithm.png
 
 ![alt text][screenshot_dashboard]
 
-[screenshot_dashboard]: documents/images/screenshot_dashboard.jpg
+[screenshot_dashboard]: documents/images/screenshot_dashboard.png
