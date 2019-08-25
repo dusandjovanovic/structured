@@ -18,9 +18,9 @@ const withMaterial = Component => {
 					dark: "#0088a3"
 				},
 				ternary: {
-					light: "#76ffff",
-					main: "#18ffff",
-					dark: "#00cbcc"
+					light: "#ffcf33",
+					main: "#ffc400",
+					dark: "#b28900"
 				}
 			}
 		});

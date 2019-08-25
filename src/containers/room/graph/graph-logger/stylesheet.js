@@ -9,14 +9,14 @@ export const styles = theme => ({
 		padding: theme.spacing(3)
 	},
 	holder: {
-		height: "1.8rem",
-		lineHeight: "1.8rem"
+		height: "2rem",
+		lineHeight: "2rem"
 	},
 	separator: {
 		padding: theme.spacing(2)
 	},
 	node: {
-		fontSize: "1rem",
+		fontSize: "0.9rem",
 		background: "#33373e",
 		color: "#ffffff",
 		borderRadius: "50%",
@@ -29,7 +29,7 @@ export const styles = theme => ({
 		marginLeft: theme.spacing(1)
 	},
 	nodeUndefined: {
-		fontSize: "1rem",
+		fontSize: "0.9rem",
 		color: graphColors.visited.stroke,
 		fontWeight: "lighter",
 		display: "inline-block",
@@ -37,7 +37,7 @@ export const styles = theme => ({
 		marginLeft: theme.spacing(1)
 	},
 	algorithm: {
-		fontSize: "1rem",
+		fontSize: "0.9rem",
 		color: graphColors.edge.stroke,
 		fontWeight: "lighter",
 		display: "inline-block",
