@@ -14,7 +14,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ### `cd backend && npm run local`
 
-To run server in development mode. API will be accessible at [http://localhost:8080](http://localhost:8080) and socket-io entry point will be open on port `65080`. Optionally rename `env.sample` to `.env` for establishing custom MongoDB cluster connection.
+To run server in development mode. API will be accessible at [http://localhost:8080](http://localhost:8080) and socket-io entry point will be open on port `65080`. Optionally rename `.env.sample` to `.env` for establishing custom MongoDB cluster connection.
 
 ### `cd backend && npm start`
 
