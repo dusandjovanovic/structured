@@ -74,7 +74,7 @@ exports.validate = method => {
 
 exports.get = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { username } = request.params;
 
@@ -90,7 +90,7 @@ exports.get = function(request, response, next) {
 
 exports.postCheck = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { sender, receiver } = request.body;
 
@@ -126,7 +126,7 @@ exports.postCheck = function(request, response, next) {
 
 exports.postAdd = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { sender, receiver } = request.body;
 
@@ -183,7 +183,7 @@ exports.postAdd = function(request, response, next) {
 
 exports.postConfirm = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { id } = request.body;
 
@@ -226,7 +226,7 @@ exports.postConfirm = function(request, response, next) {
 
 exports.delete = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { id } = request.params;
 

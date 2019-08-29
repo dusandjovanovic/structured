@@ -152,34 +152,43 @@ module.exports = function(app, passport) {
 	);
 
 	app.use(function(error, request, response, next) {
-		if (error.message && ~error.message.indexOf("not found")) {
-			return next();
-		} else if (error.errmsg) {
-			console.error(error.errmsg);
-			response.status(420).send({ message: error.errmsg });
-		} else if (error.errors && error.errors.length) {
-			console.error(error);
-			response
-				.status(420)
-				.send({ message: JSON.stringify(error.errors) });
-		} else {
-			console.error(error.stack);
+		if (error.errmsg) {
+			response.status(400).send({ message: error.errmsg });
+		} else if (error.msg) {
+			response.status(400).send({ message: error.msg });
+		} else if (error.validation) {
+			response.status(400).send({
+				message:
+					"Error(400) Bad Request: Your request is missing" +
+					String(
+						Object.keys(error.validation).map(
+							element =>
+								` ${error.validation[element].location}[${
+									error.validation[element].param
+								}]`
+						)
+					)
+			});
+		} else if (error.message) {
 			response.status(500).send(error);
+		} else {
+			return next();
 		}
 	});
 
-	app.use(function(req, res) {
-		res.status(404).render("404", {
-			url: req.originalUrl,
-			error: "Not found"
+	app.use(function(request, response) {
+		response.status(404).send({
+			message:
+				"Error(404) Not Found: Something went wrong or you provided the wrong path."
 		});
 	});
 
 	function authenticated(request, response, next) {
 		if (request.isAuthenticated()) return next();
 		else
-			response.status(500).send({
-				message: "Non-auth access denied."
+			response.status(401).send({
+				message:
+					"Error(401) Unauthorized: Non-auth access is denied for this endpoint."
 			});
 	}
 };
