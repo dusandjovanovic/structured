@@ -51,7 +51,7 @@ exports.validate = method => {
 
 exports.get = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { username } = request.params;
 
@@ -71,7 +71,7 @@ exports.get = function(request, response, next) {
 
 exports.getHistory = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { username } = request.params;
 
@@ -91,7 +91,7 @@ exports.getHistory = function(request, response, next) {
 
 exports.putHistory = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { username } = request.params;
 	const { score } = request.body;
@@ -118,7 +118,7 @@ exports.putHistory = function(request, response, next) {
 
 exports.register = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { username, password } = request.body;
 
@@ -143,7 +143,7 @@ exports.register = function(request, response, next) {
 
 exports.login = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	global.passport.authenticate("local", function(error, user, info) {
 		if (error) return next(error);

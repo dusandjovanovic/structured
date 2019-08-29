@@ -126,7 +126,7 @@ exports.validate = method => {
 
 exports.get = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { mode } = request.params;
 
@@ -152,7 +152,7 @@ exports.get = function(request, response, next) {
 
 exports.getRoomByName = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { name } = request.params;
 
@@ -168,7 +168,7 @@ exports.getRoomByName = function(request, response, next) {
 
 exports.getGraphByName = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { name } = request.params;
 
@@ -184,7 +184,7 @@ exports.getGraphByName = function(request, response, next) {
 
 exports.putGraph = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { name } = request.params;
 	const { graph } = request.body;
@@ -201,7 +201,7 @@ exports.putGraph = function(request, response, next) {
 
 exports.postCreate = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { name, maxUsers, createdBy, roomType } = request.body;
 
@@ -232,7 +232,7 @@ exports.postCreate = function(request, response, next) {
 
 exports.postJoin = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { roomName, username } = request.body;
 
@@ -274,7 +274,7 @@ exports.postJoin = function(request, response, next) {
 
 exports.postLeave = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { roomName, username } = request.body;
 
@@ -344,7 +344,7 @@ exports.postLeave = function(request, response, next) {
 
 exports.delete = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { id } = request.params;
 

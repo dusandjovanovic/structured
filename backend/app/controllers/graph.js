@@ -21,7 +21,7 @@ exports.validate = method => {
 
 exports.get = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { id } = request.params;
 
@@ -37,7 +37,7 @@ exports.get = function(request, response, next) {
 
 exports.post = function(request, response, next) {
 	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ errors: validation.array() });
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { graph } = request.body;
 
