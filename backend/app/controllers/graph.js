@@ -1,6 +1,36 @@
 const Graph = require("../models/graph");
 const { validationResult, body, param } = require("express-validator");
-const helpers = require("./helpers");
+
+exports.createGraph = function(graph, callback) {
+	if (!graph.nodes && !graph.edges)
+		graph = {
+			nodes: [],
+			edges: []
+		};
+
+	Graph.create(
+		{
+			nodes: graph.nodes,
+			edges: graph.edges
+		},
+		function(error, object) {
+			if (error) return callback(error);
+			else return callback(null, object["_id"]);
+		}
+	);
+};
+
+exports.deleteGraph = function(id, callback) {
+	Graph.deleteOne(
+		{
+			_id: id
+		},
+		function(error) {
+			if (error) return callback(error);
+			else return callback(null, true);
+		}
+	);
+};
 
 exports.validate = method => {
 	switch (method) {
@@ -49,7 +79,7 @@ exports.post = function(request, response, next) {
 	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	let { graph } = request.body;
-	helpers.createGraph(graph, function(error) {
+	exports.createGraph(graph, function(error) {
 		if (error) return next(error);
 		else
 			response.json({

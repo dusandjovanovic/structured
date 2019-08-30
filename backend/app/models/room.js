@@ -32,16 +32,16 @@ const RoomSchema = new mongoose.Schema({
 		required: false,
 		default: Date.now
 	},
-	graph: [
-		{
-			type: String
-		}
-	],
 	graphId: {
 		type: String,
 		default: null,
 		required: false
-	}
+	},
+	graphTraversed: [
+		{
+			type: String
+		}
+	]
 });
 
 RoomSchema.statics = {

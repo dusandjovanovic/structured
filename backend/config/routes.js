@@ -95,20 +95,6 @@ module.exports = function(app, passport) {
 		room.getRoomByName
 	);
 
-	app.get(
-		"/api/room/graph/:name",
-		authenticated,
-		room.validate("/api/room/graph/name/get"),
-		room.getGraphByName
-	);
-
-	app.put(
-		"/api/room/graph/:name",
-		authenticated,
-		room.validate("/api/room/graph/name/put"),
-		room.putGraph
-	);
-
 	app.post(
 		"/api/room/create",
 		authenticated,
@@ -149,6 +135,13 @@ module.exports = function(app, passport) {
 		graph.validate("/api/graph/post"),
 		authenticated,
 		graph.post
+	);
+
+	app.put(
+		"/api/graph",
+		graph.validate("/api/graph/put"),
+		authenticated,
+		graph.put
 	);
 
 	app.use(function(error, request, response, next) {

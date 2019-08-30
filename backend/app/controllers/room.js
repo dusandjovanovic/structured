@@ -1,7 +1,7 @@
 const Room = require("../models/room");
 const User = require("../models/user");
+const Graph = require("./graph");
 const { validationResult, body, param } = require("express-validator");
-const helpers = require("./helpers");
 
 exports.validate = method => {
 	switch (method) {
@@ -23,31 +23,6 @@ exports.validate = method => {
 							? Promise.resolve()
 							: Promise.reject();
 					})
-			];
-		}
-		case "/api/room/graph/name/get": {
-			return [
-				param("name")
-					.exists()
-					.isString()
-					.custom(async value => {
-						return (await Room.isRoomByName(value))
-							? Promise.resolve()
-							: Promise.reject();
-					})
-			];
-		}
-		case "/api/room/graph/name/put": {
-			return [
-				param("name")
-					.exists()
-					.isString()
-					.custom(async value => {
-						return (await Room.isRoomByName(value))
-							? Promise.resolve()
-							: Promise.reject();
-					}),
-				body("graph").exists()
 			];
 		}
 		case "/api/room/create/post": {
@@ -167,44 +142,16 @@ exports.getRoomByName = function(request, response, next) {
 	});
 };
 
-exports.getGraphByName = function(request, response, next) {
-	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
-
-	const { name } = request.params;
-
-	Room.findOne({ name: name }, function(error, room) {
-		if (error) return next(error);
-		else
-			response.json({
-				success: true,
-				graph: room.graph
-			});
-	});
-};
-
-exports.putGraph = function(request, response, next) {
-	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
-
-	const { name } = request.params;
-	const { graph } = request.body;
-
-	Room.update({ name: name }, { $set: { graph: graph } }, function(error) {
-		if (error) return next(error);
-		else
-			response.json({
-				success: true,
-				message: "Graph on room entity updated successfully."
-			});
-	});
-};
-
 exports.postCreate = function(request, response, next) {
 	const validation = validationResult(request);
 	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
 
 	const { name, maxUsers, createdBy, roomType } = request.body;
+
+	const graphId = Graph.createGraph(null, function(error, id) {
+		if (error) return next(error);
+		else return id;
+	});
 
 	Room.create(
 		{
@@ -214,10 +161,7 @@ exports.postCreate = function(request, response, next) {
 			maxUsers: maxUsers,
 			createdBy: createdBy,
 			users: [createdBy],
-			graph: {
-				nodes: [],
-				edges: []
-			}
+			graphId: graphId
 		},
 		function(error) {
 			if (error) return next(error);
