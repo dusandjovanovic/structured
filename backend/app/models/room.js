@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const GraphSchema = new mongoose.Schema({ nodes: [], edges: [] });
 
 const RoomSchema = new mongoose.Schema({
 	name: {
@@ -33,7 +32,16 @@ const RoomSchema = new mongoose.Schema({
 		required: false,
 		default: Date.now
 	},
-	graph: GraphSchema
+	graph: [
+		{
+			type: String
+		}
+	],
+	graphId: {
+		type: String,
+		default: null,
+		required: false
+	}
 });
 
 RoomSchema.statics = {

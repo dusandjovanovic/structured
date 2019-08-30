@@ -77,7 +77,7 @@ const withCompete = WrappedComponent => {
 			});
 			this.props.graphManagedCompete();
 			this.props
-				.roomChangeGraph(this.props.room.name, graphTraversed)
+				.roomChangeGraph(graphTraversed)
 				.then(() => {
 					this.props.competeBeginIO(
 						this.state.competeType,
@@ -211,7 +211,7 @@ const withCompete = WrappedComponent => {
 		deleteRoomIO: PropTypes.func,
 		masterChangedIO: PropTypes.func,
 		socket: PropTypes.object,
-		rediret: PropTypes.bool.isRequired,
+		redirect: PropTypes.bool.isRequired,
 		leaveRoomIOInit: PropTypes.func.isRequired,
 		deleteRoomIOInit: PropTypes.func.isRequired,
 
@@ -250,7 +250,7 @@ const withCompete = WrappedComponent => {
 		graphManagedAlgorithmEnded: PropTypes.func.isRequired,
 		graphManagedCompete: PropTypes.func.isRequired,
 		graphNodeRoot: PropTypes.func.isRequired,
-		master: PropTypes.bool.isRequired
+		master: PropTypes.bool
 	};
 
 	return WithCompete;

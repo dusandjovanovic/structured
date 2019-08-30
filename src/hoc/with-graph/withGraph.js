@@ -359,7 +359,7 @@ const withGraph = WrappedComponent => {
 		deleteRoomIO: PropTypes.func,
 		masterChangedIO: PropTypes.func,
 		socket: PropTypes.object,
-		rediret: PropTypes.bool,
+		redirect: PropTypes.bool,
 		leaveRoomIOInit: PropTypes.func,
 		deleteRoomIOInit: PropTypes.func
 	};
