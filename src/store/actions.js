@@ -29,6 +29,6 @@ export const ROOM_ERROR = "ROOM_ERROR";
 export const ROOM_DELETE = "ROOM_DELETE";
 export const ROOM_DATA = "ROOM_DATA";
 export const ROOM_INIT = "ROOM_INIT";
-export const ROOM_GRAPH = "ROOM_GRAPH";
 export const ROOM_GRAPH_CHANGE = "ROOM_GRAPH_CHANGE";
+export const ROOM_TRAVERSAL_CHANGE = "ROOM_TRAVERSAL_CHANGE";
 export const ROOM_END = "ROOM_END";

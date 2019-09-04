@@ -340,6 +340,8 @@ const withGraph = WrappedComponent => {
 		roomDeleteExisting: PropTypes.func.isRequired,
 		roomGetGraph: PropTypes.func.isRequired,
 		roomChangeGraph: PropTypes.func.isRequired,
+		roomGetTraversal: PropTypes.func.isRequired,
+		roomChangeTraversal: PropTypes.func.isRequired,
 		roomGetData: PropTypes.func.isRequired,
 		userHistoryAdd: PropTypes.func.isRequired,
 		internalNotificationsAdd: PropTypes.func.isRequired,
@@ -359,7 +361,7 @@ const withGraph = WrappedComponent => {
 		deleteRoomIO: PropTypes.func,
 		masterChangedIO: PropTypes.func,
 		socket: PropTypes.object,
-		rediret: PropTypes.bool,
+		redirect: PropTypes.bool,
 		leaveRoomIOInit: PropTypes.func,
 		deleteRoomIOInit: PropTypes.func
 	};

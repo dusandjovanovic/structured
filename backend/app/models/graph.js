@@ -41,4 +41,4 @@ const GraphSchema = new mongoose.Schema({
 	]
 });
 
-module.exports = mongoose.model("GraphSchema", GraphSchema);
+module.exports = mongoose.model("Graph", GraphSchema);

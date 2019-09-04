@@ -95,20 +95,6 @@ module.exports = function(app, passport) {
 		room.getRoomByName
 	);
 
-	app.get(
-		"/api/room/graph/:name",
-		authenticated,
-		room.validate("/api/room/graph/name/get"),
-		room.getGraphByName
-	);
-
-	app.put(
-		"/api/room/graph/:name",
-		authenticated,
-		room.validate("/api/room/graph/name/put"),
-		room.putGraph
-	);
-
 	app.post(
 		"/api/room/create",
 		authenticated,
@@ -138,14 +124,35 @@ module.exports = function(app, passport) {
 	);
 
 	app.get(
-		"/api/graph",
+		"/api/room/traversal/:name",
+		room.validate("/api/room/traversal/get"),
+		authenticated,
+		room.getTraversalByName
+	);
+
+	app.put(
+		"/api/room/traversal/:name",
+		graph.validate("/api/room/traversal/put"),
+		authenticated,
+		room.putTraversal
+	);
+
+	app.get(
+		"/api/graph/:id",
 		graph.validate("/api/graph/get"),
 		authenticated,
 		graph.get
 	);
 
+	app.put(
+		"/api/graph/:id",
+		graph.validate("/api/graph/put"),
+		authenticated,
+		graph.put
+	);
+
 	app.post(
-		"/api/graph",
+		"/api/graph/",
 		graph.validate("/api/graph/post"),
 		authenticated,
 		graph.post
@@ -163,9 +170,7 @@ module.exports = function(app, passport) {
 					String(
 						Object.keys(error.validation).map(
 							element =>
-								` ${error.validation[element].location}[${
-									error.validation[element].param
-								}]`
+								` ${error.validation[element].location}[${error.validation[element].param}]`
 						)
 					)
 			});

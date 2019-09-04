@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const GraphSchema = new mongoose.Schema({ nodes: [], edges: [] });
+const Graph = require("./graph");
 
 const RoomSchema = new mongoose.Schema({
 	name: {
@@ -33,7 +33,16 @@ const RoomSchema = new mongoose.Schema({
 		required: false,
 		default: Date.now
 	},
-	graph: GraphSchema
+	graphId: {
+		type: String,
+		default: null,
+		required: false
+	},
+	graphTraversed: [
+		{
+			type: String
+		}
+	]
 });
 
 RoomSchema.statics = {
@@ -49,4 +58,11 @@ RoomSchema.statics = {
 	}
 };
 
-module.exports = mongoose.model("RoomSchema", RoomSchema);
+RoomSchema.post("findOneAndDelete", function(document) {
+	Graph.deleteOne({ _id: document.graphId }, function(error) {
+		if (error) return true;
+		else return false;
+	});
+});
+
+module.exports = mongoose.model("Room", RoomSchema);

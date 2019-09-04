@@ -1,5 +1,6 @@
 const Room = require("../models/room");
 const User = require("../models/user");
+const Graph = require("./graph");
 const { validationResult, body, param } = require("express-validator");
 
 exports.validate = method => {
@@ -22,31 +23,6 @@ exports.validate = method => {
 							? Promise.resolve()
 							: Promise.reject();
 					})
-			];
-		}
-		case "/api/room/graph/name/get": {
-			return [
-				param("name")
-					.exists()
-					.isString()
-					.custom(async value => {
-						return (await Room.isRoomByName(value))
-							? Promise.resolve()
-							: Promise.reject();
-					})
-			];
-		}
-		case "/api/room/graph/name/put": {
-			return [
-				param("name")
-					.exists()
-					.isString()
-					.custom(async value => {
-						return (await Room.isRoomByName(value))
-							? Promise.resolve()
-							: Promise.reject();
-					}),
-				body("graph").exists()
 			];
 		}
 		case "/api/room/create/post": {
@@ -118,6 +94,31 @@ exports.validate = method => {
 					.isMongoId()
 			];
 		}
+		case "/api/room/traversal/get": {
+			return [
+				param("name")
+					.exists()
+					.isString()
+					.custom(async value => {
+						return (await Room.isRoomByName(value))
+							? Promise.resolve()
+							: Promise.reject();
+					})
+			];
+		}
+		case "/api/room/traversal/put": {
+			return [
+				param("name")
+					.exists()
+					.isString()
+					.custom(async value => {
+						return (await Room.isRoomByName(value))
+							? Promise.resolve()
+							: Promise.reject();
+					}),
+				body("graphTraversed").exists()
+			];
+		}
 		default: {
 			return [];
 		}
@@ -158,44 +159,19 @@ exports.getRoomByName = function(request, response, next) {
 
 	Room.findOne({ name: name }, function(error, room) {
 		if (error) return next(error);
-		else
-			response.json({
-				success: true,
-				data: room
+		else {
+			Graph.getGraph(room.graphId, function(error, graph) {
+				if (error) return next(error);
+				else
+					response.json({
+						success: true,
+						data: {
+							...room.toObject(),
+							graph: { ...graph.toObject() }
+						}
+					});
 			});
-	});
-};
-
-exports.getGraphByName = function(request, response, next) {
-	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
-
-	const { name } = request.params;
-
-	Room.findOne({ name: name }, function(error, room) {
-		if (error) return next(error);
-		else
-			response.json({
-				success: true,
-				graph: room.graph
-			});
-	});
-};
-
-exports.putGraph = function(request, response, next) {
-	const validation = validationResult(request);
-	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
-
-	const { name } = request.params;
-	const { graph } = request.body;
-
-	Room.update({ name: name }, { $set: { graph: graph } }, function(error) {
-		if (error) return next(error);
-		else
-			response.json({
-				success: true,
-				message: "Graph on room entity updated successfully."
-			});
+		}
 	});
 };
 
@@ -205,29 +181,29 @@ exports.postCreate = function(request, response, next) {
 
 	const { name, maxUsers, createdBy, roomType } = request.body;
 
-	Room.create(
-		{
-			name: name,
-			roomType: roomType,
-			currentUsers: 1,
-			maxUsers: maxUsers,
-			createdBy: createdBy,
-			users: [createdBy],
-			graph: {
-				nodes: [],
-				edges: []
+	Graph.createGraph(null, function(error, object) {
+		if (error) return next(error);
+		Room.create(
+			{
+				name: name,
+				roomType: roomType,
+				currentUsers: 1,
+				maxUsers: maxUsers,
+				createdBy: createdBy,
+				users: [createdBy],
+				graphId: object["_id"]
+			},
+			function(error) {
+				if (error) return next(error);
+				else
+					response.json({
+						success: true,
+						message:
+							"Room created successfully. You are a room master now."
+					});
 			}
-		},
-		function(error) {
-			if (error) return next(error);
-			else
-				response.json({
-					success: true,
-					message:
-						"Room created successfully. You are a room master now."
-				});
-		}
-	);
+		);
+	});
 };
 
 exports.postJoin = function(request, response, next) {
@@ -348,7 +324,7 @@ exports.delete = function(request, response, next) {
 
 	const { id } = request.params;
 
-	Room.deleteOne({ _id: id }, function(error) {
+	Room.findOneAndDelete({ _id: id }, function(error) {
 		if (error) return next(error);
 		else {
 			Room.find(function(error, rooms) {
@@ -362,4 +338,41 @@ exports.delete = function(request, response, next) {
 			});
 		}
 	});
+};
+
+exports.getTraversalByName = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
+
+	const { name } = request.params;
+
+	Room.findOne({ name: name }, function(error, room) {
+		if (error) return next(error);
+		else
+			response.json({
+				success: true,
+				data: room.graphTraversed
+			});
+	});
+};
+
+exports.putTraversal = function(request, response, next) {
+	const validation = validationResult(request);
+	if (!validation.isEmpty()) return next({ validation: validation.mapped() });
+
+	const { name } = request.params;
+	const { graphTraversed } = request.body;
+
+	Room.update(
+		{ name: name },
+		{ $set: { graphTraversed: graphTraversed } },
+		function(error, room) {
+			if (error) return next(error);
+			else
+				response.json({
+					success: true,
+					data: room.graphTraversed
+				});
+		}
+	);
 };
