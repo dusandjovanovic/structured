@@ -24,7 +24,7 @@
 		"recharts": "^1.7.1",
 		"redux": "^4.0.4",
 		"redux-thunk": "^2.3.0",
-		"rxjs": "^6.5.2",
+		"rxjs": "^6.5.3",
 		"socket.io-client": "^2.2.0"
 	},
 	"scripts": {
