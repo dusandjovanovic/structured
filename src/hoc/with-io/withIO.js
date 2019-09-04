@@ -211,6 +211,8 @@ const withIO = WrappedComponent => {
 		roomDeleteExisting: PropTypes.func.isRequired,
 		roomGetGraph: PropTypes.func.isRequired,
 		roomChangeGraph: PropTypes.func.isRequired,
+		roomGetTraversal: PropTypes.func.isRequired,
+		roomChangeTraversal: PropTypes.func.isRequired,
 		roomGetData: PropTypes.func.isRequired,
 		userHistoryAdd: PropTypes.func.isRequired,
 		internalNotificationsAdd: PropTypes.func.isRequired

@@ -23,18 +23,12 @@ const withCompete = WrappedComponent => {
 			}
 
 			this.props.socket.on("masterChanged", received => {
-				this.props.roomGetData(
-					this.props.room.name,
-					false
-				);
+				this.props.roomGetData(this.props.room.name, false);
 				this.props.internalNotificationsAdd(received.msg, "warning");
 			});
 
 			this.props.socket.on("joinLeaveRoom", received => {
-				this.props.roomGetData(
-					this.props.room.name,
-					false
-				);
+				this.props.roomGetData(this.props.room.name, false);
 				this.props.internalNotificationsAdd(received.msg, "info");
 			});
 
@@ -76,14 +70,12 @@ const withCompete = WrappedComponent => {
 				graph: graphTraversed
 			});
 			this.props.graphManagedCompete();
-			this.props
-				.roomChangeGraph(graphTraversed)
-				.then(() => {
-					this.props.competeBeginIO(
-						this.state.competeType,
-						this.props.nodeRoot
-					);
-				});
+			this.props.roomChangeGraph(graphTraversed).then(() => {
+				this.props.competeBeginIO(
+					this.state.competeType,
+					this.props.nodeRoot
+				);
+			});
 		};
 
 		competeInitiate = (algorithm, root) => {
@@ -192,6 +184,8 @@ const withCompete = WrappedComponent => {
 		roomDeleteExisting: PropTypes.func.isRequired,
 		roomGetGraph: PropTypes.func.isRequired,
 		roomChangeGraph: PropTypes.func.isRequired,
+		roomGetTraversal: PropTypes.func.isRequired,
+		roomChangeTraversal: PropTypes.func.isRequired,
 		roomGetData: PropTypes.func.isRequired,
 		userHistoryAdd: PropTypes.func.isRequired,
 		internalNotificationsAdd: PropTypes.func.isRequired,

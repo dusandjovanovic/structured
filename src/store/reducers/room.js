@@ -8,8 +8,8 @@ import {
 	ROOM_DELETE,
 	ROOM_JOIN,
 	ROOM_LEAVE,
-	ROOM_GRAPH,
 	ROOM_GRAPH_CHANGE,
+	ROOM_TRAVERSAL_CHANGE,
 	ROOM_ERROR
 } from "../actions.js";
 
@@ -22,6 +22,7 @@ const initialState = {
 	data: {
 		_id: null,
 		graph: null,
+		graphTraversed: null,
 		users: []
 	},
 	waiting: false,
@@ -108,14 +109,6 @@ const reducer = (state = initialState, action) => {
 					element => element["_id"] !== state.data["_id"]
 				)
 			};
-		case ROOM_GRAPH:
-			return {
-				...state,
-				data: {
-					...state.data,
-					graph: action.graph
-				}
-			};
 		case ROOM_GRAPH_CHANGE:
 			return {
 				...state,
@@ -124,6 +117,15 @@ const reducer = (state = initialState, action) => {
 					graph: action.graph
 				}
 			};
+		case ROOM_TRAVERSAL_CHANGE: {
+			return {
+				...state,
+				data: {
+					...state.data,
+					graphTraversed: action.graphTraversed
+				}
+			};
+		}
 		case ROOM_ERROR:
 			return {
 				...state,

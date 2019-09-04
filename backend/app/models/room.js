@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const GraphSchema = require("./graph");
 
 const RoomSchema = new mongoose.Schema({
 	name: {
@@ -57,4 +58,9 @@ RoomSchema.statics = {
 	}
 };
 
-module.exports = mongoose.model("RoomSchema", RoomSchema);
+RoomSchema.post("remove", function(roomDocument) {
+	const graphId = roomDocument.graphId;
+	GraphSchema.deleteOne({ _id: graphId });
+});
+
+module.exports = mongoose.model("Room", RoomSchema);

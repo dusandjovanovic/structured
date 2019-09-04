@@ -21,6 +21,8 @@ import {
 	roomDeleteExisting,
 	roomGetGraph,
 	roomChangeGraph,
+	roomGetTraversal,
+	roomChangeTraversal,
 	roomGetData,
 	userHistoryAdd,
 	internalNotificationsAdd
@@ -211,6 +213,8 @@ Room.propTypes = {
 	roomGetData: PropTypes.func,
 	roomGetGraph: PropTypes.func,
 	roomLeaveExisting: PropTypes.func,
+	roomGetTraversal: PropTypes.func.isRequired,
+	roomChangeTraversal: PropTypes.func.isRequired,
 	socket: PropTypes.object,
 	userHistoryAdd: PropTypes.func,
 	username: PropTypes.string,
@@ -233,6 +237,9 @@ const mapDispatchToProps = dispatch => {
 		roomDeleteExisting: () => dispatch(roomDeleteExisting()),
 		roomGetGraph: () => dispatch(roomGetGraph()),
 		roomChangeGraph: graph => dispatch(roomChangeGraph(graph)),
+		roomGetTraversal: () => dispatch(roomGetTraversal()),
+		roomChangeTraversal: graphTraversed =>
+			dispatch(roomChangeTraversal(graphTraversed)),
 		roomGetData: name => dispatch(roomGetData(name)),
 		userHistoryAdd: score => dispatch(userHistoryAdd(score)),
 		internalNotificationsAdd: (message, variant) =>
