@@ -324,7 +324,7 @@ exports.delete = function(request, response, next) {
 
 	const { id } = request.params;
 
-	Room.deleteOne({ _id: id }, function(error) {
+	Room.findOneAndDelete({ _id: id }, function(error) {
 		if (error) return next(error);
 		else {
 			Room.find(function(error, rooms) {
