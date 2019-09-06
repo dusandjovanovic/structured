@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Graph from "./graph/graph";
-import Chat from "./chat/chat";
+import Messaging from "./messaging/messaging";
 import Statusbar from "./statusbar/statusbar";
 import AlgorithmCore from "./algorithm/core/algorithm";
 import PropTypes from "prop-types";
@@ -54,7 +54,7 @@ class Room extends React.Component {
 				<Grid container>
 					{this.props.competitive || this.props.learn ? null : (
 						<Grid item xs={3}>
-							<Chat
+							<Messaging
 								room={this.props.room.name || ""}
 								username={this.props.username}
 								io={this.props.io}

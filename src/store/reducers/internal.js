@@ -3,6 +3,8 @@ import {
 	INTERNAL_NOTIFICATIONS_REMOVE
 } from "../actions.js";
 
+import forEach from "lodash/forEach";
+
 const initialState = {
 	notifications: []
 };
@@ -18,12 +20,13 @@ const reducer = (state = initialState, action) => {
 			};
 		}
 		case INTERNAL_NOTIFICATIONS_REMOVE: {
-			for (let notification in state.notifications)
+			forEach(state.notifications, function(notification) {
 				if (
 					notification.id === action.payload.id &&
 					notification.onDismiss
 				)
 					notification.onDismiss();
+			});
 			return {
 				...state,
 				notifications: array.filter(

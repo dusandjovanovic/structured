@@ -1,6 +1,7 @@
 import { algorithm } from "./graphAlgorithms";
 import * as adapter from "./graphAdapter";
-import { random } from "lodash";
+import random from "lodash/random";
+import forEach from "lodash/forEach";
 
 export const graphFactory = () => {
 	let graph = {};
@@ -32,16 +33,16 @@ export const graphFactory = () => {
 		},
 		removeVertex: node => {
 			if (graphProto.contains(node)) {
-				for (let item in graph[node].edges) {
+				forEach(graph[node].edges, function(item, key) {
 					if (
 						Object.prototype.hasOwnProperty.call(
 							graph[node].edges,
-							item
+							key
 						)
 					) {
-						graphProto.removeEdge(node, item);
+						graphProto.removeEdge(node, key);
 					}
-				}
+				});
 				adapter.graphAdapterNodeRemove(node.toString(), visualization);
 				vertices -= 1;
 				delete graph[node];

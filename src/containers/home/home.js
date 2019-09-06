@@ -8,7 +8,11 @@ import PropTypes from "prop-types";
 
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from "../../store/actions/index";
+import {
+	roomGetAll,
+	roomJoinExisting,
+	roomCreateNew
+} from "../../store/actions/index";
 
 import { styles } from "./stylesheet";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -126,10 +130,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		roomGetAll: mode => dispatch(actions.roomGetAll(mode)),
-		roomJoinExisting: name => dispatch(actions.roomJoinExisting(name)),
+		roomGetAll: mode => dispatch(roomGetAll(mode)),
+		roomJoinExisting: name => dispatch(roomJoinExisting(name)),
 		roomCreateNew: (name, maxUsers, roomType) =>
-			dispatch(actions.roomCreateNew(name, maxUsers, roomType))
+			dispatch(roomCreateNew(name, maxUsers, roomType))
 	};
 };
 
