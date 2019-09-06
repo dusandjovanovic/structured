@@ -7,6 +7,8 @@ import {
 	ALGORITHM_DEPTH_OBSERVABLE
 } from "../constants";
 
+import forEach from "lodash/forEach";
+
 let graph;
 let solution = [];
 let visited = [];
@@ -15,18 +17,18 @@ let stream = [];
 const displayVertex = node => solution.push(node);
 
 const getUnvistedVertex = vertex => {
-	for (let node in graph[vertex].edges) {
-		if (graph[node].visited === false) {
-			return node;
+	forEach(graph[vertex].edges, function(node, key) {
+		if (graph[key].visited === false) {
+			return key;
 		}
-	}
+	});
 	return false;
 };
 
 const resetSearch = () => {
-	for (let node in graph) {
-		graph[node].visited = false;
-	}
+	forEach(graph, function(node) {
+		node.visited = false;
+	});
 };
 
 const observableState = (

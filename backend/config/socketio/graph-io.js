@@ -4,6 +4,7 @@ module.exports = function(io) {
 	graph.on("connection", socket => {
 		socket.on("initWebsocket", from => {
 			socket.join(from.room);
+			socket.broadcast.to(from.room).emit("initMember");
 		});
 
 		socket.on("graphChange", from => {

@@ -244,9 +244,11 @@ const withGraph = WrappedComponent => {
 		};
 
 		removeNode = node => {
-			this.graph.removeVertex(node);
-			this.props.roomChangeGraph(this.graph.visualization);
-			this.props.removeNodeIO(node);
+			if (node !== this.state.nodeRoot) {
+				this.graph.removeVertex(node);
+				this.props.roomChangeGraph(this.graph.visualization);
+				this.props.removeNodeIO(node);
+			}
 			this.managedEnded();
 			this.graphAnimated();
 		};
@@ -286,48 +288,46 @@ const withGraph = WrappedComponent => {
 		};
 
 		render() {
-			const proxyPropagate = {
-				graph: this.graph,
-				visualization: this.graph.visualization,
-
-				initiateGraph: this.initiateGraph,
-				randomGraph: this.randomGraph,
-				randomGraphOffline: this.randomGraphOffline,
-				addNode: this.addNode,
-				addReceivedNode: this.addReceivedNode,
-				removeNode: this.removeNode,
-				removeReceivedNode: this.removeReceivedNode,
-				addEdge: this.addEdge,
-				addReceivedEdge: this.addReceivedEdge,
-				removeEdge: this.removeEdge,
-				removeReceivedEdge: this.removeReceivedEdge,
-
-				nodeSelected: this.state.nodeSelected,
-				nodeFocused: this.state.nodeFocused,
-				nodeCurrent: this.state.nodeCurrent,
-				nodesHighlighted: this.state.nodesHighlighted,
-				nodesAdjacent: this.state.nodesAdjacent,
-				nodeRoot: this.state.nodeRoot,
-
-				handlerNodeSelected: this.handlerNodeSelected,
-				handlerNodeFocused: this.handlerNodeFocused,
-				handlerNodeLostFocus: this.handlerNodeLostFocus,
-				handlerViewport: this.handlerViewport,
-
-				graphManaged: this.state.graphManaged,
-				graphAnimated: this.state.graphAnimated,
-				graphOperation: this.state.graphOperation,
-				graphManagedEnded: this.graphManagedEnded,
-				graphAnimatedEnded: this.graphAnimatedEnded,
-				graphManagedAddEdge: this.graphManagedAddEdge,
-				graphManagedRemoveNode: this.graphManagedRemoveNode,
-				graphManagedRemoveEdge: this.graphManagedRemoveEdge,
-				graphManagedAlgorithm: this.graphManagedAlgorithm,
-				graphManagedAlgorithmEnded: this.graphManagedAlgorithmEnded,
-				graphManagedCompete: this.graphManagedCompete,
-				graphNodeRoot: this.graphNodeRoot
-			};
-			return <WrappedComponent {...proxyPropagate} {...this.props} />;
+			return (
+				<WrappedComponent
+					graph={this.graph}
+					visualization={this.graph.visualization}
+					initiateGraph={this.initiateGraph}
+					randomGraph={this.randomGraph}
+					randomGraphOffline={this.randomGraphOffline}
+					addNode={this.addNode}
+					addReceivedNode={this.addReceivedNode}
+					removeNode={this.removeNode}
+					removeReceivedNode={this.removeReceivedNode}
+					addEdge={this.addEdge}
+					addReceivedEdge={this.addReceivedEdge}
+					removeEdge={this.removeEdge}
+					removeReceivedEdge={this.removeReceivedEdge}
+					nodeSelected={this.state.nodeSelected}
+					nodeFocused={this.state.nodeFocused}
+					nodeCurrent={this.state.nodeCurrent}
+					nodesHighlighted={this.state.nodesHighlighted}
+					nodesAdjacent={this.state.nodesAdjacent}
+					nodeRoot={this.state.nodeRoot}
+					handlerNodeSelected={this.handlerNodeSelected}
+					handlerNodeFocused={this.handlerNodeFocused}
+					handlerNodeLostFocus={this.handlerNodeLostFocus}
+					handlerViewport={this.handlerViewport}
+					graphManaged={this.state.graphManaged}
+					graphAnimated={this.state.graphAnimated}
+					graphOperation={this.state.graphOperation}
+					graphManagedEnded={this.graphManagedEnded}
+					graphAnimatedEnded={this.graphAnimatedEnded}
+					graphManagedAddEdge={this.graphManagedAddEdge}
+					graphManagedRemoveNode={this.graphManagedRemoveNode}
+					graphManagedRemoveEdge={this.graphManagedRemoveEdge}
+					graphManagedAlgorithm={this.graphManagedAlgorithm}
+					graphManagedAlgorithmEnded={this.graphManagedAlgorithmEnded}
+					graphManagedCompete={this.graphManagedCompete}
+					graphNodeRoot={this.graphNodeRoot}
+					{...this.props}
+				/>
+			);
 		}
 	}
 

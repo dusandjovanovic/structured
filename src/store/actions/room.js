@@ -47,10 +47,11 @@ const roomDelete = () => {
 	};
 };
 
-const roomJoin = name => {
+const roomJoin = (name, master = false) => {
 	return {
 		type: ROOM_JOIN,
-		name: name
+		name: name,
+		master: master
 	};
 };
 
@@ -190,10 +191,12 @@ export const roomCreateNew = (name, maxUsers, roomType) => {
 
 export const roomJoinExisting = name => {
 	return async (dispatch, getState) => {
+		const username = getState().auth.username;
+
 		dispatch(roomInitiate());
 		const payload = {
 			roomName: name,
-			username: getState().auth.username
+			username: username
 		};
 
 		try {
@@ -205,7 +208,12 @@ export const roomJoinExisting = name => {
 
 			if (response.data.success) {
 				const roomData = await dispatch(roomGetData(name));
-				dispatch(roomJoin(roomData.data.data.name));
+				dispatch(
+					roomJoin(
+						roomData.data.data.name,
+						roomData.data.data.createdBy === username
+					)
+				);
 				dispatch(roomEnd());
 			} else {
 				dispatch(roomError(response.data.message));
@@ -340,7 +348,7 @@ export const roomGetTraversal = () => {
 				.get(roomGetTraversalRoute(roomName));
 
 			if (response.data.success) {
-				dispatch(roomTraversalChange(response.data.data));
+				dispatch(roomTraversalChange(response.data.graphTraversed));
 			} else {
 				dispatch(roomError(response.data.message));
 			}
@@ -368,7 +376,7 @@ export const roomChangeTraversal = graphTraversed => {
 				});
 
 			if (response.data.success) {
-				dispatch(roomTraversalChange(response.data.data));
+				dispatch(roomTraversalChange(response.data.graphTraversed));
 			} else {
 				dispatch(roomError(response.data.message));
 			}

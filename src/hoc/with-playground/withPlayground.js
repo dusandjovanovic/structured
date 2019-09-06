@@ -2,6 +2,7 @@ import React from "react";
 import Master from "../../containers/room/toolbar/toolbar-master/master";
 import Spectator from "../../containers/room/toolbar/toolbar-spectator/spectator";
 import PropTypes from "prop-types";
+import { GRAPH_MANAGED_ALGORITHM } from "../../utils/constants";
 
 const withPlayground = WrappedComponent => {
 	class WithPlayground extends React.Component {
@@ -11,12 +12,11 @@ const withPlayground = WrappedComponent => {
 
 			if (this.props.username !== this.props.data.createdBy) {
 				this.props.socket.on("graphChange", received => {
-					console.log(received);
 					this.props.initiateGraph(received.graph);
 				});
 			} else if (this.props.username === this.props.data.createdBy) {
-				this.props.socket.on(this.props.username, () => {
-					if (this.props.graphOperation === "GRAPH_MANAGED_ALGORITHM")
+				this.props.socket.on("initMember", () => {
+					if (this.props.graphOperation === GRAPH_MANAGED_ALGORITHM)
 						this.props.algorithmBeginIO(
 							this.props.algorithmType,
 							this.props.algorithmVisualization.states,
@@ -198,7 +198,7 @@ const withPlayground = WrappedComponent => {
 		algorithmPause: PropTypes.func.isRequired,
 		algorithmVisualization: PropTypes.object.isRequired,
 		algorithmState: PropTypes.object,
-		algorithmActive: PropTypes.bool.isRequired,
+		algorithmActive: PropTypes.bool,
 		algorithmType: PropTypes.string.isRequired
 	};
 
