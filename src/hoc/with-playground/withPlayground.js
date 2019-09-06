@@ -198,7 +198,7 @@ const withPlayground = WrappedComponent => {
 		algorithmPause: PropTypes.func.isRequired,
 		algorithmVisualization: PropTypes.object.isRequired,
 		algorithmState: PropTypes.object,
-		algorithmActive: PropTypes.bool.isRequired,
+		algorithmActive: PropTypes.bool,
 		algorithmType: PropTypes.string.isRequired
 	};
 
