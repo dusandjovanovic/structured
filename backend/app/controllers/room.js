@@ -351,7 +351,7 @@ exports.getTraversalByName = function(request, response, next) {
 		else
 			response.json({
 				success: true,
-				data: room.graphTraversed
+				graphTraversed: room.graphTraversed
 			});
 	});
 };
@@ -363,15 +363,16 @@ exports.putTraversal = function(request, response, next) {
 	const { name } = request.params;
 	const { graphTraversed } = request.body;
 
-	Room.update(
+	Room.findOneAndUpdate(
 		{ name: name },
 		{ $set: { graphTraversed: graphTraversed } },
+		{ new: true },
 		function(error, room) {
 			if (error) return next(error);
 			else
 				response.json({
 					success: true,
-					data: room.graphTraversed
+					graphTraversed: room.graphTraversed
 				});
 		}
 	);

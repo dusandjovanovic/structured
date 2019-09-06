@@ -3,7 +3,13 @@ import Compete from "../../containers/room/toolbar/toolbar-compete/compete";
 import CompeteSpectator from "../../containers/room/toolbar/toolbar-compete/competeSpectator";
 import PropTypes from "prop-types";
 
-import { COMPETE_BREADTH, COMPETE_DEPTH } from "../../utils/constants";
+import forEach from "lodash/forEach";
+
+import {
+	COMPETE_BREADTH,
+	COMPETE_DEPTH,
+	GRAPH_MANAGED_COMPETE
+} from "../../utils/constants";
 
 const withCompete = WrappedComponent => {
 	class WithCompete extends React.Component {
@@ -19,6 +25,14 @@ const withCompete = WrappedComponent => {
 			if (this.props.username !== this.props.data.createdBy) {
 				this.props.socket.on("graphChange", received => {
 					this.props.initiateGraph(received.graph);
+				});
+			} else if (this.props.username === this.props.data.createdBy) {
+				this.props.socket.on("initMember", () => {
+					if (this.props.graphOperation === GRAPH_MANAGED_COMPETE)
+						this.props.competeBeginIO(
+							this.state.competeType,
+							this.props.nodeRoot
+						);
 				});
 			}
 
@@ -61,24 +75,29 @@ const withCompete = WrappedComponent => {
 			}
 		}
 
-		competeBegin = () => {
+		competeBegin = async () => {
 			let graphTraversed = this.props.graph.algorithm(
 				this.props.nodeRoot,
 				this.state.competeType
 			);
-			this.setState({
-				graph: graphTraversed
-			});
-			this.props.graphManagedCompete();
-			this.props.roomChangeGraph(graphTraversed).then(() => {
+			try {
+				await this.props.roomChangeTraversal(graphTraversed);
+				this.setState({
+					graph: this.props.data.graphTraversed
+				});
+				this.props.graphManagedCompete();
 				this.props.competeBeginIO(
 					this.state.competeType,
 					this.props.nodeRoot
 				);
-			});
+			} catch (error) {
+				this.setState({
+					graph: []
+				});
+			}
 		};
 
-		competeInitiate = (algorithm, root) => {
+		competeInitiate = async (algorithm, root) => {
 			this.props.internalNotificationsAdd(
 				(this.props.room.master ? "You" : "A room Master").concat(
 					" just started a compete session. Submit your solution when ready!"
@@ -86,26 +105,32 @@ const withCompete = WrappedComponent => {
 				"warning"
 			);
 			if (!this.props.graphManaged) {
-				this.props.roomGetGraph(this.props.room.name).then(response => {
+				try {
+					await this.props.roomGetTraversal();
 					this.props.graphManagedCompete();
 					this.props.graphNodeRoot(root);
 					this.setState({
 						competeType: algorithm,
-						graph: response.data
+						graph: this.props.data.graphTraversed
 					});
-				});
+				} catch (error) {
+					this.setState({
+						graph: []
+					});
+				}
 			}
 		};
 
 		competeEnded = () => {
 			let scored = 0;
-			for (let index in this.props.nodesHighlighted)
+			forEach(this.props.nodesHighlighted, (node, index) => {
 				if (typeof this.state.graph[index] !== "undefined")
 					scored +=
 						this.props.nodesHighlighted[index] ===
 						this.state.graph[index]
 							? 100 / this.state.graph.length
 							: 0;
+			});
 			this.props.competeEndedIO(scored);
 			this.props.userHistoryAdd(scored);
 			this.props.graphManagedEnded();

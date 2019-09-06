@@ -97,14 +97,16 @@ exports.put = function(request, response, next) {
 	const { id } = request.params;
 	const { graph } = request.body;
 
-	Graph.update(
+	Graph.findOneAndUpdate(
 		{ _id: id },
 		{ $set: { nodes: graph.nodes, edges: graph.edges } },
-		function(error) {
+		{ new: true },
+		function(error, graph) {
 			if (error) return next(error);
 			else
 				response.json({
-					success: true
+					success: true,
+					graph: graph
 				});
 		}
 	);
