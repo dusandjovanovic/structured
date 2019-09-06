@@ -1,6 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Grow from "@material-ui/core/Grow";
 import withIOMessaging from "../../../hoc/with-io-messaging/withIOMessaging";
 import PropTypes from "prop-types";
 
@@ -58,7 +59,6 @@ class Messaging extends React.PureComponent {
 			position: position,
 			date: new Date()
 		});
-
 		this.setState({
 			messages: updated
 		});
@@ -71,7 +71,7 @@ class Messaging extends React.PureComponent {
 			<div className={classes.root}>
 				<div className={classes.messageContainer}>
 					<TextField
-						id="messaging-text"
+						id="input-message"
 						label="Your message"
 						placeholder="Type a message to send here.."
 						value={this.state.message}
@@ -89,16 +89,18 @@ class Messaging extends React.PureComponent {
 				<div className={classes.messageView}>
 					{this.state.messages.map((message, index) => (
 						<div key={index} className={classes.messageHolder}>
-							<div
-								className={classNames(
-									classes.message,
-									message.position
-										? classes.messageRight
-										: classes.messageLeft
-								)}
-							>
-								{message.text}
-							</div>
+							<Grow in>
+								<div
+									className={classNames(
+										classes.message,
+										message.position
+											? classes.messageRight
+											: classes.messageLeft
+									)}
+								>
+									{message.text}
+								</div>
+							</Grow>
 						</div>
 					))}
 				</div>
