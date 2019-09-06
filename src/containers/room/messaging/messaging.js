@@ -43,6 +43,9 @@ class Messaging extends React.PureComponent {
 			sender: this.props.username,
 			msg: this.state.message
 		});
+		this.setState({
+			message: ""
+		});
 	};
 
 	messageReceived = message => {

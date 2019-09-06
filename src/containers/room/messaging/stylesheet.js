@@ -17,7 +17,7 @@ export const styles = theme => ({
 	messageView: {
 		padding: theme.spacing(2, 0.5),
 		width: "100%",
-		height: "80%",
+		maxHeight: "calc(100vh - 220px)",
 		overflowY: "auto",
 		display: "flex",
 		flexDirection: "column"
