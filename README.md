@@ -232,28 +232,31 @@ Kompozicija i dekoracija su najviše primenjene na `Room` komponentu. Inicijalno
 U konkretnom primeru dekorator `withPlaygroud` se koristi za gradjenje soba `practice` tipa i dinamiči dodeljuje privilegije i dozvoljene aktivnosti u vidu elemenata navbara `Room` komponenti, sve to u zavisnosti od statusa korisnika. Ako je korisnik `master` sobe u kojoj se nalazi dobiće dodatne privilegije. `withPlaygroud` je pritom hoc koji se oslanja na metode koje su prethodno propaginare od strane `withIO` i `withGraph` dekoratora. Pored `withPlayground` dekoratora od ključne su važnosti i dekoratori `withCompete` i `withLearn`. Ova tri hoc-a se koriste za formiranje soba različitih tipova i shodno tipu soba se oslanja na različite mogućnosti i atribute. `withAlgorithm` dekorator dodaje mogućnost vitualizacija različitih algoritama, mogućnot koja je potrebna samo u sobama `practice` tipa.
 
 ```javascript
-export const RoomPlayground = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(
-	withIO(
-		withGraph(
-			withAlgorithm(
-				withPlayground(withStyles(styles)(withErrorHandler(Room)))
-			)
-		)
-	)
+export const RoomPlayground = connect(mapStateToProps, mapDispatchToProps)(
+  withIO(
+    withGraph(
+     withAlgorithm(
+      withPlayground(withStyles(styles)(withErrorHandler(Room))))
+    )
+  )
 );
 
-export const RoomCompete = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(withIO(withGraph(withCompete(withStyles(styles)(withErrorHandler(Room))))));
+export const RoomCompete = connect(mapStateToProps, mapDispatchToProps)(
+  withIO(
+    withGraph(
+      withCompete(
+        withStyles(styles)(withErrorHandler(Room)))
+    )
+  )
+);
 
-export const RoomLearn = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(withGraph(withLearn(withStyles(styles)(withErrorHandler(Room)))));
+export const RoomLearn = connect(mapStateToProps, mapDispatchToProps)(
+  withGraph(
+    withLearn(
+      withStyles(styles)(withErrorHandler(Room))
+    )
+  )
+);
 ```
 
 ### Strategy
