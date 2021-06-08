@@ -133,11 +133,11 @@ Arhitekturni stil koji se primenjuje nad celom strukturom aplikacije je Layered 
 ----------__v
 ```
 
-## Dekoratori: Higher-order components
+## Arhitektura i dekoratori
 
-*Higher-order komponente (hoc)* se koriste za **poboljšavanje i kompoziciju** komponenti njihovim *omotavanjem*. Hoc komponentom se kontroliše ulaz pa se u vidu props atributa obuhvaćenoj komponenti može proslediti entitet ili skup podataka kome inicijalno nema pristup. Glavna prednost hoc-a je **uvodjenje logiku u dekoraciju** i **propagiranje logike** u vidu props atributa obuhvaćene komponente.
+**Higher-order komponente (hoc)** koriste se za **proširivanje i kompoziciju** komponenti njihovim *omotavanjem*. Hoc komponentom se kontroliše ulaz pa se u vidu `props` atributa obuhvaćenoj komponenti može proslediti entitet ili skup podataka kome inicijalno nema pristup. Glavna prednost hoc-a je **uvodjenje logiku u dekoraciju** i **propagiranje logike** u vidu props atributa obuhvaćene komponente.
 
-Primer Higher-order komponente je `withIO`. Ovaj Decorator osnovnu komponentu `WrappedComponent` obogaćuje funkcionalnostima socket.io biblioteke. Lifecycle metode su predefinisane za uspostavljanje WebSocket-a, a metoda poput `addNodeIO(node)` je pridoata logika u vidu props atributa `addNodeIO`.
+Primer Higher-order komponente je `withIO`. Ovaj Decorator osnovnu komponentu `WrappedComponent` proširuje upravljanjem WebSocket-ima. Lifecycle metode su predefinisane za uspostavljanje WebSocket-a, a metoda poput `addNodeIO(node)` je pridoata logika u vidu props atributa `addNodeIO`.
 
 ```javascript
 function withIO (WrappedComponent) {
@@ -145,13 +145,7 @@ function withIO (WrappedComponent) {
         socket = null;
 
         componentWillMount() {
-            this.socket = this.props.io('http://localhost:2998/graph');
-            this.socket.on('connect', () => {
-                console.log(this.props.username, 'websocket::opened');
-            });
-            this.socket.on('disconnect', () => {
-                console.log(this.props.username, 'websocket::closed');
-            })
+            this.socket = this.props.io("domain_name");
         }
 
         componentWillUnmount() {
@@ -168,19 +162,14 @@ function withIO (WrappedComponent) {
         ...
         
         render() {
-            return (
-                <WrappedComponent addNodeIO={this.addNodeIO}
-                                  ...
-                                  {...this.props}
-                                />
-            );
+            return <WrappedComponent addNodeIO={this.addNodeIO}...{...this.props} />;
         }
 }
 ```
 
-Kompozicija i dekoracija su najviše primenjene na `Room` komponentu. Inicijalno ova komponenta nema previše funkcionalnosti osim gradivnog koriničkog interfejsa i odvojeniih containera za predstavljanje chata, grafa i navbara. Dekoratorima se dobija znatno kompleksnija komponenta bez dupliranja koda i mogućnosti ponovne upotrebe hoc dekoratora.
+Kompozicija i dekoracija su primenjene na `Room` komponentu. Inicijalno ova komponenta nema previše funkcionalnosti osim gradivnog koriničkog interfejsa i odvojeniih kontejnera za iscrtavanje chata, grafa i navbara. Dekoratorima se dobija znatno kompleksnija komponenta bez dupliranja koda i mogućnosti ponovne upotrebe hoc dekoratora.
 
-U konkretnom primeru dekorator `withPlaygroud` se koristi za gradjenje soba `practice` tipa i dinamiči dodeljuje privilegije i dozvoljene aktivnosti u vidu elemenata navbara `Room` komponenti, sve to u zavisnosti od statusa korisnika. Ako je korisnik `master` sobe u kojoj se nalazi dobiće dodatne privilegije. `withPlaygroud` je pritom hoc koji se oslanja na metode koje su prethodno propaginare od strane `withIO` i `withGraph` dekoratora. Pored `withPlayground` dekoratora od ključne su važnosti i dekoratori `withCompete` i `withLearn`. Ova tri hoc-a se koriste za formiranje soba različitih tipova i shodno tipu soba se oslanja na različite mogućnosti i atribute. `withAlgorithm` dekorator dodaje mogućnost vitualizacija različitih algoritama, mogućnot koja je potrebna samo u sobama `practice` tipa.
+U konkretnom primeru dekorator `withPlaygroud` koristi se za gradjenje soba `practice` tipa i dinamiči dodeljuje privilegije i dozvoljene aktivnosti u vidu elemenata navbara `Room` komponenti, sve to u zavisnosti od statusa korisnika. Ako je korisnik `master` sobe u kojoj se nalazi dobiće dodatne privilegije. `withPlaygroud` je pritom hoc koji se oslanja na metode koje su prethodno propaginare od strane `withIO` i `withGraph` dekoratora. Pored `withPlayground` dekoratora od ključne su važnosti i dekoratori `withCompete` i `withLearn`. Ova tri hoc-a se koriste za formiranje soba različitih tipova i shodno tipu soba se oslanja na različite mogućnosti i atribute. `withAlgorithm` dekorator dodaje mogućnost vitualizacija različitih algoritama, mogućnot koja je potrebna samo u sobama `practice` tipa.
 
 ```javascript
 export const RoomPlayground = connect(mapStateToProps, mapDispatchToProps)(
