@@ -174,7 +174,7 @@ const toolbar = (props) => (
 ```
 `Dropdown` je komponenta koja se prosledjuje kao dete i dinamički se vrši kompozicija po potrebi.
 ```jsx
-<Toolbar props...
+<Toolbar>
     <Dropdown showRequests={(event) => this.showRequestsHandler(event)}
               hideRequests={(event) => this.showRequestsHandler(event)}
               ...
