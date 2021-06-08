@@ -144,21 +144,21 @@ Na primeru soba različitih tipova toolbarova navbar elementi se dinamički "ubr
 
 ```jsx
 <Wrapper>
-                {this.props.room.master
-                    ? <WrappedComponent {...this.props}>
-                        <ToolbarMaster ...shared props
-                                randomGraph={this.props.randomGraph}                       
-                                algorithmBreadth={this.props.algorithmBreadth}
-                                algorithmDepth={this.props.algorithmDepth}
+    {this.props.room.master
+        ? <WrappedComponent {...this.props}>
+            <ToolbarMaster ...shared props
+                    randomGraph={this.props.randomGraph}                       
+                    algorithmBreadth={this.props.algorithmBreadth}
+                    algorithmDepth={this.props.algorithmDepth}
 
-                        />
-                      </WrappedComponent>
-                    : <WrappedComponent {...this.props}>
-                        <ToolbarSpectator ...shared props
-                        />
-                      </WrappedComponent>
-                }
-                </Wrapper>
+            />
+          </WrappedComponent>
+        : <WrappedComponent {...this.props}>
+            <ToolbarSpectator ...shared props
+            />
+          </WrappedComponent>
+    }
+</Wrapper>
 ```
 
 Na primeru `Toolbar` komponente. Uvek su prikazani logo i navigacioni elementi.  
@@ -232,9 +232,28 @@ Kompozicija i dekoracija su najviše primenjene na `Room` komponentu. Inicijalno
 U konkretnom primeru dekorator `withPlaygroud` se koristi za gradjenje soba `practice` tipa i dinamiči dodeljuje privilegije i dozvoljene aktivnosti u vidu elemenata navbara `Room` komponenti, sve to u zavisnosti od statusa korisnika. Ako je korisnik `master` sobe u kojoj se nalazi dobiće dodatne privilegije. `withPlaygroud` je pritom hoc koji se oslanja na metode koje su prethodno propaginare od strane `withIO` i `withGraph` dekoratora. Pored `withPlayground` dekoratora od ključne su važnosti i dekoratori `withCompete` i `withLearn`. Ova tri hoc-a se koriste za formiranje soba različitih tipova i shodno tipu soba se oslanja na različite mogućnosti i atribute. `withAlgorithm` dekorator dodaje mogućnost vitualizacija različitih algoritama, mogućnot koja je potrebna samo u sobama `practice` tipa.
 
 ```javascript
-export const RoomPlayground = withRouter((withRedux (withIO (withGraph (withAlgorithm (withPlayground (Room)))))));
-export const RoomCompete = withRouter((withRedux (withIO (withGraph (withCompete (Room))))));
-export const RoomLearn = withRouter((withRedux (withGraph (withLearn (Room)))));
+export const RoomPlayground = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(
+	withIO(
+		withGraph(
+			withAlgorithm(
+				withPlayground(withStyles(styles)(withErrorHandler(Room)))
+			)
+		)
+	)
+);
+
+export const RoomCompete = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(withIO(withGraph(withCompete(withStyles(styles)(withErrorHandler(Room))))));
+
+export const RoomLearn = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(withGraph(withLearn(withStyles(styles)(withErrorHandler(Room)))));
 ```
 
 ### Strategy
@@ -254,12 +273,12 @@ Nov algoritam se može dodati kroz `strategy` u dva oblika:
 `algorithmName` kao rezultat vraća niz obidjenih/relevantnih čvorova. `algorithmName ? observable` je proširenje ovog algoritma koje za ` observable === true` vraća niz koraka koji predstavljaju stanje grafa. Koraci moraju da budu modelovani u obliku:
 ```json
 {
-  visited: [string],
-  solution: [string],
-  tempVertex: string,
-  unvisitedVertex: string,
-  algorithmLine: string,
-  structure : [string],
+    visited: [string],
+    solution: [string],
+    tempVertex: string,
+    unvisitedVertex: string,
+    algorithmLine: string,
+    structure : [string],
 }
 ```
 
@@ -272,11 +291,11 @@ Ova dva različita oblika koriste se odvojeno u `practice` i `compete` sobama.
 
 ```javascript
 algorithmVisualize = () => {
-            ...
-            const source$ = interval(1000);
-            source$.pipe(takeWhile(async => this.state.algorithmState.active))
-                .subscribe(async => this.algorithmNextState());
-        };
+    ...
+    const source$ = interval(1000);
+    source$.pipe(takeWhile(async => this.state.algorithmState.active))
+        .subscribe(async => this.algorithmNextState());
+};
 ```
 
 `rxjs` se retko koristi uz React.js zbog već postojećeg dinamičkog `react-redux` state managment-a. Medjutim, u aplikaciji se stanje grafa ne održava kroz `redux-store`.
