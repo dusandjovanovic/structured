@@ -133,55 +133,6 @@ Arhitekturni stil koji se primenjuje nad celom strukturom aplikacije je Layered 
 ----------__v
 ```
 
-
-## Composition
-
-Na primeru soba različitih tipova toolbarova navbar elementi se dinamički "ubrizgavaju" i mogu da budu različitih tipova. Vrši se kompozicija `Room` komponenti sa elementima tipa `toolbar-master`, `toolbar-spectator`, `toolbar-compete`, `toolbar-compete-spectator` i `toolbar-learn` u zavisnosti od tipa sobe u kojoj je korisnik i njegovih privilegija.
-
-![alt text][toolbar]
-
-[toolbar]: documents/images/toolbar.png
-
-```jsx
-<Wrapper>
-    {this.props.room.master
-        ? <WrappedComponent {...this.props}>
-            <ToolbarMaster ...shared props
-                    randomGraph={this.props.randomGraph}                       
-                    algorithmBreadth={this.props.algorithmBreadth}
-                    algorithmDepth={this.props.algorithmDepth}
-
-            />
-          </WrappedComponent>
-        : <WrappedComponent {...this.props}>
-            <ToolbarSpectator ...shared props
-            />
-          </WrappedComponent>
-    }
-</Wrapper>
-```
-
-Na primeru `Toolbar` komponente. Uvek su prikazani logo i navigacioni elementi.  
-```jsx
-const toolbar = (props) => (
-    <header className="Toolbar">
-        <Logo />
-        <NavigationItems />
-        {props.children}
-        ...
-    </header>
-);
-```
-`Dropdown` je komponenta koja se prosledjuje kao dete i dinamički se vrši kompozicija po potrebi.
-```jsx
-<Toolbar>
-    <Dropdown showRequests={(event) => this.showRequestsHandler(event)}
-              hideRequests={(event) => this.showRequestsHandler(event)}
-              ...
-    />
-</Toolbar>
-```
-
 ## Dekoratori: Higher-order components
 
 *Higher-order komponente (hoc)* se koriste za **poboljšavanje i kompoziciju** komponenti njihovim *omotavanjem*. Hoc komponentom se kontroliše ulaz pa se u vidu props atributa obuhvaćenoj komponenti može proslediti entitet ili skup podataka kome inicijalno nema pristup. Glavna prednost hoc-a je **uvodjenje logiku u dekoraciju** i **propagiranje logike** u vidu props atributa obuhvaćene komponente.
@@ -259,7 +210,55 @@ export const RoomLearn = connect(mapStateToProps, mapDispatchToProps)(
 );
 ```
 
-### Strategy
+## Korisnički interfejs i kompozicija
+
+Na primeru soba različitih tipova toolbarova navbar elementi se dinamički "ubrizgavaju" i mogu da budu različitih tipova. Vrši se kompozicija `Room` komponenti sa elementima tipa `toolbar-master`, `toolbar-spectator`, `toolbar-compete`, `toolbar-compete-spectator` i `toolbar-learn` u zavisnosti od tipa sobe u kojoj je korisnik i njegovih privilegija.
+
+![alt text][toolbar]
+
+[toolbar]: documents/images/toolbar.png
+
+```jsx
+<Wrapper>
+    {this.props.room.master
+        ? <WrappedComponent {...this.props}>
+            <ToolbarMaster ...shared props
+                    randomGraph={this.props.randomGraph}                       
+                    algorithmBreadth={this.props.algorithmBreadth}
+                    algorithmDepth={this.props.algorithmDepth}
+
+            />
+          </WrappedComponent>
+        : <WrappedComponent {...this.props}>
+            <ToolbarSpectator ...shared props
+            />
+          </WrappedComponent>
+    }
+</Wrapper>
+```
+
+Na primeru `Toolbar` komponente. Uvek su prikazani logo i navigacioni elementi.  
+```jsx
+const toolbar = (props) => (
+    <header className="Toolbar">
+        <Logo />
+        <NavigationItems />
+        {props.children}
+        ...
+    </header>
+);
+```
+`Dropdown` je komponenta koja se prosledjuje kao dete i dinamički se vrši kompozicija po potrebi.
+```jsx
+<Toolbar>
+    <Dropdown showRequests={(event) => this.showRequestsHandler(event)}
+              hideRequests={(event) => this.showRequestsHandler(event)}
+              ...
+    />
+</Toolbar>
+```
+
+### Algoritmi kroz "strategije"
 
 `algorithm`
  - `breadthFirstSearch`
@@ -288,7 +287,7 @@ Nov algoritam se može dodati kroz `strategy` u dva oblika:
 `visited` kao niz posećenih čvorova, `solution` kao rešenje, `tempVertex`/`unvisitedVertex` mogu da predstavljaju različite čvorove u etapama algoritma. `algorithmLine` trenutnu aktivnu liniju pseudo koda koji predstavlja algoritam i `structure` sadržaj pomoćne strukture poput reda ili steka.
 Ova dva različita oblika koriste se odvojeno u `practice` i `compete` sobama.
 
-### Observable/Iterator
+### Vizualizacija algoritama kroz Observable/Iteratore
 
 `Observables` se koriste kod vizualizacija algoritama nad grafom u veoma prostom obliku, oslanjajući se na biblioteku `rxjs`. Ima ulogu `iteratora` nad *nizom stanja* u kojima se graf nalazi u toku izvršavanja konkretnog algoritma, *generisanim pomenutim `observable` varijantama algoritama*.
 
