@@ -18,7 +18,7 @@
 		"react-redux": "^7.2.4",
 		"react-router": "^5.2.0",
 		"react-router-dom": "^5.2.0",
-		"react-scripts": "^3.4.4",
+		"react-scripts": "^5.0.1",
 		"react-syntax-highlighter": "^11.0.2",
 		"recharts": "^1.8.5",
 		"redux": "^4.1.0",
