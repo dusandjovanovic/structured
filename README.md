@@ -93,7 +93,7 @@ The **Publish and subscribe** method is used for exchanging messages where the s
 
 ### Redux store model
 
-`json
+```json
 --state
 ----auth
 ------token
@@ -134,7 +134,7 @@ The **Publish and subscribe** method is used for exchanging messages where the s
 ----------createdBy
 ----------time
 ----------__v
-`
+```
 
 ## Architecture and decorators
 
@@ -142,7 +142,7 @@ The **Publish and subscribe** method is used for exchanging messages where the s
 
 An example of a higher-order component is `withIO`. This Decorator extends the `WrappedComponent` base component by handling WebSockets. Lifecycle methods are predefined for WebSocket establishment, and method like `addNodeIO(node)` is added logic in the form of props attribute `addNodeIO`.
 
-`javascript
+```javascript
 function withIO (WrappedComponent) {
     return class extends React.Component {
         socket = null;
@@ -168,13 +168,13 @@ function withIO (WrappedComponent) {
             return <WrappedComponent addNodeIO={this.addNodeIO}...{...this.props} />;
         }
 }
-`
+```
 
 Composition and decoration are applied to `Room` component. Initially, this component does not have much functionality except for a buildable core interface and separate containers for drawing chats, graphs, and navbars. Decorators provide a significantly more complex component without code duplication and the ability to reuse hoc decorators.
 
 In the concrete example, the decorator `withPlaygroud` is used to build rooms of the `practice` type and dynamically assigns privileges and allowed activities in the form of navbar elements of `Room` components, all depending on the status of the user. If the user is the `master` of the room he is in, he will receive additional privileges. `withPlaygroud` is a hoc that relies on methods previously propagated by the `withIO` and `withGraph` decorators. In addition to the `withPlayground` decorator, the `withCompete` and `withLearn` decorators are also crucial. These three hocs are used to form rooms of different types and according to the type of room it relies on different possibilities and attributes. The `withAlgorithm` decorator adds the possibility of visualizing different algorithms, a possibility that is only needed in `practice` type rooms.
 
-`javascript
+```javascript
 export const RoomPlayground = connect(mapStateToProps, mapDispatchToProps)(
   withIO(
     withGraph(
@@ -200,7 +200,7 @@ export const RoomLearn = connect(mapStateToProps, mapDispatchToProps)(
     )
   )
 );
-`
+```
 
 ## User Interface and composition
 
@@ -210,7 +210,7 @@ On the example of rooms with different types of toolbars, navbar elements are dy
 
 [toolbar]: documents/images/toolbar.png
 
-`jsx
+```jsx
 <Wrapper>
     {this.props.room.master
         ? <WrappedComponent {...this.props}>
