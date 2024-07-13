@@ -53,6 +53,8 @@ Application is sustainable online with this configuration. Runs in multiple inst
     ...
 ```
 
+## Screenshots
+
 ![alt text][screenshot_intro]
 
 [screenshot_intro]: documents/images/screenshot_intro.png
