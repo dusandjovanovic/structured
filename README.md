@@ -88,7 +88,7 @@ The architectural style applied over the entire structure of the application is 
 The **Publish and subscribe** method is used for exchanging messages where the senders (publishers) do not specify the specific destinations of the messages, that is, the recipients (subscribers), but rather **categorize the messages into classes** without knowing whether there is a recipient at all. Similarly, receivers register to specific classes and receive messages of those classes whenever they are sent.
 
 
-### Model redux-store
+### Redux store model
 
 ```json
 --state
