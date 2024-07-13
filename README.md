@@ -68,24 +68,24 @@ Application is sustainable online with this configuration. Runs in multiple inst
 
 [screenshot_dashboard]: documents/images/screenshot_dashboard.png
 
-## Architecture (Serbian)
+## Architecture
 
 ### Layered (n-tier)
 
-Arhitekturni stil koji se primenjuje nad celom strukturom aplikacije je Layered (slojeviti) obrazac. Komponente aplikacije su organizovane u tri sloja.
+The architectural style applied over the entire structure of the application is the Layered pattern. The application components are organized in three layers.
 
 ![alt text][layered]
 
 [layered]: documents/images/layered.png
 
-* *Server* - pozadisnki sloj (Node.js)
-* *Reactive model* - sloj koji omotava logiku pribavljanja podataka
-* *Redux state* - sloj za održavanje stanja aplikacije (state-managment) oslanja se na `react-redux`
-* *View* - sloj pogleda, interakcija sa korisnikom
+* *Server* - backend layer (Node.js)
+* *Reactive model* - a layer that wraps the data acquisition logic
+* *Redux state* - the state-management layer relies on `react-redux'
+* *View* - view layer, interaction with the user
 
 ### Backend: Publish and subscribe
 
-**Publish and subscribe** metoda se koristi za razmenu poruka gde pošaljioci (publishers) ne navode konkretna odredišta poruka, odnosno primaoce (subscribers), već **kategorizuju poruke u klase** bez znanja da li uopšte ima primaoca. Slično tome, primaoci se registruju na konkretne klase i primaju poruke tih klasa kad god su poslate.
+The **Publish and subscribe** method is used for exchanging messages where the senders (publishers) do not specify the specific destinations of the messages, that is, the recipients (subscribers), but rather **categorize the messages into classes** without knowing whether there is a recipient at all. Similarly, receivers register to specific classes and receive messages of those classes whenever they are sent.
 
 
 ### Model redux-store
@@ -133,11 +133,11 @@ Arhitekturni stil koji se primenjuje nad celom strukturom aplikacije je Layered 
 ----------__v
 ```
 
-## Arhitektura i dekoratori
+## Architecture and decorators
 
-**Higher-order komponente (hoc)** koriste se za **proširivanje i kompoziciju** komponenti njihovim *omotavanjem*. Hoc komponentom se kontroliše ulaz pa se u vidu `props` atributa obuhvaćenoj komponenti može proslediti entitet ili skup podataka kome inicijalno nema pristup. Glavna prednost hoc-a je **uvodjenje logiku u dekoraciju** i **propagiranje logike** u vidu props atributa obuhvaćene komponente.
+**Higher-order components (hoc)** are used for **expanding and composition** of components by *wrapping* them. The Hoc component controls the input, so in the form of the `props' attribute, the included component can be forwarded an entity or a set of data that it initially does not have access to. The main advantage of hoc is **introducing logic into decoration** and **propagating logic** in the form of props attribute of the included component.
 
-Primer Higher-order komponente je `withIO`. Ovaj Decorator osnovnu komponentu `WrappedComponent` proširuje upravljanjem WebSocket-ima. Lifecycle metode su predefinisane za uspostavljanje WebSocket-a, a metoda poput `addNodeIO(node)` je pridoata logika u vidu props atributa `addNodeIO`.
+An example of a higher-order component is `withIO`. This Decorator extends the `WrappedComponent` base component by handling WebSockets. Lifecycle methods are predefined for WebSocket establishment, and method like `addNodeIO(node)` is added logic in the form of props attribute `addNodeIO`.
 
 ```javascript
 function withIO (WrappedComponent) {
@@ -167,9 +167,9 @@ function withIO (WrappedComponent) {
 }
 ```
 
-Kompozicija i dekoracija su primenjene na `Room` komponentu. Inicijalno ova komponenta nema previše funkcionalnosti osim gradivnog koriničkog interfejsa i odvojeniih kontejnera za iscrtavanje chata, grafa i navbara. Dekoratorima se dobija znatno kompleksnija komponenta bez dupliranja koda i mogućnosti ponovne upotrebe hoc dekoratora.
+Composition and decoration are applied to `Room` component. Initially, this component does not have much functionality except for a buildable core interface and separate containers for drawing chats, graphs, and navbars. Decorators provide a significantly more complex component without code duplication and the ability to reuse hoc decorators.
 
-U konkretnom primeru dekorator `withPlaygroud` koristi se za gradjenje soba `practice` tipa i dinamiči dodeljuje privilegije i dozvoljene aktivnosti u vidu elemenata navbara `Room` komponenti, sve to u zavisnosti od statusa korisnika. Ako je korisnik `master` sobe u kojoj se nalazi dobiće dodatne privilegije. `withPlaygroud` je pritom hoc koji se oslanja na metode koje su prethodno propaginare od strane `withIO` i `withGraph` dekoratora. Pored `withPlayground` dekoratora od ključne su važnosti i dekoratori `withCompete` i `withLearn`. Ova tri hoc-a se koriste za formiranje soba različitih tipova i shodno tipu soba se oslanja na različite mogućnosti i atribute. `withAlgorithm` dekorator dodaje mogućnost vitualizacija različitih algoritama, mogućnot koja je potrebna samo u sobama `practice` tipa.
+In the concrete example, the decorator `withPlaygroud` is used to build rooms of the `practice` type and dynamically assigns privileges and allowed activities in the form of navbar elements of `Room` components, all depending on the status of the user. If the user is the `master' of the room he is in, he will receive additional privileges. `withPlaygroud` is a hoc that relies on methods previously propagated by the `withIO` and `withGraph` decorators. In addition to the `withPlayground` decorator, the `withCompete` and `withLearn` decorators are also crucial. These three hocs are used to form rooms of different types and according to the type of room it relies on different possibilities and attributes. The `withAlgorithm' decorator adds the possibility of visualizing different algorithms, a possibility that is only needed in `practice' type rooms.
 
 ```javascript
 export const RoomPlayground = connect(mapStateToProps, mapDispatchToProps)(
@@ -199,9 +199,9 @@ export const RoomLearn = connect(mapStateToProps, mapDispatchToProps)(
 );
 ```
 
-## Korisnički interfejs i kompozicija
+## User Interface and composition
 
-Na primeru soba različitih tipova toolbarova navbar elementi se dinamički "ubrizgavaju" i mogu da budu različitih tipova. Vrši se kompozicija `Room` komponenti sa elementima tipa `toolbar-master`, `toolbar-spectator`, `toolbar-compete`, `toolbar-compete-spectator` i `toolbar-learn` u zavisnosti od tipa sobe u kojoj je korisnik i njegovih privilegija.
+On the example of rooms with different types of toolbars, navbar elements are dynamically "injected" and can be of different types. Composition of `Room` components with `toolbar-master`, `toolbar-spectator`, `toolbar-compete`, `toolbar-compete-spectator` and `toolbar-learn` elements is performed depending on the type of room in which the user is and its privileges.
 
 ![alt text][toolbar]
 
@@ -226,7 +226,7 @@ Na primeru soba različitih tipova toolbarova navbar elementi se dinamički "ubr
 </Wrapper>
 ```
 
-Na primeru `Toolbar` komponente. Uvek su prikazani logo i navigacioni elementi.  
+On the example of `Toolbar` component. The logo and navigation elements are always displayed.
 ```jsx
 const toolbar = (props) => (
     <header className="Toolbar">
@@ -237,7 +237,7 @@ const toolbar = (props) => (
     </header>
 );
 ```
-`Dropdown` je komponenta koja se prosledjuje kao dete i dinamički se vrši kompozicija po potrebi.
+`Dropdown` is a component that is passed as a child and dynamically composed as needed.
 ```jsx
 <Toolbar>
     <Dropdown showRequests={(event) => this.showRequestsHandler(event)}
@@ -247,7 +247,7 @@ const toolbar = (props) => (
 </Toolbar>
 ```
 
-### Algoritmi kroz "strategije"
+### Algorithms through strategies
 
 `algorithm`
  - `breadthFirstSearch`
@@ -257,11 +257,11 @@ const toolbar = (props) => (
  
 #### Algoritmi
 
-Nov algoritam se može dodati kroz `strategy` u dva oblika:
+A new algorithm can be added through `strategy' in two forms:
  - `algorithmName`
  - `algorithmName ? observable`
 
-`algorithmName` kao rezultat vraća niz obidjenih/relevantnih čvorova. `algorithmName ? observable` je proširenje ovog algoritma koje za ` observable === true` vraća niz koraka koji predstavljaju stanje grafa. Koraci moraju da budu modelovani u obliku:
+`algorithmName' returns an array of visited/relevant nodes as a result. `algorithmName ? observable` is an extension of this algorithm which for ` observable === true` returns a series of steps representing the state of the graph. The steps must be modeled in the form:
 ```json
 {
     visited: [string],
@@ -273,12 +273,12 @@ Nov algoritam se može dodati kroz `strategy` u dva oblika:
 }
 ```
 
-`visited` kao niz posećenih čvorova, `solution` kao rešenje, `tempVertex`/`unvisitedVertex` mogu da predstavljaju različite čvorove u etapama algoritma. `algorithmLine` trenutnu aktivnu liniju pseudo koda koji predstavlja algoritam i `structure` sadržaj pomoćne strukture poput reda ili steka.
-Ova dva različita oblika koriste se odvojeno u `practice` i `compete` sobama.
+`visited' as a series of visited nodes, `solution' as a solution, `tempVertex'/`unvisitedVertex' can represent different nodes in the stages of the algorithm. `algorithmLine` the current active line of pseudo code representing the algorithm and `structure` the content of an auxiliary structure such as a queue or stack.
+These two different forms are used separately in `practice` and `compete` rooms.
 
-### Vizualizacija algoritama kroz Observable/Iteratore
+### Visualizing algorithms through observables/iterators
 
-`Observables` se koriste kod vizualizacija algoritama nad grafom u veoma prostom obliku, oslanjajući se na biblioteku `rxjs`. Ima ulogu `iteratora` nad *nizom stanja* u kojima se graf nalazi u toku izvršavanja konkretnog algoritma, *generisanim pomenutim `observable` varijantama algoritama*.
+`Observables'' are used when visualizing algorithms over a graph in a very simple form, relying on the ``rxjs'' library. It has the role of `iterator' over the *series of states* in which the graph is during the execution of the specific algorithm, *generated by the mentioned `observable' variants of the algorithms*.
 
 ```javascript
 algorithmVisualize = () => {
@@ -289,4 +289,4 @@ algorithmVisualize = () => {
 };
 ```
 
-`rxjs` se retko koristi uz React.js zbog već postojećeg dinamičkog `react-redux` state managment-a. Medjutim, u aplikaciji se stanje grafa ne održava kroz `redux-store`.
+`rxjs` is rarely used with React.js due to the already existing and established `react-redux` state management. However, in the application, the state of the graph is not maintained through `redux-store`.
