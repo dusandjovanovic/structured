@@ -80,7 +80,7 @@ The architectural style applied over the entire structure of the application is 
 
 * *Server* - backend layer (Node.js)
 * *Reactive model* - a layer that wraps the data acquisition logic
-* *Redux state* - the state-management layer relies on `react-redux'
+* *Redux state* - the state-management layer relies on `react-redux`
 * *View* - view layer, interaction with the user
 
 ### Backend: Publish and subscribe
@@ -135,7 +135,7 @@ The **Publish and subscribe** method is used for exchanging messages where the s
 
 ## Architecture and decorators
 
-**Higher-order components (hoc)** are used for **expanding and composition** of components by *wrapping* them. The Hoc component controls the input, so in the form of the `props' attribute, the included component can be forwarded an entity or a set of data that it initially does not have access to. The main advantage of hoc is **introducing logic into decoration** and **propagating logic** in the form of props attribute of the included component.
+**Higher-order components (hoc)** are used for **expanding and composition** of components by *wrapping* them. The Hoc component controls the input, so in the form of the `props` attribute, the included component can be forwarded an entity or a set of data that it initially does not have access to. The main advantage of hoc is **introducing logic into decoration** and **propagating logic** in the form of props attribute of the included component.
 
 An example of a higher-order component is `withIO`. This Decorator extends the `WrappedComponent` base component by handling WebSockets. Lifecycle methods are predefined for WebSocket establishment, and method like `addNodeIO(node)` is added logic in the form of props attribute `addNodeIO`.
 
@@ -153,7 +153,7 @@ function withIO (WrappedComponent) {
         }
 
         addNodeIO = (node) => {
-            this.socket.emit('add node', {
+            this.socket.emit(`add node`, {
                 room: this.props.data.name,
                 sender: this.props.username,
                 node: node
@@ -169,7 +169,7 @@ function withIO (WrappedComponent) {
 
 Composition and decoration are applied to `Room` component. Initially, this component does not have much functionality except for a buildable core interface and separate containers for drawing chats, graphs, and navbars. Decorators provide a significantly more complex component without code duplication and the ability to reuse hoc decorators.
 
-In the concrete example, the decorator `withPlaygroud` is used to build rooms of the `practice` type and dynamically assigns privileges and allowed activities in the form of navbar elements of `Room` components, all depending on the status of the user. If the user is the `master' of the room he is in, he will receive additional privileges. `withPlaygroud` is a hoc that relies on methods previously propagated by the `withIO` and `withGraph` decorators. In addition to the `withPlayground` decorator, the `withCompete` and `withLearn` decorators are also crucial. These three hocs are used to form rooms of different types and according to the type of room it relies on different possibilities and attributes. The `withAlgorithm' decorator adds the possibility of visualizing different algorithms, a possibility that is only needed in `practice' type rooms.
+In the concrete example, the decorator `withPlaygroud` is used to build rooms of the `practice` type and dynamically assigns privileges and allowed activities in the form of navbar elements of `Room` components, all depending on the status of the user. If the user is the `master` of the room he is in, he will receive additional privileges. `withPlaygroud` is a hoc that relies on methods previously propagated by the `withIO` and `withGraph` decorators. In addition to the `withPlayground` decorator, the `withCompete` and `withLearn` decorators are also crucial. These three hocs are used to form rooms of different types and according to the type of room it relies on different possibilities and attributes. The `withAlgorithm` decorator adds the possibility of visualizing different algorithms, a possibility that is only needed in `practice` type rooms.
 
 ```javascript
 export const RoomPlayground = connect(mapStateToProps, mapDispatchToProps)(
@@ -257,11 +257,11 @@ const toolbar = (props) => (
  
 #### Algoritmi
 
-A new algorithm can be added through `strategy' in two forms:
+A new algorithm can be added through `strategy` in two forms:
  - `algorithmName`
  - `algorithmName ? observable`
 
-`algorithmName' returns an array of visited/relevant nodes as a result. `algorithmName ? observable` is an extension of this algorithm which for ` observable === true` returns a series of steps representing the state of the graph. The steps must be modeled in the form:
+`algorithmName` returns an array of visited/relevant nodes as a result. `algorithmName ? observable` is an extension of this algorithm which for ` observable === true` returns a series of steps representing the state of the graph. The steps must be modeled in the form:
 ```json
 {
     visited: [string],
@@ -273,12 +273,12 @@ A new algorithm can be added through `strategy' in two forms:
 }
 ```
 
-`visited' as a series of visited nodes, `solution' as a solution, `tempVertex'/`unvisitedVertex' can represent different nodes in the stages of the algorithm. `algorithmLine` the current active line of pseudo code representing the algorithm and `structure` the content of an auxiliary structure such as a queue or stack.
+`visited` as a series of visited nodes, `solution` as a solution, `tempVertex`/`unvisitedVertex` can represent different nodes in the stages of the algorithm. `algorithmLine` the current active line of pseudo code representing the algorithm and `structure` the content of an auxiliary structure such as a queue or stack.
 These two different forms are used separately in `practice` and `compete` rooms.
 
 ### Visualizing algorithms through observables/iterators
 
-`Observables'' are used when visualizing algorithms over a graph in a very simple form, relying on the ``rxjs'' library. It has the role of `iterator' over the *series of states* in which the graph is during the execution of the specific algorithm, *generated by the mentioned `observable' variants of the algorithms*.
+`Observables`` are used when visualizing algorithms over a graph in a very simple form, relying on the ``rxjs`` library. It has the role of `iterator` over the *series of states* in which the graph is during the execution of the specific algorithm, *generated by the mentioned `observable` variants of the algorithms*.
 
 ```javascript
 algorithmVisualize = () => {
