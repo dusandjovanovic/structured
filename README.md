@@ -51,7 +51,8 @@ Application is sustainable online with this configuration. Runs in multiple inst
     public/
     test/
     ...
-`
+```
+
 ![alt text][screenshot_intro]
 
 [screenshot_intro]: documents/images/screenshot_intro.png
